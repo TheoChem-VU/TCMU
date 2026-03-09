@@ -73,7 +73,7 @@ def status(use_hash: bool = False, name: str = None, exit: bool = False):
             if row[0] == 'RUNNING':
                 run_rows.append(row)
 
-        run_rows = list(sorted(rows, key=lambda row: time_sort(row[-2])))
+        run_rows = list(sorted(run_rows, key=lambda row: time_sort(row[-2])))
         new_rows = misc_rows + pend_rows + run_rows
 
         return new_rows
@@ -150,13 +150,15 @@ def status(use_hash: bool = False, name: str = None, exit: bool = False):
 
     if exit:
         return
- 
+
+    previous_n_lines = len(s.splitlines()) + 1
     while True:
         s = get_str()
-        n_lines = len(s.splitlines())
-        clear_lines(n_lines+1)
+        clear_lines(previous_n_lines)
         print(s)
         time.sleep(1)
+        n_lines = len(s.splitlines())
+        previous_n_lines = len(s.splitlines()) + 1
 
 workflow.add_command(status)
 
