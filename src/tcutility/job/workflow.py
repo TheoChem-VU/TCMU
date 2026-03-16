@@ -403,13 +403,14 @@ def extract_func_code(func: callable) -> List[str]:
 
     # and also the base_indentation of the function
     for line in code_lines:
+        if line.strip().startswith('#'):
+            continue
         if line.strip() == '':
             continue
         base_indent = len(line) - len(line.lstrip())
         break
-
     # use base_indentation to properly align code to be all the way left
-    code_lines = [line[base_indent:] for line in code_lines]
+    code_lines = [line[base_indent:] if not line.strip().startswith('#') else line for line in code_lines]
 
     return code_lines
 
@@ -469,12 +470,12 @@ if __name__ == '__main__':
         import tcutility
         from scm import plams
         import time
-        
+
         with tcutility.DFTBJob(use_slurm=False) as job:
             job.molecule(molecule)
             job.optimization()
 
         return plams.Molecule(job.output_mol_path)
 
-    optimized_mol = DFTB(os.path.abspath('example.xyz'), restart=False)
+    optimized_mol = DFTB(os.path.abspath('example.xyz'), restart=True)
     print(optimized_mol)
