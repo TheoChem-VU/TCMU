@@ -12,7 +12,7 @@ from tcutility.job.generic import Job
 from tcutility.results.result import Result
 from tcutility.typing_utilities import ensure_list
 
-__all__ = ["ORCAJob"]
+__all__ = ["ORCAJob", "GOATJob"]
 
 j = os.path.join
 
@@ -56,11 +56,11 @@ class ORCAJob(Job):
             if v.casefold() in lower_main:
                 self.settings.main.discard(lower_main[v.casefold()])
 
-    def __remove_task(self):
-        [self.remove_main(task) for task in ["sp", "opt", "optts", "neb-ts"]]
+    def _remove_task(self):
+        [self.remove_main(task) for task in ["sp", "opt", "optts", "neb-ts", "goat"]]
 
     def method(self, method):
-        spell_check.check(method, ["HF", "MP2", "CCSD", "CCSD(T)", "CCSDT"])
+        spell_check.check(method, ["XTB", "XTB0", "XTB1", "XTB2", "XTBFF", "HF", "MP2", "CCSD", "CCSD(T)", "CCSDT"])
         self.settings.main.add(method)
         self._method = method
 
@@ -76,16 +76,16 @@ class ORCAJob(Job):
         self.settings.main.add(value)
 
     def single_point(self):
-        self.__remove_task()
+        self._remove_task()
         self.settings.main.add("SP")
 
     def transition_state(self):
-        self.__remove_task()
+        self._remove_task()
         self.vibrations()
         self.settings.main.add("OptTS")
 
     def optimization(self):
-        self.__remove_task()
+        self._remove_task()
         self.vibrations()
         self.settings.main.add("Opt")
 
@@ -237,7 +237,53 @@ class ORCAJob(Job):
         return j(self.workdir, "OPT.xyz")
 
 
+class GOATJob(ORCAJob):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self._remove_task()
+        self.settings.main.add("GOAT")
+
+        self.method('XTB2')
+
+    @property
+    def best_conformer_path(self):
+        """
+        The default file path for output molecules when running ADF calculations. It will not be created for singlepoint calculations.
+        """
+        return j(self.workdir, f"{self.name}.globalminimum.xyz")
+
+
+    def _setup_job(self):
+        self.add_postamble("mkdir conformers")
+        self.add_postamble(f"split -d -l {len(self._molecule.atoms) + 2} -a 5 {self.name}.finalensemble.xyz conformers/")
+        self.add_postamble("for file in conformers/*")
+        self.add_postamble("do")
+        self.add_postamble('    mv "$file" "$file.xyz"')
+        self.add_postamble("done")
+
+        return super()._setup_job()
+
+    
+
+
+    # def get_conformer_xyz(self, number: Union[int, None] = None):
+    #     """
+    #     Return paths to conformer xyz files for this job.
+
+    #     Args:
+    #         number: the number of files to return, defaults to ``10``. If the directory already exists, for example if the job was already run, we will return up to ``number`` files.
+    #             If set to ``None`` and the directory exists we return all files.
+    #     """
+    #     if not os.path.exists(j(self.workdir, f"{self.name}.finalensemble.xyz")):
+    #         raise Exception('Conformers can only be obtained')
+    #     return self._get_xyz(self.conformer_directory, number)
+
+
+
+
+
 if __name__ == "__main__":
-    job = ORCAJob()
-    job.main("OPT cc-pVTZ")
-    job.remove_main("OPT OPTTS NEB")
+    with GOATJob() as job:
+        job.molecule()
+
