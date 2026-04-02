@@ -1,7 +1,7 @@
 import pathlib as pl
 from enum import StrEnum
 
-from tcutility.results.read import read
+from tcmu.results.read import read
 
 
 class OutputFileNames(StrEnum):

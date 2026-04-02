@@ -1,5 +1,5 @@
-include src/tcutility/results/input_blocks
-include src/tcutility/data/*
-include src/tcutility/data/_atom_data_info/*.txt
-include src/tcutility/data/_atom_data_info/*.json
-include src/tcutility/report/_char_widths.txt
+include src/tcmu/results/input_blocks
+include src/tcmu/data/*
+include src/tcmu/data/_atom_data_info/*.txt
+include src/tcmu/data/_atom_data_info/*.json
+include src/tcmu/report/_char_widths.txt
