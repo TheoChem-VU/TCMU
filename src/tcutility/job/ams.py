@@ -1,12 +1,14 @@
 import os
 from typing import List, Sequence, Union
 
+import shutil
 import dictfunc
 import numpy as np
 from scm import plams
+from datetime import datetime
 
 import tcutility.log as log
-from tcutility import connect
+from tcutility import connect, read
 from tcutility.job.generic import Job
 from tcutility.job.postscripts import clean_workdir, write_converged_geoms
 
@@ -30,6 +32,7 @@ class AMSJob(Job):
         self._functional = None
         self._basis_set = None
         super().__init__(*args, **kwargs)
+        self.restart()
 
     def __str__(self):
         return f"{self._task}({self._functional}/{self._basis_set}), running in {os.path.join(os.path.abspath(self.rundir), self.name)}"
@@ -103,15 +106,15 @@ class AMSJob(Job):
         self.add_postscript(write_converged_geoms)
 
     def PESScan(
-        self,
-        index: int = 0,
-        distances: Union[TPESCoord, None] = None,
-        angles: Union[TPESCoord, None] = None,
-        dihedrals: Union[TPESCoord, None] = None,
-        sumdists: Union[TPESCoord, None] = None,
-        difdists: Union[TPESCoord, None] = None,
-        npoints: int = 10,
-    ):
+            self,
+            index: int = 0,
+            distances: Union[TPESCoord, None] = None,
+            angles: Union[TPESCoord, None] = None,
+            dihedrals: Union[TPESCoord, None] = None,
+            sumdists: Union[TPESCoord, None] = None,
+            difdists: Union[TPESCoord, None] = None,
+            npoints: int = 10,
+        ):
         """
         Set the task of the job to potential energy surface scan (PESScan).
 
@@ -222,6 +225,10 @@ class AMSJob(Job):
         server = self._select_server()
         server.mkdir(self.rundir)
 
+
+        if os.path.exists(os.path.join(self.workdir, 'ams.rkf')):
+            shutil.copy2(os.path.join(self.workdir, 'ams.rkf'), os.path.join(self.workdir, 'restart.ams'))
+
         if server.path_exists(self.workdir):
             for file in server.ls(self.workdir):
                 p = os.path.join(self.workdir, file)
@@ -243,6 +250,7 @@ class AMSJob(Job):
 
         # sometimes we have to check if a job is able to run or requires some special consideration
         # those types of checks should be defined in _check_job
+        self._handle_restart()
         self._check_job()
 
         # we will use plams to write the input and runscript
@@ -274,7 +282,29 @@ class AMSJob(Job):
 
         return True
 
-    def _check_job(self): ...
+    def _check_job(self): 
+        ...
+
+    def _restartable(self):
+        return os.path.exists(os.path.join(self.workdir, 'TAPE13'))
+
+    def _handle_restart(self):
+        if not self._restart_enabled:
+            return
+
+        if not self._restartable():
+            return
+
+        shutil.move(os.path.join(self.workdir, 'TAPE13'), os.path.join(self.workdir, 'restart.t13'))
+        restart_file = os.path.join(self.workdir, 'restart.t13')
+        self.settings.input.ams.EngineRestart = restart_file
+
+        if 'irc' in self.settings.input.ams:
+            restart_file = os.path.join(self.workdir, 'restart.ams')
+            self.settings.input.ams.IRC.restart.file = restart_file
+            self.settings.input.ams.IRC.restart.redoforward = 0
+            self.settings.input.ams.IRC.restart.redobackward = 0
+
 
     @property
     def output_mol_path(self):
@@ -313,3 +343,16 @@ class AMSJob(Job):
             s += f"   {line}\n"
         s += "End\n"
         self.settings.input.ams.Constraints = s
+
+    def restart(self, time_since_last_update: Union[float, datetime] = .5, enable: bool = True):
+        '''
+        Tell TCutility to restart this job from the latest checkpoint if possible.
+
+        Args:
+            time_since_last_update: restart is enabled if we are past the given argument. 
+                If ``time_since_last_update`` is a float we use it as a fraction of the timedelta 
+                between the start time of the calculation and the last update time.
+        '''
+        self._restart_time_since_last_update = time_since_last_update
+        self._restart_enabled = enable
+
