@@ -183,6 +183,7 @@ def get_timing(calc_dir: str) -> Result:
             - **cpu (float)** – time spent performing calculations on the cpu.
             - **sys (float)** – time spent by the system (file IO, process creation/destruction, etc ...).
             - **total (float)** – total time spent by AMS on the calculation, can be larger than the sum of cpu and sys.
+            - **last_update (datetime.datetime.Datetime)** - last modification time of the job's files.
     """
     ret = Result()
     files = get_calc_files(calc_dir)
