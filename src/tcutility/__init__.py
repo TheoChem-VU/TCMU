@@ -12,6 +12,8 @@ from tcutility.connect import Connection, Local, Server, ServerFile
 from tcutility.data.functionals import categories, functional_name_from_path_safe_name, functionals, get_available_functionals, get_functional
 from tcutility.environment import requires_optional_package
 from tcutility.geometry import KabschTransform, MolTransform, Transform, apply_rotmat, get_rotmat, rotate, rotmat_to_angles, vector_align_rotmat
+from tcutility.results.read import get_info, quick_status, read, get_timing
+from tcutility.results.result import Result
 from tcutility.job.workflow import WorkFlow
 from tcutility.job import workflow_db, workflow_status
 from tcutility.job.adf import ADFFragmentJob, ADFJob, DensfJob
@@ -19,12 +21,10 @@ from tcutility.job.ams import AMSJob
 from tcutility.job.crest import CRESTJob, QCGJob
 from tcutility.job.dftb import DFTBJob
 from tcutility.job.nmr import NMRJob
-from tcutility.job.orca import ORCAJob
+from tcutility.job.orca import ORCAJob, GOATJob
 from tcutility.job.xtb import XTBJob
 from tcutility.molecule import from_string, guess_fragments, load, number_of_electrons, save, write_mol_to_amv_file, write_mol_to_xyz_file
 # from tcutility.report.report import SI
-from tcutility.results.read import get_info, quick_status, read
-from tcutility.results.result import Result
 from tcutility.timer import timer
 
 __all__ = [
@@ -37,6 +37,7 @@ __all__ = [
     "DFTBJob",
     "NMRJob",
     "ORCAJob",
+    "GOATJob",
     "XTBJob",
     "log",
     "from_string",
