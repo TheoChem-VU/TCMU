@@ -3,7 +3,7 @@ import stat
 import subprocess as sp
 from typing import List, TypeVar, Union
 import platform
-
+from datetime import datetime
 import dictfunc
 import numpy as np
 from scm import plams
@@ -15,7 +15,7 @@ import tcutility.molecule as molecule
 import tcutility.slurm as slurm
 from tcutility.cache import cache
 from tcutility.errors import TCJobError
-from tcutility.results.read import quick_status
+from tcutility.results.read import quick_status, get_timing
 from tcutility.results.result import Result
 
 __all__ = []  # Job must not be imported with 'from tcutility.job import *'
@@ -125,6 +125,13 @@ class Job:
                 self._sbatch.setdefault(k, v)
         return self._selected_server
 
+    def is_hanging(self, tolerance: float = -1):
+        timing = get_timing(self.workdir)
+        dtime = timing['last_update'] - timing['start_time']
+        time_since_last_update = datetime.now() - timing['last_update']
+        return time_since_last_update > (dtime + dtime * tolerance)
+        
+
     def can_skip(self):
         """
         Check whether the job can be skipped. We check this by loading the calculation and checking if the job status was fatal.
@@ -139,14 +146,23 @@ class Job:
         # see if we can use quick_status
         for server in self._servers:
             res = quick_status(self.workdir)
-            if not res.fatal:
+            if res.name in ["SUCCESS", "SUCCESS(W)", "COMPLETING", "CONFIGURING", "PENDING"]:
                 return True
+
+            if res.name == "RUNNING":
+                if self.is_hanging:
+                    return False
+                else:
+                    return True
 
         # otherwise use the slow method
         for server in self._servers:
-            res = server.execute(f"tcutility read -s {j(server.pwd(), self.rundir, self.name)}")
-            if res in ["SUCCESS", "SUCCESS(W)", "COMPLETING", "CONFIGURING", "PENDING", "RUNNING"]:
-                return True
+            try:
+                res = server.execute(f"tcutility read -s {j(server.pwd(), self.rundir, self.name)}")
+                if res in ["SUCCESS", "SUCCESS(W)", "COMPLETING", "CONFIGURING", "PENDING", "RUNNING"]:
+                    return True
+            except sp.CalledProcessError:
+                pass
 
         return False
 
