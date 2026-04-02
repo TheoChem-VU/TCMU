@@ -302,6 +302,8 @@ def get_properties(info: Result) -> Result:
     ret.quadrupole_moment = reader_adf.read("Properties", "Quadrupole")
     ret.dens_at_atom = ensure_list(reader_adf.read("Properties", "Electron Density at Nuclei"))
 
+    ret.excitations = _read_excitations(reader_adf)
+
     return ret
 
 
@@ -378,4 +380,70 @@ def get_level_of_theory(info: Result) -> Result:
 
     # ret.summary is simply the ret.xc.summary plus the basis set type
     ret.summary = f"{ret.xc.summary}/{ret.basis.type}"
+    return ret
+
+
+def _read_excitations(reader: cache.TrackKFReader) -> Result:
+    ret = Result()
+    excitation_types = []
+    symlab_exc = reader.read('Symmetry', 'symlab excitations').split()
+    for section, variable in reader:
+        if not section.startswith('Excitations'):
+            continue
+
+        _, exctyp, irrep = section.split()
+        if (exctyp, irrep) in excitation_types:
+            continue
+
+        excitation_types.append((exctyp, irrep))
+
+        ret[irrep][exctyp].number_of_excitations = reader.read(section, 'nr of excenergies')
+        ret[irrep][exctyp].energies = np.array(reader.read(section, 'excenergies'))  # in Ha
+
+        # values used to convert excitation photon energies to wavelengths
+        c = 299_792_458e9  # nm/s
+        h = 0.0367502 * 4.135_667_696e-15  # Ha s
+        ret[irrep][exctyp].wavelengths = (h * c) / ret[irrep][exctyp].energies # in nm
+        ret[irrep][exctyp].oscillator_strengths = np.array(reader.read(section, 'oscillator strengths'))  # in km mol
+        ret[irrep][exctyp].transition_dipole_moments = np.array(reader.read(section, 'transition dipole moments')).reshape(ret[irrep][exctyp].number_of_excitations, 3)
+
+        ret[irrep][exctyp].contributions = []
+        ret[irrep][exctyp].from_MO = []
+        ret[irrep][exctyp].to_MO = []
+        ret[irrep][exctyp].from_MO_idx = []
+        ret[irrep][exctyp].to_MO_idx = []
+        ret[irrep][exctyp].from_MO_spin = []
+        ret[irrep][exctyp].to_MO_spin = []
+        ret[irrep][exctyp].from_MO_irrep = []
+        ret[irrep][exctyp].to_MO_irrep = []
+
+        for exc_index in range(1, ret[irrep][exctyp].number_of_excitations + 1):
+            contr = reader.read(section, f'contr {exc_index}')
+            contr_idx = reader.read(section, f'contr index {exc_index}')
+            contr_spin = reader.read(section, f'contr spin {exc_index}')
+            is_unrestricted = 2 in contr_spin
+            contr_irrep = reader.read(section, f'contr irep index {exc_index}')
+            ncontr = len(contr_idx) // 2 
+
+            MO_names = []
+            for idx, spin_idx, irrep_idx in zip(contr_idx, contr_spin, contr_irrep):
+                spin = {
+                    1: 'A',
+                    2: 'B'
+                }[spin_idx]
+                if is_unrestricted:
+                    MO_names.append(f'{idx}{symlab_exc[irrep_idx-1]}_{spin}')
+                else:
+                    MO_names.append(f'{idx}{symlab_exc[irrep_idx-1]}')
+
+            ret[irrep][exctyp].contributions.append(contr)
+            ret[irrep][exctyp].from_MO.append(MO_names[:ncontr])
+            ret[irrep][exctyp].to_MO.append(MO_names[ncontr:])
+            ret[irrep][exctyp].from_MO_idx.append(contr_idx[:ncontr])
+            ret[irrep][exctyp].to_MO_idx.append(contr_idx[ncontr:])
+            ret[irrep][exctyp].from_MO_spin.append(contr_spin[:ncontr])
+            ret[irrep][exctyp].to_MO_spin.append(contr_spin[ncontr:])
+            ret[irrep][exctyp].from_MO_irrep.append(contr_irrep[:ncontr])
+            ret[irrep][exctyp].to_MO_irrep.append(contr_irrep[ncontr:])
+
     return ret
