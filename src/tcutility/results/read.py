@@ -8,6 +8,7 @@ This information is used in further analysis programs.
 import os
 import pathlib as pl
 from typing import Union
+from datetime import datetime
 
 from tcutility import slurm
 from tcutility.results import adf, ams, cache, crest, dftb, orca, xtb
@@ -69,6 +70,21 @@ def get_info(calc_dir: str):
     return res
 
 
+def get_timing(calc_dir: Union[str, pl.Path]) -> Result:
+    if not os.path.exists(calc_dir):
+        return {}
+
+    files = os.listdir(calc_dir)
+
+    ret = {}
+    mtimes = [os.path.getmtime(os.path.join(calc_dir, file)) for file in files]
+    ret['last_update'] = datetime.fromtimestamp(max(mtimes))
+
+    ctimes = [os.path.getctime(os.path.join(calc_dir, file)) for file in files]
+    ret['start_time'] = datetime.fromtimestamp(min(ctimes))
+
+    return ret
+
 def read(calc_dir: Union[str, pl.Path]) -> Result:
     """Master function for reading data from calculations. It reads general information as well as engine-specific information.
 
@@ -83,6 +99,7 @@ def read(calc_dir: Union[str, pl.Path]) -> Result:
     ret = Result()
 
     ret.update(get_info(calc_dir))
+    ret['timing'].update(get_timing(calc_dir))
     if ret.engine == "adf":
         try:
             ret.adf = adf.get_calc_settings(ret)
