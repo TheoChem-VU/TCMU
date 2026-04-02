@@ -1,0 +1,101 @@
+H_H_H_H_H_F, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_F, stage=Generating approximate TS, start_time=2026-03-05-17-33-16, slurm_job_id=1245417
+H_H_H_H_F_NH2, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_NH2, stage=Pending, start_time=2026-03-05-17-33-27, slurm_job_id=1245489
+H_H_Me_Me_F_NH2, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_NH2, stage=Pending, start_time=2026-03-05-17-33-27
+Me_Me_H_H_F_NH2, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_NH2, stage=Pending, start_time=2026-03-05-17-30-52, slurm_job_id=1245491
+Me_Me_Me_Me_F_NH2, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_NH2, stage=Pending, start_time=2026-03-05-17-33-27, slurm_job_id=1245492
+H_H_H_H_F_NHMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_NHMe, stage=Pending, start_time=2026-03-05-17-33-28, slurm_job_id=1245493
+H_H_Me_Me_F_NHMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_NHMe, stage=Pending, start_time=2026-03-05-17-33-28, slurm_job_id=1245494
+Me_Me_H_H_F_NHMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_NHMe, stage=Pending, start_time=2026-03-05-17-33-28, slurm_job_id=1245495
+Me_Me_Me_Me_F_NHMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_NHMe, stage=Pending, start_time=2026-03-05-17-33-28, slurm_job_id=1245496
+H_H_H_H_F_NMe2, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_NMe2, stage=Pending, start_time=2026-03-05-17-33-28, slurm_job_id=1245497
+H_H_Me_Me_F_NMe2, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_NMe2, stage=Pending, start_time=2026-03-05-17-33-28, slurm_job_id=1245498
+Me_Me_H_H_F_NMe2, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_NMe2, stage=Pending, start_time=2026-03-05-17-33-28, slurm_job_id=1245499
+Me_Me_Me_Me_F_NMe2, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_NMe2, stage=Pending, start_time=2026-03-05-17-33-29, slurm_job_id=1245500
+H_H_H_H_F_OH, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_OH, stage=Pending, start_time=2026-03-05-17-33-29, slurm_job_id=1245501
+H_H_Me_Me_F_OH, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_OH, stage=Pending, start_time=2026-03-05-17-33-29, slurm_job_id=1245502
+Me_Me_H_H_F_OH, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_OH, stage=Pending, start_time=2026-03-05-17-33-29, slurm_job_id=1245503
+Me_Me_Me_Me_F_OH, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_OH, stage=Pending, start_time=2026-03-05-17-33-29, slurm_job_id=1245504
+H_H_H_H_F_OMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_OMe, stage=Pending, start_time=2026-03-05-17-33-29
+H_H_Me_Me_F_OMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_OMe, stage=Pending, start_time=2026-03-05-17-30-53, slurm_job_id=1245506
+Me_Me_H_H_F_OMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_OMe, stage=Pending, start_time=2026-03-05-17-33-30, slurm_job_id=1245507
+Me_Me_Me_Me_F_OMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_OMe, stage=Pending, start_time=2026-03-05-17-33-30, slurm_job_id=1245508
+H_H_H_H_F_SMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_SMe, stage=Pending, start_time=2026-03-05-17-33-30, slurm_job_id=1245509
+H_H_Me_Me_F_SMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_SMe, stage=Pending, start_time=2026-03-05-17-33-30, slurm_job_id=1245510
+Me_Me_H_H_F_SMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_SMe, stage=Pending, start_time=2026-03-05-17-33-30, slurm_job_id=1245511
+Me_Me_Me_Me_F_SMe, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_SMe, stage=Pending, start_time=2026-03-05-17-33-31, slurm_job_id=1245512
+H_H_H_H_F_OPh, workflow_name=SN2v1, status=PENDING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_OPh, stage=Pending, start_time=2026-03-05-17-33-31, slurm_job_id=1245513
+H_H_Me_Me_H_F, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_F, stage=Completed, start_time=2026-03-05-17-33-23, slurm_job_id=
+H_H_H_H_H_H, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_H, stage=Completed, start_time=2026-03-05-17-33-23, slurm_job_id=
+Me_Me_H_H_H_H, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_H, stage=Completed, start_time=2026-03-05-17-33-23, slurm_job_id=
+Me_Me_Me_Me_H_H, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_H, stage=Completed, start_time=2026-03-05-17-33-23, slurm_job_id=
+Me_Me_H_H_H_F, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_F, stage=Completed, start_time=2026-03-05-17-33-24, slurm_job_id=
+Me_Me_Me_Me_H_F, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_F, stage=Completed, start_time=2026-03-05-17-33-24, slurm_job_id=
+H_H_Me_Me_H_H, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_H, stage=Completed, start_time=2026-03-05-17-33-32, slurm_job_id=
+H_H_H_H_H_Cl, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_Cl, stage=Completed, start_time=2026-03-05-17-33-54, slurm_job_id=
+H_H_Me_Me_H_Cl, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_Cl, stage=Completed, start_time=2026-03-05-17-34-22, slurm_job_id=
+H_H_Me_Me_H_Br, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_Br, stage=Completed, start_time=2026-03-05-17-34-27, slurm_job_id=
+Me_Me_Me_Me_H_Br, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_Br, stage=Completed, start_time=2026-03-05-17-34-22, slurm_job_id=
+H_H_H_H_H_I, workflow_name=SN2v1, status=FAILED, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_I, stage=Running IRC from TS, start_time=2026-03-05-17-34-29, slurm_job_id=1245429
+Me_Me_Me_Me_H_Cl, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_Cl, stage=Completed, start_time=2026-03-05-17-34-37, slurm_job_id=
+Me_Me_H_H_H_Cl, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_Cl, stage=Completed, start_time=2026-03-05-17-34-27, slurm_job_id=
+Me_Me_H_H_H_Br, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_Br, stage=Completed, start_time=2026-03-05-17-34-27, slurm_job_id=
+H_H_H_H_H_Br, workflow_name=SN2v1, status=FAILED, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_Br, stage=Running IRC from TS, start_time=2026-03-05-17-34-32, slurm_job_id=1245425
+H_H_Me_Me_H_I, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_I, stage=Completed, start_time=2026-03-05-17-34-54, slurm_job_id=
+H_H_Me_Me_H_At, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_At, stage=Completed, start_time=2026-03-05-17-35-22, slurm_job_id=
+Me_Me_Me_Me_H_I, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_I, stage=Completed, start_time=2026-03-05-17-35-27, slurm_job_id=
+Me_Me_H_H_H_I, workflow_name=SN2v1, status=FAILED, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_I, stage=Running IRC from TS, start_time=2026-03-05-17-35-22, slurm_job_id=1245431
+H_H_H_H_H_At, workflow_name=SN2v1, status=FAILED, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_At, stage=Running IRC from TS, start_time=2026-03-05-17-35-22, slurm_job_id=1245433
+Me_Me_H_H_H_At, workflow_name=SN2v1, status=FAILED, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_At, stage=Running IRC from TS, start_time=2026-03-05-17-35-22, slurm_job_id=1245435
+H_H_H_H_H_NH2, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_NH2, stage=Completed, start_time=2026-03-05-17-35-22, slurm_job_id=
+H_H_Me_Me_H_NH2, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_NH2, stage=Completed, start_time=2026-03-05-17-35-54, slurm_job_id=
+Me_Me_H_H_H_NH2, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_NH2, stage=Completed, start_time=2026-03-05-17-35-54, slurm_job_id=
+Me_Me_Me_Me_H_At, workflow_name=SN2v1, status=FAILED, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_At, stage=Running IRC from TS, start_time=2026-03-05-17-35-22, slurm_job_id=1245436
+Me_Me_Me_Me_H_NH2, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_NH2, stage=Completed, start_time=2026-03-05-17-36-21, slurm_job_id=
+Me_Me_H_H_H_NHMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_NHMe, stage=Completed, start_time=2026-03-05-17-36-22, slurm_job_id=
+Me_Me_Me_Me_H_NHMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_NHMe, stage=Completed, start_time=2026-03-05-17-36-22, slurm_job_id=
+H_H_H_H_H_NHMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_NHMe, stage=Completed, start_time=2026-03-05-17-36-32, slurm_job_id=
+H_H_Me_Me_H_NHMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_NHMe, stage=Completed, start_time=2026-03-05-17-36-32, slurm_job_id=
+H_H_H_H_H_OH, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_OH, stage=Completed, start_time=2026-03-05-17-38-22, slurm_job_id=
+Me_Me_H_H_H_OH, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_OH, stage=Completed, start_time=2026-03-05-17-38-54, slurm_job_id=
+Me_Me_Me_Me_H_OH, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_OH, stage=Completed, start_time=2026-03-05-17-38-54, slurm_job_id=
+H_H_Me_Me_H_OH, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_OH, stage=Completed, start_time=2026-03-05-17-38-54, slurm_job_id=
+H_H_Me_Me_H_NMe2, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_NMe2, stage=Completed, start_time=2026-03-05-17-36-54, slurm_job_id=
+H_H_H_H_H_NMe2, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_NMe2, stage=Completed, start_time=2026-03-05-17-36-54, slurm_job_id=
+Me_Me_H_H_H_NMe2, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_NMe2, stage=Completed, start_time=2026-03-05-17-37-22, slurm_job_id=
+H_H_H_H_H_OMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_OMe, stage=Completed, start_time=2026-03-05-17-39-27, slurm_job_id=
+Me_Me_H_H_H_OMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_OMe, stage=Completed, start_time=2026-03-05-17-33-22, slurm_job_id=
+H_H_Me_Me_H_OMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_OMe, stage=Completed, start_time=2026-03-05-17-39-54, slurm_job_id=
+H_H_H_H_H_SMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_SMe, stage=Completed, start_time=2026-03-05-17-40-00, slurm_job_id=
+H_H_H_H_H_OPh, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_H_OPh, stage=Completed, start_time=2026-03-05-17-41-27, slurm_job_id=
+Me_Me_Me_Me_H_OPh, workflow_name=SN2v1, status=RUNNING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_OPh, stage=Generating approximate TS, start_time=2026-03-05-18-32-34, slurm_job_id=1245464
+H_H_Me_Me_H_OPh, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_OPh, stage=Completed, start_time=2026-03-05-17-42-04, slurm_job_id=
+H_H_Me_Me_H_SMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_H_SMe, stage=Completed, start_time=2026-03-05-17-39-54, slurm_job_id=
+H_H_H_H_F_H, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_H, stage=Completed, start_time=2026-03-05-19-18-23, slurm_job_id=
+Me_Me_H_H_H_OPh, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_OPh, stage=Completed, start_time=2026-03-05-17-41-54, slurm_job_id=
+H_H_Me_Me_F_H, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_H, stage=Completed, start_time=2026-03-05-19-27-31, slurm_job_id=
+Me_Me_Me_Me_H_OMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_OMe, stage=Completed, start_time=2026-03-05-17-33-22, slurm_job_id=
+H_H_Me_Me_F_F, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_F, stage=Completed, start_time=2026-03-05-20-52-19, slurm_job_id=
+Me_Me_H_H_F_F, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_F, stage=Completed, start_time=2026-03-05-20-53-13, slurm_job_id=
+H_H_H_H_F_F, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_F, stage=Completed, start_time=2026-03-05-20-34-13, slurm_job_id=
+H_H_H_H_F_Cl, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_Cl, stage=Completed, start_time=2026-03-05-21-13-14, slurm_job_id=
+H_H_Me_Me_F_Cl, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_Cl, stage=Completed, start_time=2026-03-05-21-14-13, slurm_job_id=
+Me_Me_H_H_H_SMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_H_SMe, stage=Completed, start_time=2026-03-05-17-40-27, slurm_job_id=
+Me_Me_Me_Me_F_Cl, workflow_name=SN2v1, status=RUNNING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_Cl, stage=Running IRC from TS, start_time=2026-03-05-21-16-14, slurm_job_id=1245476
+Me_Me_H_H_F_Cl, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_Cl, stage=Completed, start_time=2026-03-05-21-15-13, slurm_job_id=
+H_H_H_H_F_Br, workflow_name=SN2v1, status=FAILED, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_Br, stage=Running IRC from TS, start_time=2026-03-05-21-23-13, slurm_job_id=1245477
+H_H_Me_Me_F_Br, workflow_name=SN2v1, status=RUNNING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_Br, stage=Running IRC from TS, start_time=2026-03-05-21-24-13, slurm_job_id=1245478
+Me_Me_H_H_F_H, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_H, stage=Completed, start_time=2026-03-05-20-00-13, slurm_job_id=
+Me_Me_Me_Me_F_H, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_H, stage=Completed, start_time=2026-03-05-20-25-43, slurm_job_id=
+Me_Me_Me_Me_H_NMe2, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_NMe2, stage=Completed, start_time=2026-03-05-17-37-24, slurm_job_id=
+Me_Me_Me_Me_H_SMe, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_H_SMe, stage=Completed, start_time=2026-03-05-17-40-55, slurm_job_id=
+Me_Me_Me_Me_F_F, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_F, stage=Completed, start_time=2026-03-05-20-54-13, slurm_job_id=
+H_H_Me_Me_F_I, workflow_name=SN2v1, status=RUNNING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_I, stage=Running IRC from TS, start_time=2026-03-05-23-08-52, slurm_job_id=1245482
+H_H_H_H_F_I, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_I, stage=Completed, start_time=2026-03-05-22-32-52, slurm_job_id=
+Me_Me_Me_Me_F_Br, workflow_name=SN2v1, status=RUNNING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_Br, stage=Running IRC from TS, start_time=2026-03-05-22-10-52, slurm_job_id=1245480
+Me_Me_H_H_F_Br, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_Br, stage=Completed, start_time=2026-03-05-21-55-49, slurm_job_id=
+Me_Me_H_H_F_I, workflow_name=SN2v1, status=RUNNING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_I, stage=Running IRC from TS, start_time=2026-03-05-23-09-52, slurm_job_id=1245483
+H_H_H_H_F_At, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_H_H_F_At, stage=Completed, start_time=2026-03-06-00-34-56, slurm_job_id=
+H_H_Me_Me_F_At, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/H_H_Me_Me_F_At, stage=Completed, start_time=2026-03-06-01-52-03, slurm_job_id=
+Me_Me_Me_Me_F_I, workflow_name=SN2v1, status=RUNNING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_I, stage=Running IRC from TS, start_time=2026-03-06-00-15-34, slurm_job_id=1245484
+Me_Me_H_H_F_At, workflow_name=SN2v1, status=SUCCESS, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_H_H_F_At, stage=Completed, start_time=2026-03-06-03-42-02, slurm_job_id=
+Me_Me_Me_Me_F_At, workflow_name=SN2v1, status=RUNNING, run_directory=/scistor/tc/yhk800/.cache/TCutility/SN2v1/runs/Me_Me_Me_Me_F_At, stage=Running IRC from TS, start_time=2026-03-06-07-22-57, slurm_job_id=1245488

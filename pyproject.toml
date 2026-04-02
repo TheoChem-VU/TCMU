@@ -8,7 +8,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "TCutility"
+name = "TCMU"
 
 # Original authors
 authors = [{ name = "TheoCheM group" }]
@@ -50,7 +50,7 @@ dirty_template = "{tag}"
 [tool.setuptools.packages.find]
 where = ["src"] # list of folders that contain the packages (["."] by default)
 include = [
-  "tcutility*",
+  "tcmu*",
 ] # package names should match these glob patterns (["*"] by default)
 exclude = [
   "tests*",
@@ -62,7 +62,7 @@ namespaces = false # to disable scanning PEP 420 namespaces (true by default)
 dev = []
 
 [project.scripts]
-tcutility = "tcutility.cli_scripts.tcparser:tcutility"
+tcmu = "tcmu.cli_scripts.tcparser:tcmu"
 
 # TODO: this block should not be optional anymore once we drop Python 3.8 support. Ideally, we want to use uv for all CLI tools which makes installing development dependencies extremely streamlined.
 # The reason why we cannot do this yet is because the new pip 25.1 update (April 2025) is only available for python 3.9 and up. This means that users with Python 3.8 will not be able to install the dev dependencies because uv requires pip 25.1+.

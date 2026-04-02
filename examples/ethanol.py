@@ -6,7 +6,7 @@ Using the read function, we can extract information such as the symmetry and vib
 import pathlib as pl
 from pprint import pprint
 
-from tcutility import read
+from tcmu import read
 
 calc_dir = pl.Path(__file__).parent.parent / "test" / "fixtures" / "ethanol"
 info = read(calc_dir)

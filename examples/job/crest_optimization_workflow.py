@@ -1,13 +1,14 @@
-from tcutility import WorkFlow
+from tcmu import WorkFlow
 import os
 
 # to create a WorkFlow we simply decorate a function with a WorkFlow object
-@WorkFlow(delete_files=True)
-def find_global_minimum(molecule: str):
+@WorkFlow(delete_files=False)
+def Conformers(molecule: str):
     # any imports that are needed in the workflow
     # need to be imported within the function
-    from tcutility import CRESTJob, ADFJob, read
-    from tcutility import workflow_status
+    from tcmu import CRESTJob, ADFJob, read
+    from tcmu import workflow_status
+    from pprint import pprint
 
     workflow_status.stage('Performing CREST calculation')
     # we first perform a CRESTJob calculation to
@@ -16,12 +17,11 @@ def find_global_minimum(molecule: str):
         crest_job.molecule(molecule)
         crest_job.name = 'crest'
         crest_job.md_temperature(500)
-        crest_job.md_length('2x')
+        crest_job.md_length('1.5x')
         crest_job.do_crossing(False)
 
-    new_molecules = []
-    new_energies = []
-    conformers = crest_job.get_conformer_xyz(5)
+    ret = {}
+    conformers = crest_job.get_conformer_xyz(10)
     for i, xyz in enumerate(conformers):
         workflow_status.stage(f'Performing conformer optimization {i+1}/{len(conformers)}')
         # and reoptimize them using ADF
@@ -30,18 +30,32 @@ def find_global_minimum(molecule: str):
             adf_job.functional('OLYP')
             adf_job.basis_set('DZP')
             adf_job.name = f'optimization_{i+1}'
+            adf_job.optimization()
+            adf_job.vibrations(False)
+            adf_job.settings.input.ams.properties.pespointcharacter = 'Yes'
 
         # load the results
         results = read(adf_job.workdir)
         # and store the energies and molecules
-        new_molecules.append(results.molecule.output)
-        new_energies.append(results.properties.energy.bond)
+        ret[results.molecule.output] = results.properties.energy.bond
 
-    lowest_energy_molecule = min(new_molecules, key=lambda mol: new_energies[new_molecules.index(mol)])
-    return lowest_energy_molecule
+    return ret
 
 
-mol = find_global_minimum(os.path.abspath('water_dimer.xyz'))
-print(mol)
-mol = find_global_minimum(os.path.abspath('butane.xyz'))
-print(mol)
+
+@WorkFlow(delete_files=False)
+def Example(num: int):
+    import time
+    time.sleep(3)
+    print(f'Number is {num}')
+    return num
+
+for i in range(40): 
+    Example(i, user_hash=f'Number ({i})')
+
+
+for file_name in ['NaCl.xyz', 'water_dimer.xyz', 'butane.xyz', 'asc.xyz']:
+    mol = Conformers(os.path.abspath(file_name), user_hash=file_name.removesuffix('.xyz'))
+    print(mol)
+
+

@@ -1,0 +1,4835 @@
+{
+    "category": "LDA",
+    "name": "VWN",
+    "name_latex": "VWN",
+    "name_html": "VWN",
+    "path_safe_name": "VWN",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "VWN",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LDA": "VWN"
+        }
+    }
+}
+
+{
+    "category": "LDA",
+    "name": "PW92",
+    "name_latex": "PW92",
+    "name_html": "PW92",
+    "path_safe_name": "PW92",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PW92",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LDA": "PW92"
+        }
+    }
+}
+
+{
+    "category": "LDA",
+    "name": "Xonly",
+    "name_latex": "Xonly",
+    "name_html": "Xonly",
+    "path_safe_name": "Xonly",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "Xonly",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LDA": "Xonly"
+        }
+    }
+}
+
+{
+    "category": "LDA",
+    "name": "Xalpha",
+    "name_latex": "Xalpha",
+    "name_html": "Xalpha",
+    "path_safe_name": "Xalpha",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "Xalpha",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LDA": "Xalpha"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BP86",
+    "name_latex": "BP86",
+    "name_html": "BP86",
+    "path_safe_name": "BP86",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BP86",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "BP86"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BP86-D",
+    "name_latex": "BP86-D",
+    "name_html": "BP86-D",
+    "path_safe_name": "BP86-D",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BP86",
+    "dispersion": "D",
+    "dispersion_name": "DEFAULT",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "DEFAULT",
+            "GGA": "BP86"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BP86-D3",
+    "name_latex": "BP86-D3",
+    "name_html": "BP86-D3",
+    "path_safe_name": "BP86-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BP86",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "GGA": "BP86"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BP86-D3(BJ)",
+    "name_latex": "BP86-D3(BJ)",
+    "name_html": "BP86-D3(BJ)",
+    "path_safe_name": "BP86-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BP86",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "GGA": "BP86"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BP86-D4",
+    "name_latex": "BP86-D4",
+    "name_html": "BP86-D4",
+    "path_safe_name": "BP86-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BP86",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "GGA": "BP86"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BP86-dDsC",
+    "name_latex": "BP86-dDsC",
+    "name_html": "BP86-dDsC",
+    "path_safe_name": "BP86-dDsC",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BP86",
+    "dispersion": "dDsC",
+    "dispersion_name": "dDsC",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "dDsC",
+            "GGA": "BP86"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PW91",
+    "name_latex": "PW91",
+    "name_html": "PW91",
+    "path_safe_name": "PW91",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PW91",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "PW91"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PW91-dUFF",
+    "name_latex": "PW91-dUFF",
+    "name_html": "PW91-dUFF",
+    "path_safe_name": "PW91-dUFF",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PW91",
+    "dispersion": "dUFF",
+    "dispersion_name": "UFF",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "UFF",
+            "GGA": "PW91"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "mPW",
+    "name_latex": "mPW",
+    "name_html": "mPW",
+    "path_safe_name": "mPW",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "mPW"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBE",
+    "name_latex": "PBE",
+    "name_html": "PBE",
+    "path_safe_name": "PBE",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "PBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBE-D",
+    "name_latex": "PBE-D",
+    "name_html": "PBE-D",
+    "path_safe_name": "PBE-D",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE",
+    "dispersion": "D",
+    "dispersion_name": "DEFAULT",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "DEFAULT",
+            "GGA": "PBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBE-D3",
+    "name_latex": "PBE-D3",
+    "name_html": "PBE-D3",
+    "path_safe_name": "PBE-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "GGA": "PBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBE-D3(BJ)",
+    "name_latex": "PBE-D3(BJ)",
+    "name_html": "PBE-D3(BJ)",
+    "path_safe_name": "PBE-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "GGA": "PBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBE-D4",
+    "name_latex": "PBE-D4",
+    "name_html": "PBE-D4",
+    "path_safe_name": "PBE-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "GGA": "PBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBE-dDsC",
+    "name_latex": "PBE-dDsC",
+    "name_html": "PBE-dDsC",
+    "path_safe_name": "PBE-dDsC",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE",
+    "dispersion": "dDsC",
+    "dispersion_name": "dDsC",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "dDsC",
+            "GGA": "PBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBE-MBD@rsSC",
+    "name_latex": "PBE-MBD@rsSC",
+    "name_html": "PBE-MBD@rsSC",
+    "path_safe_name": "PBE-MBD@rsSC",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE",
+    "dispersion": "MBD@rsSC",
+    "dispersion_name": "MBD",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "MBD",
+            "GGA": "PBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBE-dUFF",
+    "name_latex": "PBE-dUFF",
+    "name_html": "PBE-dUFF",
+    "path_safe_name": "PBE-dUFF",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE",
+    "dispersion": "dUFF",
+    "dispersion_name": "UFF",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "UFF",
+            "GGA": "PBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "RPBE",
+    "name_latex": "RPBE",
+    "name_html": "RPBE",
+    "path_safe_name": "RPBE",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "RPBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "RPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "RPBE-D3",
+    "name_latex": "RPBE-D3",
+    "name_html": "RPBE-D3",
+    "path_safe_name": "RPBE-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "RPBE",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "GGA": "RPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "RPBE-D3(BJ)",
+    "name_latex": "RPBE-D3(BJ)",
+    "name_html": "RPBE-D3(BJ)",
+    "path_safe_name": "RPBE-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "RPBE",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "GGA": "RPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "RPBE-D4",
+    "name_latex": "RPBE-D4",
+    "name_html": "RPBE-D4",
+    "path_safe_name": "RPBE-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "RPBE",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "GGA": "RPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "revPBE",
+    "name_latex": "revPBE",
+    "name_html": "revPBE",
+    "path_safe_name": "revPBE",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "revPBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "revPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "revPBE-D3",
+    "name_latex": "revPBE-D3",
+    "name_html": "revPBE-D3",
+    "path_safe_name": "revPBE-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "revPBE",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "GGA": "revPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "revPBE-D3(BJ)",
+    "name_latex": "revPBE-D3(BJ)",
+    "name_html": "revPBE-D3(BJ)",
+    "path_safe_name": "revPBE-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "revPBE",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "GGA": "revPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "revPBE-D4",
+    "name_latex": "revPBE-D4",
+    "name_html": "revPBE-D4",
+    "path_safe_name": "revPBE-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "revPBE",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "GGA": "revPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "revPBE-dDsC",
+    "name_latex": "revPBE-dDsC",
+    "name_html": "revPBE-dDsC",
+    "path_safe_name": "revPBE-dDsC",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "revPBE",
+    "dispersion": "dDsC",
+    "dispersion_name": "dDsC",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "dDsC",
+            "GGA": "revPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "mPBE",
+    "name_latex": "mPBE",
+    "name_html": "mPBE",
+    "path_safe_name": "mPBE",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "mPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBEsol",
+    "name_latex": "PBEsol",
+    "name_html": "PBEsol",
+    "path_safe_name": "PBEsol",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBEsol",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "PBEsol"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBEsol-D",
+    "name_latex": "PBEsol-D",
+    "name_html": "PBEsol-D",
+    "path_safe_name": "PBEsol-D",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBEsol",
+    "dispersion": "D",
+    "dispersion_name": "DEFAULT",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "DEFAULT",
+            "GGA": "PBEsol"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBEsol-D3",
+    "name_latex": "PBEsol-D3",
+    "name_html": "PBEsol-D3",
+    "path_safe_name": "PBEsol-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBEsol",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "GGA": "PBEsol"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "PBEsol-D3(BJ)",
+    "name_latex": "PBEsol-D3(BJ)",
+    "name_html": "PBEsol-D3(BJ)",
+    "path_safe_name": "PBEsol-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBEsol",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "GGA": "PBEsol"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "HTBS",
+    "name_latex": "HTBS",
+    "name_html": "HTBS",
+    "path_safe_name": "HTBS",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "HTBS",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "HTBS"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BLYP",
+    "name_latex": "BLYP",
+    "name_html": "BLYP",
+    "path_safe_name": "BLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "BLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BLYP-D",
+    "name_latex": "BLYP-D",
+    "name_html": "BLYP-D",
+    "path_safe_name": "BLYP-D",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BLYP",
+    "dispersion": "D",
+    "dispersion_name": "DEFAULT",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "DEFAULT",
+            "GGA": "BLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BLYP-D3",
+    "name_latex": "BLYP-D3",
+    "name_html": "BLYP-D3",
+    "path_safe_name": "BLYP-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BLYP",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "GGA": "BLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BLYP-D3(BJ)",
+    "name_latex": "BLYP-D3(BJ)",
+    "name_html": "BLYP-D3(BJ)",
+    "path_safe_name": "BLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "GGA": "BLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BLYP-D4",
+    "name_latex": "BLYP-D4",
+    "name_html": "BLYP-D4",
+    "path_safe_name": "BLYP-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BLYP",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "GGA": "BLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BLYP-dDsC",
+    "name_latex": "BLYP-dDsC",
+    "name_html": "BLYP-dDsC",
+    "path_safe_name": "BLYP-dDsC",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BLYP",
+    "dispersion": "dDsC",
+    "dispersion_name": "dDsC",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "dDsC",
+            "GGA": "BLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "OLYP",
+    "name_latex": "OLYP",
+    "name_html": "OLYP",
+    "path_safe_name": "OLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "OLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "OLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "OLYP-D3",
+    "name_latex": "OLYP-D3",
+    "name_html": "OLYP-D3",
+    "path_safe_name": "OLYP-D3",
+    "disp_params": "GRIMME3 PAR1=1.0000 PAR2=0.806 PAR3=1.764",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "OLYP",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 PAR1=1.0000 PAR2=0.806 PAR3=1.764",
+            "GGA": "OLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "OLYP-D3(BJ)",
+    "name_latex": "OLYP-D3(BJ)",
+    "name_html": "OLYP-D3(BJ)",
+    "path_safe_name": "OLYP-D3BJ",
+    "disp_params": "GRIMME3 BJDAMP PAR1=1.0000 PAR2=0.5299 PAR3=2.6205 PAR4=2.8065",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "OLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP PAR1=1.0000 PAR2=0.5299 PAR3=2.6205 PAR4=2.8065",
+            "GGA": "OLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "OLYP-D4",
+    "name_latex": "OLYP-D4",
+    "name_html": "OLYP-D4",
+    "path_safe_name": "OLYP-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "OLYP",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "GGA": "OLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "OPBE",
+    "name_latex": "OPBE",
+    "name_html": "OPBE",
+    "path_safe_name": "OPBE",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "OPBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "OPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "OPBE-D3(BJ)",
+    "name_latex": "OPBE-D3(BJ)",
+    "name_html": "OPBE-D3(BJ)",
+    "path_safe_name": "OPBE-D3BJ",
+    "disp_params": "GRIMME3 BJDAMP PAR1=1.0000 PAR2=0.5512 PAR3=3.3816 PAR4=2.9444",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "OPBE",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP PAR1=1.0000 PAR2=0.5512 PAR3=3.3816 PAR4=2.9444",
+            "GGA": "OPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "OPBE-D4",
+    "name_latex": "OPBE-D4",
+    "name_html": "OPBE-D4",
+    "path_safe_name": "OPBE-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "OPBE",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "GGA": "OPBE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "BEE",
+    "name_latex": "BEE",
+    "name_html": "BEE",
+    "path_safe_name": "BEE",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BEE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "BEE"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "XLYP",
+    "name_latex": "XLYP",
+    "name_html": "XLYP",
+    "path_safe_name": "XLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "XLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "XLYP"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "GGA:SSB-D",
+    "name_latex": "GGA:SSB-D",
+    "name_html": "GGA:SSB-D",
+    "path_safe_name": "GGA:SSB-D",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "GGA:SSB-D",
+    "dispersion": "D",
+    "dispersion_name": "DEFAULT",
+    "adf_settings": {
+        "XC": {
+            "GGA": "SSB-D"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "S12g",
+    "name_latex": "S12g",
+    "name_html": "S12g",
+    "path_safe_name": "S12g",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "S12g",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "S12g"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "S12g-D3",
+    "name_latex": "S12g-D3",
+    "name_html": "S12g-D3",
+    "path_safe_name": "S12g-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "S12g",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "GGA": "S12g"
+        }
+    }
+}
+
+{
+    "category": "Model",
+    "name": "LB94",
+    "name_latex": "LB94",
+    "name_html": "LB94",
+    "path_safe_name": "LB94",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LB94",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Model": "LB94"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "KT1",
+    "name_latex": "KT1",
+    "name_html": "KT1",
+    "path_safe_name": "KT1",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "KT1",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "KT1"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "KT2",
+    "name_latex": "KT2",
+    "name_html": "KT2",
+    "path_safe_name": "KT2",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "KT2",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "KT2"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "B97-D",
+    "name_latex": "B97-D",
+    "name_html": "B97-D",
+    "path_safe_name": "B97-D",
+    "use_libxc": true,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B97-D",
+    "dispersion": "D",
+    "dispersion_name": "DEFAULT",
+    "adf_settings": {
+        "XC": {
+            "LibXC": "B97-D"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "B97-D-D3",
+    "name_latex": "B97-D-D3",
+    "name_html": "B97-D-D3",
+    "path_safe_name": "B97-D-D3",
+    "disp_params": "GRIMME3 PAR1=1.0000 PAR2=0.892 PAR3=0.909",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B97-D",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 PAR1=1.0000 PAR2=0.892 PAR3=0.909",
+            "LibXC": "B97-D"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "B97-GGA1",
+    "name_latex": "B97-GGA1",
+    "name_html": "B97-GGA1",
+    "path_safe_name": "B97-GGA1",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B97-GGA1",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "B97-GGA1"
+        }
+    }
+}
+
+{
+    "category": "GGA",
+    "name": "B97-K",
+    "name_latex": "B97-K",
+    "name_html": "B97-K",
+    "path_safe_name": "B97-K",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B97-K",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "B97-K"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "M06L",
+    "name_latex": "M06L",
+    "name_html": "M06L",
+    "path_safe_name": "M06L",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06L",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "M06L"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "M06L-D3",
+    "name_latex": "M06L-D3",
+    "name_html": "M06L-D3",
+    "path_safe_name": "M06L-D3",
+    "disp_params": "GRIMME3 PAR1=1.0000 PAR2=1.581 PAR3=0.000",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06L",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 PAR1=1.0000 PAR2=1.581 PAR3=0.000",
+            "MetaGGA": "M06L"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "M06L-D4",
+    "name_latex": "M06L-D4",
+    "name_html": "M06L-D4",
+    "path_safe_name": "M06L-D4",
+    "disp_params": "GRIMME4 s6=1.0000 s8=0.59493760 a1=0.71422359 a2=6.35314182",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06L",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4 s6=1.0000 s8=0.59493760 a1=0.71422359 a2=6.35314182",
+            "MetaGGA": "M06L"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "MN15-L",
+    "name_latex": "MN15-L",
+    "name_html": "MN15-L",
+    "path_safe_name": "MN15-L",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MN15-L",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "MN15-L"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "TPSS",
+    "name_latex": "TPSS",
+    "name_html": "TPSS",
+    "path_safe_name": "TPSS",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "TPSS",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "TPSS"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "TPSS-D3(BJ)",
+    "name_latex": "TPSS-D3(BJ)",
+    "name_html": "TPSS-D3(BJ)",
+    "path_safe_name": "TPSS-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "TPSS",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "MetaGGA": "TPSS"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "TPSS-D4",
+    "name_latex": "TPSS-D4",
+    "name_html": "TPSS-D4",
+    "path_safe_name": "TPSS-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "TPSS",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "MetaGGA": "TPSS"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "revTPSS",
+    "name_latex": "revTPSS",
+    "name_html": "revTPSS",
+    "path_safe_name": "revTPSS",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "revTPSS",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "revTPSS"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "MetaGGA:SSB-D",
+    "name_latex": "MetaGGA:SSB-D",
+    "name_html": "MetaGGA:SSB-D",
+    "path_safe_name": "MetaGGA:SSB-D",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MetaGGA:SSB-D",
+    "dispersion": "D",
+    "dispersion_name": "DEFAULT",
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "SSB-D"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "MVS",
+    "name_latex": "MVS",
+    "name_html": "MVS",
+    "path_safe_name": "MVS",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MVS",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "MVS"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "MS0",
+    "name_latex": "MS0",
+    "name_html": "MS0",
+    "path_safe_name": "MS0",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MS0",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "MS0"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "MS1",
+    "name_latex": "MS1",
+    "name_html": "MS1",
+    "path_safe_name": "MS1",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MS1",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "MS1"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "MS2",
+    "name_latex": "MS2",
+    "name_html": "MS2",
+    "path_safe_name": "MS2",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MS2",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "MS2"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "SCAN",
+    "name_latex": "SCAN",
+    "name_html": "SCAN",
+    "path_safe_name": "SCAN",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "SCAN",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "SCAN"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "SCAN-D3(BJ)",
+    "name_latex": "SCAN-D3(BJ)",
+    "name_html": "SCAN-D3(BJ)",
+    "path_safe_name": "SCAN-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "SCAN",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "MetaGGA": "SCAN"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "TASKxc",
+    "name_latex": "TASKxc",
+    "name_html": "TASKxc",
+    "path_safe_name": "TASKxc",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "TASKxc",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "TASKxc"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "TASKCC",
+    "name_latex": "TASKCC",
+    "name_html": "TASKCC",
+    "path_safe_name": "TASKCC",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "TASKCC",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "TASKCC"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "revSCAN",
+    "name_latex": "revSCAN",
+    "name_html": "revSCAN",
+    "path_safe_name": "revSCAN",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "revSCAN",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "revSCAN"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "rSCAN",
+    "name_latex": "rSCAN",
+    "name_html": "rSCAN",
+    "path_safe_name": "rSCAN",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rSCAN",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "rSCAN"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "r2SCAN",
+    "name_latex": "r$^2$SCAN",
+    "name_html": "r<sup>2</sup>SCAN",
+    "path_safe_name": "r2SCAN",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "r2SCAN",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "r2SCAN"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "r2SCAN-D4",
+    "name_latex": "r$^2$SCAN-D4",
+    "name_html": "r<sup>2</sup>SCAN-D4",
+    "path_safe_name": "r2SCAN-D4",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "r2SCAN",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "LibXC": "r2SCAN"
+        }
+    }
+}
+
+{
+    "category": "MetaGGA",
+    "name": "r2SCAN-3c",
+    "name_latex": "r$^2$SCAN-3c",
+    "name_html": "r<sup>2</sup>SCAN-3c",
+    "path_safe_name": "r2SCAN-3c",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "r2SCAN-3c",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaGGA": "r2SCAN-3c"
+        }
+    }
+}
+
+{
+    "category": "HartreeFock",
+    "name": "HartreeFock",
+    "name_latex": "HartreeFock",
+    "name_html": "HartreeFock",
+    "path_safe_name": "HartreeFock",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "HartreeFock",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "HartreeFock": ""
+        }
+    }
+}
+
+{
+    "category": "HartreeFock",
+    "name": "HartreeFock-D4",
+    "name_latex": "HartreeFock-D4",
+    "name_html": "HartreeFock-D4",
+    "path_safe_name": "HartreeFock-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "HartreeFock",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "HartreeFock": ""
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B3LYP",
+    "name_latex": "B3LYP",
+    "name_html": "B3LYP",
+    "path_safe_name": "B3LYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B3LYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "B3LYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B3LYP-D",
+    "name_latex": "B3LYP-D",
+    "name_html": "B3LYP-D",
+    "path_safe_name": "B3LYP-D",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B3LYP",
+    "dispersion": "D",
+    "dispersion_name": "DEFAULT",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "DEFAULT",
+            "Hybrid": "B3LYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B3LYP-D3",
+    "name_latex": "B3LYP-D3",
+    "name_html": "B3LYP-D3",
+    "path_safe_name": "B3LYP-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B3LYP",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "Hybrid": "B3LYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B3LYP-D3(BJ)",
+    "name_latex": "B3LYP-D3(BJ)",
+    "name_html": "B3LYP-D3(BJ)",
+    "path_safe_name": "B3LYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B3LYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "Hybrid": "B3LYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B3LYP-D4",
+    "name_latex": "B3LYP-D4",
+    "name_html": "B3LYP-D4",
+    "path_safe_name": "B3LYP-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B3LYP",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "Hybrid": "B3LYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B3LYP*",
+    "name_latex": "B3LYP$^*$",
+    "name_html": "B3LYP<sup>*</sup>",
+    "path_safe_name": "B3LYPs",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B3LYP*",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "B3LYP*"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B1LYP",
+    "name_latex": "B1LYP",
+    "name_html": "B1LYP",
+    "path_safe_name": "B1LYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B1LYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "B1LYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "KMLYP",
+    "name_latex": "KMLYP",
+    "name_html": "KMLYP",
+    "path_safe_name": "KMLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "KMLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "KMLYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "O3LYP",
+    "name_latex": "O3LYP",
+    "name_html": "O3LYP",
+    "path_safe_name": "O3LYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "O3LYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "O3LYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "X3LYP",
+    "name_latex": "X3LYP",
+    "name_html": "X3LYP",
+    "path_safe_name": "X3LYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "X3LYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "X3LYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "BHandH",
+    "name_latex": "BH&H",
+    "name_html": "BH&amp;H",
+    "path_safe_name": "BHandH",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BHandH",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "BHandH"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "BHandHLYP",
+    "name_latex": "BH&HLYP",
+    "name_html": "BH&amp;HLYP",
+    "path_safe_name": "BHandHLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BHandHLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "BHandHLYP"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B1PW91",
+    "name_latex": "B1PW91",
+    "name_html": "B1PW91",
+    "path_safe_name": "B1PW91",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B1PW91",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "B1PW91"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "mPW1PW",
+    "name_latex": "mPW1PW",
+    "name_html": "mPW1PW",
+    "path_safe_name": "mPW1PW",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW1PW",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "mPW1PW"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "mPW1K",
+    "name_latex": "mPW1K",
+    "name_html": "mPW1K",
+    "path_safe_name": "mPW1K",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW1K",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "mPW1K"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "PBE0",
+    "name_latex": "PBE0",
+    "name_html": "PBE0",
+    "path_safe_name": "PBE0",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "PBE0"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "PBE0-D3",
+    "name_latex": "PBE0-D3",
+    "name_html": "PBE0-D3",
+    "path_safe_name": "PBE0-D3",
+    "disp_params": "GRIMME3 PAR1=1.0000 PAR2=1.287 PAR3=0.928",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 PAR1=1.0000 PAR2=1.287 PAR3=0.928",
+            "Hybrid": "PBE0"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "PBE0-D3(BJ)",
+    "name_latex": "PBE0-D3(BJ)",
+    "name_html": "PBE0-D3(BJ)",
+    "path_safe_name": "PBE0-D3BJ",
+    "disp_params": "GRIMME3 BJDAMP PAR1=1.0000 PAR2=0.4145 PAR3=1.2177 PAR4=4.8593",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP PAR1=1.0000 PAR2=0.4145 PAR3=1.2177 PAR4=4.8593",
+            "Hybrid": "PBE0"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "PBE0-D4",
+    "name_latex": "PBE0-D4",
+    "name_html": "PBE0-D4",
+    "path_safe_name": "PBE0-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "Hybrid": "PBE0"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "OPBE0",
+    "name_latex": "OPBE0",
+    "name_html": "OPBE0",
+    "path_safe_name": "OPBE0",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "OPBE0",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "OPBE0"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "S12H",
+    "name_latex": "S12H",
+    "name_html": "S12H",
+    "path_safe_name": "S12H",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "S12H",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "S12H"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "BMK",
+    "name_latex": "BMK",
+    "name_html": "BMK",
+    "path_safe_name": "BMK",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "BMK",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "HYB_MGGA_X_BMK GGA_C_BMK"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B1B95",
+    "name_latex": "B1B95",
+    "name_html": "B1B95",
+    "path_safe_name": "B1B95",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B1B95",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "B1B95"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B1B95-D3",
+    "name_latex": "B1B95-D3",
+    "name_html": "B1B95-D3",
+    "path_safe_name": "B1B95-D3",
+    "disp_params": "GRIMME3 PAR1=1.0000 PAR2=1.613 PAR3=1.868",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B1B95",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 PAR1=1.0000 PAR2=1.613 PAR3=1.868",
+            "LibXC": "B1B95"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B97",
+    "name_latex": "B97",
+    "name_html": "B97",
+    "path_safe_name": "B97",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B97",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "B97"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B97-1",
+    "name_latex": "B97-1",
+    "name_html": "B97-1",
+    "path_safe_name": "B97-1",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B97-1",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "B97-1"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B97-2",
+    "name_latex": "B97-2",
+    "name_html": "B97-2",
+    "path_safe_name": "B97-2",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B97-2",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "B97-2"
+        }
+    }
+}
+
+{
+    "category": "Hybrid",
+    "name": "B97-3",
+    "name_latex": "B97-3",
+    "name_html": "B97-3",
+    "path_safe_name": "B97-3",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B97-3",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "B97-3"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "MN15",
+    "name_latex": "MN15",
+    "name_html": "MN15",
+    "path_safe_name": "MN15",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MN15",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "MN15"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "M06",
+    "name_latex": "M06",
+    "name_html": "M06",
+    "path_safe_name": "M06",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaHybrid": "M06"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "M06-D3",
+    "name_latex": "M06-D3",
+    "name_html": "M06-D3",
+    "path_safe_name": "M06-D3",
+    "disp_params": "GRIMME3 PAR1=1.0000 PAR2=1.325 PAR3=0.000",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 PAR1=1.0000 PAR2=1.325 PAR3=0.000",
+            "MetaHybrid": "M06"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "M06-D4",
+    "name_latex": "M06-D4",
+    "name_html": "M06-D4",
+    "path_safe_name": "M06-D4",
+    "disp_params": "GRIMME4 s6=1.0000 s8=0.16366729 a1=0.53456413 a2=6.06192174",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4 s6=1.0000 s8=0.16366729 a1=0.53456413 a2=6.06192174",
+            "MetaHybrid": "M06"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "M06-2X",
+    "name_latex": "M06-2X",
+    "name_html": "M06-2X",
+    "path_safe_name": "M06-2X",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06-2X",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaHybrid": "M06-2X"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "M06-2X-D3",
+    "name_latex": "M06-2X-D3",
+    "name_html": "M06-2X-D3",
+    "path_safe_name": "M06-2X-D3",
+    "disp_params": "GRIMME3 PAR1=1.0000 PAR2=1.619 PAR3=0.000",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06-2X",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 PAR1=1.0000 PAR2=1.619 PAR3=0.000",
+            "MetaHybrid": "M06-2X"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "M06-HF",
+    "name_latex": "M06-HF",
+    "name_html": "M06-HF",
+    "path_safe_name": "M06-HF",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06-HF",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaHybrid": "M06-HF"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "M06-HF-D3",
+    "name_latex": "M06-HF-D3",
+    "name_html": "M06-HF-D3",
+    "path_safe_name": "M06-HF-D3",
+    "disp_params": "GRIMME3 PAR1=1.0000 PAR2=1.446 PAR3=0.000",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06-HF",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 PAR1=1.0000 PAR2=1.446 PAR3=0.000",
+            "MetaHybrid": "M06-HF"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "TPSSH",
+    "name_latex": "TPSSH",
+    "name_html": "TPSSH",
+    "path_safe_name": "TPSSH",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "TPSSH",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MetaHybrid": "TPSSH"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "TPSSH-D4",
+    "name_latex": "TPSSH-D4",
+    "name_html": "TPSSH-D4",
+    "path_safe_name": "TPSSH-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "TPSSH",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "MetaHybrid": "TPSSH"
+        }
+    }
+}
+
+{
+    "category": "MetaHybrid",
+    "name": "revSCAN0",
+    "name_latex": "revSCAN0",
+    "name_html": "revSCAN0",
+    "path_safe_name": "revSCAN0",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "revSCAN0",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "revSCAN0"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-BLYP",
+    "name_latex": "rev-DOD-BLYP",
+    "name_html": "rev-DOD-BLYP",
+    "path_safe_name": "rev-DOD-BLYP",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-BLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DOD-BLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-BLYP-D3(BJ)",
+    "name_latex": "rev-DOD-BLYP-D3(BJ)",
+    "name_html": "rev-DOD-BLYP-D3(BJ)",
+    "path_safe_name": "rev-DOD-BLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-BLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "rev-DOD-BLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-BLYP-D4",
+    "name_latex": "rev-DOD-BLYP-D4",
+    "name_html": "rev-DOD-BLYP-D4",
+    "path_safe_name": "rev-DOD-BLYP-D4",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-BLYP-D4",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DOD-BLYP-D4"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-PBE",
+    "name_latex": "rev-DOD-PBE",
+    "name_html": "rev-DOD-PBE",
+    "path_safe_name": "rev-DOD-PBE",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-PBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DOD-PBE"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-PBE-D3(BJ)",
+    "name_latex": "rev-DOD-PBE-D3(BJ)",
+    "name_html": "rev-DOD-PBE-D3(BJ)",
+    "path_safe_name": "rev-DOD-PBE-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-PBE",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "rev-DOD-PBE"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-PBE-D4",
+    "name_latex": "rev-DOD-PBE-D4",
+    "name_html": "rev-DOD-PBE-D4",
+    "path_safe_name": "rev-DOD-PBE-D4",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-PBE-D4",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DOD-PBE-D4"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-PBEP86",
+    "name_latex": "rev-DOD-PBEP86",
+    "name_html": "rev-DOD-PBEP86",
+    "path_safe_name": "rev-DOD-PBEP86",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-PBEP86",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DOD-PBEP86"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-PBEP86-D3(BJ)",
+    "name_latex": "rev-DOD-PBEP86-D3(BJ)",
+    "name_html": "rev-DOD-PBEP86-D3(BJ)",
+    "path_safe_name": "rev-DOD-PBEP86-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-PBEP86",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "rev-DOD-PBEP86"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-PBEP86-D4",
+    "name_latex": "rev-DOD-PBEP86-D4",
+    "name_html": "rev-DOD-PBEP86-D4",
+    "path_safe_name": "rev-DOD-PBEP86-D4",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-PBEP86-D4",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DOD-PBEP86-D4"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "SOS1-PBE-QIDH",
+    "name_latex": "SOS1-PBE-QIDH",
+    "name_html": "SOS1-PBE-QIDH",
+    "path_safe_name": "SOS1-PBE-QIDH",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "SOS1-PBE-QIDH",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "SOS1-PBE-QIDH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DOD-SCAN",
+    "name_latex": "DOD-SCAN",
+    "name_html": "DOD-SCAN",
+    "path_safe_name": "DOD-SCAN",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DOD-SCAN",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "DOD-SCAN"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DOD-SCAN-D3(BJ)",
+    "name_latex": "DOD-SCAN-D3(BJ)",
+    "name_html": "DOD-SCAN-D3(BJ)",
+    "path_safe_name": "DOD-SCAN-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DOD-SCAN",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "DOD-SCAN"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DOD-SCAN-D4",
+    "name_latex": "rev-DOD-SCAN-D4",
+    "name_html": "rev-DOD-SCAN-D4",
+    "path_safe_name": "rev-DOD-SCAN-D4",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DOD-SCAN-D4",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DOD-SCAN-D4"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2PLYP",
+    "name_latex": "B2PLYP",
+    "name_html": "B2PLYP",
+    "path_safe_name": "B2PLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2PLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "B2PLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2PIPLYP",
+    "name_latex": "B2$\\pi$PLYP",
+    "name_html": "B2&pi;PLYP",
+    "path_safe_name": "B2PIPLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2PIPLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "B2PIPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "ROB2PLYP",
+    "name_latex": "ROB2PLYP",
+    "name_html": "ROB2PLYP",
+    "path_safe_name": "ROB2PLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "ROB2PLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "ROB2PLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2TPLYP",
+    "name_latex": "B2TPLYP",
+    "name_html": "B2TPLYP",
+    "path_safe_name": "B2TPLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2TPLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "B2TPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2GPPLYP",
+    "name_latex": "B2GPPLYP",
+    "name_html": "B2GPPLYP",
+    "path_safe_name": "B2GPPLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2GPPLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "B2GPPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2KPLYP",
+    "name_latex": "B2KPLYP",
+    "name_html": "B2KPLYP",
+    "path_safe_name": "B2KPLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2KPLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "B2KPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2NCPLYP",
+    "name_latex": "B2NCPLYP",
+    "name_html": "B2NCPLYP",
+    "path_safe_name": "B2NCPLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2NCPLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "B2NCPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "mPW2PLYP",
+    "name_latex": "mPW2PLYP",
+    "name_html": "mPW2PLYP",
+    "path_safe_name": "mPW2PLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW2PLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "mPW2PLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "mPW2KPLYP",
+    "name_latex": "mPW2KPLYP",
+    "name_html": "mPW2KPLYP",
+    "path_safe_name": "mPW2KPLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW2KPLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "mPW2KPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "mPW2NCPLYP",
+    "name_latex": "mPW2NCPLYP",
+    "name_html": "mPW2NCPLYP",
+    "path_safe_name": "mPW2NCPLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW2NCPLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "mPW2NCPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DH-BLYP",
+    "name_latex": "DH-BLYP",
+    "name_html": "DH-BLYP",
+    "path_safe_name": "DH-BLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DH-BLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "DH-BLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE0-DH",
+    "name_latex": "PBE0-DH",
+    "name_html": "PBE0-DH",
+    "path_safe_name": "PBE0-DH",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0-DH",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "PBE0-DH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE-QIDH",
+    "name_latex": "PBE-QIDH",
+    "name_html": "PBE-QIDH",
+    "path_safe_name": "PBE-QIDH",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE-QIDH",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "PBE-QIDH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "LS1-DH",
+    "name_latex": "LS1-DH",
+    "name_html": "LS1-DH",
+    "path_safe_name": "LS1-DH",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LS1-DH",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "LS1-DH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE0-2",
+    "name_latex": "PBE0-2",
+    "name_html": "PBE0-2",
+    "path_safe_name": "PBE0-2",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0-2",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "PBE0-2"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "LS1-TPSS",
+    "name_latex": "LS1-TPSS",
+    "name_html": "LS1-TPSS",
+    "path_safe_name": "LS1-TPSS",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LS1-TPSS",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "LS1-TPSS"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DS1-TPSS",
+    "name_latex": "DS1-TPSS",
+    "name_html": "DS1-TPSS",
+    "path_safe_name": "DS1-TPSS",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DS1-TPSS",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "DS1-TPSS"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2PLYP-D3",
+    "name_latex": "B2PLYP-D3",
+    "name_html": "B2PLYP-D3",
+    "path_safe_name": "B2PLYP-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2PLYP",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "B2PLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2GPPLYP-D3",
+    "name_latex": "B2GPPLYP-D3",
+    "name_html": "B2GPPLYP-D3",
+    "path_safe_name": "B2GPPLYP-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2GPPLYP",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "B2GPPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2NCPLYP-D3",
+    "name_latex": "B2NCPLYP-D3",
+    "name_html": "B2NCPLYP-D3",
+    "path_safe_name": "B2NCPLYP-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2NCPLYP",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "B2NCPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "mPW2NCPLYP-D3",
+    "name_latex": "mPW2NCPLYP-D3",
+    "name_html": "mPW2NCPLYP-D3",
+    "path_safe_name": "mPW2NCPLYP-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW2NCPLYP",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "mPW2NCPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE0-DH-D3",
+    "name_latex": "PBE0-DH-D3",
+    "name_html": "PBE0-DH-D3",
+    "path_safe_name": "PBE0-DH-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0-DH",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "PBE0-DH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE-QIDH-D3",
+    "name_latex": "PBE-QIDH-D3",
+    "name_html": "PBE-QIDH-D3",
+    "path_safe_name": "PBE-QIDH-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE-QIDH",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "PBE-QIDH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "LS1-DH-D3",
+    "name_latex": "LS1-DH-D3",
+    "name_html": "LS1-DH-D3",
+    "path_safe_name": "LS1-DH-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LS1-DH",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "LS1-DH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE0-2-D3",
+    "name_latex": "PBE0-2-D3",
+    "name_html": "PBE0-2-D3",
+    "path_safe_name": "PBE0-2-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0-2",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "PBE0-2"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "LS1-TPSS-D3",
+    "name_latex": "LS1-TPSS-D3",
+    "name_html": "LS1-TPSS-D3",
+    "path_safe_name": "LS1-TPSS-D3",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LS1-TPSS",
+    "dispersion": "D3",
+    "dispersion_name": "GRIMME3",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3",
+            "DoubleHybrid": "LS1-TPSS"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2PLYP-D3(BJ)",
+    "name_latex": "B2PLYP-D3(BJ)",
+    "name_html": "B2PLYP-D3(BJ)",
+    "path_safe_name": "B2PLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2PLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "B2PLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2PIPLYP-D3(BJ)",
+    "name_latex": "B2$\\pi$PLYP-D3(BJ)",
+    "name_html": "B2&pi;PLYP-D3(BJ)",
+    "path_safe_name": "B2PIPLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2PIPLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "B2PIPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "ROB2PLYP-D3(BJ)",
+    "name_latex": "ROB2PLYP-D3(BJ)",
+    "name_html": "ROB2PLYP-D3(BJ)",
+    "path_safe_name": "ROB2PLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "ROB2PLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "ROB2PLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2TPLYP-D3(BJ)",
+    "name_latex": "B2TPLYP-D3(BJ)",
+    "name_html": "B2TPLYP-D3(BJ)",
+    "path_safe_name": "B2TPLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2TPLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "B2TPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2GPPLYP-D3(BJ)",
+    "name_latex": "B2GPPLYP-D3(BJ)",
+    "name_html": "B2GPPLYP-D3(BJ)",
+    "path_safe_name": "B2GPPLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2GPPLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "B2GPPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2KPLYP-D3(BJ)",
+    "name_latex": "B2KPLYP-D3(BJ)",
+    "name_html": "B2KPLYP-D3(BJ)",
+    "path_safe_name": "B2KPLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2KPLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "B2KPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2NCPLYP-D3(BJ)",
+    "name_latex": "B2NCPLYP-D3(BJ)",
+    "name_html": "B2NCPLYP-D3(BJ)",
+    "path_safe_name": "B2NCPLYP-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2NCPLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "B2NCPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "mPW2NCPLYP-D3(BJ)",
+    "name_latex": "mPW2NCPLYP-D3(BJ)",
+    "name_html": "mPW2NCPLYP-D3(BJ)",
+    "path_safe_name": "mPW2NCPLYP-D3BJ",
+    "disp_params": "GRIMME3 BJDAMP PAR1=0.385 PAR2=-0.493 PAR3=0.0 PAR4=9.529",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW2NCPLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP PAR1=0.385 PAR2=-0.493 PAR3=0.0 PAR4=9.529",
+            "DoubleHybrid": "mPW2NCPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "mPW2KPLYP-D3(BJ)",
+    "name_latex": "mPW2KPLYP-D3(BJ)",
+    "name_html": "mPW2KPLYP-D3(BJ)",
+    "path_safe_name": "mPW2KPLYP-D3BJ",
+    "disp_params": "GRIMME3 BJDAMP PAR1=0.490 PAR2=0.306 PAR3=0.915 PAR4=5.057",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW2KPLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP PAR1=0.490 PAR2=0.306 PAR3=0.915 PAR4=5.057",
+            "DoubleHybrid": "mPW2KPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DH-BLYP-D3(BJ)",
+    "name_latex": "DH-BLYP-D3(BJ)",
+    "name_html": "DH-BLYP-D3(BJ)",
+    "path_safe_name": "DH-BLYP-D3BJ",
+    "disp_params": "GRIMME3 BJDAMP PAR1=0.488 PAR2=0.306 PAR3=0.915 PAR4=5.057",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DH-BLYP",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP PAR1=0.488 PAR2=0.306 PAR3=0.915 PAR4=5.057",
+            "DoubleHybrid": "DH-BLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE0-DH-D3(BJ)",
+    "name_latex": "PBE0-DH-D3(BJ)",
+    "name_html": "PBE0-DH-D3(BJ)",
+    "path_safe_name": "PBE0-DH-D3BJ",
+    "disp_params": "GRIMME3 BJDAMP PAR1=0.880 PAR2=0.000 PAR3=0.165 PAR4=6.385",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0-DH",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP PAR1=0.880 PAR2=0.000 PAR3=0.165 PAR4=6.385",
+            "DoubleHybrid": "PBE0-DH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE-QIDH-D3(BJ)",
+    "name_latex": "PBE-QIDH-D3(BJ)",
+    "name_html": "PBE-QIDH-D3(BJ)",
+    "path_safe_name": "PBE-QIDH-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE-QIDH",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "PBE-QIDH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "LS1-DH-D3(BJ)",
+    "name_latex": "LS1-DH-D3(BJ)",
+    "name_html": "LS1-DH-D3(BJ)",
+    "path_safe_name": "LS1-DH-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LS1-DH",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "LS1-DH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE0-2-D3(BJ)",
+    "name_latex": "PBE0-2-D3(BJ)",
+    "name_html": "PBE0-2-D3(BJ)",
+    "path_safe_name": "PBE0-2-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0-2",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "PBE0-2"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "LS1-TPSS-D3(BJ)",
+    "name_latex": "LS1-TPSS-D3(BJ)",
+    "name_html": "LS1-TPSS-D3(BJ)",
+    "path_safe_name": "LS1-TPSS-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LS1-TPSS",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "LS1-TPSS"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DS1-TPSS-D3(BJ)",
+    "name_latex": "DS1-TPSS-D3(BJ)",
+    "name_html": "DS1-TPSS-D3(BJ)",
+    "path_safe_name": "DS1-TPSS-D3BJ",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DS1-TPSS",
+    "dispersion": "D3(BJ)",
+    "dispersion_name": "GRIMME3 BJDAMP",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME3 BJDAMP",
+            "DoubleHybrid": "DS1-TPSS"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2PLYP-D4",
+    "name_latex": "B2PLYP-D4",
+    "name_html": "B2PLYP-D4",
+    "path_safe_name": "B2PLYP-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2PLYP",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "DoubleHybrid": "B2PLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "B2GPPLYP-D4",
+    "name_latex": "B2GPPLYP-D4",
+    "name_html": "B2GPPLYP-D4",
+    "path_safe_name": "B2GPPLYP-D4",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "B2GPPLYP",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "DoubleHybrid": "B2GPPLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "mPW2PLYP-D4",
+    "name_latex": "mPW2PLYP-D4",
+    "name_html": "mPW2PLYP-D4",
+    "path_safe_name": "mPW2PLYP-D4",
+    "disp_params": "GRIMME4 s6=0.750 s8=0.4579 a1=0.43 a2=5.0765",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "mPW2PLYP",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4 s6=0.750 s8=0.4579 a1=0.43 a2=5.0765",
+            "DoubleHybrid": "mPW2PLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE0-DH-D4",
+    "name_latex": "PBE0-DH-D4",
+    "name_html": "PBE0-DH-D4",
+    "path_safe_name": "PBE0-DH-D4",
+    "disp_params": "GRIMME4 s6=0.875 s8=0.9681 a1=0.4759 a2=5.0862",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0-DH",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4 s6=0.875 s8=0.9681 a1=0.4759 a2=5.0862",
+            "DoubleHybrid": "PBE0-DH"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "PBE0-2-D4",
+    "name_latex": "PBE0-2-D4",
+    "name_html": "PBE0-2-D4",
+    "path_safe_name": "PBE0-2-D4",
+    "disp_params": "GRIMME4 s6=0.500 s8=0.6430 a1=0.7654 a2=5.7858",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "PBE0-2",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4 s6=0.500 s8=0.6430 a1=0.7654 a2=5.7858",
+            "DoubleHybrid": "PBE0-2"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DSD-BLYP",
+    "name_latex": "DSD-BLYP",
+    "name_html": "DSD-BLYP",
+    "path_safe_name": "DSD-BLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DSD-BLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "DSD-BLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DSD-BLYP",
+    "name_latex": "rev-DSD-BLYP",
+    "name_html": "rev-DSD-BLYP",
+    "path_safe_name": "rev-DSD-BLYP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DSD-BLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DSD-BLYP"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DSD-BLYP-D4",
+    "name_latex": "rev-DSD-BLYP-D4",
+    "name_html": "rev-DSD-BLYP-D4",
+    "path_safe_name": "rev-DSD-BLYP-D4",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DSD-BLYP-D4",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DSD-BLYP-D4"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DSD-PBEP86",
+    "name_latex": "DSD-PBEP86",
+    "name_html": "DSD-PBEP86",
+    "path_safe_name": "DSD-PBEP86",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DSD-PBEP86",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "DSD-PBEP86"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DSD-PBEP86",
+    "name_latex": "rev-DSD-PBEP86",
+    "name_html": "rev-DSD-PBEP86",
+    "path_safe_name": "rev-DSD-PBEP86",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DSD-PBEP86",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DSD-PBEP86"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DSD-PBEP86-D4",
+    "name_latex": "rev-DSD-PBEP86-D4",
+    "name_html": "rev-DSD-PBEP86-D4",
+    "path_safe_name": "rev-DSD-PBEP86-D4",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DSD-PBEP86-D4",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DSD-PBEP86-D4"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "DSD-PBE",
+    "name_latex": "DSD-PBE",
+    "name_html": "DSD-PBE",
+    "path_safe_name": "DSD-PBE",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "DSD-PBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "DSD-PBE"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DSD-PBE",
+    "name_latex": "rev-DSD-PBE",
+    "name_html": "rev-DSD-PBE",
+    "path_safe_name": "rev-DSD-PBE",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DSD-PBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DSD-PBE"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DSD-PBE-D4",
+    "name_latex": "rev-DSD-PBE-D4",
+    "name_html": "rev-DSD-PBE-D4",
+    "path_safe_name": "rev-DSD-PBE-D4",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DSD-PBE-D4",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DSD-PBE-D4"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "rev-DSD-SCAN-D4",
+    "name_latex": "rev-DSD-SCAN-D4",
+    "name_html": "rev-DSD-SCAN-D4",
+    "path_safe_name": "rev-DSD-SCAN-D4",
+    "use_libxc": false,
+    "includes_disp": true,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "rev-DSD-SCAN-D4",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "rev-DSD-SCAN-D4"
+        }
+    }
+}
+
+{
+    "category": "DoubleHybrid",
+    "name": "SD-SCAN69",
+    "name_latex": "SD-SCAN69",
+    "name_html": "SD-SCAN69",
+    "path_safe_name": "SD-SCAN69",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "SD-SCAN69",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "DoubleHybrid": "SD-SCAN69"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "LCY-BLYP",
+    "name_latex": "LCY-BLYP",
+    "name_html": "LCY-BLYP",
+    "path_safe_name": "LCY-BLYP",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LCY-BLYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "BLYP",
+            "RANGESEP": "",
+            "xcfun": ""
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "LCY-BP86",
+    "name_latex": "LCY-BP86",
+    "name_html": "LCY-BP86",
+    "path_safe_name": "LCY-BP86",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LCY-BP86",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "BP86",
+            "RANGESEP": "",
+            "xcfun": ""
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "LCY-PBE",
+    "name_latex": "LCY-PBE",
+    "name_html": "LCY-PBE",
+    "path_safe_name": "LCY-PBE",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LCY-PBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "GGA": "PBE",
+            "RANGESEP": "",
+            "xcfun": ""
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "CAM-B3LYP",
+    "name_latex": "CAM-B3LYP",
+    "name_html": "CAM-B3LYP",
+    "path_safe_name": "CAM-B3LYP",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "CAM-B3LYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "CAM-B3LYP"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "CAM-B3LYP-D4",
+    "name_latex": "CAM-B3LYP-D4",
+    "name_html": "CAM-B3LYP-D4",
+    "path_safe_name": "CAM-B3LYP-D4",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "CAM-B3LYP",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "disp_params": {},
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4",
+            "LibXC": "CAM-B3LYP"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "CAMY-B3LYP",
+    "name_latex": "CAMY-B3LYP",
+    "name_html": "CAMY-B3LYP",
+    "path_safe_name": "CAMY-B3LYP",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "CAMY-B3LYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Hybrid": "CAMY-B3LYP",
+            "RANGESEP": "",
+            "xcfun": ""
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "HJS-PBE",
+    "name_latex": "HJS-PBE",
+    "name_html": "HJS-PBE",
+    "path_safe_name": "HJS-PBE",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "HJS-PBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "HJS-PBE"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "HJS-PBESOL",
+    "name_latex": "HJS-PBESOL",
+    "name_html": "HJS-PBESOL",
+    "path_safe_name": "HJS-PBESOL",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "HJS-PBESOL",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "HJS-PBESOL"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "HJS-B97X",
+    "name_latex": "HJS-B97X",
+    "name_html": "HJS-B97X",
+    "path_safe_name": "HJS-B97X",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "HJS-B97X",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "HJS-B97X"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "HSE03",
+    "name_latex": "HSE03",
+    "name_html": "HSE03",
+    "path_safe_name": "HSE03",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "HSE03",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "HSE03"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "HSE06",
+    "name_latex": "HSE06",
+    "name_html": "HSE06",
+    "path_safe_name": "HSE06",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "HSE06",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "HSE06"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "LRC_WPBE",
+    "name_latex": "LRC_WPBE",
+    "name_html": "LRC_WPBE",
+    "path_safe_name": "LRC_WPBE",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LRC_WPBE",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "LRC_WPBE"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "LRC_WPBEH",
+    "name_latex": "LRC_WPBEH",
+    "name_html": "LRC_WPBEH",
+    "path_safe_name": "LRC_WPBEH",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "LRC_WPBEH",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "LRC_WPBEH"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "M06-SX",
+    "name_latex": "M06-SX",
+    "name_html": "M06-SX",
+    "path_safe_name": "M06-SX",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M06-SX",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "M06-SX"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "M11",
+    "name_latex": "M11",
+    "name_html": "M11",
+    "path_safe_name": "M11",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "M11",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "M11"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "MN12-SX",
+    "name_latex": "MN12-SX",
+    "name_html": "MN12-SX",
+    "path_safe_name": "MN12-SX",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MN12-SX",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "MN12-SX"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "N12-SX",
+    "name_latex": "N12-SX",
+    "name_html": "N12-SX",
+    "path_safe_name": "N12-SX",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "N12-SX",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "N12-SX"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "TUNED-CAM-B3LYP",
+    "name_latex": "TUNED-CAM-B3LYP",
+    "name_html": "TUNED-CAM-B3LYP",
+    "path_safe_name": "TUNED-CAM-B3LYP",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "TUNED-CAM-B3LYP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "TUNED-CAM-B3LYP"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "WB97",
+    "name_latex": "$\\omega$B97",
+    "name_html": "&omega;B97",
+    "path_safe_name": "WB97",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "WB97",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "WB97"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "WB97X",
+    "name_latex": "$\\omega$B97X",
+    "name_html": "&omega;B97X",
+    "path_safe_name": "WB97X",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "WB97X",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "LibXC": "WB97X"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "WB97-D4",
+    "name_latex": "$\\omega$B97-D4",
+    "name_html": "&omega;B97-D4",
+    "path_safe_name": "WB97-D4",
+    "disp_params": "GRIMME4 s6=1.0000 s8=6.55792598 a1=0.76666802 a2=8.36027334",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "WB97",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4 s6=1.0000 s8=6.55792598 a1=0.76666802 a2=8.36027334",
+            "LibXC": "WB97"
+        }
+    }
+}
+
+{
+    "category": "RangeSeparated",
+    "name": "WB97X-D4",
+    "name_latex": "$\\omega$B97X-D4",
+    "name_html": "&omega;B97X-D4",
+    "path_safe_name": "WB97X-D4",
+    "disp_params": "GRIMME4 s6=1.0000 s8=-0.07519516 a1=0.45094893 a2=6.78425255",
+    "use_libxc": true,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "WB97X",
+    "dispersion": "D4",
+    "dispersion_name": "GRIMME4",
+    "adf_settings": {
+        "XC": {
+            "Dispersion": "GRIMME4 s6=1.0000 s8=-0.07519516 a1=0.45094893 a2=6.78425255",
+            "LibXC": "WB97X"
+        }
+    }
+}
+
+{
+    "category": "MP2",
+    "name": "MP2",
+    "name_latex": "MP2",
+    "name_html": "MP2",
+    "path_safe_name": "MP2",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "MP2",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MP2": ""
+        }
+    }
+}
+
+{
+    "category": "MP2",
+    "name": "SOS-MP2",
+    "name_latex": "SOS-MP2",
+    "name_html": "SOS-MP2",
+    "path_safe_name": "SOS-MP2",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "SOS-MP2",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MP2": "",
+            "EmpiricalScaling": "SOS"
+        }
+    }
+}
+
+{
+    "category": "MP2",
+    "name": "SCS-MP2",
+    "name_latex": "SCS-MP2",
+    "name_html": "SCS-MP2",
+    "path_safe_name": "SCS-MP2",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "SCS-MP2",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "MP2": "",
+            "EmpiricalScaling": "SCS"
+        }
+    }
+}
+
+{
+    "category": "Model",
+    "name": "SAOP",
+    "name_latex": "SAOP",
+    "name_html": "SAOP",
+    "path_safe_name": "SAOP",
+    "use_libxc": false,
+    "includes_disp": false,
+    "available_in_adf": true,
+    "available_in_band": false,
+    "available_in_orca": false,
+    "name_no_disp": "SAOP",
+    "dispersion": null,
+    "dispersion_name": null,
+    "adf_settings": {
+        "XC": {
+            "Model": "SAOP"
+        }
+    }
+}
+
