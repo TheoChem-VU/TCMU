@@ -1,8 +1,8 @@
 import os
 
-import tcutility.results.read as results
-from tcutility import constants
-from tcutility.results.result import Result
+import tcmu.results.read as results
+from tcmu import constants
+from tcmu.results.result import Result
 
 j = os.path.join
 

@@ -1,8 +1,8 @@
 import pyfmo
 from scm import plams
 
-from tcutility import data, log, pathfunc
-from tcutility.job.adf import ADFJob
+from tcmu import data, log, pathfunc
+from tcmu.job.adf import ADFJob
 
 rows = []
 for d, info in log.loadbar(pathfunc.match("calculations/virtual_counting", "{atnum}.{symbol}.{basis_set}").items()):

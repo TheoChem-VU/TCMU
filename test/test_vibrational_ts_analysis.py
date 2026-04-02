@@ -3,9 +3,9 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from tcutility.analysis.vibration import ts_vibration
-from tcutility.results.read import read
-from tcutility.results.result import Result
+from tcmu.analysis.vibration import ts_vibration
+from tcmu.results.read import read
+from tcmu.results.result import Result
 
 
 @pytest.fixture

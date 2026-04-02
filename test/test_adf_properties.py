@@ -2,8 +2,8 @@
 
 import pytest
 
-from tcutility.results.read import read
-from tcutility.results.result import Result
+from tcmu.results.read import read
+from tcmu.results.result import Result
 
 
 @pytest.fixture()

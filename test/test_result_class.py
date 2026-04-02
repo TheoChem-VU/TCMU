@@ -1,4 +1,4 @@
-from tcutility.results.result import Result
+from tcmu.results.result import Result
 
 
 def test_init():

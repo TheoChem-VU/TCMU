@@ -1,4 +1,4 @@
-from tcutility import formula
+from tcmu import formula
 
 
 def test_single_molecule():

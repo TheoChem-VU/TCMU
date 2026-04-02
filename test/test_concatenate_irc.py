@@ -2,9 +2,9 @@ import pathlib as pl
 
 import pytest
 
-from tcutility.analysis.task_specific.irc import _get_converged_molecules, concatenate_irc_trajectories
-from tcutility.results.read import read
-from tcutility.results.result import Result
+from tcmu.analysis.task_specific.irc import _get_converged_molecules, concatenate_irc_trajectories
+from tcmu.results.read import read
+from tcmu.results.result import Result
 
 #
 current_dir = pl.Path(__file__).parent

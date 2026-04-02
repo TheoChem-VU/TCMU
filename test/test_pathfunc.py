@@ -3,7 +3,7 @@ import tempfile
 
 import pytest
 
-from tcutility import pathfunc
+from tcmu import pathfunc
 
 
 @pytest.fixture

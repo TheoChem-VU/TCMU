@@ -2,7 +2,7 @@ import os
 
 from scm import plams
 
-from tcutility import molecule
+from tcmu import molecule
 
 j = os.path.join
 

@@ -1,6 +1,6 @@
 import os
 
-from tcutility.results.ams import get_ams_input
+from tcmu.results.ams import get_ams_input
 
 j = os.path.join
 

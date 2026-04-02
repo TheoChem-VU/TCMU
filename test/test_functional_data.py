@@ -1,4 +1,4 @@
-from tcutility.data import functionals
+from tcmu.data import functionals
 
 
 def test_get():

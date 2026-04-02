@@ -4,9 +4,9 @@ import numpy as np
 import pytest
 from scm.plams import KFReader
 
-from tcutility.analysis.vdd import charge, manager
-from tcutility.results import ams
-from tcutility.results.read import read
+from tcmu.analysis.vdd import charge, manager
+from tcmu.results import ams
+from tcmu.results.read import read
 
 # VDDCharge, manager.VDDChargeManager, get_vdd_charges, _get_fragment_indices_from_input_order
 
