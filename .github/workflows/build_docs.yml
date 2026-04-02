@@ -46,7 +46,7 @@ jobs:
         run: pip install ".[dev,analysis,report,vdd,plot,connect]"
 
       - name: Run sphinx-apidoc
-        run: cd docs; sphinx-apidoc -f -o api ../src/tcutility/
+        run: cd docs; sphinx-apidoc -f -o api ../src/tcmu/
 
       - name: Run python scripts that create files used for the build docs
         # script are in root/docs/utility_doc_scripts
