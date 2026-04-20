@@ -15,20 +15,20 @@ Requirements
 Example
 --------
 
-First, relevant modules need to be loaded. These include pathlib for handling paths and tcutility.results for loading the results of the calculation.
+First, relevant modules need to be loaded. These include pathlib for handling paths and tcmu.results for loading the results of the calculation.
 In addition, the VDD manager module needs to be loaded which is the interface to performing VDD analyses.
 
 .. note::
 
-    For this example we use calculations found in the `VDD test directory`_ of the tcutility package.
+    For this example we use calculations found in the `VDD test directory`_ of the tcmu package.
     We assume that the you place the VDD test directory in the same directory as this script.
-    See the `example python script <https://github.com/TheoChem-VU/TCutility/blob/main/examples/vdd_analysis.py>`_ for a direct implementation
+    See the `example python script <https://github.com/TheoChem-VU/TCMU/blob/main/examples/vdd_analysis.py>`_ for a direct implementation
 
 .. code-block:: python
 
     import pathlib as pl
-    import tcutility.results as results
-    from tcutility.analysis.vdd import manager
+    import tcmu.results as results
+    from tcmu.analysis.vdd import manager
 
 Now, the calculation directory needs to be specified and the calculation results can be loaded via the |read| function.
 The next step is to create a |VDDmanager| object which is the interface to performing VDD analyses.
@@ -125,4 +125,4 @@ Here is the implementation of the |VDDmanager| and |VDDcharge| classes. The cent
 A |VDDcharge| does not only contain the charge itself, but also to which atom and frag index it belongs.
 
 
-.. _VDD test directory: https://github.com/TheoChem-VU/TCutility/tree/main/test/fixtures/VDD
+.. _VDD test directory: https://github.com/TheoChem-VU/TCMU/tree/main/test/fixtures/VDD

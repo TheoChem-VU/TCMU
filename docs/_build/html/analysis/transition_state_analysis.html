@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Transition State Analysis module &#8212; TCutility v0.16.12 documentation</title>
+    <title>Transition State Analysis module &#8212; tcmu v0.17.1 documentation</title>
   
   
   
@@ -27,40 +27,45 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../_static/documentation_options.js?v=2f1b5409"></script>
+    <script src="../_static/documentation_options.js?v=036fd922"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'analysis/transition_state_analysis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/119413491"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="VDD Charge Analysis module" href="vdd_charge_analysis.html" />
-    <link rel="prev" title="tcutility.analysis" href="analysis.html" />
+    <link rel="prev" title="tcmu.analysis" href="analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
@@ -92,7 +97,7 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
@@ -114,7 +119,7 @@
 <div class="myDiv">
     <a href="/index.html">
         <img src="https://avatars.githubusercontent.com/u/119413491?s=60&v=4">
-        TCutility
+        TCMU
     </a>
 </div></div>
     
@@ -190,15 +195,51 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transition State Analysis module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vdd_charge_analysis.html">VDD Charge Analysis module</a></li>
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Main modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../results/results.html">tcmu.results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tcmu.job.html">tcmu.job</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="analysis.html">tcmu.analysis</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Transition State Analysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vdd_charge_analysis.html">VDD Charge Analysis module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cli_scripts/main.html">Command-line interface (CLI) scripts</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Utility modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.data.html">tcmu.data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.report.html">tcmu.report package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.analysis.html">tcmu.analysis package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.html">tcmu package</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">tcmu</a></li>
 </ul>
 </div>
-</nav></div>
+        <div class="sidebar-primary-item">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="analysis.html"
+                          title="previous chapter">tcmu.analysis</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="vdd_charge_analysis.html"
+                          title="next chapter">VDD Charge Analysis module</a></p>
+  </div></div>
+        <div class="sidebar-primary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/analysis/transition_state_analysis.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+        <div class="sidebar-primary-item">
+<div id="searchbox"></div></div>
     </div>
   
   
@@ -237,7 +278,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="analysis.html" class="nav-link">tcutility.analysis</a></li>
+    <li class="breadcrumb-item"><a href="analysis.html" class="nav-link">tcmu.analysis</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Transition State Analysis module</span></li>
   </ul>
@@ -281,7 +322,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">tcutility.analysis</p>
+        <p class="prev-next-title">tcmu.analysis</p>
       </div>
     </a>
     <a class="right-next"
@@ -305,13 +346,13 @@
 
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/analysis/transition_state_analysis.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/analysis/transition_state_analysis.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -326,8 +367,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -361,7 +402,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
 </p></div>
       
     </div>

@@ -1,7 +1,7 @@
 import pathlib as pl
 
 from scm.plams import AMSJob, Molecule, Settings, config, finish, init
-from tcutility.job import ADFJob
+from tcmu import ADFJob
 
 current_file_path = pl.Path(__file__).parent
 mol_path = current_file_path / "water_dimer.xyz"
@@ -22,8 +22,8 @@ def try_plams_job(mol: Molecule) -> None:
     finish()
 
 
-def try_tcutility_job(mol: Molecule) -> None:
-    # Test case with tcutility for checking if tcutility works solely on Windows
+def try_tcmu_job(mol: Molecule) -> None:
+    # Test case with tcmu for checking if tcmu works solely on Windows
     with ADFJob(use_slurm=False) as job:
         job.molecule(mol)
         job.rundir = str(current_file_path / "calculations")
@@ -40,9 +40,9 @@ def main():
 
     mol = Molecule(str(mol_path))
 
-    # Use these functions to test if a plams and tcutility job can be run on Windows, Mac, and Linux. Both do not use slurm.
+    # Use these functions to test if a plams and tcmu job can be run on Windows, Mac, and Linux. Both do not use slurm.
     try_plams_job(mol)
-    try_tcutility_job(mol)
+    try_tcmu_job(mol)
 
 
 if __name__ == "__main__":

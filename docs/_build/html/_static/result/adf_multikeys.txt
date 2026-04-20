@@ -1,9 +1,9 @@
 files.root
-files.err
-files.out
 files.log
-files.adf.rkf
+files.out
+files.err
 files.ams.rkf
+files.adf.rkf
 engine
 input.Task
 input.properties.NormalModes
@@ -22,6 +22,8 @@ ams_version.date
 timing.cpu
 timing.sys
 timing.total
+timing.last_update
+timing.start_time
 status.fatal
 status.name
 status.code
@@ -83,6 +85,7 @@ properties.dipole_vector
 properties.dipole_moment
 properties.quadrupole_moment
 properties.dens_at_atom
+properties.excitations
 level.xc.functional
 level.xc.category
 level.xc.dispersion
