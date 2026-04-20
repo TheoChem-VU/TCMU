@@ -1,5 +1,5 @@
-include src/tcmu/results/input_blocks
-include src/tcmu/data/*
-include src/tcmu/data/_atom_data_info/*.txt
-include src/tcmu/data/_atom_data_info/*.json
-include src/tcmu/report/_char_widths.txt
+global-include src/tcmu/results/input_blocks
+global-include src/tcmu/data/*
+global-include src/tcmu/data/_atom_data_info/*.txt
+global-include src/tcmu/data/_atom_data_info/*.json
+global-include src/tcmu/report/_char_widths.txt
