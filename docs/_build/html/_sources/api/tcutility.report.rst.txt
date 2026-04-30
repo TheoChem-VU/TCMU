@@ -17,29 +17,29 @@ tcutility.report.character module
 
 .. automodule:: tcutility.report.character
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 tcutility.report.figure\_resizer module
 ---------------------------------------
 
 .. automodule:: tcutility.report.figure_resizer
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 tcutility.report.report module
 ------------------------------
 
 .. automodule:: tcutility.report.report
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
 
 .. automodule:: tcutility.report
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:

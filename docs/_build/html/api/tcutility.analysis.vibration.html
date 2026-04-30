@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>tcutility.analysis.vibration package &#8212; TCutility v0.16.12 documentation</title>
+    <title>tcutility.analysis.vibration package &#8212; tcmu v0.17.2 documentation</title>
   
   
   
@@ -27,40 +27,43 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../_static/documentation_options.js?v=2f1b5409"></script>
+    <script src="../_static/documentation_options.js?v=34975348"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/tcutility.analysis.vibration';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/119413491"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tcutility.cli_scripts package" href="tcutility.cli_scripts.html" />
-    <link rel="prev" title="tcutility.analysis.vdd package" href="tcutility.analysis.vdd.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
@@ -92,7 +95,7 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
@@ -114,7 +117,7 @@
 <div class="myDiv">
     <a href="/index.html">
         <img src="https://avatars.githubusercontent.com/u/119413491?s=60&v=4">
-        TCutility
+        TCMU
     </a>
 </div></div>
     
@@ -190,33 +193,36 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="tcutility.html">tcutility package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="tcutility.analysis.html">tcutility.analysis package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="tcutility.analysis.task_specific.html">tcutility.analysis.task_specific package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tcutility.analysis.vdd.html">tcutility.analysis.vdd package</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">tcutility.analysis.vibration package</a></li>
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Main modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../results/results.html">tcmu.results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tcmu.job.html">tcmu.job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analysis/analysis.html">tcmu.analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli_scripts/main.html">Command-line interface (CLI) scripts</a></li>
 </ul>
-</details></li>
-<li class="toctree-l2"><a class="reference internal" href="tcutility.cli_scripts.html">tcutility.cli_scripts package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tcutility.data.html">tcutility.data package</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="tcutility.job.html">tcutility.job package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="tcutility.job.postscripts.html">tcutility.job.postscripts package</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Utility modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tcmu.data.html">tcmu.data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tcmu.report.html">tcmu.report package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tcmu.analysis.html">tcmu.analysis package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tcmu.html">tcmu package</a></li>
 </ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="tcutility.report.html">tcutility.report package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="tcutility.report.formatters.html">tcutility.report.formatters package</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2"><a class="reference internal" href="tcutility.results.html">tcutility.results package</a></li>
-</ul>
-</details></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">tcmu</a></li>
 </ul>
 </div>
-</nav></div>
+        <div class="sidebar-primary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/api/tcutility.analysis.vibration.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+        <div class="sidebar-primary-item">
+<div id="searchbox"></div></div>
     </div>
   
   
@@ -254,15 +260,6 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    
-    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">tcutility</a></li>
-    
-    
-    <li class="breadcrumb-item"><a href="tcutility.html" class="nav-link">tcutility package</a></li>
-    
-    
-    <li class="breadcrumb-item"><a href="tcutility.analysis.html" class="nav-link">tcutility.analysis package</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.analysis.vibration package</span></li>
   </ul>
 </nav>
@@ -285,85 +282,11 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 </section>
-<section id="module-tcutility.analysis.vibration.ts_vibration">
-<span id="tcutility-analysis-vibration-ts-vibration-module"></span><h2>tcutility.analysis.vibration.ts_vibration module<a class="headerlink" href="#module-tcutility.analysis.vibration.ts_vibration" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="tcutility.analysis.vibration.ts_vibration.determine_ts_reactioncoordinate">
-<span class="sig-name descname"><span class="pre">determine_ts_reactioncoordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.28</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_delta_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcutility/analysis/vibration/ts_vibration.html#determine_ts_reactioncoordinate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcutility.analysis.vibration.ts_vibration.determine_ts_reactioncoordinate" title="Link to this definition">#</a></dt>
-<dd><p>Function to retrieve reaction coordinate from a given transitionstate, using the first imaginary frequency.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="tcutility.results.html#tcutility.results.result.Result" title="tcutility.results.result.Result"><code class="xref py py-class docutils literal notranslate"><span class="pre">Result</span></code></a></span>) – TCutility.Result object containing calculation data</p></li>
-<li><p><strong>mode_index</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – vibrational mode index to analyze</p></li>
-<li><p><strong>bond_tolerance</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – parameter for plams.Molecule.guess_bonds() function</p></li>
-<li><p><strong>min_delta_dist</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – minimum relative bond length change before qualifying as active atom. If 0, all bond changes are counted</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Array containing all the obtained reaction coordinates. Reaction coordinate format is [active_atom1, active_atom2, sign], using Distance reactioncoordinate
-Symmetry elements are ignored, by convention the atom labels are increasing (atom1 &lt; atom2)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tcutility.analysis.vibration.ts_vibration.avg_relative_bond_length_delta">
-<span class="sig-name descname"><span class="pre">avg_relative_bond_length_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcutility/analysis/vibration/ts_vibration.html#avg_relative_bond_length_delta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcutility.analysis.vibration.ts_vibration.avg_relative_bond_length_delta" title="Link to this definition">#</a></dt>
-<dd><p>Function to calculate relative atom distance change in vibrational mode</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>base</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></span>) – plams.Molecule object containing the coordinates before applying vibration</p></li>
-<li><p><strong>pos</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></span>) – plams.Molecule object with the vibrational mode added</p></li>
-<li><p><strong>neg</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></span>) – plams.Molecule object with the vibrational mode subtracted</p></li>
-<li><p><strong>atom1</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – label for the first atom</p></li>
-<li><p><strong>atom2</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – label for the second atom</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Average relative difference from the baseline distance between selected atoms in this vibrational mode (as percentage).</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tcutility.analysis.vibration.ts_vibration.validate_transitionstate">
-<span class="sig-name descname"><span class="pre">validate_transitionstate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">calc_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcatoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analyze_modes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcutility/analysis/vibration/ts_vibration.html#validate_transitionstate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcutility.analysis.vibration.ts_vibration.validate_transitionstate" title="Link to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>Function to determine whether a transition state calculation yielded the expected transition state. Checks the reaction coordinates provided by the user (or in the .rkf file User Input section) and compares</dt><dd><p>this against the reaction coordinates found in the imaginary modes of the transitionstate. If the transitionstate has multiple imaginary frequencies, it is possible to check multiple modes for the expected
-reaction coordinate.</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>calc_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – path pointing to the desired calculation.</p></li>
-<li><p><strong>rcatoms</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span>) – list or array containing expected reaction coordinates, to check against the transition state. If not defined, it is obtained from the ams.rkf user input.
-Only uses ‘Distance’ reaction coordinate. Format should be [atomlabel1, atomlabel2, (optional) sign]</p></li>
-<li><p><strong>analyze_modes</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of imaginary modes to analyze, default only the first mode. Modes are ordered lowest frequency first. If 0 or negative value is provided, analyze all modes with imaginary frequency.</p></li>
-<li><p><strong>**kwargs</strong> – keyword arguments for use in <a class="reference internal" href="#tcutility.analysis.vibration.ts_vibration.determine_ts_reactioncoordinate" title="tcutility.analysis.vibration.ts_vibration.determine_ts_reactioncoordinate"><code class="xref py py-func docutils literal notranslate"><span class="pre">determine_ts_reactioncoordinate()</span></code></a>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Boolean value, True if the found transition state reaction coordinates contain the expected reaction coordinates, False otherwise.
-If multiple modes are analyzed, returns True if at least one mode contains the expected reaction coordinates.</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="tcutility-analysis-vibration-ts-vibration-module">
+<h2>tcutility.analysis.vibration.ts_vibration module<a class="headerlink" href="#tcutility-analysis-vibration-ts-vibration-module" title="Link to this heading">#</a></h2>
 </section>
-<section id="module-tcutility.analysis.vibration">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tcutility.analysis.vibration" title="Link to this heading">#</a></h2>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -377,24 +300,6 @@ If multiple modes are analyzed, returns True if at least one mode contains the e
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="tcutility.analysis.vdd.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">tcutility.analysis.vdd package</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="tcutility.cli_scripts.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">tcutility.cli_scripts package</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -412,27 +317,22 @@ If multiple modes are analyzed, returns True if at least one mode contains the e
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-tcutility.analysis.vibration.ts_vibration">tcutility.analysis.vibration.ts_vibration module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcutility.analysis.vibration.ts_vibration.determine_ts_reactioncoordinate"><code class="docutils literal notranslate"><span class="pre">determine_ts_reactioncoordinate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcutility.analysis.vibration.ts_vibration.avg_relative_bond_length_delta"><code class="docutils literal notranslate"><span class="pre">avg_relative_bond_length_delta()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcutility.analysis.vibration.ts_vibration.validate_transitionstate"><code class="docutils literal notranslate"><span class="pre">validate_transitionstate()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-tcutility.analysis.vibration">Module contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tcutility-analysis-vibration-ts-vibration-module">tcutility.analysis.vibration.ts_vibration module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module contents</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/api/tcutility.analysis.vibration.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/api/tcutility.analysis.vibration.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -447,8 +347,8 @@ If multiple modes are analyzed, returns True if at least one mode contains the e
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -482,7 +382,7 @@ If multiple modes are analyzed, returns True if at least one mode contains the e
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
 </p></div>
       
     </div>
