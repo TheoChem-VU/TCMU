@@ -45,8 +45,14 @@ def parse_line(line: str) -> Tuple[str, dict]:
     data = {}
     # read anything after the hash
     for part in line.split(',')[1:]:
-        k, v = part.split('=')
-        data[k.strip()] = v.strip()
+        parts = part.split('=')
+        if len(parts) == 2:
+            k, v = parts
+            data[k.strip()] = v.strip()
+        else:
+            k = parts
+            v = None
+            data[k.strip()] = None
 
     # return the hash and data separately
     return hsh, data
