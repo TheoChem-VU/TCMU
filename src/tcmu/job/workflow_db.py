@@ -50,7 +50,7 @@ def parse_line(line: str) -> Tuple[str, dict]:
             k, v = parts
             data[k.strip()] = v.strip()
         else:
-            k = parts
+            k = parts[0]
             v = None
             data[k.strip()] = None
 
