@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>tcmu package &#8212; tcmu v0.17.2 documentation</title>
+    <title>tcmu package &#8212; tcmu v0.17.3 documentation</title>
   
   
   
@@ -27,20 +27,20 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
 
-    <script src="../_static/documentation_options.js?v=34975348"></script>
+    <script src="../_static/documentation_options.js?v=90efd751"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -74,7 +74,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -864,7 +866,7 @@ Files will be stored in the platform dependent temporary file directory.</p></li
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>doi</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – the article DOI to generate a citation for.</p></li>
-<li><p><strong>style</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – the style formatting to use. Can be <code class="docutils literal notranslate"><span class="pre">['wiley',</span> <span class="pre">'acs',</span> <span class="pre">'rsc']</span></code>.</p></li>
+<li><p><strong>style</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – the style formatting to use. Can be <code class="docutils literal notranslate"><span class="pre">['wiley',</span> <span class="pre">'acs',</span> <span class="pre">'rsc',</span> <span class="pre">'jcc']</span></code>.</p></li>
 <li><p><strong>mode</strong> – the formatting mode. Can be <code class="docutils literal notranslate"><span class="pre">['html',</span> <span class="pre">'latex',</span> <span class="pre">'plain']</span></code>.</p></li>
 </ul>
 </dd>
@@ -1434,7 +1436,7 @@ This can be used to check for optional dependencies which are required for speci
 <dd><p>Bases: <a class="reference internal" href="#tcmu.errors.TCMUError" title="tcmu.errors.TCMUError"><code class="xref py py-class docutils literal notranslate"><span class="pre">TCMUError</span></code></a></p>
 <p>Missing optional package related error.</p>
 <p>This is a template taken from the PLAMS package
-(<a class="reference external" href="https://github.com/SCM-NV/PLAMS/blob/trunk/src/scm/plams/core/errors.py">https://github.com/SCM-NV/PLAMS/blob/trunk/src/scm/plams/core/errors.py</a>).</p>
+(<a class="github reference external" href="https://github.com/SCM-NV/PLAMS/blob/trunk/src/scm/plams/core/errors.py">SCM-NV/PLAMS</a>).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tcmu.errors.TCMUMissingOptionalPackageError.extras_install">
 <span class="sig-name descname"><span class="pre">extras_install</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'attrs':</span> <span class="pre">'vdd',</span> <span class="pre">'docx':</span> <span class="pre">'report',</span> <span class="pre">'h5py':</span> <span class="pre">'analysis',</span> <span class="pre">'htmldocx':</span> <span class="pre">'report',</span> <span class="pre">'matplotlib':</span> <span class="pre">'plot',</span> <span class="pre">'networkx':</span> <span class="pre">'analysis',</span> <span class="pre">'opencv-python':</span> <span class="pre">'report',</span> <span class="pre">'openpyxl':</span> <span class="pre">'vdd',</span> <span class="pre">'pandas':</span> <span class="pre">'vdd',</span> <span class="pre">'paramiko':</span> <span class="pre">'connect',</span> <span class="pre">'pyfmo':</span> <span class="pre">'adf',</span> <span class="pre">'requests':</span> <span class="pre">'cite',</span> <span class="pre">'scipy':</span> <span class="pre">'analysis'}</span></em><a class="headerlink" href="#tcmu.errors.TCMUMissingOptionalPackageError.extras_install" title="Link to this definition">#</a></dt>
@@ -4429,7 +4431,7 @@ Files will be stored in the platform dependent temporary file directory.</p></li
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>doi</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – the article DOI to generate a citation for.</p></li>
-<li><p><strong>style</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – the style formatting to use. Can be <code class="docutils literal notranslate"><span class="pre">['wiley',</span> <span class="pre">'acs',</span> <span class="pre">'rsc']</span></code>.</p></li>
+<li><p><strong>style</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – the style formatting to use. Can be <code class="docutils literal notranslate"><span class="pre">['wiley',</span> <span class="pre">'acs',</span> <span class="pre">'rsc',</span> <span class="pre">'jcc']</span></code>.</p></li>
 <li><p><strong>mode</strong> – the formatting mode. Can be <code class="docutils literal notranslate"><span class="pre">['html',</span> <span class="pre">'latex',</span> <span class="pre">'plain']</span></code>.</p></li>
 </ul>
 </dd>
@@ -5708,8 +5710,8 @@ This cache will expire after a chosen amount of time.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -5743,7 +5745,7 @@ This cache will expire after a chosen amount of time.</p>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
 </p></div>
       
     </div>
