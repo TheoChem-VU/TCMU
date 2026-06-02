@@ -9,7 +9,7 @@ __all__ = ["cite", "_get_doi_data", "_get_doi_data_from_title", "_get_doi_data_f
 
 
 @environment.requires_optional_package("requests")
-@cache_file('tcmu_citation')
+@cache_file('tcmu_doi_data')
 def _get_doi_data(doi: str) -> dict:
     """
     Get information about an article using the crossref.org API.
@@ -27,7 +27,7 @@ def _get_doi_data(doi: str) -> dict:
 
 
 @environment.requires_optional_package("requests")
-@cache_file('tcmu_citation')
+@cache_file('tcmu_doi_data')
 def _get_doi_data_from_title(title: str):
     import requests
 
@@ -49,7 +49,7 @@ def _get_doi_data_from_title(title: str):
 
 
 @environment.requires_optional_package("requests")
-@cache_file('tcmu_citation')
+@cache_file('tcmu_doi_data')
 def _get_doi_data_from_query(**queries):
     import requests
 
@@ -137,6 +137,7 @@ def _get_publisher_city(publisher: str) -> str:
     """
     with open(os.path.join(os.path.split(__file__)[0], "data", "cite", "_publisher_cities.json")) as cities:
         cities = json.loads(cities.read())
+
     return cities.get(publisher)
 
 
@@ -147,11 +148,11 @@ def cite(doi: str, style: str = "wiley", mode="html") -> str:
 
     Args:
             doi: the article DOI to generate a citation for.
-            style: the style formatting to use. Can be ``['wiley', 'acs', 'rsc']``.
+            style: the style formatting to use. Can be ``['wiley', 'acs', 'rsc', 'jcc']``.
             mode: the formatting mode. Can be ``['html', 'latex', 'plain']``.
     """
     # check if the style was correctly given
-    spell_check.check(style, ["wiley", "acs", "rsc"])
+    spell_check.check(style, ["wiley", "acs", "rsc", "jcc"])
     spell_check.check(mode, ["html", "latex", "plain"])
 
     # get the information about the DOI
@@ -161,8 +162,11 @@ def cite(doi: str, style: str = "wiley", mode="html") -> str:
     if data["message"]["type"] == "journal-article":
         citation = _format_article(data, style)
 
-    if data["message"]["type"] == "book-chapter" or (data["message"]["type"] == "other" and "ISBN" in data["message"]):
+    if data["message"]["type"] == "book-chapter":
         citation = _format_book_chapter(data, style)
+
+    if data["message"]["type"] == "monograph" or (data["message"]["type"] == "other" and "ISBN" in data["message"]):
+        citation = _format_book(data, style)
 
     if mode == "plain":
         citation = citation.replace("<i>", "")
@@ -180,16 +184,17 @@ def cite(doi: str, style: str = "wiley", mode="html") -> str:
 
 
 def get_pages(data):
-    try:
-        pages = data["message"].get("page").replace("-", "–")
-        return pages
-    except AttributeError:
-        pages = "???"
+    pages = None
 
     url = data["message"]["URL"]
     if "ceur." in url:
-        return "e" + url.split("ceur.")[-1]
+        pages = "e" + url.split("ceur.")[-1]
+    elif "page" in data["message"]:
+        pages = data["message"]["page"].replace("-", "–")
+    elif "article-number" in data["message"]:
+        pages = data["message"]["article-number"]
 
+    return pages
 
 def is_accepted(data):
     for assertion in data["message"].get("assertion", []):
@@ -201,6 +206,8 @@ def is_accepted(data):
 def _format_article(data: dict, style: str) -> str:
     # grab usefull data
     journal = data["message"]["container-title"][0]
+    if journal == 'physica status solidi (a)':
+        journal = 'Physica Status Solidi A'
     journal_abbreviation = _get_journal_abbreviation(journal)
     year = data["message"]["issued"]["date-parts"][0][0]
     volume = data["message"].get("volume", "")
@@ -245,23 +252,44 @@ def _format_article(data: dict, style: str) -> str:
             citation += f", {pages}"
         citation += "."
 
+    elif style == "jcc":
+        names = [f"{first} {last}" for first, last in zip(initials, last_names)]
+        if len(names) == 1:
+            names = names[0]
+        elif len(names) == 2:
+            names = f'{names[0]} and {names[1]}'
+        elif len(names) < 7:
+            names = ', '.join(names[:-1]) + f', and {names[-1]}'
+        else:
+            names = ', '.join(names[:3]) + ', et al.'
+
+        citation = f"{names}, \"{title},\" <i>{journal}</i> {volume} ({year})"
+        if pages:
+            citation += f": {pages}"
+        citation += f", <a href=https://doi.org/{doi}>https://doi.org/{doi}</a>."
     return citation
 
 
 def _format_book_chapter(data: dict, style: str) -> str:
     # grab usefull data
     publisher = data["message"]["publisher"]
-    year = data["message"]["published-print"]["date-parts"][0][0]
+    if "published-print" in data["message"]:
+        year = data["message"]["published-print"]["date-parts"][0][0]
+    else:
+        year = data["message"]["published"]["date-parts"][0][0]
     pages = data["message"].get("page")
     book_title = data["message"]["container-title"][0]
     chapter_title = data["message"]["title"][0]
-    city = _get_publisher_city(publisher)
+    # city = _get_publisher_city(publisher)
     citation = ""
 
     original_book_data = None
     for isbn in data["message"]["isbn-type"]:
         if isbn["type"] == "electronic":
-            original_book_data = _get_doi_data(f"{data['message']['prefix']}/{isbn['value']}")
+            try:
+                original_book_data = _get_doi_data(f"{data['message']['prefix']}/{isbn['value']}")
+            except:
+                pass
             break
 
     # Get the initials from the author given names
@@ -315,7 +343,118 @@ def _format_book_chapter(data: dict, style: str) -> str:
         if n_editors >= 4:
             editors = ", ".join(editors[:3]) + " et al."
 
-        citation = f"{names} ({year}). {chapter_title}. In: <i>{book_title}</i> (ed. {editors}), {pages}. {city}: {publisher}"
+        citation = f"{names} ({year}). {chapter_title}. In: <i>{book_title}</i> (ed. {editors}), {pages}: {publisher}"
+
+    elif style == "acs":
+        raise NotImplementedError("No support for ACS style yet")
+
+    elif style == "rsc":
+        raise NotImplementedError("No support for RSC style yet")
+
+    return citation
+
+
+def _format_book(data: dict, style: str) -> str:
+    '''
+    Format a book based on the provided data and style
+
+    key:
+        AL: Author last name
+        AI: Author initials
+        EL: Editor last name
+        EI: Editor initials
+        Ed: Eds. or Ed. depending on number of editors
+        T: Title
+        P: Publisher
+        C: City
+        Y: Year
+        E: Edition
+        Ch: Chapter
+        pp: Page range
+
+    Wiley:
+        [AL1], [AI1]; [AL2], [AI2] In [T]; [EL1], [EI1]; [EL2], [EI2], [Ed]; [P]: [C], <b>[Y]</b>; [E], [Ch], pp [pp].
+
+    JCC:
+        [AI1] [AL1], [AI2] [AL2], <i>[T]</i>, [E] ([P], [Y]).
+    '''
+    # grab usefull data
+    publisher = data["message"]["publisher"]
+    if "published-print" in data["message"]:
+        year = data["message"]["published-print"]["date-parts"][0][0]
+    else:
+        year = data["message"]["published"]["date-parts"][0][0]
+    pages = data["message"].get("page")
+    book_title = data["message"]["title"][0]
+    chapter_title = data["message"]["title"][0]
+    # city = _get_publisher_city(publisher)
+    citation = ""
+
+    original_book_data = None
+    for isbn in data["message"]["isbn-type"]:
+        if isbn["type"] == "electronic":
+            try:
+                original_book_data = _get_doi_data(f"{data['message']['prefix']}/{isbn['value']}")
+            except:
+                pass
+            break
+
+    # Get the initials from the author given names
+    # also store the family names
+    n_authors = len(data["message"]["author"])
+    initials = []
+    last_names = []
+    for author in data["message"]["author"]:
+        # we get the capital letters from the first names
+        # these will become the initials for this author
+        firsts = [char + "." for char in author["given"].title() if char.isupper()]
+        firsts = " ".join(firsts)
+        initials.append(firsts)
+        last_names.append(author["family"].title())
+
+    if original_book_data is not None and "editor" in original_book_data["message"]:
+        n_editors = len(original_book_data["message"]["editor"])
+        editor_initials = []
+        editor_last_names = []
+        for author in original_book_data["message"]["editor"]:
+            # we get the capital letters from the first names
+            # these will become the initials for this author
+            firsts = [char + "." for char in author["given"].title() if char.isupper()]
+            firsts = " ".join(firsts)
+            editor_initials.append(firsts)
+            editor_last_names.append(author["family"].title())
+    else:
+        n_editors = 0
+        editor_initials = []
+        editor_last_names = []
+
+    # format the citation correctly
+    if style == "wiley":
+        names = [f"{last}, {first}" for first, last in zip(initials, last_names)]
+        names = '; '.join(names)
+        editors = [f"{first} {last}" for first, last in zip(editor_initials, editor_last_names)]
+        editors = '; '.join(editors)
+        ed_signifier = 'Ed.' if len(editors) == 1 else 'Eds.'
+        editors = f' {editors}, {ed_signifier};'
+        # citation = f"{names} ({year}). {chapter_title}. In: <i>{book_title}</i> (ed. {editors}), {pages}: {publisher}"
+        citation = f"{names} In {book_title};"
+        if len(editor_initials) > 0:
+            citation += editors
+        citation += f'{publisher}, <b>{year}</b>.'
+
+    elif style == "jcc":
+        names = [f"{first} {last}" for first, last in zip(initials, last_names)]
+        if len(names) == 1:
+            names = names[0]
+        elif len(names) == 2:
+            names = f'{names[0]} and {names[1]}'
+        elif len(names) < 7:
+            names = ', '.join(names[:-1]) + f', and {names[-1]}'
+        else:
+            names = ', '.join(names[:3]) + ', et al.'
+
+        citation = f"{names}, <i>{book_title}</i> ({publisher}, {year})."
+
 
     elif style == "acs":
         raise NotImplementedError("No support for ACS style yet")
