@@ -61,8 +61,8 @@ def timed_cache(delay: float):
 def cache(func):
     """
     Function decorator that stores results from previous calls to the function or method.
+    This cache lasts while the Python session lasts.
     """
-
     @functools.wraps(func)
     def inner_decorator(*args, **kwargs):
         # we have to create a tuple of the kwargs items to ensure we can hash the arguments
