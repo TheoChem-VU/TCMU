@@ -6,7 +6,21 @@ from scm import plams
 
 from tcmu import environment
 
-__all__ = ["Transform", "KabschTransform", "MolTransform", "get_rotmat", "rotmat_to_angles", "apply_rotmat", "rotate", "vector_align_rotmat"]
+__all__ = [
+    "Transform",
+    "KabschTransform",
+    "MolTransform",
+    "parameter",
+    "RMSD",
+    "get_rotmat",
+    "rotmat_to_angles",
+    "apply_rotmat",
+    "rotate",
+    "vector_align_rotmat",
+    "random_points_on_sphere",
+    "random_points_on_spheroid",
+    "random_points_in_anular_sphere",
+    ]
 
 
 class Transform:
@@ -636,10 +650,10 @@ def random_points_on_spheroid(coordinates: np.ndarray, Nsamples: int = 1, margin
 def parameter(coordinates: np.typing.ArrayLike, *indices: Sequence[int], pyramidal: bool = False, sum_of_angles: bool = False):
     """
     Return geometry information about a set of coordinates given 1 to 4 indices.
-    If 1 index is given we return the coordinate at that index.
-    If 2 indices are given we return the distance between the coordinates at the indices.
-    If 3 indices are given we return the angle between the vector from index 1 to 2 and the vector from index 2 to 3.
-    If 4 indices are given we return the dihedral angle or the pyramidalization angle (if `pyramidal` is set to `True`) or the sum-of-angles (if `sum_of_angles` is set to `True`).
+    * If 1 index is given we return the coordinate at that index.
+    * If 2 indices are given we return the distance between the coordinates at the indices.
+    * If 3 indices are given we return the angle between the vector from index 1 to 2 and the vector from index 2 to 3.
+    * If 4 indices are given we return the dihedral angle or the pyramidalization angle (if `pyramidal` is set to `True`) or the sum-of-angles (if `sum_of_angles` is set to `True`).
 
     Args:
         coordinates: set of coordinates to calculate parameters for.
@@ -647,6 +661,9 @@ def parameter(coordinates: np.typing.ArrayLike, *indices: Sequence[int], pyramid
         pyramidal: if 4 indices are given return the pyramidalization angle in degrees.
         sum_of_angles: if 4 indices are given return the sum of the angles between the first index and the rest in degrees.
 
+    .. note::
+
+        Atom counting starts at 0.
     """
     assert 1 <= len(indices) <= 4, "Number of indices must be between 1, 2, 3 or 4"
 
