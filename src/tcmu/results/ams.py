@@ -165,7 +165,7 @@ def get_ams_info(calc_dir: str) -> Result:
     ret.history = get_history(calc_dir)
 
     # Only get pes if the task is "pesscan"
-    ret.pes = get_pes(calc_dir) if "pesscan" in ret.input.task else None
+    ret.pes = get_pes(calc_dir) if "pesscan" in ret.input.task.lower() else None
 
     cache.unload(ret.files["ams.rkf"])
     return ret
@@ -530,8 +530,11 @@ def get_history(calc_dir: str) -> Result:
                     ret.molecule.append(mol)
                 # other variables are just added as-is
                 else:
-                    val = reader_ams.read("History", f"{item}({i + 1})")
-                    ret[item.lower()].append(val)
+                    if ("History", f"{item}({i + 1})") in reader_ams:
+                        val = reader_ams.read("History", f"{item}({i + 1})")
+                        ret[item.lower()].append(val)
+                    else:
+                        ret[item.lower()].append(None)
 
         if "converged" not in ret.keys() and ("PESScan", "HistoryIndices") in reader_ams:
             ret["converged"] = [False] * ret.number_of_entries
