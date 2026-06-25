@@ -50,7 +50,7 @@ def Example(num: int):
     print(f'Number is {num}')
     return num
 
-for i in range(40): 
+for i in range(5): 
     Example(i, user_hash=f'Number ({i})')
 
 
