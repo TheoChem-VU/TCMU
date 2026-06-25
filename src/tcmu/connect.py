@@ -8,7 +8,7 @@ from datetime import datetime
 from enum import Enum, auto
 
 from tcmu import environment, log
-import tcmu.cache as cache
+from tcmu import cache_file, cache
 from tcmu.results import result as results
 
 
@@ -419,6 +419,7 @@ class Snellius(Server):
     }
 
 
+# @cache_file('tcmu_connect')
 @cache
 def get_current_server() -> Server:
     """
@@ -436,8 +437,11 @@ def get_current_server() -> Server:
     for cls in Server.__subclasses__():
         if cls is Local:
             continue
-            
-        ping = sp.check_output(["ping", cls.server, "-c", "1"])
+        try:
+            ping = sp.check_output(["ping", cls.server, "-c", "1"])
+        except:
+            continue
+
 
         for part in ping.decode().split():
             if part.startswith("(") and part.endswith("):"):
@@ -474,15 +478,15 @@ def get_os_name(server: Server = Local()) -> OSName:
         raise ValueError(f"Unknown operating system: {os_name}")
 
 
-@cache
+@cache_file('tcmu_connect')
 def on_windows(server: Server = Local()) -> bool:
     return get_os_name(server) == OSName.WINDOWS
 
-@cache
+@cache_file('tcmu_connect')
 def on_linux(server: Server = Local()) -> bool:
     return get_os_name(server) == OSName.LINUX
 
-@cache
+@cache_file('tcmu_connect')
 def on_macos(server: Server = Local()) -> bool:
     return get_os_name(server) == OSName.MACOS
 
