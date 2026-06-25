@@ -282,7 +282,7 @@ def get_properties(info: Result) -> Result:
 
     # read spin-squared operator info
     # the total spin
-    S = info.adf.spin_polarization * 1 / 2
+    S = abs(info.adf.spin_polarization) / 2
     ret.s2_expected = S * (S + 1)
     # this is the real expectation value
     if ("Properties", "S2calc") in reader_adf:
