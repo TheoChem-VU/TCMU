@@ -88,40 +88,39 @@ def status(use_hash: bool = False, name: str = None, exit: bool = False):
             rows = []
             status_counts = {}
             workflow_name_counts = {}
-            for hsh, data in workflow_db.read_all().items():
-                if name is None or data.get('workflow_name', None) == name:
-                    status = data.get('status', 'UNKOWN')
-                    status_counts.setdefault(status, 0)
-                    status_counts[status] += 1
+            for hsh, data in workflow_db.read_all(name).items():
+                status = data.get('status', 'UNKOWN')
+                status_counts.setdefault(status, 0)
+                status_counts[status] += 1
 
-                    workflow_name = data.get('workflow_name', '')
-                    workflow_name_counts.setdefault(workflow_name, 0)
-                    workflow_name_counts[workflow_name] += 1
+                workflow_name = data.get('workflow_name', '')
+                workflow_name_counts.setdefault(workflow_name, 0)
+                workflow_name_counts[workflow_name] += 1
 
-                    start_time = data.get('start_time', None)
-                    if start_time is not None and status == 'RUNNING':
-                        t = datetime.datetime.strptime(start_time, '%Y-%m-%d-%H-%M-%S')
-                        td = datetime.datetime.now() - t
-                        run_time = ''
-                        if td >= datetime.timedelta(days=1):
-                            run_time += f'{td.days}-'
-                        if td >= datetime.timedelta(hours=1):
-                            run_time += f'{td.seconds//(60*60):02}:'
-                        run_time += f'{td.seconds//60%60:02}:{td.seconds%60:02}'
+                start_time = data.get('start_time', None)
+                if start_time is not None and status == 'RUNNING':
+                    t = datetime.datetime.strptime(start_time, '%Y-%m-%d-%H-%M-%S')
+                    td = datetime.datetime.now() - t
+                    run_time = ''
+                    if td >= datetime.timedelta(days=1):
+                        run_time += f'{td.days}-'
+                    if td >= datetime.timedelta(hours=1):
+                        run_time += f'{td.seconds//(60*60):02}:'
+                    run_time += f'{td.seconds//60%60:02}:{td.seconds%60:02}'
 
-                    else:
-                        run_time = ''
+                else:
+                    run_time = ''
 
-                    if name is None:
-                        rows.append((status, workflow_name, data.get('slurm_job_id', ''), hsh, run_time, data.get('stage', '')))
-                    else:
-                        rows.append((status, data.get('slurm_job_id', ''), hsh, run_time, data.get('stage', '')))
+                if name is None:
+                    rows.append((status, workflow_name, data.get('slurm_job_id', ''), hsh, run_time, data.get('stage', '')))
+                else:
+                    rows.append((status, data.get('slurm_job_id', ''), hsh, run_time, data.get('stage', '')))
 
             if len(rows) == 0:
                 if name is None:
-                    return f'I could not find any workflow runs.\n'
+                    return f'No active workflow runs.\n'
                 else:
-                    return f'I could not find any runs for WorkFlow({name}).\n'
+                    return f'No active runs for WorkFlow({name}).\n'
 
             if name is None:
                 s += f'Found {sum(list(status_counts.values()))} total run(s).' + '\n\n'
