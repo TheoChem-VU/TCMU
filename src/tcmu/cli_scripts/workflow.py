@@ -175,9 +175,12 @@ def clear(use_hash: bool = False, name: str = None):
         return
 
     hashes = []
-    for hsh, data in workflow_db.read_all().items():
-        if data.get('workflow_name', None) == name:
-            hashes.append(hsh)
+    for hsh, data in workflow_db.read_all(name, active=False).items():
+        hashes.append(hsh)
+        
+    for hsh, data in workflow_db.read_all(name, active=True).items():
+        hashes.append(hsh)
+
 
     if len(hashes) == 0:
         print(f'I could not find any runs for WorkFlow({name}).')
@@ -186,7 +189,7 @@ def clear(use_hash: bool = False, name: str = None):
     proceed = input(f'This will delete {len(hashes)} workflow runs; proceed? (y/[n]): ')
     if proceed == 'y':
         for hsh in hashes:
-            workflow_db.delete(hsh)
+            workflow_db.delete(name, hsh)
         print()
     else:
         print('Cancelling ...')
