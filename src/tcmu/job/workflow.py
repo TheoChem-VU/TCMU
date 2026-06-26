@@ -324,13 +324,15 @@ tcmu.job.workflow_db.update("{self.name}", "{self.hash}", start_time=start_time,
                 sbatch.setdefault("D", self.run_directory)
 
             sbatch_result = tcmu.slurm.sbatch(f"{self.hash}.sh", self.server, **sbatch)
+            # if any(option not in sbatch for option in ["D", "chdir"]):
+                # sbatch.setdefault("D", self.run_directory)
             self.slurm_job_id = sbatch_result.id
-            tcmu.job.workflow_db.update(self.hash, slurm_job_id=self.slurm_job_id)
+            tcmu.job.workflow_db.update(self.name, self.hash, slurm_job_id=self.slurm_job_id)
         else:
-            command = [f'sh "{self.hash}.sh"'] if os.name == "posix" else ["sh", self.sh_path]
+            command = [f'sh "{self.sh_path}"'] if os.name == "posix" else ["sh", self.sh_path]
             self.server.chmod(744, self.sh_path)
             with open(self.out_path, "w+") as out:
-                sp.run(command, cwd=self.run_directory, stdout=out, shell=True)
+                sp.run(command, stdout=out, shell=True)
 
         return self.__load_return()
 
