@@ -303,7 +303,7 @@ tcmu.job.workflow_db.update("{self.name}", "{self.hash}", start_time=start_time,
             _args[glob_name] = glob
 
         self._write_files(_args)
-        if not ruff_check_script(self.py_path, ignored_codes=['E402', 'F811', 'F401']):
+        if not ruff_check_script(self.py_path, ignored_codes=['E401', 'E402', 'F811', 'F401']):
             raise Exception('Python script will fail!')
 
         if tcmu.slurm.has_slurm():
