@@ -26,6 +26,7 @@ from tcmu.job.xtb import XTBJob
 from tcmu.molecule import from_string, guess_fragments, load, number_of_electrons, save, write_mol_to_amv_file, write_mol_to_xyz_file
 # from tcmu.report.report import SI
 from tcmu.timer import timer
+from tcmu.report import simple_sheets
 
 __all__ = [
     "ADFFragmentJob",
