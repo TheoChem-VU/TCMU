@@ -194,12 +194,16 @@ class WorkFlow:
                 except dill.PickleError:
                     script.write(f'{arg_name} = jsonpickle.decode(\'{jsonpickle.encode(arg_val, unpicklable=True)}\')\n\n')
 
-            script.write('#========= SCRIPT =========#\n')
-            script.write('import tcmu\nimport atexit\nimport datetime\n\n')
+            script.write('#========= EXIT HANDLING =========#\n')
+            script.write('import tcmu\nimport atexit\nimport datetime\nimport signal\n\n')
             script.write(f'''@atexit.register
 def on_exception():
-    if tcmu.job.workflow_db.get_status("{self.hash}") == "RUNNING":
-        tcmu.job.workflow_db.set_failed("{self.hash}")
+    if tcmu.job.workflow_db.get_status("{self.name}", "{self.hash}") == "RUNNING":
+        tcmu.job.workflow_db.set_failed("{self.name}", "{self.hash}")
+        tcmu.job.workflow_db.archive("{self.name}", "{self.hash}")
+
+signal.signal(signal.SIGINT, lambda s, f : on_exception)
+signal.signal(signal.SIGTERM, lambda s, f : on_exception)
 
 def __end_workflow__():
     tcmu.job.workflow_db.set_finished("{self.hash}")
