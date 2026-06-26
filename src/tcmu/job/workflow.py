@@ -249,23 +249,24 @@ tcmu.job.workflow_db.update("{self.name}", "{self.hash}", start_time=start_time,
 
         # if a restart was requested we simply delete known data
         if restart:
-            tcmu.job.workflow_db.delete(self.hash)
+            tcmu.job.workflow_db.delete(self.name, self.hash, active=True)
+            tcmu.job.workflow_db.delete(self.name, self.hash, active=False)
 
         # set up dependencies between jobs
         if dependency is None:
             dependency = []
 
-        if tcmu.job.workflow_db.can_skip(self.hash):
-            if tcmu.job.workflow_db.get_status(self.hash) == 'RUNNING':
-                slurm_job_id = tcmu.job.workflow_db.read(self.hash).get('slurm_job_id', None)
+        if tcmu.job.workflow_db.can_skip(self.name, self.hash):
+            if tcmu.job.workflow_db.get_status(self.name, self.hash) == 'RUNNING':
+                slurm_job_id = tcmu.job.workflow_db.read(self.name, self.hash).get('slurm_job_id', None)
                 tcmu.log.info(f'Workflow is currently running (SLURMJOBID={slurm_job_id}).')
-            elif tcmu.job.workflow_db.get_status(self.hash) == 'SUCCESS':
+            elif tcmu.job.workflow_db.get_status(self.name, self.hash) == 'SUCCESS':
                 tcmu.log.info('Workflow run has already been completed!')
-            elif tcmu.job.workflow_db.get_status(self.hash) == 'FAILED':
+            elif tcmu.job.workflow_db.get_status(self.name, self.hash) == 'FAILED':
                 tcmu.log.info('Workflow was run but failed.')
 
             # Add slurm_job_id to self if it is skippable
-            temp_data = tcmu.job.workflow_db.read(self.hash)
+            temp_data = tcmu.job.workflow_db.read(self.name, self.hash)
             self.slurm_job_id = temp_data.get("slurm_job_id", None)
 
             box = f'WorkFlow({self.name}):\n    args = (\n'
@@ -282,8 +283,8 @@ tcmu.job.workflow_db.update("{self.name}", "{self.hash}", start_time=start_time,
 
         # if we don't skip we write a new db entry
         tcmu.job.workflow_db.write(
+            self.name,
             self.hash, 
-            workflow_name=self.name, 
             status='PENDING', 
             run_directory=self.run_directory, 
             stage='Pending', 
