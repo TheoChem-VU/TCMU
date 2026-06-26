@@ -206,15 +206,17 @@ signal.signal(signal.SIGINT, lambda s, f : on_exception)
 signal.signal(signal.SIGTERM, lambda s, f : on_exception)
 
 def __end_workflow__():
-    tcmu.job.workflow_db.set_finished("{self.hash}")
-    tcmu.job.workflow_db.update("{self.hash}", workflow_name='{self.name}', stage='Completed', slurm_job_id='')
+    tcmu.job.workflow_db.set_finished("{self.name}", "{self.hash}")
+    tcmu.job.workflow_db.update("{self.name}", "{self.hash}", stage='Completed', slurm_job_id='')
+    tcmu.job.workflow_db.archive("{self.name}", "{self.hash}")
     exit()
 
 # indicate to the db that the job has started running
 start_time = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-tcmu.job.workflow_db.update("{self.hash}", start_time=start_time, status="RUNNING")\n\n\n''')
+tcmu.job.workflow_db.update("{self.name}", "{self.hash}", start_time=start_time, status="RUNNING")\n\n\n''')
             code_lines = extract_func_code(self.func)
             code_lines = handle_return_statements(code_lines, self.return_path)
+            script.write('#========= SCRIPT =========#\n\n')
             script.write(code_lines)
             script.write(f'\n\n\n# indicate to the db that this wf has finished:\n__end_workflow__()\n')
 
