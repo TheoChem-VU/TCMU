@@ -320,12 +320,13 @@ tcmu.job.workflow_db.update("{self.name}", "{self.hash}", start_time=start_time,
             if any(option not in sbatch for option in ["o", "output"]):
                 sbatch.setdefault("o", self.out_path)
 
-            if any(option not in sbatch for option in ["D", "chdir"]):
-                sbatch.setdefault("D", self.run_directory)
+            if any(option not in sbatch for option in ["J", "job_name"]):
+                sbatch.setdefault("J", f"{self.name}({self.hash})")
 
-            sbatch_result = tcmu.slurm.sbatch(f"{self.hash}.sh", self.server, **sbatch)
             # if any(option not in sbatch for option in ["D", "chdir"]):
                 # sbatch.setdefault("D", self.run_directory)
+
+            sbatch_result = tcmu.slurm.sbatch(self.sh_path, self.server, **sbatch)
             self.slurm_job_id = sbatch_result.id
             tcmu.job.workflow_db.update(self.name, self.hash, slurm_job_id=self.slurm_job_id)
         else:
