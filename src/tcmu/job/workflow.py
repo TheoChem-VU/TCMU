@@ -321,7 +321,7 @@ tcmu.job.workflow_db.update("{self.name}", "{self.hash}", start_time=start_time,
                 sbatch.setdefault("o", self.out_path)
 
             if any(option not in sbatch for option in ["J", "job_name"]):
-                sbatch.setdefault("J", f"{self.name}({self.hash})")
+                sbatch.setdefault("J", f'"{self.name}({self.hash})"')
 
             # if any(option not in sbatch for option in ["D", "chdir"]):
                 # sbatch.setdefault("D", self.run_directory)
