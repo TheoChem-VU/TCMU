@@ -64,7 +64,7 @@ class Job:
         delete_on_finish: whether to remove the workdir for this job after it is finished running.
     """
 
-    def __init__(self, *base_jobs: List[TJob], test_mode: bool = False, overwrite: bool = False, wait_for_finish: bool = True, delete_on_finish: bool = False, delete_on_fail: bool = False, use_slurm: bool = True):
+    def __init__(self, *base_jobs: List[TJob], test_mode: bool = False, overwrite: bool = False, wait_for_finish: bool = False, delete_on_finish: bool = False, delete_on_fail: bool = False, use_slurm: bool = True):
         self._sbatch = Result()
         self._molecule = None
         self._molecule_path = None
