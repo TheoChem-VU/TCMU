@@ -8,11 +8,16 @@ a .xlsx file.
 '''
 from typing import List
 import os
-import openpyxl as xl
 
 
 def append(file: str, values: List[str]):
+    import openpyxl as xl
     '''
+    Append a row to a spreadsheets file.
+
+    Args:
+        file: the path to the file to append to.
+        values: a list of values that will be written into the file.
     '''
     if not os.path.exists(file):
         wb = xl.Workbook()
