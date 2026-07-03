@@ -1,6 +1,7 @@
 # Job imports
 from tcmu.cache import cache, cache_file, timed_cache
 from tcmu import log
+from tcmu.database import DataBase
 from tcmu.analysis.pyfrag import PyFragResult, get_pyfrag_results
 from tcmu.analysis.task_specific.irc import concatenate_irc_trajectories
 from tcmu.analysis.vdd.charge import VDDCharge
