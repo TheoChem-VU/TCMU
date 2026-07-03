@@ -103,12 +103,10 @@ class DBSelectResult:
 
     def __setitem__(self, key, values):
         if isinstance(key, int):
-            # assert len(self.data[key]) == len(values), f'Cannot set values with length {len(self.data[key])} at index {key} with length {len(values)}'
             self.data[key] = values
             return
         if key in self.columns:
             col_idx = self.columns.index(key)
-            # assert len(self.data[key]) == len(values), f'Cannot set values with length {len(self.data[key])} at column {key} with length {len(values)}'
             newdata = []
             for val, row in zip(values, self.data):
                 row = list(row)
@@ -158,7 +156,6 @@ class DBSelectResult:
     def remove_empty(self, keys='*', mode='all'):
         if keys == '*':
             keys = self.columns
-        keys (keys)
 
         key_idxs = [self.columns.index(key) for key in keys]
         if mode == 'all':
@@ -186,147 +183,18 @@ class DBSelectResult:
         return len(self.data)
 
     def remove_column(self, keys):
-        keys (keys)
         key_idxs = [self.columns.index(key) for key in keys]
         return DBSelectResult([x for i, x in enumerate(self) if all(x[kidx] is not None for kidx in key_idxs)], self.columns, self.types, self.db_path)
-
-    # def pair_plot(self, keys=None, groupkey=None, **kwargs):
-    #     if keys is None:
-    #         keys = self.numeric_columns
-    #     if groupkey:
-    #         groups = self[groupkey]
-    #     else:
-    #         groups = None
-    #     return plotfunc.pair_plot([self[key] for key in keys], keys, groups=groups, groupsname=groupkey, **kwargs)
-
-    # def plot(self, xkey, ykey, groupkey=None, figsize=None, **kwargs):
-    #     plt.figure(figsize=figsize)
-    #     if groupkey:
-    #         groups = self[groupkey]
-    #     else:
-    #         groups = None
-
-    #     ykey (ykey)
-    #     for key in ykey:
-    #         shower = plotfunc.plot(self[xkey], self[key], xlabel=xkey, ylabel=', '.join(ykey), groups=groups, groupsname=groupkey, **kwargs)
-    #     return shower
-
-    # def heatmap(self, xkey, ykey, groupkey=None, resolution=(200, 200), s2=.002, figsize=None, **kwargs):
-    #     x, y = self[xkey], self[ykey]
-
-    #     if groupkey:
-    #         groups = self[groupkey]
-    #         group_labels = np.unique(groups)
-    #         Ms = [np.zeros(resolution) for _ in group_labels]
-    #         group_indices = [np.where(groups == group_label) for group_label in group_labels]
-    #     else:
-    #         groups = None
-    #         Ms = [np.zeros(resolution)]
-    #         group_indices = [np.arange(len(x))]
-
-    #     Ms_ = []
-    #     for M, indices in zip(Ms, group_indices):
-    #         dx = x.max() - x.min()
-    #         xlim = x.min() - dx*.05, x.max() + dx*.05
-    #         dy = y.max() - y.min()
-    #         ylim = y.min() - dy*.05, y.max() + dy*.05
-    #         X, Y = np.meshgrid(np.linspace(*xlim, resolution[0]), np.linspace(*ylim, resolution[1]))
-
-    #         kernel = lambda px, py: np.exp(-((X-px)**2/(s2*dx**2) + (Y-py)**2/(s2*dy**2)))
-    #         for px, py in zip(x[indices], y[indices]):
-    #             M += kernel(px, py)
-    #         M = (M - M.min()) / (M.max() - M.min())
-    #         Ms_.append(M)
-
-    #     plt.figure(figsize=figsize)
-    #     return plotfunc.heatmap(Ms_, extent=(x.min(), x.max(), y.min(), y.max()), xlabel=xkey, ylabel=ykey, **kwargs)
 
     def column_type(self, key):
         return self.types[self.columns.index(key)]
 
     def column_of_type(self, typs):
-        typs (typs)
         return [col for col in self.columns if self.column_type(col) in typs]
 
     @property
     def numeric_columns(self):
         return self.column_of_type((int, float))
-
-    # def write_excel(self, out_file: str = None):
-    #     '''
-    #     Write the data stored in this DBSelectResult object to an Excel file.
-    #     '''
-    #     out_file = out_file or self.db_path.replace('.db', '.xlsx')
-    #     # open a new notebook
-    #     wb = xl.Workbook()
-
-    #     sheet = wb.create_sheet('Data')
-    #     sheet = self.make_excel_sheet(sheet)
-
-    #     if 'Sheet' in wb.sheetnames:
-    #         wb.remove(wb['Sheet'])
-
-    #     wb.save(out_file)
-
-    # def make_excel_sheet(self, sheet: xl.worksheet) -> xl.worksheet:
-    #     '''
-    #     Write the data stored in this DBSelectResult object to an Excel file.
-    #     '''
-    #     # dim_holder will be used to auto-format the columns
-    #     dim_holder = xl.worksheet.dimensions.DimensionHolder(worksheet=sheet)
-
-    #     # first write the data
-    #     for j, data in enumerate(self.data):
-    #         for k, x in enumerate(data):
-    #             if isinstance(x, str):  # string valued data are raw strings by default, so we convert them into normal strings here
-    #                 x = x.encode().decode('unicode-escape')
-    #             cell = sheet.cell(row=j+2, column=k+1, value=x)
-
-    #     # write column headers
-    #     for i, column in enumerate(self.columns):
-    #         col_cell = sheet.cell(row=1, column=i+1, value=column)
-    #         col_cell.font = xl.styles.Font(b=True)
-    #         col_cell.alignment = xl.styles.Alignment(horizontal="center", vertical="center")
-    #         col_cell.border = xl.styles.Border(bottom=xl.styles.Side(border_style="thick"))
-    #         dim_holder.setdefault(get_column_letter(i+1), xl.worksheet.dimensions.ColumnDimension(sheet, min=i+1, max=i+1, bestFit=True))
-
-    #     # fixing the column widths
-    #     sheet.column_dimensions = dim_holder
-    #     sheet.freeze_panes = sheet['A2']
-
-    #     return sheet
-
-    # def interpolate(self, **kwargs):
-    #     if len(kwargs) != 1:
-    #         raise ValueError(f'You can only give one axis to interpolate on, not {len(kwargs)}!')
-
-    #     key, target_x = list(kwargs.keys())[0], list(kwargs.values())[0]
-
-    #     if key not in self.columns:
-    #         raise KeyError(f'Key {key} is not present in this database.')
-
-    #     if self.column_type(key) in [str, bool]:
-    #         raise KeyError(f'Key {key} must be of type float or int, not {self.column_type(key)}.')
-
-    #     x_vals = self[key]
-    #     x_min, x_max = min(x_vals), max(x_vals)
-
-    #     # if x_min <= target_x <= x_max:
-    #     closest_idx = np.argsort(np.abs(x_vals - target_x))[:2]
-    #     closest_idx = closest_idx[np.argsort(x_vals[closest_idx])]
-    #     closest_vals = x_vals[closest_idx]
-
-    #     f = (target_x - min(closest_vals)) / (max(closest_vals) - min(closest_vals))
-
-    #     res = results.Result()
-    #     min_row, max_row = self.data[closest_idx[0]], self.data[closest_idx[1]]
-    #     for col in self.column_of_type((float, int)):
-    #         i = self.columns.index(col)
-    #         res[col] = min_row[i] + f * (max_row[i] - min_row[i])
-
-    #     return res
-
-
 
 
 class DataBase:
