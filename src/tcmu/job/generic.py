@@ -110,7 +110,10 @@ class Job:
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             log.error(f'Job set-up failed with exception: {exc_type.__name__}({exc_value}) in File "{fname}", line {exc_tb.tb_lineno}.')
             return True
-        self.run()
+        try:
+            self.run()
+        except Exception as exc:
+            log.error(f'Job run failed with exception: {type(exc).__name__}("{exc}").')
 
     def _select_server(self) -> connect.Server:
         """
