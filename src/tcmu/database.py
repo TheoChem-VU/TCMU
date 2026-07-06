@@ -196,6 +196,16 @@ class DBSelectResult:
     def numeric_columns(self):
         return self.column_of_type((int, float))
 
+    def normalize_column(self, key: str, method: str = 'z-score'):
+        if key not in self.numeric_columns:
+            return
+
+        if method == 'z-score':
+            mu = np.mean(self[key])
+            stdev = np.std(self[key])
+            self[key] = (self[key] - mu) / stdev
+
+
 
 class DataBase:
     def __init__(self, db_path=None):
