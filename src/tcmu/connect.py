@@ -326,7 +326,7 @@ class Local(Server):
             We use ``subprocess.check_output`` with the ``shell=True`` argument enabled.
         """
         try:
-            output = sp.check_output(command, shell=True).decode()
+            output = sp.check_output(command, shell=True, stderr=sp.STDOUT).decode()
             return output
         except sp.CalledProcessError:
             print("COMMAND: ", command)
