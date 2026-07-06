@@ -57,7 +57,7 @@ def squeue(server: connect.Server = connect.Local()) -> Result:
 
     # specify the columns to get here
     columns = ["directory", "id", "statuscode", "status", "jobname", "starttime", "time"]
-    options = ["%Z", "%A", "%t", "%T", "%J", "%S", "%M"]  # these are the squeue format codes
+    options = ["%Z", "%A", "%t", "%T", "%j", "%S", "%M"]  # these are the squeue format codes
 
     # set each column as an empty list in the return object
     for col in columns:
