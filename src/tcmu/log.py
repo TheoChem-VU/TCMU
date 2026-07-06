@@ -334,7 +334,20 @@ def loadbar(sequence: Union[Iterable[T], Sequence[T]], comment: str = "", Nsegme
     log(level=level)
 
 
-def boxed(message: str, title: Union[str, None] = None, message_align: str = "left", title_align: str = "left", round_corners: bool = True, double_edge: bool = False, level: int = 20) -> None:
+def full_width(character: str, title: Union[str, None] = None, use_title_ends: bool = False, level: int = 20) -> None:
+    n_shell_col = os.get_terminal_size().columns
+    if title is not None:
+        title_width = len(title)
+        n_character = n_shell_col - title_width - 2
+        s = character * (n_character // 2) + ' ' + title + ' ' + character * (n_character // 2)
+        s = s[:n_shell_col-2]
+    else:
+        s = character * n_shell_col
+
+    log(s, level=level)
+
+
+def boxed(message: str, title: Union[str, None] = None, message_align: str = "left", title_align: str = "center", use_title_ends: bool = False, round_corners: bool = True, double_edge: bool = False, level: int = 20) -> None:
     r"""
     Print a message surrounded by a box with optional title.
 
