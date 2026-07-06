@@ -279,7 +279,7 @@ def loadbar(sequence: Union[Iterable[T], Sequence[T]], comment: str = "", Nsegme
 
     N = len(sequence)
     # if the output stream is tty-type we set the number of steps to the lenth of the sequence so the loading bar looks smoother
-    Nsteps = N if logfile.isatty() else Nsteps
+    Nsteps = N if (logfile.isatty() or Nsteps == 0) else Nsteps
     Ndigits = int(np.log10(N)) + 1  # well-known method to get number of digits of an integer
     # we track what the maximum length of the loading bar is.
     # We use the '\r' return carriage when logging, so we have to overwrite the whole previous line.
