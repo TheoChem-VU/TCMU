@@ -56,20 +56,20 @@ def squeue(server: connect.Server = connect.Local()) -> Result:
         return ret
 
     # specify the columns to get here
-    columns = ["directory", "id", "statuscode", "status"]
-    options = ["%Z", "%A", "%t", "%T"]  # these are the squeue format codes
+    columns = ["directory", "id", "statuscode", "status", "jobname", "starttime", "time"]
+    options = ["%Z", "%A", "%t", "%T", "%J", "%S", "%M"]  # these are the squeue format codes
 
     # set each column as an empty list in the return object
     for col in columns:
         ret[col] = []
 
     # run the squeue command with the formatting options
-    output = server.execute("squeue --me --format " + '"' + " ".join(options) + '"')
+    output = server.execute("squeue --me --format " + '"' + " || ".join(options) + '"')
     output = [line for line in output.splitlines()[1:] if line.strip()]
 
     # then add the data to the return object's lists
     for line in output:
-        [ret[col].append(val) for col, val in zip(columns, line.split())]
+        [ret[col].append(val) for col, val in zip(columns, line.split(" || "))]
 
     return ret
 
