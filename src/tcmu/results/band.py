@@ -82,6 +82,13 @@ def get_properties(info: Result) -> Result:
     # general, nspin is 1 for restricted and 2 for unrestricted calculations
     properties.unrestricted_mos = reader_band.read("DOS", "nSpin") == 2
 
+    # properties.energy.elstat = reader_band.read("PEDA", "FragmentElstat")[1] * constants.HA2KCALMOL
+    # properties.energy.dispersion = reader_band.read("PEDA", "FragmentDispersion")[1] * constants.HA2KCALMOL
+
+    properties.band_gap = reader_band.read("BandStructure", "BandGap") * constants.HA2KCALMOL
+    properties.energy.fermi_energy = reader_band.read("DOS", "Fermi Energy") * constants.HA2KCALMOL
+
+
     return properties
 
     # total electrostatic potential

@@ -1,0 +1,19 @@
+== Starting run at Sat May 16 11:14:02 CEST 2026
+== Job ID: 1035109
+== Node list: node148
+== Submit dir. : /net/sys/pscst201/BETA-CPS-tc@ada-nodes/dtt741/_R/Pd_Py_4NDG
+== Scratch dir. : /tmp
+Lmod has detected the following error: You can only have one sw_stack module
+loaded at a time.
+You already have 2024 loaded.
+To correct the situation, please execute the following command:
+
+  $ module swap 2024 2022
+
+
+While processing the following module(s):
+    Module fullname  Module Filename
+    ---------------  ---------------
+    2022             /ada-software/legacy/shared/package/modulefiles/2022.lua
+
+NORMAL TERMINATION
