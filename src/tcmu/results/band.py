@@ -30,7 +30,7 @@ def get_calc_settings(info: Result) -> Result:
     return settings
 
 def get_properties(info: Result) -> Result:
-    """Function to get properties from an BAND calculation.
+    """Function to get properties from a BAND calculation.
 
     Args:
         info: Result object containing BAND properties.
@@ -42,7 +42,7 @@ def get_properties(info: Result) -> Result:
             - **energy.fermi (float)** – Fermi energy (|kcal/mol|).
             - **energy.band_gap (float)** – band gap energy (|kcal/mol|).
             - **energy.elstat.total (float)** – total electrostatic potential (|kcal/mol|).
-            - **energy.orbint.total (float)** – total orbital interaction energy containing contributions from each symmetry label and correction energy(|kcal/mol|).
+            - **energy.orbint.total (float)** – total orbital interaction energy (|kcal/mol|).
             - **energy.pauli.total (float)** – total Pauli repulsion energy (|kcal/mol|).
             - **energy.dispersion (float)** – total dispersion energy (|kcal/mol|).
             - **energy.interaction (float)** – total interaction energy (|kcal/mol|).
