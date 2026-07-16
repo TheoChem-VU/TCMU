@@ -2,6 +2,8 @@ import tcmu.results.cache as cache
 from tcmu import constants
 from tcmu.results.result import Result
 
+# Results module for ams BAND, the periodic software package
+
 def get_calc_settings(info: Result) -> Result:
     """Function to read calculation settings for a BAND calculation.
 
@@ -37,13 +39,13 @@ def get_properties(info: Result) -> Result:
         :Result object containing properties from the BAND calculation:
 
             - **energy.bond (float)** – bonding energy (|kcal/mol|).
+            - **energy.fermi (float)** – Fermi energy (|kcal/mol|).
+            - **energy.band_gap (float)** – band gap energy (|kcal/mol|).
             - **energy.elstat.total (float)** – total electrostatic potential (|kcal/mol|).
             - **energy.orbint.total (float)** – total orbital interaction energy containing contributions from each symmetry label and correction energy(|kcal/mol|).
             - **energy.pauli.total (float)** – total Pauli repulsion energy (|kcal/mol|).
             - **energy.dispersion (float)** – total dispersion energy (|kcal/mol|).
             - **energy.interaction (float)** – total interaction energy (|kcal/mol|).
-            - **energy.fermi (float)** – Fermi energy (|kcal/mol|).
-            - **energy.band_gap (float)** – band gap energy (|kcal/mol|).
     """
 
     assert info.engine == "band", f"This function reads BAND data, not {info.engine} data"
