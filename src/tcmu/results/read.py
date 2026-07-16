@@ -134,15 +134,15 @@ def read(calc_dir: Union[str, pl.Path]) -> Result:
         except:  # noqa
             ret.properties = None
     elif ret.engine == "band":
-        # try:
-        ret.band = band.get_calc_settings(ret)
-        # except:  # noqa
-        #     ret.band = None
+        try:
+            ret.band = band.get_calc_settings(ret)
+        except:  # noqa
+            ret.band = None
 
-        # try:
-        ret.properties = band.get_properties(ret)
-        # except:  # noqa
-        #     ret.properties = None
+        try:
+            ret.properties = band.get_properties(ret)
+        except:  # noqa
+            ret.properties = None
 
     # unload cached KFReaders associated with this calc_dir
     to_delete = [key for key in cache._cache if key.startswith(os.path.abspath(calc_dir))]

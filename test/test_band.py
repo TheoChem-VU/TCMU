@@ -6,7 +6,7 @@ import pprint
 
 j = os.path.join
 
-res = read(j(os.path.split(__file__)[0], "fixtures", "BAND_SAC_Pd_4NDG_Py"))
+res = read(j(os.path.split(__file__)[0], "fixtures", "pEDA"))
 # res = read(j(os.path.split(__file__)[0], "fixtures", "ethane_adf"))
 
 print("Band engine")
