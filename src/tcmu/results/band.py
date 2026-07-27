@@ -59,14 +59,18 @@ def get_properties(info: Result) -> Result:
 
     # Only reported in pEDA calculations, ALSO disappointingly absent in older versions of band
     # it's not mentioned in the changelog exactly when, but the 2023 version doesn't have it while the 2025 version does
-    try: 
+    if "PEDA bond energy terms" in reader_band._sections:
         properties.energy.elstat.elstat = reader_band.read("PEDA bond energy terms", "Electrostatic") * constants.HA2KCALMOL
         properties.energy.pauli.total = reader_band.read("PEDA bond energy terms", "PauliRepulsion") * constants.HA2KCALMOL
         properties.energy.orbint.total = reader_band.read("PEDA bond energy terms", "OrbitalInteraction") * constants.HA2KCALMOL
-        properties.energy.dispersion = reader_band.read("PEDA bond energy terms", "Dispersion") * constants.HA2KCALMOL
+
+        # Can be absent if the dispersion wasn't turned on
+        if "Dispersion" in reader_band:
+            properties.energy.dispersion = reader_band.read("PEDA bond energy terms", "Dispersion") * constants.HA2KCALMOL
+        else:
+            properties.energy.dispersion = 0.0
+
         properties.energy.interaction = reader_band.read("PEDA bond energy terms", "TotalInteraction") * constants.HA2KCALMOL
-    except:
-        pass
     
     # determine if MOs are unrestricted or not
     # generally, nspin is 1 for restricted and 2 for unrestricted calculations
