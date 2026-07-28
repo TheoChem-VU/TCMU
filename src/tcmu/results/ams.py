@@ -308,6 +308,7 @@ def _get_fragment_indices_from_input_order(results_type) -> Array1D:
 def _make_molecule(kf_variable: str, reader_ams: plams.KFReader, natoms: int, atnums: List[int]) -> plams.Molecule:
     """Makes a plams.Molecule object from the given kf_variable ("InputMolecule" or "Molecule") and reader."""
     # read output molecule
+        
     ret_mol = plams.Molecule()
     coords = np.array(reader_ams.read(kf_variable, "Coords")).reshape(natoms, 3) * constants.BOHR2ANG
     for atnum, coord in zip(atnums, coords):
@@ -320,6 +321,12 @@ def _make_molecule(kf_variable: str, reader_ams: plams.KFReader, natoms: int, at
             ret_mol.add_bond(plams.Bond(ret_mol[at1], ret_mol[at2], order=order))
     else:
         ret_mol.guess_bonds()
+
+    # Load lattice vectors if we're dealing with a band system
+    if reader_ams.read("General", "engine") == "band":
+        # plams.Molecule.lattice expects a 2d array of formatting [[x y, z], [x, y, z], ...]
+        ret_mol.lattice = split_lattice_vectors(reader_ams.read(kf_variable, "LatticeVectors"), reader_ams.read(kf_variable, "nLatticeVectors"))
+
     return ret_mol
 
 
