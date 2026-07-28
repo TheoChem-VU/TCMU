@@ -5,8 +5,8 @@ from scm import plams
 
 j = os.path.join
 
-res = read(j(os.path.split(__file__)[0], "fixtures", "pEDA"))
-# res = read(j(os.path.split(__file__)[0], "fixtures", "BAND"))
+# res = read(j(os.path.split(__file__)[0], "fixtures", "pEDA"))
+res = read(j(os.path.split(__file__)[0], "fixtures", "BAND"))
 # res = read(j(os.path.split(__file__)[0], "fixtures", "ethane"))
 
 # molecule:plams.Molecule = res.molecule.input
