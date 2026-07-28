@@ -341,6 +341,10 @@ def get_molecules(calc_dir: str) -> Result:
             - **input (plams.Molecule)** – molecule that was given in the input for the calculation.
             - **output (plams.Molecule)** – final molecule that was given as the output for the calculation. If the calculation was a singlepoint calculation output and input molecules will be the same.
             - **frag_indices (numpy array[int] (1D))** – list of fragment indices for each atom in the molecule. The indices are given in the order of the atoms in the molecule.
+            - **lattice_n_in (int)** – number of lattice vectors of the starting system.
+            - **lattice_n_out (int)** – number of lattice vectors of the final system.
+            - **lattice_vectors_in (list[list(xyz), list(xyz)])** – lattice vectors of the starting system in [[x, y, z], [x, y, z], ...] format        
+            - **lattice_vectors_in (list[list(xyz), list(xyz)])** – lattice vectors of the final system in [[x, y, z], [x, y, z], ...] format  
     """
     files = get_calc_files(calc_dir)
     # all info is stored in reader_ams
@@ -375,8 +379,29 @@ def get_molecules(calc_dir: str) -> Result:
     except KeyError:
         ret.mol_charge = 0.0
 
+    # Read the lattice vectors if we're dealing with band
+    if reader_ams.read("General", "engine") == "band":
+        ret.lattice_n_in = reader_ams.read("InputMolecule", "nLatticeVectors")
+        ret.lattice_n_out = reader_ams.read("Molecule", "nLatticeVectors")
+
+        lattice_vectors_in = reader_ams.read("InputMolecule", "LatticeVectors")
+        lattice_vectors_out = reader_ams.read("Molecule", "LatticeVectors")
+
+        # Changes the lattice vector formatting from [x, y, z, x, y, z] to [[x, y, z], [x, y, z], ...] for easier accessing
+        ret.lattice_vectors_in = split_lattice_vectors(lattice_vectors_in, ret.lattice_n_in)
+        ret.lattice_vectors_out = split_lattice_vectors(lattice_vectors_out, ret.lattice_n_out)
+
     return ret
 
+# Split the lattice factors from [x, y, z, x, y, z, ...] to [[x, y, z], [x, y, z], ...] 
+def split_lattice_vectors(raw_lattice_vectors:list[float], n_lattice_vectors:int) -> list:
+    split_lattice = []
+
+    for i in range(0, n_lattice_vectors):
+        # split the list into chunks of three (for x, y and z)
+        split_lattice.append(raw_lattice_vectors[(3 * i):(3 * (i+1))])
+
+    return split_lattice
 
 @environment.requires_optional_package("scipy")
 def get_pes(calc_dir: str) -> Result:
