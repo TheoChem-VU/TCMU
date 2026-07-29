@@ -65,7 +65,7 @@ def get_properties(info: Result) -> Result:
         properties.energy.orbint.total = reader_band.read("PEDA bond energy terms", "OrbitalInteraction") * constants.HA2KCALMOL
 
         # Can be absent if the dispersion wasn't turned on
-        if "Dispersion" in reader_band:
+        if "Dispersion" in reader_band._sections["PEDA bond energy terms"]:
             properties.energy.dispersion = reader_band.read("PEDA bond energy terms", "Dispersion") * constants.HA2KCALMOL
         else:
             properties.energy.dispersion = 0.0

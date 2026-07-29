@@ -323,7 +323,7 @@ def _make_molecule(kf_variable: str, reader_ams: plams.KFReader, natoms: int, at
         ret_mol.guess_bonds()
 
     # Load lattice vectors if we're dealing with a band system
-    if reader_ams.read("General", "engine") == "band":
+    if "LatticeVectors" in reader_ams._sections[kf_variable]:
         # plams.Molecule.lattice expects a 2d array of formatting [[x y, z], [x, y, z], ...]
         ret_mol.lattice = split_lattice_vectors(reader_ams.read(kf_variable, "LatticeVectors"), reader_ams.read(kf_variable, "nLatticeVectors"))
 
@@ -386,8 +386,8 @@ def get_molecules(calc_dir: str) -> Result:
     except KeyError:
         ret.mol_charge = 0.0
 
-    # Read the lattice vectors if we're dealing with band
-    if reader_ams.read("General", "engine") == "band":
+    # Read the lattice vectors if they are present (if the input has them, so will the output, could also check for band but this is probably more future proof)
+    if "LatticeVectors" in reader_ams._sections["InputMolecule"]:
         ret.lattice_n_in = reader_ams.read("InputMolecule", "nLatticeVectors")
         ret.lattice_n_out = reader_ams.read("Molecule", "nLatticeVectors")
 
