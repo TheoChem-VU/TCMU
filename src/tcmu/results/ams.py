@@ -329,6 +329,26 @@ def _make_molecule(kf_variable: str, reader_ams: plams.KFReader, natoms: int, at
 
     return ret_mol
 
+# Split the lattice factors from [x, y, z, x, y, z, ...] to [[x, y, z], [x, y, z], ...] 
+def split_lattice_vectors(raw_lattice_vectors:List[float], n_lattice_vectors:int) -> list:
+    """
+    Reformats the raw rkf file lattice formatting to the plams compatible format
+    Plainly, it turns [x, y, z, x, y, z, ...] into [[x, y, z], [x, y, z], ...] which is easier to work with
+
+    Args:
+        raw_lattice_vectors: Unformatted lattice vectors: [x, y, z, x, y, z, ...], typically stored as LatticeVectors
+        n_lattice_vectors: The amount of lattice vectors we're dealing with, typically stored as nLatticeVectors
+
+    Returns:
+        :2d list containing the formatted lattice vectors
+    """
+    split_lattice = []
+
+    for i in range(0, n_lattice_vectors):
+        # split the list into chunks of three (for x, y and z)
+        split_lattice.append(raw_lattice_vectors[(3 * i):(3 * (i+1))])
+
+    return split_lattice
 
 def get_molecules(calc_dir: str) -> Result:
     """
@@ -399,16 +419,6 @@ def get_molecules(calc_dir: str) -> Result:
         ret.lattice_vectors_out = split_lattice_vectors(lattice_vectors_out, ret.lattice_n_out)
 
     return ret
-
-# Split the lattice factors from [x, y, z, x, y, z, ...] to [[x, y, z], [x, y, z], ...] 
-def split_lattice_vectors(raw_lattice_vectors:list[float], n_lattice_vectors:int) -> list:
-    split_lattice = []
-
-    for i in range(0, n_lattice_vectors):
-        # split the list into chunks of three (for x, y and z)
-        split_lattice.append(raw_lattice_vectors[(3 * i):(3 * (i+1))])
-
-    return split_lattice
 
 @environment.requires_optional_package("scipy")
 def get_pes(calc_dir: str) -> Result:

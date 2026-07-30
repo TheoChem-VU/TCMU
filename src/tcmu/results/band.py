@@ -37,7 +37,7 @@ def get_properties(info: Result) -> Result:
 
     Returns:
         :Result object containing properties from the BAND calculation:
-
+            - **unrestricted_mos (bool)** – whether or not MOs are treated in an unrestricted manner.
             - **energy.bond (float)** – bonding energy (|kcal/mol|).
             - **energy.fermi (float)** – Fermi energy (|kcal/mol|).
             - **energy.band_gap (float)** – band gap energy (|kcal/mol|).
@@ -57,6 +57,12 @@ def get_properties(info: Result) -> Result:
     # read energies (given in Ha in rkf files)
     properties.energy.bond = reader_band.read("Bond energies", "final bond energy") * constants.HA2KCALMOL
 
+    # If this is a fragment analysis, we subtract the fragment bond energies so we get the bond energy relative to its basis (the fragments)
+    # if "PEDA" in reader_band._sections:
+    #     for energy in reader_band.read("PEDA", "FragmentBondEnergy"):
+    #         ook de fragment energieën opnemen? weet niet of er al een standaard voor is
+    #         properties.energy.bond -= energy * constants.HA2KCALMOL
+    
     # Only reported in pEDA calculations, ALSO disappointingly absent in older versions of band
     # it's not mentioned in the changelog exactly when, but the 2023 version doesn't have it while the 2025 version does
     if "PEDA bond energy terms" in reader_band._sections:
