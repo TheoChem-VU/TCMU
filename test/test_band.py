@@ -5,12 +5,12 @@ from scm import plams
 
 j = os.path.join
 
-# res = read(j(os.path.split(__file__)[0], "fixtures", "pEDA"))
-res = tcmu.read(j(os.path.split(__file__)[0], "fixtures", "BAND"))
-# res = read(j(os.path.split(__file__)[0], "fixtures", "ethane"))
+res = tcmu.read(j(os.path.split(__file__)[0], "fixtures", "pEDA"))
+# res = tcmu.read(j(os.path.split(__file__)[0], "fixtures", "BAND"))
+# res = tcmu.read(j(os.path.split(__file__)[0], "fixtures", "ethane"))
 
-molecule:plams.Molecule = res.molecule.input
-print(molecule)
+# molecule:plams.Molecule = res.molecule.input
+# print(molecule)
 
 print(res.engine)
 
@@ -22,5 +22,5 @@ pprint.pprint(res.properties)
 
 print("Status:", tcmu.quick_status(j(os.path.split(__file__)[0], "fixtures", "BAND_SAC_Pd_4NDG_Py")))
 
-print("Molecules")
-pprint.pprint(res.molecule)
+# print("Molecules")
+# pprint.pprint(res.molecule)
