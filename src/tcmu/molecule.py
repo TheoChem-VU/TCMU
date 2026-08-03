@@ -301,22 +301,28 @@ def guess_fragments(mol: plams.Molecule) -> Dict[str, plams.Molecule]:
 # =============================================================================
 
 
-def _xyz_format(mol: plams.Molecule, include_n_atoms: bool = True) -> str:
+def _xyz_format(mol: plams.Molecule, include_n_atoms: bool = True, include_lattices = True) -> str:
     """Returns a string representation of a molecule in the xyz format, e.g.:
 
     C      0.00000000      0.00000000      0.00000000
     H      1.00000000      0.00000000      0.00000000
     H      0.00000000      1.00000000      0.00000000
     H      0.00000000      0.00000000      1.00000000
-
+    VEC1   1.00000000     -1.00000000      0.00000000
     ...
     """
-    n_atoms = len(mol.atoms)
+
+    xyz_string = ""
+
     if include_n_atoms:
-        return f"{n_atoms}\n" + "\n".join([f"{at.symbol:6s}{at.x:16.8f}{at.y:16.8f}{at.z:16.8f}" for at in mol.atoms])
+        xyz_string = f"{len(mol.atoms)}\n"
+    
+    xyz_string += "\n".join([f"{at.symbol:6s}{at.x:16.8f}{at.y:16.8f}{at.z:16.8f}" for at in mol.atoms])
 
-    return "\n".join([f"{at.symbol:6s}{at.x:16.8f}{at.y:16.8f}{at.z:16.8f}" for at in mol.atoms])
+    if include_lattices and len(mol.lattice):
+        xyz_string += "\n" + "\n".join([f"VEC{str(i + 1):3s}{mol.lattice[i][0]:16.8f}{mol.lattice[i][1]:16.8f}{mol.lattice[i][2]:16.8f}" for i in range(0, len(mol.lattice))])
 
+    return xyz_string
 
 def _amv_format(mol: plams.Molecule, step: int, energy: Union[float, None] = None, name: Union[float, str] = None) -> str:
     """Returns a string representation of a molecule in the amv format, e.g.:
