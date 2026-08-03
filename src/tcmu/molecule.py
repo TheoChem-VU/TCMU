@@ -301,7 +301,7 @@ def guess_fragments(mol: plams.Molecule) -> Dict[str, plams.Molecule]:
 # =============================================================================
 
 
-def xyz_format(mol: plams.Molecule, include_n_atoms: bool = True, include_lattices:bool = True) -> str:
+def xyz_format(mol: plams.Molecule, include_n_atoms: bool = True, include_lattices: bool = True) -> str:
     """Returns a string representation of a molecule in the xyz format, e.g.:
 
     C      0.00000000      0.00000000      0.00000000
@@ -316,13 +316,14 @@ def xyz_format(mol: plams.Molecule, include_n_atoms: bool = True, include_lattic
 
     if include_n_atoms:
         xyz_string = f"{len(mol.atoms)}\n"
-    
+
     xyz_string += "\n".join([f"{at.symbol:6s}{at.x:16.8f}{at.y:16.8f}{at.z:16.8f}" for at in mol.atoms])
 
     if include_lattices and len(mol.lattice):
         xyz_string += "\n" + "\n".join([f"VEC{str(i + 1):3s}{mol.lattice[i][0]:16.8f}{mol.lattice[i][1]:16.8f}{mol.lattice[i][2]:16.8f}" for i in range(0, len(mol.lattice))])
 
     return xyz_string
+
 
 def amv_format(mol: plams.Molecule, step: int, energy: Union[float, None] = None, name: Union[float, str] = None, include_lattices: bool = True) -> str:
     """Returns a string representation of a molecule in the amv format, e.g.:
@@ -339,7 +340,8 @@ def amv_format(mol: plams.Molecule, step: int, energy: Union[float, None] = None
     header += f", Name: {name}" if name is not None else ""
     header += f", Energy: {energy} Ha" if energy is not None else ""
 
-    return header + "\n" + xyz_format(mol = mol, include_n_atoms = False, include_lattices = include_lattices)
+    return header + "\n" + xyz_format(mol=mol, include_n_atoms=False, include_lattices=include_lattices)
+
 
 def write_mol_to_xyz_file(out_file: Union[str, pl.Path], mols: Union[List[plams.Molecule], plams.Molecule], include_n_atoms: bool = False) -> None:
     """Writes a list of molecules to a file in xyz format."""
@@ -353,7 +355,7 @@ def write_mol_to_xyz_file(out_file: Union[str, pl.Path], mols: Union[List[plams.
     return None
 
 
-def write_mol_to_amv_file(out_file: Union[str, pl.Path], mols: Union[List[plams.Molecule], plams.Molecule], energies: Union[List[float], None], mol_names: Union[List[str], None] = None) -> None:
+def write_mol_to_amv_file(out_file: Union[str, pl.Path], mols: Union[List[plams.Molecule], plams.Molecule], energies: Union[List[float], None] = None, mol_names: Union[List[str], None] = None) -> None:
     """Writes a list of molecules to a file in amv format."""
     out_file = pl.Path(out_file)
 
