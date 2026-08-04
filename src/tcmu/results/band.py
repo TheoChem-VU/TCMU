@@ -63,6 +63,7 @@ def get_properties(info: Result) -> Result:
         properties.energy.fragment_bond = []
         for energy in reader_band.read("PEDA", "FragmentBondEnergy"):
             properties.energy.fragment_bond.append(energy * constants.HA2KCALMOL)
+            # ADF does this by default, but we need to adjust it manually in band
             properties.energy.bond -= energy * constants.HA2KCALMOL
     
     # Only reported in pEDA calculations, ALSO disappointingly absent in older versions of band
