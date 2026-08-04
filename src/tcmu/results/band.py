@@ -58,13 +58,11 @@ def get_properties(info: Result) -> Result:
     # read energies (given in Ha in rkf files)
     properties.energy.bond = reader_band.read("Bond energies", "final bond energy") * constants.HA2KCALMOL
 
-    # If this is a fragment analysis, we subtract the fragment bond energies so we get the bond energy relative to its basis (the fragments)
     if "PEDA" in reader_band._sections:
         properties.energy.fragment_bond = []
         for energy in reader_band.read("PEDA", "FragmentBondEnergy"):
+            # Note that these are the deformed fragment energies
             properties.energy.fragment_bond.append(energy * constants.HA2KCALMOL)
-            # ADF does this by default, but we need to adjust it manually in band
-            properties.energy.bond -= energy * constants.HA2KCALMOL
     
     # Only reported in pEDA calculations, ALSO disappointingly absent in older versions of band
     # it's not mentioned in the changelog exactly when, but the 2023 version doesn't have it while the 2025 version does
