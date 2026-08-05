@@ -63,6 +63,10 @@ def get_properties(info: Result) -> Result:
         for energy in reader_band.read("PEDA", "FragmentBondEnergy"):
             # Note that these are the deformed fragment energies
             properties.energy.fragment_bond.append(energy * constants.HA2KCALMOL)
+            # In a pEDA, we use the fragments as our basis. In this case, it means subtracting the fragment energies from the bond energy
+            # so we get the bond energy created from the interaction of the two fragments, which is the same as our interaction energy
+            # This is also how ADF does it, and consistency is key
+            properties.energy.bond -= energy * constants.HA2KCALMOL
     
     # Only reported in pEDA calculations, ALSO disappointingly absent in older versions of band
     # it's not mentioned in the changelog exactly when, but the 2023 version doesn't have it while the 2025 version does
