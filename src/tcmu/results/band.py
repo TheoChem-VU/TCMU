@@ -65,7 +65,7 @@ def get_properties(info: Result) -> Result:
             properties.energy.fragment_bond.append(energy * constants.HA2KCALMOL)
             # In a pEDA, we use the fragments as our basis. In this case, it means subtracting the fragment energies from the bond energy
             # so we get the bond energy created from the interaction of the two fragments, which is the same as our interaction energy
-            # This is also how ADF does it, and consistency is key
+            # This is also how ADF does it (internally, band not for some reason), and consistency is key
             properties.energy.bond -= energy * constants.HA2KCALMOL
     
     # Only reported in pEDA calculations, ALSO disappointingly absent in older versions of band
