@@ -1,0 +1,78 @@
+#!/bin/sh
+#SBATCH -N 1
+#SBATCH -n 64
+#SBATCH -t 120:00:00
+#SBATCH -p genoa
+
+echo "== Starting run at $(date)"
+echo "== Job ID: ${SLURM_JOBID}"
+echo "== Node list: ${SLURM_NODELIST}"
+echo "== Submit dir. : ${SLURM_SUBMIT_DIR}"
+echo "== Scratch dir. : ${TMPDIR}"
+
+module load 2023
+module load AMS/2023.104-intelmpi
+module list
+
+$AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/$SLURM_JOB_NAME.out
+
+Task SinglePoint
+
+NumericalPhonons
+    SuperCell
+        2 0 
+        0 2 
+    End
+End
+
+System
+    Atoms
+Hg       0.00000000       0.00000000       0.00000000
+    End
+    Lattice
+14.72706777      -0.08768463       0.00000000
+7.28759677      12.79785712       0.00000000
+    End
+Charge 2
+End
+
+Engine BAND
+
+    NeutralizingDensity rho(homogeneous)
+
+    Basis
+        Type TZP
+        Core None
+    End
+
+    Convergence
+        Criterion 1.0e-6
+    End
+
+    NumericalQuality Good
+    
+    Unrestricted yes
+
+    EnforcedSpinPolarization 0.0
+
+    UseSymmetry No
+
+    XC
+        GGA PBE
+        DISPERSION GRIMME3 BJDAMP
+    End
+
+
+    SCF
+       ITERATIONS 999
+    END
+
+EndEngine
+eor
+
+cp ams.results/ams.rkf $SLURM_SUBMIT_DIR/$SLURM_JOB_NAME.ams.rkf
+cp ams.results/band.rkf $SLURM_SUBMIT_DIR/$SLURM_JOB_NAME.band.rkf
+cp ams.results/output.xyz $SLURM_SUBMIT_DIR/$SLURM_JOB_NAME.output.xyz
+cp ams.results/ams.log $SLURM_SUBMIT_DIR/$SLURM_JOB_NAME.log
+
+rm -r ams.results
