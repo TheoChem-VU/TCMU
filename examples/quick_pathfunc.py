@@ -1,4 +1,4 @@
-from tcutility import timer, pathfunc
+from tcmu import timer, pathfunc
 
 for _ in range(1000):
     with timer.timer('Using glob without root_dir'):
