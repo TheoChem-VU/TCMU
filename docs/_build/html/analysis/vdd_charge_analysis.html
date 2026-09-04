@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>VDD Charge Analysis module &#8212; TCutility v0.16.10 documentation</title>
+    <title>VDD Charge Analysis module &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -27,24 +27,25 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'analysis/vdd_charge_analysis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/119413491"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -53,20 +54,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -92,7 +99,7 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
@@ -114,7 +121,7 @@
 <div class="myDiv">
     <a href="/index.html">
         <img src="https://avatars.githubusercontent.com/u/119413491?s=60&v=4">
-        TCutility
+        TCMU
     </a>
 </div></div>
     
@@ -190,15 +197,56 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="transition_state_analysis.html">Transition State Analysis module</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">VDD Charge Analysis module</a></li>
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Main modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../results/results.html">tcmu.results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tcmu.job.html">tcmu.job</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="analysis.html">tcmu.analysis</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="transition_state_analysis.html">Transition State Analysis module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">VDD Charge Analysis module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vdd-analysis-api">VDD analysis API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cli_scripts/main.html">Command-line interface (CLI) scripts</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Utility modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.data.html">tcmu.data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.report.html">tcmu.report package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.analysis.html">tcmu.analysis package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.html">tcmu package</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">tcmu</a></li>
 </ul>
 </div>
-</nav></div>
+        <div class="sidebar-primary-item">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="transition_state_analysis.html"
+                          title="previous chapter">Transition State Analysis module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../cli_scripts/main.html"
+                          title="next chapter">Command-line interface (CLI) scripts</a></p>
+  </div></div>
+        <div class="sidebar-primary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/analysis/vdd_charge_analysis.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+        <div class="sidebar-primary-item">
+<div id="searchbox"></div></div>
     </div>
   
   
@@ -237,7 +285,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="analysis.html" class="nav-link">tcutility.analysis</a></li>
+    <li class="breadcrumb-item"><a href="analysis.html" class="nav-link">tcmu.analysis</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">VDD Charge Analysis module</span></li>
   </ul>
@@ -270,36 +318,36 @@ If symmetry is used, the VDD charges can be decomposed into contributions of sep
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
-<p>First, relevant modules need to be loaded. These include pathlib for handling paths and tcutility.results for loading the results of the calculation.
+<p>First, relevant modules need to be loaded. These include pathlib for handling paths and tcmu.results for loading the results of the calculation.
 In addition, the VDD manager module needs to be loaded which is the interface to performing VDD analyses.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For this example we use calculations found in the <a class="reference external" href="https://github.com/TheoChem-VU/TCutility/tree/main/test/fixtures/VDD">VDD test directory</a> of the tcutility package.
+<p>For this example we use calculations found in the <a class="reference external" href="https://github.com/TheoChem-VU/TCMU/tree/main/test/fixtures/VDD">VDD test directory</a> of the tcmu package.
 We assume that the you place the VDD test directory in the same directory as this script.
-See the <a class="reference external" href="https://github.com/TheoChem-VU/TCutility/blob/main/examples/vdd_analysis.py">example python script</a> for a direct implementation</p>
+See the <a class="reference external" href="https://github.com/TheoChem-VU/TCMU/blob/main/examples/vdd_analysis.py">example python script</a> for a direct implementation</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">results</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.analysis.vdd</span><span class="w"> </span><span class="kn">import</span> <span class="n">manager</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tcmu.results</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">results</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcmu.analysis.vdd</span><span class="w"> </span><span class="kn">import</span> <span class="n">manager</span>
 </pre></div>
 </div>
-<p>Now, the calculation directory needs to be specified and the calculation results can be loaded via the <a class="reference internal" href="../api/tcutility.results.html#tcutility.results.read" title="tcutility.results.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read</span></code></a> function.
-The next step is to create a <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code> object which is the interface to performing VDD analyses.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DIRS</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;fa_acid_amide_cs&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;fa_squaramide_se_cs&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;fa_donor_acceptor_nosym&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;geo_nosym&quot;</span><span class="p">}</span>
+<p>Now, the calculation directory needs to be specified and the calculation results can be loaded via the <a class="reference internal" href="../api/tcmu.results.html#module-tcmu.results.read" title="tcmu.results.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read</span></code></a> function.
+The next step is to create a <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a> object which is the interface to performing VDD analyses.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DIRS</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">"fa_acid_amide_cs"</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">"fa_squaramide_se_cs"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"fa_donor_acceptor_nosym"</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">"geo_nosym"</span><span class="p">}</span>
 
 <span class="c1"># Specify the calculation directory</span>
 <span class="n">base_dir</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
-<span class="n">base_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;VDD&quot;</span>
+<span class="n">base_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">"VDD"</span>
 <span class="n">calc_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="n">DIRS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="n">calc_res</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
 <span class="n">vdd_manager</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">create_vdd_charge_manager</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">calc_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">results</span><span class="o">=</span><span class="n">calc_res</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code> object contains the total VDD charges, as well as the VDD charges for each irreducible representation.
-To see the contents of the <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code>, simply print it. The charges are formatted as a table in the unit of milli electrons [me].
-You can always change the unit of the charges by using the <code class="xref py py-func docutils literal notranslate"><span class="pre">change_unit</span></code> method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vdd_manager</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="s2">&quot;me&quot;</span><span class="p">)</span>  <span class="c1"># Change the unit to electrons &quot;e&quot; (electrons) or &quot;me&quot; (milli electrons)</span>
+<p>The <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a> object contains the total VDD charges, as well as the VDD charges for each irreducible representation.
+To see the contents of the <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a>, simply print it. The charges are formatted as a table in the unit of milli electrons [me].
+You can always change the unit of the charges by using the <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager.change_unit" title="tcmu.analysis.vdd.manager.VDDChargeManager.change_unit"><code class="xref py py-func docutils literal notranslate"><span class="pre">change_unit</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vdd_manager</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="s2">"me"</span><span class="p">)</span>  <span class="c1"># Change the unit to electrons "e" (electrons) or "me" (milli electrons)</span>
 
 <span class="c1"># Print the VDD charges to standard output</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">vdd_manager</span><span class="p">)</span>
@@ -329,7 +377,7 @@ You can always change the unit of the charges by using the <code class="xref py 
 </div>
 <p>See? It is that easy. The charges sum up to the total charge of the molecule (in this case 0). Also, the sum of irrep charges is equal to the total charge, as it should be.
 It is possible to print the charges to both a text file (.txt) as well as a Excel (.xlsx) file. The Excel file is formatted as a table and can be used for further analysis.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;output&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">"output"</span>
 
 <span class="c1"># Write the VDD charges to a text file (static method because multiple managers can be written to the same file)</span>
 <span class="n">manager</span><span class="o">.</span><span class="n">VDDChargeManager</span><span class="o">.</span><span class="n">write_to_txt</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">vdd_manager</span><span class="p">)</span>
@@ -344,7 +392,7 @@ It is possible to print the charges to both a text file (.txt) as well as a Exce
 </pre></div>
 </div>
 <img alt="../_images/vdd_charges_per_atom.png" class="align-center" src="../_images/vdd_charges_per_atom.png" />
-<p>Finally, multiple <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code> objects can be made and written to a single .txt file. This is useful when comparing multiple calculations.</p>
+<p>Finally, multiple <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a> objects can be made and written to a single .txt file. This is useful when comparing multiple calculations.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiple calculations can be combined into a single file</span>
 <span class="n">calc_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="n">base_dir</span> <span class="o">/</span> <span class="n">calc</span> <span class="k">for</span> <span class="n">calc</span> <span class="ow">in</span> <span class="n">DIRS</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
 <span class="n">calc_res</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span> <span class="k">for</span> <span class="n">calc_dir</span> <span class="ow">in</span> <span class="n">calc_dirs</span><span class="p">]</span>
@@ -436,8 +484,8 @@ It is possible to print the charges to both a text file (.txt) as well as a Exce
 </section>
 <section id="vdd-analysis-api">
 <h2>VDD analysis API<a class="headerlink" href="#vdd-analysis-api" title="Link to this heading">#</a></h2>
-<p>Here is the implementation of the <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDCharge</span></code> classes. The central information contained in the <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code> is a dictionary containing the total charge, and irreps (if present) as keys and the a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDCharge</span></code> as value.
-A <code class="xref py py-class docutils literal notranslate"><span class="pre">VDDCharge</span></code> does not only contain the charge itself, but also to which atom and frag index it belongs.</p>
+<p>Here is the implementation of the <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a> and <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.charge.VDDCharge" title="tcmu.analysis.vdd.charge.VDDCharge"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDCharge</span></code></a> classes. The central information contained in the <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a> is a dictionary containing the total charge, and irreps (if present) as keys and the a list of <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.charge.VDDCharge" title="tcmu.analysis.vdd.charge.VDDCharge"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDCharge</span></code></a> as value.
+A <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.charge.VDDCharge" title="tcmu.analysis.vdd.charge.VDDCharge"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDCharge</span></code></a> does not only contain the charge itself, but also to which atom and frag index it belongs.</p>
 </section>
 </section>
 
@@ -486,8 +534,8 @@ A <code class="xref py py-class docutils literal notranslate"><span class="pre">
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vdd-analysis-api">VDD analysis API</a></li>
@@ -495,13 +543,13 @@ A <code class="xref py py-class docutils literal notranslate"><span class="pre">
   </nav></div>
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/analysis/vdd_charge_analysis.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/analysis/vdd_charge_analysis.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -516,8 +564,8 @@ A <code class="xref py py-class docutils literal notranslate"><span class="pre">
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -551,7 +599,7 @@ A <code class="xref py py-class docutils literal notranslate"><span class="pre">
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.geometry &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.geometry &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.geometry</span></li>
   </ul>
 </nav>
@@ -242,28 +239,33 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.geometry</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">atan2</span><span class="p">,</span> <span class="n">sqrt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">atan2</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">sqrt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">environment</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Transform&quot;</span><span class="p">,</span> <span class="s2">&quot;KabschTransform&quot;</span><span class="p">,</span> <span class="s2">&quot;MolTransform&quot;</span><span class="p">,</span> <span class="s2">&quot;get_rotmat&quot;</span><span class="p">,</span> <span class="s2">&quot;rotmat_to_angles&quot;</span><span class="p">,</span> <span class="s2">&quot;apply_rotmat&quot;</span><span class="p">,</span> <span class="s2">&quot;rotate&quot;</span><span class="p">,</span> <span class="s2">&quot;vector_align_rotmat&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="Transform">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.Transform">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Transform</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transformation matrix that handles rotation, translation and scaling of sets of 3D coordinates.</span>
 
 <span class="sd">    Build and return a transformation matrix.</span>
 <span class="sd">    This 4x4 matrix encodes rotations, translations and scaling.</span>
-<span class="sd">    </span>
+
 <span class="sd">    :math:`\\textbf{M} = \\begin{bmatrix} \\textbf{R}\\text{diag}(S) &amp; \\textbf{T} \\\\ \\textbf{0}_3 &amp; 1 \\end{bmatrix}`</span>
 
 <span class="sd">    where :math:`\\textbf{R} \\in \\mathbb{R}^{3 \\times 3}`, :math:`\\textbf{T} \\in \\mathbb{R}^{3 \\times 1}` and :math:`\\textbf{0}_3 = [0, 0, 0] \\in \\mathbb{R}^{1 \\times 3}`.</span>
 
 <span class="sd">    When applied to a coordinates :math:`[\\textbf{x}, \\textbf{y}, \\textbf{z}, \\textbf{1}]^T \\in \\mathbb{R}^{n \\times 4}` it will apply these transformations simultaneously.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># initialize an empty transformation matrix</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_matrix</span><span class="p">()</span>
@@ -410,7 +412,7 @@
 <span class="sd">        where :math:`n` is the normal vector of the plane to reflect along.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            normal: the normal vector of the plane to reflect across. </span>
+<span class="sd">            normal: the normal vector of the plane to reflect across.</span>
 <span class="sd">                If not given or ``None``, it will be set to one unit along the x-axis, i.e. a reflection along the yz-plane.</span>
 
 <span class="sd">        References:</span>
@@ -428,9 +430,9 @@
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_build_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">T</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Build the transformation matrix for this object.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># set the default matrix and vectors</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">R</span> <span class="k">if</span> <span class="n">R</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">get_rotmat</span><span class="p">()</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">T</span> <span class="k">if</span> <span class="n">T</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -454,6 +456,7 @@
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.Transform.to_vtkTransform">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_vtkTransform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">vtk</span>
+
         <span class="n">vtktrans</span> <span class="o">=</span> <span class="n">vtk</span><span class="o">.</span><span class="n">vtkTransform</span><span class="p">()</span>
         <span class="n">vtktrans</span><span class="o">.</span><span class="n">PostMultiply</span><span class="p">()</span>
 
@@ -469,14 +472,13 @@
 
 
 
-
 <div class="viewcode-block" id="KabschTransform">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.KabschTransform">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">KabschTransform</span><span class="p">(</span><span class="n">Transform</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Use Kabsch-Umeyama algorithm to calculate the optimal transformation matrix :math:`T_{Kabsch}` that minimizes the </span>
-<span class="sd">    RMSD between two sets of coordinates :math:`X \\in \\mathbb{R}^{N \\times 3}` and :math:`Y \\in \\mathbb{R}^{N \\times 3}`, such that </span>
-<span class="sd">    </span>
+<span class="sd">    Use Kabsch-Umeyama algorithm to calculate the optimal transformation matrix :math:`T_{Kabsch}` that minimizes the</span>
+<span class="sd">    RMSD between two sets of coordinates :math:`X \\in \\mathbb{R}^{N \\times 3}` and :math:`Y \\in \\mathbb{R}^{N \\times 3}`, such that</span>
+
 <span class="sd">    :math:`\\text{arg}\\min_{T_{Kabsch}} \\text{RMSD}(T_{Kabsch}(X), Y)`</span>
 
 <span class="sd">    It is numerically stable and works when the covariance matrix is singular.</span>
@@ -488,8 +490,8 @@
 <span class="sd">        Y: array containing the second set of coordinates. These coordinates is the target to transform to.</span>
 
 <span class="sd">    .. warning::</span>
-<span class="sd">        In principle, the Kabsch-Umeyama algorithm does not care about the dimensions of the coordinates, </span>
-<span class="sd">        however we will always assume 3D coordinates as that is our most common use-case. Further, the :class:`Transform` class also assumes 3D coordinates. </span>
+<span class="sd">        In principle, the Kabsch-Umeyama algorithm does not care about the dimensions of the coordinates,</span>
+<span class="sd">        however we will always assume 3D coordinates as that is our most common use-case. Further, the :class:`Transform` class also assumes 3D coordinates.</span>
 <span class="sd">        If you would like to make use of 2D or 1D Transforms we suggest you simply set the correct axes to zero.</span>
 
 <span class="sd">    .. seealso::</span>
@@ -502,9 +504,9 @@
 
 <span class="sd">            from tcutility import geometry</span>
 <span class="sd">            import numpy as np</span>
-<span class="sd">    </span>
+
 <span class="sd">            # create two arrays that are the same</span>
-<span class="sd">            X, Y = np.arange(5 * 3).reshape(5, 3), np.arange(5 * 3).reshape(5, 3)  </span>
+<span class="sd">            X, Y = np.arange(5 * 3).reshape(5, 3), np.arange(5 * 3).reshape(5, 3)</span>
 
 <span class="sd">            # create a transformation matrix to change X</span>
 <span class="sd">            Tx = geometry.Transform()</span>
@@ -512,10 +514,10 @@
 <span class="sd">            Tx.translate(x=1, y=1, z=1)</span>
 
 <span class="sd">            X = Tx(X)</span>
-<span class="sd">            </span>
+
 <span class="sd">            # get the Kabsch transformation matrix</span>
 <span class="sd">            Tkabsch = geometry.KabschTransform(X, Y)</span>
-<span class="sd">    </span>
+
 <span class="sd">            # check if applying the transformation matrix to X yields Y</span>
 <span class="sd">            assert np.isclose(Tkabsch(X), Y).all()</span>
 
@@ -524,7 +526,11 @@
 <span class="sd">        | https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem</span>
 <span class="sd">        | https://en.wikipedia.org/wiki/Kabsch_algorithm</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;scipy&quot;</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+
         <span class="c1"># make sure arrays are 2d and the same size</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Matrices X with shape </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and Y with shape </span><span class="si">{</span><span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> are not the same size&quot;</span>
@@ -541,7 +547,7 @@
         <span class="c1"># first do single value decomposition on covariance matrix</span>
         <span class="c1"># this step ensures that the algorithm is numerically stable</span>
         <span class="c1"># and removes problems with singular covariance matrices</span>
-        <span class="n">U</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+        <span class="n">U</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 
         <span class="c1"># get the sign of the determinant of V.T @ U.T</span>
         <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
@@ -564,7 +570,7 @@
 <div class="viewcode-block" id="MolTransform">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.MolTransform">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MolTransform</span><span class="p">(</span><span class="n">Transform</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A subclass of :class:`Transform` that is designed to generate transformation for a molecule.</span>
 <span class="sd">    It adds, among others, methods for aligning atoms to specific vectors, planes, or setting the centroid of the molecule.</span>
 <span class="sd">    The nice thing is that the class applies the transformations based only on the atom indices given by the user.</span>
@@ -574,7 +580,8 @@
 
 <span class="sd">    .. note::</span>
 <span class="sd">        Indexing starts at 1 instead of 0.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mol</span> <span class="o">=</span> <span class="n">mol</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -582,13 +589,13 @@
 <div class="viewcode-block" id="MolTransform.center">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.MolTransform.center">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">indices</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Center the molecule on given indices or by its centroid.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            indices: the indices that are used to center the molecule. </span>
+<span class="sd">            indices: the indices that are used to center the molecule.</span>
 <span class="sd">                If not given the centering will be done based on all atoms.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tmol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmol</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -599,14 +606,14 @@
 <div class="viewcode-block" id="MolTransform.align_to_vector">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.MolTransform.align_to_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">align_to_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">index2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">vector</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Align the molecule such that a bond lays on a given vector.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            index1: index of the first atom.</span>
 <span class="sd">            index2: index of the second atom.</span>
 <span class="sd">            vector: the vector to align the atoms to. If not given or `None` it defaults to `(1, 0, 0)`.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># get the transformed mol</span>
         <span class="n">tmol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
         <span class="c1"># and coordinates</span>
@@ -621,7 +628,7 @@
 <div class="viewcode-block" id="MolTransform.align_to_plane">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.MolTransform.align_to_plane">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">align_to_plane</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">index2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">index3</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">vector</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Align a molecule such that the normal of the plane defined by three atoms is aligned to a given vector.</span>
 
 <span class="sd">        Args:</span>
@@ -629,7 +636,7 @@
 <span class="sd">            index2: index of the second atom.</span>
 <span class="sd">            index3: index of the third atom.</span>
 <span class="sd">            vector: the vector to align the atoms to. If not given or `None` it defaults to (0, 1, 0).</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># get the transformed mol</span>
         <span class="n">tmol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">)</span>
         <span class="c1"># and coordinates</span>
@@ -701,7 +708,7 @@
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.rotmat_to_angles">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">rotmat_to_angles</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
     <span class="n">thetax</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-    <span class="n">thetay</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">thetay</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
     <span class="n">thetaz</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">thetax</span><span class="p">,</span> <span class="n">thetay</span><span class="p">,</span> <span class="n">thetaz</span></div>
 
@@ -715,7 +722,7 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        coords: the coordinates :math`\\in \\mathbb{R}^{n \\times 3}` to rotate.</span>
-<span class="sd">        R: the rotation matrix to apply. </span>
+<span class="sd">        R: the rotation matrix to apply.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        New coordinates :math`\\in \\mathbb{R}^{n \\times 3}` rotated using the given rotation matrix.</span>
@@ -789,8 +796,6 @@
 
 
 
-<div class="viewcode-block" id="RMSD">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.RMSD">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">RMSD</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_kabsch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">include_mirror</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate Root Mean Squared Deviations between two sets of points ``X`` and ``Y``.</span>
@@ -808,7 +813,7 @@
 <span class="sd">    Args:</span>
 <span class="sd">        X: the first set of coordinates to compare. It must have the same dimensions as ``Y``.</span>
 <span class="sd">        Y: the second set of coordinates to compare. It must have the same dimensions as ``X``.</span>
-<span class="sd">        axis: axis to compare. Defaults to ``None``. </span>
+<span class="sd">        axis: axis to compare. Defaults to ``None``.</span>
 <span class="sd">        use_kabsch: whether to use Kabsch&#39; algorithm to align ``X`` and ``Y`` before calculating the RMSD. Defaults to ``True``.</span>
 <span class="sd">        include_mirror: return the lowest value between the RMSD of the supplied coordinates and also the RMSD of mirrored X with Y.</span>
 <span class="sd">            This will only be done if ``use_kabsch == True``.</span>
@@ -817,7 +822,7 @@
 <span class="sd">        RMSD in the units of X and Y. If ``axis`` is set to an integer this function will return a vector of RMSD&#39;s along that axis.</span>
 
 <span class="sd">    .. note::</span>
-<span class="sd">        It is generally recommended to enable the use of the Kabsch-Umeyama algorithm prior to calculating the RMSD. </span>
+<span class="sd">        It is generally recommended to enable the use of the Kabsch-Umeyama algorithm prior to calculating the RMSD.</span>
 <span class="sd">        This will ensure you get the lowest possible RMSD for you sets of coordinates.</span>
 
 <span class="sd">    .. seealso::</span>
@@ -847,12 +852,9 @@
         <span class="n">rmsd_mirrored</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">Xprime</span> <span class="o">-</span> <span class="n">Y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">/</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">rmsd</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">rmsd</span><span class="p">,</span> <span class="n">rmsd_mirrored</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">rmsd</span></div>
+    <span class="k">return</span> <span class="n">rmsd</span>
 
 
-
-<div class="viewcode-block" id="random_points_on_sphere">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.random_points_on_sphere">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">random_points_on_sphere</span><span class="p">(</span><span class="n">shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate random points on a sphere with a specified radius.</span>
@@ -866,15 +868,12 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">radius</span>
-    <span class="k">return</span> <span class="n">x</span></div>
+    <span class="k">return</span> <span class="n">x</span>
 
 
-
-<div class="viewcode-block" id="random_points_in_anular_sphere">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.random_points_in_anular_sphere">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">random_points_in_anular_sphere</span><span class="p">(</span><span class="n">shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">min_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generate random points in an sphere or anular sphere with specified radii. </span>
+<span class="sd">    Generate random points in an sphere or anular sphere with specified radii.</span>
 <span class="sd">    An anular sphere is a hollow sphere of a certain thickness.</span>
 
 <span class="sd">    Args:</span>
@@ -886,12 +885,10 @@
 <span class="sd">        Array of coordinates on a sphere.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">random_radii</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_radius</span> <span class="o">-</span> <span class="n">min_radius</span><span class="p">)</span> <span class="o">+</span> <span class="n">min_radius</span>
-    <span class="k">return</span> <span class="n">random_points_on_sphere</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">random_radii</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">random_points_on_sphere</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">random_radii</span><span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="random_points_on_spheroid">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.random_points_on_spheroid">[docs]</a>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;scipy&quot;</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">random_points_on_spheroid</span><span class="p">(</span><span class="n">coordinates</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Nsamples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">margin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate random points on a spheroid generated by a set of coordinates.</span>
@@ -904,6 +901,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        Array of coordinates on a spheroid.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+
     <span class="c1"># for this to work we should first get the centroid of our molecule</span>
     <span class="n">centroid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="c1"># and get the centered coordiantes</span>
@@ -911,37 +910,34 @@
 
     <span class="c1"># we then do a singular-value decomposition to obtain</span>
     <span class="c1"># the three principle components (Vh) with their eigenvalues (s)</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Xc</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Xc</span><span class="p">)</span>
 
     <span class="c1"># then compute a transformation matrix for generating the correct spheroid</span>
     <span class="n">transform</span> <span class="o">=</span> <span class="n">Transform</span><span class="p">()</span>
     <span class="n">transform</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">centroid</span><span class="p">)</span>
-    <span class="n">transform</span><span class="o">.</span><span class="n">rotate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">margin</span><span class="p">)</span> <span class="o">@</span> <span class="n">Vh</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">transform</span><span class="o">.</span><span class="n">rotate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">margin</span><span class="p">)</span> <span class="o">@</span> <span class="n">Vh</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 
-    <span class="c1"># to sample the spheroid we generate points on a </span>
+    <span class="c1"># to sample the spheroid we generate points on a</span>
     <span class="c1"># sphere and transform them to our spheroid</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">random_points_on_sphere</span><span class="p">((</span><span class="n">Nsamples</span><span class="p">,</span> <span class="n">Xc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-    <span class="k">return</span> <span class="n">transform</span><span class="p">(</span><span class="n">p</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">transform</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="parameter">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.geometry.parameter">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">parameter</span><span class="p">(</span><span class="n">coordinates</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">typing</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="o">*</span><span class="n">indices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">pyramidal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">sum_of_angles</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return geometry information about a set of coordinates given 1 to 4 indices.</span>
 <span class="sd">    If 1 index is given we return the coordinate at that index.</span>
 <span class="sd">    If 2 indices are given we return the distance between the coordinates at the indices.</span>
 <span class="sd">    If 3 indices are given we return the angle between the vector from index 1 to 2 and the vector from index 2 to 3.</span>
 <span class="sd">    If 4 indices are given we return the dihedral angle or the pyramidalization angle (if `pyramidal` is set to `True`) or the sum-of-angles (if `sum_of_angles` is set to `True`).</span>
-<span class="sd">    </span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        coordinates: set of coordinates to calculate parameters for.</span>
 <span class="sd">        indices: 1 to 4 integers specifying the indices to use in the coordinates set.</span>
 <span class="sd">        pyramidal: if 4 indices are given return the pyramidalization angle in degrees.</span>
 <span class="sd">        sum_of_angles: if 4 indices are given return the sum of the angles between the first index and the rest in degrees.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;Number of indices must be between 1, 2, 3 or 4&quot;</span>
 
     <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
@@ -988,8 +984,9 @@
         <span class="n">n1</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span>
         <span class="n">n2</span> <span class="o">=</span> <span class="n">n2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">n1</span> <span class="o">@</span> <span class="n">n2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">180</span></div>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">n1</span> <span class="o">@</span> <span class="n">n2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">180</span>
 
+        <span class="k">return</span> <span class="n">angle</span>
 </pre></div>
 
                 </article>

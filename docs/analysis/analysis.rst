@@ -1,4 +1,4 @@
-﻿tcutility.analysis
+﻿tcmu.analysis
 ================================
 
 This chapter contains description of all analysis functionalities including examples of usage.

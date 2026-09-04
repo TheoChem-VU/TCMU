@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.data.molecules &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.data.molecules &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.data.molecules</span></li>
   </ul>
 </nav>
@@ -242,20 +239,20 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.data.molecules</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecule</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.molecule</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span>
 
 <span class="n">j</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
 
-<span class="n">root_dir</span> <span class="o">=</span> <span class="n">j</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;molecules&#39;</span><span class="p">)</span>
+<span class="n">root_dir</span> <span class="o">=</span> <span class="n">j</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;molecules&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="get">
 <a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.data.molecules.get">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">j</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;.xyz&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">.xyz&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">molecule</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">p</span><span class="p">)</span></div>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">j</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s1">&#39;.xyz&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.xyz&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">load</span><span class="p">(</span><span class="n">p</span><span class="p">)</span></div>
 
 
 
@@ -263,16 +260,16 @@
 <a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.data.molecules.get_molecules">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_molecules</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.xyz&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.xyz&quot;</span><span class="p">):</span>
             <span class="k">continue</span>
-            
+
         <span class="n">mol</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">tags</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="n">tag</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">tags</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span>
             <span class="k">yield</span> <span class="n">mol</span></div>
 
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">get_molecules</span><span class="p">():</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">)</span>
 </pre></div>

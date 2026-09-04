@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Command-line interface (CLI) scripts &#8212; TCutility v0.16.10 documentation</title>
+    <title>Command-line interface (CLI) scripts &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -27,46 +27,53 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cli_scripts/main';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/119413491"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tcutility.data package" href="../api/tcutility.data.html" />
+    <link rel="next" title="tcmu.data package" href="../api/tcmu.data.html" />
     <link rel="prev" title="VDD Charge Analysis module" href="../analysis/vdd_charge_analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -92,7 +99,7 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
@@ -114,7 +121,7 @@
 <div class="myDiv">
     <a href="/index.html">
         <img src="https://avatars.githubusercontent.com/u/119413491?s=60&v=4">
-        TCutility
+        TCMU
     </a>
 </div></div>
     
@@ -190,11 +197,59 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Main modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../results/results.html">tcmu.results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tcmu.job.html">tcmu.job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analysis/analysis.html">tcmu.analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command-line interface (CLI) scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tcmu">tcmu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tcmu-cite">cite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcmu-concat-irc">concat-irc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcmu-geo">geo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcmu-optimize">optimize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcmu-read">read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcmu-resize">resize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcmu-workflow">workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Utility modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.data.html">tcmu.data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.report.html">tcmu.report package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.analysis.html">tcmu.analysis package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tcmu.html">tcmu package</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">tcmu</a></li>
+</ul>
+</div>
+        <div class="sidebar-primary-item">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../analysis/vdd_charge_analysis.html"
+                          title="previous chapter">VDD Charge Analysis module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../api/tcmu.data.html"
+                          title="next chapter">tcmu.data package</a></p>
+  </div></div>
+        <div class="sidebar-primary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/cli_scripts/main.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+        <div class="sidebar-primary-item">
+<div id="searchbox"></div></div>
     </div>
   
   
@@ -250,11 +305,386 @@
                 <article class="bd-article">
                   
   <section id="command-line-interface-cli-scripts">
-<h1>Command-line interface (CLI) scripts<a class="headerlink" href="#command-line-interface-cli-scripts" title="Link to this heading">#</a></h1>
-<p>TCutility comes with some helpful CLI scripts for you to use. Please find an overview and examples here. You can also access information by using the <code class="docutils literal notranslate"><span class="pre">tc</span> <span class="pre">-h</span></code> command. This will show you an overview of the available CLI scripts. More detailed descriptions can be accessed using the <code class="docutils literal notranslate"><span class="pre">tc</span> <span class="pre">{program</span> <span class="pre">name}</span> <span class="pre">-h</span></code> commands.</p>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>CLI scripts are invoked using the parent <code class="docutils literal notranslate"><span class="pre">tc</span></code> command followed by the sub-program (see below). If you have suggestions for useful scripts please contact the developers or <a class="reference external" href="https://github.com/TheoChem-VU/TCutility/issues/new">open an issue</a> on our GitHub page.</p>
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Command-line interface (CLI) scripts</a><a class="headerlink" href="#command-line-interface-cli-scripts" title="Link to this heading">#</a></h1>
+<nav class="contents" id="on-this-page">
+<p class="topic-title">On this page</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#command-line-interface-cli-scripts" id="id1">Command-line interface (CLI) scripts</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tcmu" id="id2">tcmu</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tcmu-cite" id="id3">cite</a></p></li>
+<li><p><a class="reference internal" href="#tcmu-concat-irc" id="id4">concat-irc</a></p></li>
+<li><p><a class="reference internal" href="#tcmu-geo" id="id5">geo</a></p></li>
+<li><p><a class="reference internal" href="#tcmu-optimize" id="id6">optimize</a></p></li>
+<li><p><a class="reference internal" href="#tcmu-read" id="id7">read</a></p></li>
+<li><p><a class="reference internal" href="#tcmu-resize" id="id8">resize</a></p></li>
+<li><p><a class="reference internal" href="#tcmu-workflow" id="id9">workflow</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tcmu-workflow-clear" id="id10">clear</a></p></li>
+<li><p><a class="reference internal" href="#tcmu-workflow-status" id="id11">status</a></p></li>
+<li><p><a class="reference internal" href="#tcmu-workflow-where" id="id12">where</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>TCutility comes with some helpful CLI scripts for you to use. Please find an overview and examples here. You can also access information by using the <code class="docutils literal notranslate"><span class="pre">tcmu</span> <span class="pre">-h</span></code> command. This will show you an overview of the available CLI scripts. More detailed descriptions can be accessed using the <code class="docutils literal notranslate"><span class="pre">tcmu</span> <span class="pre">{program</span> <span class="pre">name}</span> <span class="pre">-h</span></code> commands.</p>
+<p>CLI scripts are invoked using the parent <code class="docutils literal notranslate"><span class="pre">tcmu</span></code> command followed by the sub-program (see below). If you have suggestions for useful scripts please contact the developers or <a class="reference external" href="https://github.com/TheoChem-VU/TCMU/issues/new">open an issue</a> on our GitHub page.</p>
+<section id="tcmu">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">tcmu</a><a class="headerlink" href="#tcmu" title="Link to this heading">#</a></h2>
+<p>TCMU command line interface.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<section id="tcmu-cite">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">cite</a><a class="headerlink" href="#tcmu-cite" title="Link to this heading">#</a></h3>
+<p>Generate citations for objects.</p>
+<p>Currently supports generating citations for functionals, basis-sets, programs, methodologies and DOIs.
+This program also generates, and if possible, opens a Word document that contains the formatted citations.
+Multiple objects can be given separated by spaces.
+If the supplied object is also a file path it will read each line as a separate object.</p>
+<p>Example usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">tc</span> <span class="n">cite</span> <span class="n">ADF</span>
+<span class="n">Program</span> <span class="n">ORCA</span>
+  <span class="p">[</span><span class="mf">10.1002</span><span class="o">/</span><span class="n">wcms</span><span class="mf">.81</span><span class="p">]</span> <span class="n">F</span><span class="o">.</span> <span class="n">Neese</span><span class="p">,</span> <span class="n">WIREs</span> <span class="n">Comput</span><span class="o">.</span> <span class="n">Mol</span><span class="o">.</span> <span class="n">Sci</span><span class="o">.</span> <span class="mi">2011</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">73</span><span class="o">-</span><span class="mf">78.</span>
+  <span class="p">[</span><span class="mf">10.1063</span><span class="o">/</span><span class="mf">5.0004608</span><span class="p">]</span> <span class="n">F</span><span class="o">.</span> <span class="n">Neese</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span> <span class="n">Wennmohs</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span> <span class="n">Becker</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span> <span class="n">Riplinger</span><span class="p">,</span> <span class="n">J</span><span class="o">.</span> <span class="n">Chem</span><span class="o">.</span> <span class="n">Phys</span><span class="o">.</span> <span class="mi">2020</span><span class="p">,</span> <span class="mf">152.</span>
+  <span class="p">[</span><span class="mf">10.1002</span><span class="o">/</span><span class="n">wcms</span><span class="mf">.1606</span><span class="p">]</span> <span class="n">F</span><span class="o">.</span> <span class="n">Neese</span><span class="p">,</span> <span class="n">WIREs</span> <span class="n">Comput</span><span class="o">.</span> <span class="n">Mol</span><span class="o">.</span> <span class="n">Sci</span><span class="o">.</span> <span class="mi">2022</span><span class="p">,</span> <span class="mf">12.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">tc</span> <span class="n">cite</span> <span class="n">BP86</span> <span class="n">BLYP</span> <span class="n">OLYP</span> <span class="n">OPBE</span> <span class="n">D3BJ</span>
+<span class="n">Functional</span> <span class="n">BP86</span>
+  <span class="p">[</span><span class="mf">10.1103</span><span class="o">/</span><span class="n">PhysRevA</span><span class="mf">.38.3098</span><span class="p">]</span> <span class="n">A</span><span class="o">.</span> <span class="n">D</span><span class="o">.</span> <span class="n">Becke</span><span class="p">,</span> <span class="n">Phys</span><span class="o">.</span> <span class="n">Rev</span><span class="o">.</span> <span class="n">A</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">3098</span><span class="o">-</span><span class="mf">3100.</span>
+  <span class="p">[</span><span class="mf">10.1103</span><span class="o">/</span><span class="n">PhysRevB</span><span class="mf">.33.8800</span><span class="p">]</span> <span class="n">J</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Perdew</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span> <span class="n">Yue</span><span class="p">,</span> <span class="n">Phys</span><span class="o">.</span> <span class="n">Rev</span><span class="o">.</span> <span class="n">B</span> <span class="mi">1986</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">8800</span><span class="o">-</span><span class="mf">8802.</span>
+<span class="n">Functional</span> <span class="n">BLYP</span>
+  <span class="p">[</span><span class="mf">10.1103</span><span class="o">/</span><span class="n">PhysRevA</span><span class="mf">.38.3098</span><span class="p">]</span> <span class="n">A</span><span class="o">.</span> <span class="n">D</span><span class="o">.</span> <span class="n">Becke</span><span class="p">,</span> <span class="n">Phys</span><span class="o">.</span> <span class="n">Rev</span><span class="o">.</span> <span class="n">A</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">3098</span><span class="o">-</span><span class="mf">3100.</span>
+  <span class="p">[</span><span class="mf">10.1103</span><span class="o">/</span><span class="n">PhysRevB</span><span class="mf">.37.785</span><span class="p">]</span> <span class="n">C</span><span class="o">.</span> <span class="n">Lee</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span> <span class="n">Yang</span><span class="p">,</span> <span class="n">R</span><span class="o">.</span> <span class="n">G</span><span class="o">.</span> <span class="n">Parr</span><span class="p">,</span> <span class="n">Phys</span><span class="o">.</span> <span class="n">Rev</span><span class="o">.</span> <span class="n">B</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">785</span><span class="o">-</span><span class="mf">789.</span>
+<span class="n">Functional</span> <span class="n">OLYP</span>
+  <span class="p">[</span><span class="mf">10.1080</span><span class="o">/</span><span class="mi">00268970010018431</span><span class="p">]</span> <span class="n">N</span><span class="o">.</span> <span class="n">C</span><span class="o">.</span> <span class="n">Handy</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span> <span class="n">J</span><span class="o">.</span> <span class="n">Cohen</span><span class="p">,</span> <span class="n">Mol</span><span class="o">.</span> <span class="n">Phys</span><span class="o">.</span> <span class="mi">2001</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">403</span><span class="o">-</span><span class="mf">412.</span>
+  <span class="p">[</span><span class="mf">10.1103</span><span class="o">/</span><span class="n">PhysRevB</span><span class="mf">.37.785</span><span class="p">]</span> <span class="n">C</span><span class="o">.</span> <span class="n">Lee</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span> <span class="n">Yang</span><span class="p">,</span> <span class="n">R</span><span class="o">.</span> <span class="n">G</span><span class="o">.</span> <span class="n">Parr</span><span class="p">,</span> <span class="n">Phys</span><span class="o">.</span> <span class="n">Rev</span><span class="o">.</span> <span class="n">B</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">785</span><span class="o">-</span><span class="mf">789.</span>
+<span class="n">Functional</span> <span class="n">OPBE</span>
+  <span class="p">[</span><span class="mf">10.1080</span><span class="o">/</span><span class="mi">00268970010018431</span><span class="p">]</span> <span class="n">N</span><span class="o">.</span> <span class="n">C</span><span class="o">.</span> <span class="n">Handy</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span> <span class="n">J</span><span class="o">.</span> <span class="n">Cohen</span><span class="p">,</span> <span class="n">Mol</span><span class="o">.</span> <span class="n">Phys</span><span class="o">.</span> <span class="mi">2001</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">403</span><span class="o">-</span><span class="mf">412.</span>
+  <span class="p">[</span><span class="mf">10.1103</span><span class="o">/</span><span class="n">PhysRevLett</span><span class="mf">.77.3865</span><span class="p">]</span> <span class="n">J</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Perdew</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span> <span class="n">Burke</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span> <span class="n">Ernzerhof</span><span class="p">,</span> <span class="n">Phys</span><span class="o">.</span> <span class="n">Rev</span><span class="o">.</span> <span class="n">Lett</span><span class="o">.</span> <span class="mi">1996</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">3865</span><span class="o">-</span><span class="mf">3868.</span>
+<span class="n">Methodology</span> <span class="n">D3BJ</span>
+  <span class="p">[</span><span class="mf">10.1002</span><span class="o">/</span><span class="n">jcc</span><span class="mf">.21759</span><span class="p">]</span> <span class="n">S</span><span class="o">.</span> <span class="n">Grimme</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span> <span class="n">Ehrlich</span><span class="p">,</span> <span class="n">L</span><span class="o">.</span> <span class="n">Goerigk</span><span class="p">,</span> <span class="n">J</span><span class="o">.</span> <span class="n">Comput</span><span class="o">.</span> <span class="n">Chem</span><span class="o">.</span> <span class="mi">2011</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">1456</span><span class="o">-</span><span class="mf">1465.</span>
+</pre></div>
+</div>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>cite<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>OBJECTS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-cite-w">
+<span id="cmdoption-tcmu-cite-wiley"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--wiley</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-cite-w" title="Link to this definition">#</a></dt>
+<dd><p>Set the citation style to Wiley. This is the default style.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-cite-a">
+<span id="cmdoption-tcmu-cite-acs"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--acs</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-cite-a" title="Link to this definition">#</a></dt>
+<dd><p>Set the citation style to ACS.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-cite-r">
+<span id="cmdoption-tcmu-cite-rsc"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--rsc</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-cite-r" title="Link to this definition">#</a></dt>
+<dd><p>Set the citation style to RSC.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-cite-o">
+<span id="cmdoption-tcmu-cite-output"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-cite-o" title="Link to this definition">#</a></dt>
+<dd><p>The output Word file to write the citations to.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-cite-l">
+<span id="cmdoption-tcmu-cite-list_citations"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--list_citations</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-cite-l" title="Link to this definition">#</a></dt>
+<dd><p>List currently available citations.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-cite-arg-OBJECTS">
+<span class="sig-name descname"><span class="pre">OBJECTS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-cite-arg-OBJECTS" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+<section id="tcmu-concat-irc">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">concat-irc</a><a class="headerlink" href="#tcmu-concat-irc" title="Link to this heading">#</a></h3>
+<p>Combine separated IRC paths.</p>
+<p>Scripts that takes in two or more directories containing an IRC file (<code class="docutils literal notranslate"><span class="pre">ams.rkf</span></code>) and concatenates them through the RMSD values. Produces a <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> and <code class="docutils literal notranslate"><span class="pre">.amv</span></code> file in the specified output directory.
+The output directory is specified with the <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag. If not specified, the output will be written to the current working directory.
+In addition, the <code class="docutils literal notranslate"><span class="pre">-r</span></code> flag can be used to reverse the trajectory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Always visualize the <code class="docutils literal notranslate"><span class="pre">.amv</span></code> file in AMSView to verify the trajectory.</p>
+</div>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>concat-irc<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>JOBS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-concat-irc-r">
+<span id="cmdoption-tcmu-concat-irc-reverse"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--reverse</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-concat-irc-r" title="Link to this definition">#</a></dt>
+<dd><p>Reverses the trajectory</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-concat-irc-o">
+<span id="cmdoption-tcmu-concat-irc-output"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-concat-irc-o" title="Link to this definition">#</a></dt>
+<dd><p>Directory in which the output file will be saved</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-concat-irc-l">
+<span id="cmdoption-tcmu-concat-irc-log_level"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--log_level</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;log_level&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-concat-irc-l" title="Link to this definition">#</a></dt>
+<dd><p>Set the log level. The lower the value, the more is printed. Default is 20 (info).</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-concat-irc-arg-JOBS">
+<span class="sig-name descname"><span class="pre">JOBS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-concat-irc-arg-JOBS" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+<section id="tcmu-geo">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">geo</a><a class="headerlink" href="#tcmu-geo" title="Link to this heading">#</a></h3>
+<p>Calculate geometrical parameters for atoms at the provided <code class="docutils literal notranslate"><span class="pre">ATOM_INDICES</span></code>.
+<code class="docutils literal notranslate"><span class="pre">PATH</span></code> should be an <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>-file or a calculation directory.</p>
+<div class="line-block">
+<div class="line">For 0 indices we return all coordinates of the molecule in <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</div>
+<div class="line">For 1 index this program returns the cartesian coordinate for this atom.</div>
+<div class="line">For 2 indices return bond length between atoms.</div>
+<div class="line">For 3 indices return bond angle, with the second index being the central atom.</div>
+<div class="line">For 4 indices return dihedral angle by calculating the angle between normal vectors</div>
+<div class="line-block">
+<div class="line">described by atoms at indices <code class="docutils literal notranslate"><span class="pre">1-2-3</span></code> and indices <code class="docutils literal notranslate"><span class="pre">2-3-4</span></code>.</div>
+</div>
+<div class="line">If the <code class="docutils literal notranslate"><span class="pre">-p</span></code>/<code class="docutils literal notranslate"><span class="pre">--pyramidal</span></code> flag is turned on it calculates <code class="docutils literal notranslate"><span class="pre">360°</span> <span class="pre">-</span> <span class="pre">ang1</span> <span class="pre">-</span> <span class="pre">ang2</span> <span class="pre">-</span> <span class="pre">ang3</span></code>,</div>
+<div class="line-block">
+<div class="line">where <code class="docutils literal notranslate"><span class="pre">ang1</span></code>, <code class="docutils literal notranslate"><span class="pre">ang2</span></code> and <code class="docutils literal notranslate"><span class="pre">ang3</span></code> are the angles described by indices <code class="docutils literal notranslate"><span class="pre">2-1-3</span></code>, <code class="docutils literal notranslate"><span class="pre">3-1-4</span></code></div>
+<div class="line">and <code class="docutils literal notranslate"><span class="pre">4-1-2</span></code> respectively.</div>
+</div>
+<div class="line">If the <code class="docutils literal notranslate"><span class="pre">-s</span></code>/<code class="docutils literal notranslate"><span class="pre">--soa</span></code> flag is turned on it calculates <code class="docutils literal notranslate"><span class="pre">ang1</span> <span class="pre">+</span> <span class="pre">ang2</span> <span class="pre">+</span> <span class="pre">ang3</span></code>.</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Atom counting starts at 1.</p>
+</div>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>geo<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>PATH<span class="w"> </span><span class="o">[</span>ATOM_INDICES<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-geo-p">
+<span id="cmdoption-tcmu-geo-pyramidal"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--pyramidal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-geo-p" title="Link to this definition">#</a></dt>
+<dd><p>Instead of calculating a dihedral angle, calculate pyramidalisation angle.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-geo-s">
+<span id="cmdoption-tcmu-geo-soa"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--soa</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-geo-s" title="Link to this definition">#</a></dt>
+<dd><p>Instead of calculating a dihedral angle, calculate sum-of-angles.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-geo-arg-PATH">
+<span class="sig-name descname"><span class="pre">PATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-geo-arg-PATH" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-geo-arg-ATOM_INDICES">
+<span class="sig-name descname"><span class="pre">ATOM_INDICES</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-geo-arg-ATOM_INDICES" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+<section id="tcmu-optimize">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">optimize</a><a class="headerlink" href="#tcmu-optimize" title="Link to this heading">#</a></h3>
+<p>Set up and run a geometry optimization on a given structure.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>optimize<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>XYZFILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-optimize-l">
+<span id="cmdoption-tcmu-optimize-level"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--level</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;level&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-optimize-l" title="Link to this definition">#</a></dt>
+<dd><p>Set the level of theory for the optimization. For example, “GFN1-xTB” or “BLYP-D3(BJ)/TZ2P” Can be set in the xyz-file with the ‘level_of_theory’ flag.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-optimize-c">
+<span id="cmdoption-tcmu-optimize-charge"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--charge</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;charge&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-optimize-c" title="Link to this definition">#</a></dt>
+<dd><p>The charge of the system. Can be set in the xyz-file with the ‘charge’ flag.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-optimize-s">
+<span id="cmdoption-tcmu-optimize-spinpol"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--spinpol</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;spinpol&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-optimize-s" title="Link to this definition">#</a></dt>
+<dd><p>The spin-polarization of the system. Can be set in the xyz-file with the ‘spinpol’ flag.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-optimize-o">
+<span id="cmdoption-tcmu-optimize-output"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-optimize-o" title="Link to this definition">#</a></dt>
+<dd><p>The file to write the optimized result to. By default will be written to ‘{xyzfile}_optimized.xyz’.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-optimize-k">
+<span id="cmdoption-tcmu-optimize-keep"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--keep</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-optimize-k" title="Link to this definition">#</a></dt>
+<dd><p>Whether to keep the calculation directory after finishing the calculation.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-optimize-arg-XYZFILE">
+<span class="sig-name descname"><span class="pre">XYZFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-optimize-arg-XYZFILE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="tcmu-read">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">read</a><a class="headerlink" href="#tcmu-read" title="Link to this heading">#</a></h3>
+<p>Read results from a calculation.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>WORKDIR<span class="w"> </span><span class="o">[</span>KEYS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-read-s">
+<span id="cmdoption-tcmu-read-status"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--status</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-read-s" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut to only print the status of the calculation.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-read-p">
+<span id="cmdoption-tcmu-read-properties"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--properties</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-read-p" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut to only print calculated properties for the calculation.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-read-arg-WORKDIR">
+<span class="sig-name descname"><span class="pre">WORKDIR</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-read-arg-WORKDIR" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-read-arg-KEYS">
+<span class="sig-name descname"><span class="pre">KEYS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-read-arg-KEYS" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+<section id="tcmu-resize">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">resize</a><a class="headerlink" href="#tcmu-resize" title="Link to this heading">#</a></h3>
+<p>Resize images containing molecules.</p>
+<p>This CLI-program resizes images in a directory based on detected circles. It will ensure the selected circles are placed at the same location and are also resized to be the same size.
+When starting the program it will show you for each image numbered detected atoms.
+Entering the desired number into the CLI will select it for resizing. If you do not enter a number, the figure will be ignored for further processing.
+New images will be written to the folder postpended with <code class="docutils literal notranslate"><span class="pre">_fixed</span></code>.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>resize<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-resize-f">
+<span id="cmdoption-tcmu-resize-folder"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--folder</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;folder&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-resize-f" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-resize-p">
+<span id="cmdoption-tcmu-resize-padding"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--padding</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;padding&gt;</span></span><a class="headerlink" href="#cmdoption-tcmu-resize-p" title="Link to this definition">#</a></dt>
+<dd><p>The amount of padding to add to the resized figures.
+If given an integer we use pixel padding. E.g. <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">50</span></code> will add a padding of <code class="docutils literal notranslate"><span class="pre">50</span></code> pixels.
+Add a <code class="docutils literal notranslate"><span class="pre">%</span></code>-sign to use relative padding. E.g. <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">10%</span></code> will add a padding of <code class="docutils literal notranslate"><span class="pre">10%</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="tcmu-workflow">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">workflow</a><a class="headerlink" href="#tcmu-workflow" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">tcmu</span> <span class="pre">workflow</span></code> subcommand gives a few tools for reading the statuses of, and clearing of past workflow runs.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>workflow<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<section id="tcmu-workflow-clear">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">clear</a><a class="headerlink" href="#tcmu-workflow-clear" title="Link to this heading">#</a></h4>
+<p>Clears data related to workflow runs.
+Use the <code class="docutils literal notranslate"><span class="pre">name</span></code> argument to specify a specific workflow type or a specific hash when the <code class="docutils literal notranslate"><span class="pre">-h/--hash</span></code> flag is turned on.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>workflow<span class="w"> </span>clear<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>NAME
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-workflow-clear-h">
+<span id="cmdoption-tcmu-workflow-clear-hash"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--hash</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-workflow-clear-h" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-workflow-clear-arg-NAME">
+<span class="sig-name descname"><span class="pre">NAME</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-workflow-clear-arg-NAME" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="tcmu-workflow-status">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">status</a><a class="headerlink" href="#tcmu-workflow-status" title="Link to this heading">#</a></h4>
+<p>Read the statuses of completed and currently running workflow runs.
+Use the <code class="docutils literal notranslate"><span class="pre">name</span></code> argument to specify a specific workflow type or a specific hash when the <code class="docutils literal notranslate"><span class="pre">-h/--hash</span></code> flag is turned on.
+If <code class="docutils literal notranslate"><span class="pre">name</span></code> is not given, prints the statuses of all workflow runs and provides an overview of the number of runs per workflow.
+If the <code class="docutils literal notranslate"><span class="pre">-x/--exit</span></code> flag is set print the status once and then exit immediately. Otherwise, it will update every second.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>workflow<span class="w"> </span>status<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>NAME<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-workflow-status-h">
+<span id="cmdoption-tcmu-workflow-status-hash"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--hash</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-workflow-status-h" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-workflow-status-x">
+<span id="cmdoption-tcmu-workflow-status-exit"></span><span class="sig-name descname"><span class="pre">-x</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--exit</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-workflow-status-x" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tcmu-workflow-status-arg-NAME">
+<span class="sig-name descname"><span class="pre">NAME</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tcmu-workflow-status-arg-NAME" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+<section id="tcmu-workflow-where">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">where</a><a class="headerlink" href="#tcmu-workflow-where" title="Link to this heading">#</a></h4>
+<p>Prints where workflow data is stored.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tcmu<span class="w"> </span>workflow<span class="w"> </span>where<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 </section>
 
@@ -278,11 +708,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="../api/tcutility.data.html"
+       href="../api/tcmu.data.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">tcutility.data package</p>
+        <p class="prev-next-title">tcmu.data package</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -303,20 +733,34 @@
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu">tcmu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-cite">cite</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-concat-irc">concat-irc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-geo">geo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-optimize">optimize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-read">read</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-resize">resize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-workflow">workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-workflow-clear">clear</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-workflow-status">status</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu-workflow-where">where</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/cli_scripts/main.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/cli_scripts/main.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -331,8 +775,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -366,7 +810,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

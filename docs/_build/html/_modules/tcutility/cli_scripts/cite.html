@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.cli_scripts.cite &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.cli_scripts.cite &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.cli_scripts.cite</span></li>
   </ul>
 </nav>
@@ -244,6 +241,16 @@
   <h1>Source code for tcutility.cli_scripts.cite</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Module containing functions for generating citations&quot;&quot;&quot;</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_spec</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">errors</span>
+
+<span class="k">if</span> <span class="n">find_spec</span><span class="p">(</span><span class="s2">&quot;docx&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">MissingOptionalPackageError</span><span class="p">(</span><span class="s2">&quot;docx&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">find_spec</span><span class="p">(</span><span class="s2">&quot;htmldocx&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">MissingOptionalPackageError</span><span class="p">(</span><span class="s2">&quot;htmldocx&quot;</span><span class="p">)</span>
+
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">ceil</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
@@ -253,7 +260,9 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">htmldocx</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">docx.enum.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">WD_ALIGN_PARAGRAPH</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">docx.shared</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">cite</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">spell_check</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">cite</span><span class="p">,</span> <span class="n">spell_check</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">functionals</span>
 
 
 <div class="viewcode-block" id="Docx">
@@ -395,7 +404,7 @@
             <span class="k">raise</span> <span class="n">exp</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  [</span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">citation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">paragraph</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">doi_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">doi</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">] </span><span class="si">{</span><span class="n">cite</span><span class="o">.</span><span class="n">cite</span><span class="p">(</span><span class="n">doi</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;html&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">doi_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">doi</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">cite</span><span class="o">.</span><span class="n">cite</span><span class="p">(</span><span class="n">doi</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">paragraphs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">paragraph</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">paragraphs</span></div>
@@ -476,7 +485,7 @@
 <span class="sd">    Methodology D3BJ</span>
 <span class="sd">      [10.1002/jcc.21759] S. Grimme, S. Ehrlich, L. Goerigk, J. Comput. Chem. 2011, 32, 1456-1465.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">available_citations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">program_references</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">methodology_references</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">functionals</span><span class="o">.</span><span class="n">functionals</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">available_citations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">program_references</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">methodology_references</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">functionals</span><span class="o">.</span><span class="n">functionals</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="k">if</span> <span class="n">list_citations</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OBJECTS WITH AVAILABLE REFERENCES:&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Programs&quot;</span><span class="p">)</span>
@@ -493,7 +502,7 @@
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Functionals&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    ===========&quot;</span><span class="p">)</span>
-        <span class="n">printables</span> <span class="o">=</span> <span class="p">[</span><span class="n">xc_info</span><span class="o">.</span><span class="n">path_safe_name</span> <span class="k">for</span> <span class="n">xc</span><span class="p">,</span> <span class="n">xc_info</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">functionals</span><span class="o">.</span><span class="n">functionals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xc_info</span><span class="o">.</span><span class="n">dois</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+        <span class="n">printables</span> <span class="o">=</span> <span class="p">[</span><span class="n">xc_info</span><span class="o">.</span><span class="n">path_safe_name</span> <span class="k">for</span> <span class="n">xc</span><span class="p">,</span> <span class="n">xc_info</span> <span class="ow">in</span> <span class="n">functionals</span><span class="o">.</span><span class="n">functionals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xc_info</span><span class="o">.</span><span class="n">dois</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
         <span class="n">_print_rect_list</span><span class="p">(</span><span class="n">printables</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">()</span>
 
@@ -510,7 +519,7 @@
             <span class="n">paragraphs</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># try to format a functional</span>
             <span class="n">paragraph_title</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">xc_info</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">functionals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                <span class="n">xc_info</span> <span class="o">=</span> <span class="n">functionals</span><span class="o">.</span><span class="n">get_functional</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Functional&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
                 <span class="n">paragraph_title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XC-Functional: &lt;b&gt;</span><span class="si">{</span><span class="n">xc_info</span><span class="o">.</span><span class="n">name_html</span><span class="si">}</span><span class="s2">&lt;/b&gt;&quot;</span>
                 <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">format_paragraph</span><span class="p">(</span><span class="n">xc_info</span><span class="o">.</span><span class="n">dois</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span>

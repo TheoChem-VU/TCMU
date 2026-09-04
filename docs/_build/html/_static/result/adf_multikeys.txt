@@ -1,7 +1,7 @@
 files.root
+files.log
 files.out
 files.err
-files.log
 files.adf.rkf
 files.ams.rkf
 engine
@@ -22,6 +22,9 @@ ams_version.date
 timing.cpu
 timing.sys
 timing.total
+timing.nprocs
+timing.last_update
+timing.start_time
 status.fatal
 status.name
 status.code
@@ -83,6 +86,7 @@ properties.dipole_vector
 properties.dipole_moment
 properties.quadrupole_moment
 properties.dens_at_atom
+properties.excitations
 level.xc.functional
 level.xc.category
 level.xc.dispersion

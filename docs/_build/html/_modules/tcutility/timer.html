@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.timer &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.timer &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.timer</span></li>
   </ul>
 </nav>
@@ -242,55 +239,81 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.timer</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">perf_counter</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">atexit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">perf_counter</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">listfunc</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">atexit</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tcutility.log</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Implements a decorator and context manager that records and stores the number of times a function</span>
 <span class="sd">has been called and also the amount of time taken in total/per call</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="n">times</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">exec_start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
 
 <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 
+<span class="n">timer_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
+
 
 <div class="viewcode-block" id="timer">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.timer.timer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">timer</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The main timer class. It acts both as a context-manager and decorator.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: a custom name to give to the function.</span>
+<span class="sd">            level: the level at which to record timings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">level</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">FunctionType</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">&lt;</span> <span class="n">timer_level</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">name</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">name</span>
-            <span class="n">times</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;calls&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;timings&#39;</span><span class="p">:</span> <span class="p">[]})</span>
-        <span class="k">else</span><span class="p">:</span>
+            <span class="n">times</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;calls&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;timings&quot;</span><span class="p">:</span> <span class="p">[]})</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-            <span class="n">times</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;calls&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;timings&#39;</span><span class="p">:</span> <span class="p">[]})</span>
+            <span class="n">times</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;calls&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;timings&quot;</span><span class="p">:</span> <span class="p">[]})</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">times</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;calls&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">times</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;timings&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
+        <span class="n">times</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;calls&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">times</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">times</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;calls&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;timings&#39;</span><span class="p">:</span> <span class="p">[]})</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">FunctionType</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">&lt;</span> <span class="n">timer_level</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">times</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;calls&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;timings&quot;</span><span class="p">:</span> <span class="p">[]})</span>
+            <span class="k">return</span> <span class="bp">self</span>
+
+        <span class="n">times</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;calls&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;timings&quot;</span><span class="p">:</span> <span class="p">[]})</span>
 
         <span class="k">if</span> <span class="n">enabled</span> <span class="ow">and</span> <span class="n">__debug__</span><span class="p">:</span>
             <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
             <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">times</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">][</span><span class="s1">&#39;calls&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">times</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">][</span><span class="s1">&#39;timings&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+            <span class="n">times</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">][</span><span class="s2">&quot;calls&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">times</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">ret</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">objtype</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__call__</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span></div>
 
 
 
@@ -300,12 +323,12 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">enabled</span><span class="p">:</span>
         <span class="k">return</span>
 
-    <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;calls&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="s2">&quot;calls&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span>
 
     <span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="n">names</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
-    <span class="n">names_splits</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+    <span class="n">names_splits</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
 
     <span class="c1"># generate names that are common to multiple names</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names_splits</span><span class="p">):</span>
@@ -320,12 +343,12 @@
                 <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">longest_parent</span><span class="p">)</span>
 
     <span class="n">names</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
-    <span class="n">names_splits</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+    <span class="n">names_splits</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
     <span class="c1"># get the parents:</span>
     <span class="n">parents</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">parent_levels</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">splits</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">names_splits</span><span class="p">)):</span>
-        <span class="n">parent</span> <span class="o">=</span> <span class="s1">&#39;TOTAL&#39;</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="s2">&quot;TOTAL&quot;</span>
         <span class="n">parent_level</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">name_</span><span class="p">,</span> <span class="n">splits_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">names_splits</span><span class="p">[:</span><span class="n">i</span><span class="p">]):</span>
             <span class="k">if</span> <span class="n">listfunc</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">splits</span><span class="p">,</span> <span class="n">splits_</span><span class="p">):</span>
@@ -334,51 +357,81 @@
         <span class="n">parents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="n">parent_levels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent_level</span><span class="p">)</span>
 
-    <span class="n">parent_times</span> <span class="o">=</span> <span class="p">{</span><span class="n">parent</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;timings&#39;</span><span class="p">:</span> <span class="p">[</span><span class="nb">sum</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;timings&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]})[</span><span class="s1">&#39;timings&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">parent</span><span class="p">)])]}</span> <span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">parents</span><span class="p">}</span>
+    <span class="n">parent_times</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{</span><span class="n">parent</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;timings&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">sum</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;timings&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]})[</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">parent</span><span class="p">)])]}</span> <span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">parents</span><span class="p">}</span>
     <span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">parents</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
-            <span class="n">parent_times</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timings&#39;</span><span class="p">:</span> <span class="n">times</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="s1">&#39;timings&#39;</span><span class="p">],</span> <span class="s1">&#39;calls&#39;</span><span class="p">:</span> <span class="n">times</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="s1">&#39;calls&#39;</span><span class="p">]}</span>
-    <span class="n">parent_times</span><span class="p">[</span><span class="s1">&#39;TOTAL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timings&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">exec_start</span><span class="p">],</span> <span class="s1">&#39;calls&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+            <span class="n">parent_times</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;timings&quot;</span><span class="p">:</span> <span class="n">times</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">],</span> <span class="s2">&quot;calls&quot;</span><span class="p">:</span> <span class="n">times</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="s2">&quot;calls&quot;</span><span class="p">]}</span>
+    <span class="n">parent_times</span><span class="p">[</span><span class="s2">&quot;TOTAL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;timings&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">exec_start</span><span class="p">],</span> <span class="s2">&quot;calls&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 
-    <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Function&#39;</span><span class="p">,</span> <span class="s1">&#39;Calls&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean (s)&#39;</span><span class="p">,</span> <span class="s1">&#39;Time Spent (s)&#39;</span><span class="p">,</span> <span class="s1">&#39;Rel. Time&#39;</span><span class="p">]</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Function&quot;</span><span class="p">,</span> <span class="s2">&quot;Calls&quot;</span><span class="p">,</span> <span class="s2">&quot;Mean (s)&quot;</span><span class="p">,</span> <span class="s2">&quot;Time Spent (s)&quot;</span><span class="p">,</span> <span class="s2">&quot;Rel. Time&quot;</span><span class="p">]</span>
     <span class="n">times_</span> <span class="o">=</span> <span class="n">parent_times</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">times_</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">parents</span><span class="p">,</span> <span class="n">parent_levels</span><span class="p">):</span>
         <span class="n">line</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s1">&#39; &gt; &#39;</span> <span class="o">*</span> <span class="n">level</span><span class="p">))</span>  <span class="c1"># function name</span>
+        <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s2">&quot; &gt; &quot;</span> <span class="o">*</span> <span class="n">level</span><span class="p">))</span>  <span class="c1"># function name</span>
         <span class="n">calls</span> <span class="o">=</span> <span class="n">times_</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;calls&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">calls</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">times_</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span>
             <span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">times_</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span>
             <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">calls</span><span class="p">))</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mean</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mean</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">rel</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">times_</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">parent_times</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span>
-            <span class="n">rel_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">times_</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">parent_times</span><span class="p">[</span><span class="s2">&quot;TOTAL&quot;</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span>
+            <span class="n">rel</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">times_</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">parent_times</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+            <span class="n">rel_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">times_</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">parent_times</span><span class="p">[</span><span class="s2">&quot;TOTAL&quot;</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
         <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
             <span class="n">rel</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">rel_total</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="s1">&#39;TOTAL&#39;</span><span class="p">:</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rel_total</span><span class="si">:</span><span class="s1"> &gt;3.0f</span><span class="si">}</span><span class="s1">% (</span><span class="si">{</span><span class="n">rel</span><span class="si">:</span><span class="s1"> &gt;3.0f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="s2">&quot;TOTAL&quot;</span><span class="p">:</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rel_total</span><span class="si">:</span><span class="s2"> &gt;3.0f</span><span class="si">}</span><span class="s2">% (</span><span class="si">{</span><span class="n">rel</span><span class="si">:</span><span class="s2"> &gt;3.0f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rel_total</span><span class="si">:</span><span class="s1"> &gt;3.0f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rel_total</span><span class="si">:</span><span class="s2"> &gt;3.0f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
 
         <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">&#39;TOTAL&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">times_</span><span class="p">[</span><span class="s2">&quot;TOTAL&quot;</span><span class="p">][</span><span class="s2">&quot;timings&quot;</span><span class="p">])</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;100%&#39;</span><span class="p">])</span>
-    
+    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;TOTAL&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">times_</span><span class="p">[</span><span class="s1">&#39;TOTAL&#39;</span><span class="p">][</span><span class="s1">&#39;timings&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;100%&quot;</span><span class="p">])</span>
+
     <span class="n">log</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">hline</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span></div>
 
 
 
 <span class="c1"># this makes sure that the timings are printed when Python quits running</span>
 <span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">print_timings</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+    <span class="nd">@timer</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">a</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">b</span>
+
+    <span class="nd">@timer</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">b</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">b</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">:</span>
+        <span class="nd">@timer</span><span class="p">()</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">a</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="n">a</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">a</span><span class="p">()</span>
 </pre></div>
 
                 </article>

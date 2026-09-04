@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.report.character &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.report.character &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.report.character</span></li>
   </ul>
 </nav>
@@ -244,7 +241,8 @@
   <h1>Source code for tcutility.report.character</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span><span class="p">,</span> <span class="n">log</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tcutility.log</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_load_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
@@ -290,7 +288,7 @@
 
 <div class="viewcode-block" id="get_pixel_width">
 <a class="viewcode-back" href="../../../api/tcutility.report.html#tcutility.report.character.get_pixel_width">[docs]</a>
-<span class="nd">@cache</span><span class="o">.</span><span class="n">cache</span>
+<span class="nd">@cache</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_pixel_width</span><span class="p">(</span><span class="n">character</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;calibri&quot;</span><span class="p">,</span> <span class="n">font_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">11</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the pixel width of a character for a given font and font-size.</span>

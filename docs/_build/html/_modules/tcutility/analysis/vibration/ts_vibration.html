@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.analysis.vibration.ts_vibration &#8212; TCutility v0.16.6 documentation</title>
+    <title>tcutility.analysis.vibration.ts_vibration &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=b93303b6"></script>
+    <script src="../../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.analysis.vibration.ts_vibration</span></li>
   </ul>
 </nav>
@@ -242,14 +239,19 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.analysis.vibration.ts_vibration</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">results</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results.read</span><span class="w"> </span><span class="kn">import</span> <span class="n">read</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;determine_ts_reactioncoordinate&quot;</span><span class="p">,</span> <span class="s2">&quot;avg_relative_bond_length_delta&quot;</span><span class="p">,</span> <span class="s2">&quot;validate_transitionstate&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="avg_relative_bond_length_delta">
-<a class="viewcode-back" href="../../../../api/tcutility.analysis.vibration.html#tcutility.analysis.vibration.ts_vibration.avg_relative_bond_length_delta">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tcutility.analysis.vibration.html#tcutility.avg_relative_bond_length_delta">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">avg_relative_bond_length_delta</span><span class="p">(</span><span class="n">base</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">neg</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">atom1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">atom2</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to calculate relative atom distance change in vibrational mode</span>
 
@@ -271,12 +273,12 @@
 
 
 <div class="viewcode-block" id="determine_ts_reactioncoordinate">
-<a class="viewcode-back" href="../../../../api/tcutility.analysis.vibration.html#tcutility.analysis.vibration.ts_vibration.determine_ts_reactioncoordinate">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">determine_ts_reactioncoordinate</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">results</span><span class="o">.</span><span class="n">Result</span><span class="p">,</span> <span class="n">mode_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bond_tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.28</span><span class="p">,</span> <span class="n">min_delta_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<a class="viewcode-back" href="../../../../api/tcutility.analysis.vibration.html#tcutility.determine_ts_reactioncoordinate">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">determine_ts_reactioncoordinate</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">mode_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bond_tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.28</span><span class="p">,</span> <span class="n">min_delta_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to retrieve reaction coordinate from a given transitionstate, using the first imaginary frequency.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        data: TCutility.results.Result object containing calculation data</span>
+<span class="sd">        data: TCutility.Result object containing calculation data</span>
 <span class="sd">        mode_index: vibrational mode index to analyze</span>
 <span class="sd">        bond_tolerance: parameter for plams.Molecule.guess_bonds() function</span>
 <span class="sd">        min_delta_dist: minimum relative bond length change before qualifying as active atom. If 0, all bond changes are counted</span>
@@ -314,7 +316,7 @@
 
 
 <div class="viewcode-block" id="validate_transitionstate">
-<a class="viewcode-back" href="../../../../api/tcutility.analysis.vibration.html#tcutility.analysis.vibration.ts_vibration.validate_transitionstate">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tcutility.analysis.vibration.html#tcutility.validate_transitionstate">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">validate_transitionstate</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rcatoms</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">analyze_modes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to determine whether a transition state calculation yielded the expected transition state. Checks the reaction coordinates provided by the user (or in the .rkf file User Input section) and compares</span>
 <span class="sd">        this against the reaction coordinates found in the imaginary modes of the transitionstate. If the transitionstate has multiple imaginary frequencies, it is possible to check multiple modes for the expected</span>
@@ -332,7 +334,7 @@
 <span class="sd">        If multiple modes are analyzed, returns True if at least one mode contains the expected reaction coordinates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
     <span class="k">assert</span> <span class="s2">&quot;modes&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">vibrations</span><span class="p">,</span> <span class="s2">&quot;Vibrational data is required, but was not present in .rkf file&quot;</span>
 
     <span class="n">nimag</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">frequencies</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>

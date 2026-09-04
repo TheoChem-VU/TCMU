@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   tcutility.analysis.task_specific
    tcutility.analysis.vdd
    tcutility.analysis.vibration
 
@@ -18,13 +19,13 @@ tcutility.analysis.pyfrag module
 
 .. automodule:: tcutility.analysis.pyfrag
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
 
 .. automodule:: tcutility.analysis
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:

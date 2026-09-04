@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.formula &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.formula &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.formula</span></li>
   </ul>
 </nav>
@@ -243,6 +240,7 @@
                   
   <h1>Source code for tcutility.formula</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
 
 
@@ -280,13 +278,13 @@
 <span class="sd">    Parse and return a string containing a molecular formula that will show up properly in LaTeX, HTML or unicode.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        molecule: ``plams.Molecule`` object or a string that contains the molecular formula to be parsed. </span>
+<span class="sd">        molecule: ``plams.Molecule`` object or a string that contains the molecular formula to be parsed.</span>
 <span class="sd">            It can be either single molecule or a reaction. Molecules should be separated by ``+`` or ``-&gt;``.</span>
 <span class="sd">        mode: the formatter to convert the string to. Should be ``unicode``, ``html``, ``latex``, ``pyplot``.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A string that is formatted to be rendered nicely in either HTML or LaTeX. </span>
-<span class="sd">        In the returned strings any numbers will be subscripted and ``+``, ``-``, ``*`` and ``•`` will be superscripted. </span>
+<span class="sd">        A string that is formatted to be rendered nicely in either HTML or LaTeX.</span>
+<span class="sd">        In the returned strings any numbers will be subscripted and ``+``, ``-``, ``*`` and ``•`` will be superscripted.</span>
 <span class="sd">        For ``latex`` and ``pyplot`` modes we apply ``\\mathrm`` to letters.</span>
 
 <span class="sd">    Examples:</span>
@@ -326,10 +324,10 @@
                 <span class="n">partret</span> <span class="o">=</span> <span class="n">partret</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;₀₁₂₃₄₅₆₇₈₉&quot;</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)])</span>
 
         <span class="n">partret_</span> <span class="o">=</span> <span class="n">partret</span>
-        <span class="n">partret</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">partret</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">partret_</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span> <span class="ow">and</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;latex&quot;</span><span class="p">,</span> <span class="s2">&quot;pyplot&quot;</span><span class="p">]:</span>
-                <span class="n">partret</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;\mathrm</span><span class="se">{{</span><span class="si">{</span><span class="n">char</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span>
+                <span class="n">partret</span> <span class="o">+=</span> <span class="sa">rf</span><span class="s2">&quot;\mathrm</span><span class="se">{{</span><span class="si">{</span><span class="n">char</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">partret</span> <span class="o">+=</span> <span class="n">char</span>
 
@@ -337,16 +335,16 @@
         <span class="k">for</span> <span class="n">sign</span> <span class="ow">in</span> <span class="s2">&quot;+-•&quot;</span><span class="p">:</span>
             <span class="c1"># negative charges should be denoted by em dash and not a normal dash</span>
             <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;latex&quot;</span><span class="p">,</span> <span class="s2">&quot;pyplot&quot;</span><span class="p">]:</span>
-                <span class="n">partret</span> <span class="o">=</span> <span class="n">partret</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;^</span><span class="si">{</span><span class="n">sign</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;—&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">partret</span> <span class="o">=</span> <span class="n">partret</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;^</span><span class="si">{</span><span class="n">sign</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;—&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;html&quot;</span><span class="p">:</span>
-                <span class="n">partret</span> <span class="o">=</span> <span class="n">partret</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;&lt;sup&gt;</span><span class="si">{</span><span class="n">sign</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;—&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&lt;/sup&gt;&#39;</span><span class="p">)</span>
+                <span class="n">partret</span> <span class="o">=</span> <span class="n">partret</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;&lt;sup&gt;</span><span class="si">{</span><span class="n">sign</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;—&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/sup&gt;&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;unicode&quot;</span><span class="p">:</span>
                 <span class="n">partret</span> <span class="o">=</span> <span class="n">partret</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="s2">&quot;⁺⁻•&quot;</span><span class="p">[</span><span class="s2">&quot;+-•&quot;</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">sign</span><span class="p">)])</span>
         <span class="c1"># replace the part in the original string</span>
         <span class="n">molstring</span> <span class="o">=</span> <span class="n">molstring</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">partret</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;pyplot&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">fr</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">molstring</span><span class="si">}</span><span class="s2">$&quot;</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;pyplot&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">rf</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">molstring</span><span class="si">}</span><span class="s2">$&quot;</span>
 
     <span class="k">return</span> <span class="n">molstring</span></div>
 
@@ -357,7 +355,7 @@
     <span class="c1"># mol = plams.Molecule(r&quot;D:\Users\Yuman\Desktop\PhD\TCutility\test\fixtures\chloromethane_sn2_ts\ts sn2.results\output.xyz&quot;)</span>
     <span class="c1"># print(molecule(mol))</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;NMe2*&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">molecule</span><span class="p">(</span><span class="s2">&quot;NMe2*&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;latex&quot;</span><span class="p">))</span>
 </pre></div>
 
                 </article>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.results.dftb &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.results.dftb &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,12 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
-    
-    <li class="breadcrumb-item"><a href="../results.html" class="nav-link">tcutility.results</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.results.dftb</span></li>
   </ul>
 </nav>
@@ -245,8 +239,10 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.results.dftb</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span><span class="p">,</span> <span class="n">Result</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_list</span><span class="p">,</span> <span class="n">constants</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">constants</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.typing_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_list</span>
 
 
 <div class="viewcode-block" id="get_calc_settings">
@@ -258,10 +254,10 @@
 
     <span class="k">assert</span> <span class="n">info</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;dftb&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;This function reads DFTB data, not </span><span class="si">{</span><span class="n">info</span><span class="o">.</span><span class="n">engine</span><span class="si">}</span><span class="s2"> data&quot;</span>
 
-    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="s1">&#39;PESScan&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="s2">&quot;PESScan&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Result</span><span class="p">()</span>
 
-    <span class="k">assert</span> <span class="s2">&quot;dftb.rkf&quot;</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Missing dftb.rkf file, [</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;: &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span><span class="s1">]&#39;</span>
+    <span class="k">assert</span> <span class="s2">&quot;dftb.rkf&quot;</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Missing dftb.rkf file, [</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;: &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span><span class="s2">]&quot;</span>
 
     <span class="n">ret</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
 
@@ -288,10 +284,10 @@
 
     <span class="k">assert</span> <span class="n">info</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;dftb&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;This function reads DFTB data, not </span><span class="si">{</span><span class="n">info</span><span class="o">.</span><span class="n">engine</span><span class="si">}</span><span class="s2"> data&quot;</span>
 
-    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="s1">&#39;PESScan&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="s2">&quot;PESScan&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Result</span><span class="p">()</span>
 
-    <span class="k">assert</span> <span class="s2">&quot;dftb.rkf&quot;</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Missing dftb.rkf file, [</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;: &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span><span class="s1">]&#39;</span>
+    <span class="k">assert</span> <span class="s2">&quot;dftb.rkf&quot;</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Missing dftb.rkf file, [</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;: &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span><span class="s2">]&quot;</span>
 
     <span class="n">reader_dftb</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;dftb.rkf&quot;</span><span class="p">])</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
@@ -308,7 +304,7 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">number_of_properties</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">subtypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Properties&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Subtype(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
         <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Properties&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Type(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-        <span class="k">if</span> <span class="n">types</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Energy&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">types</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Energy&quot;</span><span class="p">:</span>
             <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Properties&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Value(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">HA2KCALMOL</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Properties&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Value(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">))</span>
@@ -317,11 +313,11 @@
     <span class="k">for</span> <span class="n">typ</span><span class="p">,</span> <span class="n">subtyp</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">types</span><span class="p">,</span> <span class="n">subtypes</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
         <span class="n">ret</span><span class="p">[</span><span class="n">typ</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)][</span><span class="n">subtyp</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
-    <span class="k">if</span> <span class="n">ret</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="s1">&#39;DFTB Final Energy&#39;</span><span class="p">]:</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">bond</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="s1">&#39;DFTB Final Energy&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">ret</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="s2">&quot;DFTB Final Energy&quot;</span><span class="p">]:</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">bond</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="s2">&quot;DFTB Final Energy&quot;</span><span class="p">]</span>
 
     <span class="c1"># we also read vibrations</span>
-    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Vibrations&#39;</span><span class="p">,</span> <span class="s1">&#39;nNormalModes&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reader_dftb</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;Vibrations&quot;</span><span class="p">,</span> <span class="s2">&quot;nNormalModes&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reader_dftb</span><span class="p">:</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">number_of_modes</span> <span class="o">=</span> <span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Vibrations&quot;</span><span class="p">,</span> <span class="s2">&quot;nNormalModes&quot;</span><span class="p">)</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Vibrations&quot;</span><span class="p">,</span> <span class="s2">&quot;Frequencies[cm-1]&quot;</span><span class="p">))</span>
         <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;Vibrations&quot;</span><span class="p">,</span> <span class="s2">&quot;Intensities[km/mol]&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reader_dftb</span><span class="p">:</span>
@@ -330,7 +326,7 @@
         <span class="n">ret</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">character</span> <span class="o">=</span> <span class="s2">&quot;minimum&quot;</span> <span class="k">if</span> <span class="n">ret</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">number_of_imag_modes</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;transitionstate&quot;</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">number_of_modes</span><span class="p">):</span>
-            <span class="n">ret</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Vibrations&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;NoWeightNormalMode(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">))</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Vibrations&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;NoWeightNormalMode(</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;Thermodynamics&quot;</span><span class="p">,</span> <span class="s2">&quot;Gibbs free Energy&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reader_dftb</span><span class="p">:</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">gibbs</span> <span class="o">=</span> <span class="n">reader_dftb</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Thermodynamics&quot;</span><span class="p">,</span> <span class="s2">&quot;Gibbs free Energy&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">HA2KCALMOL</span>

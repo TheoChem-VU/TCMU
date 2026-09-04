@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.analysis.vdd.manager &#8212; TCutility v0.16.6 documentation</title>
+    <title>tcutility.analysis.vdd.manager &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=b93303b6"></script>
+    <script src="../../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.analysis.vdd.manager</span></li>
   </ul>
 </nav>
@@ -244,38 +241,28 @@
   <h1>Source code for tcutility.analysis.vdd.manager</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_spec</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">environment</span><span class="p">,</span> <span class="n">errors</span>
+
+<span class="k">if</span> <span class="n">find_spec</span><span class="p">(</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">MissingOptionalPackageError</span><span class="p">(</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">zip_longest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">attrs</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">tcutility.log</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.analysis.vdd</span><span class="w"> </span><span class="kn">import</span> <span class="n">charge</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">VDD_UNITS</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">result</span>
 
 <span class="n">PRINT_FORMAT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;me&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%+.0f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%+.3f</span><span class="s2">&quot;</span><span class="p">}</span>
 
-
-<div class="viewcode-block" id="change_unit_decorator">
-<a class="viewcode-back" href="../../../../api/tcutility.analysis.vdd.html#tcutility.analysis.vdd.manager.change_unit_decorator">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">change_unit_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">current_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="n">current_unit</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">result</span>
-
-    <span class="k">return</span> <span class="n">wrapper</span></div>
-
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;VDDChargeManager&quot;</span><span class="p">,</span> <span class="s2">&quot;create_vdd_charge_manager&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="create_vdd_charge_manager">
@@ -303,23 +290,18 @@
 
 <div class="viewcode-block" id="VDDChargeManager">
 <a class="viewcode-back" href="../../../../api/tcutility.analysis.vdd.html#tcutility.analysis.vdd.manager.VDDChargeManager">[docs]</a>
-<span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">VDDChargeManager</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class to manage the VDD charges. It can be used to print the VDD charges in a nice table and write them to a text file or excel file.&quot;&quot;&quot;</span>
 
-    <span class="n">vdd_charges</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">charge</span><span class="o">.</span><span class="n">VDDCharge</span><span class="p">]]</span>  <span class="c1"># {&quot;vdd&quot;: [VDDCharge, ...], &quot;irrep1&quot;: [VDDCharge, ...], ...}</span>
-    <span class="n">is_fragment_calculation</span><span class="p">:</span> <span class="nb">bool</span>
-    <span class="n">calc_dir</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span>
-    <span class="n">mol_charge</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;e&quot;</span><span class="p">)</span>  <span class="c1"># unit of the VDD charges. Available units are &quot;me&quot; (mili-electrons) and &quot;e&quot; (electrons)</span>
-    <span class="n">irreps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">set</span><span class="p">())</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">__attrs_post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">irreps</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vdd_charges</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vdd_charges</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">charge</span><span class="o">.</span><span class="n">VDDCharge</span><span class="p">]],</span> <span class="n">is_fragment_calculation</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">calc_dir</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">mol_charge</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vdd_charges</span> <span class="o">=</span> <span class="n">vdd_charges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fragment_calculation</span> <span class="o">=</span> <span class="n">is_fragment_calculation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span> <span class="o">=</span> <span class="n">calc_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mol_charge</span> <span class="o">=</span> <span class="n">mol_charge</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;e&quot;</span>  <span class="c1"># unit of the VDD charges. Available units are &quot;me&quot; (mili-electrons) and &quot;e&quot; (electrons)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">irreps</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vdd_charges</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="s2">&quot;me&quot;</span><span class="p">)</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;VDDChargeManager created for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Prints the VDD charges in a nice table. Checks if the calculation is a fragment calculation and prints the summed VDD charges if it is.&quot;&quot;&quot;</span>
@@ -358,18 +340,18 @@
 
 <div class="viewcode-block" id="VDDChargeManager.get_vdd_charges">
 <a class="viewcode-back" href="../../../../api/tcutility.analysis.vdd.html#tcutility.analysis.vdd.manager.VDDChargeManager.get_vdd_charges">[docs]</a>
-    <span class="nd">@change_unit_decorator</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_vdd_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">charge</span><span class="o">.</span><span class="n">VDDCharge</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_vdd_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;me&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">charge</span><span class="o">.</span><span class="n">VDDCharge</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the VDD charges in the specified unit ([me] or [e]).&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vdd_charges</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VDDChargeManager.get_summed_vdd_charges">
 <a class="viewcode-back" href="../../../../api/tcutility.analysis.vdd.html#tcutility.analysis.vdd.manager.VDDChargeManager.get_summed_vdd_charges">[docs]</a>
-    <span class="nd">@change_unit_decorator</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_summed_vdd_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">irreps</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_summed_vdd_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">irreps</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;me&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the summed VDD charges per fragment for the specified unit ([me] or [e]).&quot;&quot;&quot;</span>
-        <span class="n">irreps</span> <span class="o">=</span> <span class="n">irreps</span> <span class="k">if</span> <span class="n">irreps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">irreps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+        <span class="n">irreps</span> <span class="o">=</span> <span class="n">irreps</span> <span class="k">if</span> <span class="n">irreps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">irreps</span><span class="p">)</span>
         <span class="n">summed_vdd_charges</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">for</span> <span class="n">irrep</span> <span class="ow">in</span> <span class="n">irreps</span><span class="p">:</span>
@@ -386,6 +368,7 @@
 <a class="viewcode-back" href="../../../../api/tcutility.analysis.vdd.html#tcutility.analysis.vdd.manager.VDDChargeManager.get_vdd_charges_dataframe">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vdd_charges_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the VDD charges as a pandas DataFrame in a specified unit ([me] or [e]).&quot;&quot;&quot;</span>
+
         <span class="n">frag_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">charge</span><span class="o">.</span><span class="n">frag_index</span> <span class="k">for</span> <span class="n">charge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vdd_charges</span><span class="p">[</span><span class="s2">&quot;vdd&quot;</span><span class="p">]]</span>
         <span class="n">atom_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">charge</span><span class="o">.</span><span class="n">atom_index</span><span class="si">}{</span><span class="n">charge</span><span class="o">.</span><span class="n">atom_symbol</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">charge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vdd_charges</span><span class="p">[</span><span class="s2">&quot;vdd&quot;</span><span class="p">]]</span>
         <span class="n">charges</span> <span class="o">=</span> <span class="p">[[</span><span class="n">charge</span><span class="o">.</span><span class="n">charge</span> <span class="k">for</span> <span class="n">charge</span> <span class="ow">in</span> <span class="n">charges</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">charges</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vdd_charges</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
@@ -443,6 +426,7 @@
 
 <div class="viewcode-block" id="VDDChargeManager.write_to_excel">
 <a class="viewcode-back" href="../../../../api/tcutility.analysis.vdd.html#tcutility.analysis.vdd.manager.VDDChargeManager.write_to_excel">[docs]</a>
+    <span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">write_to_excel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the VDD charges to an excel file. Results are written to two sheets: &quot;VDD charges&quot; and &quot;Summed VDD charges&quot;.&quot;&quot;&quot;</span>
         <span class="n">file</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span> <span class="k">if</span> <span class="n">output_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;vdd_charges_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.xlsx&quot;</span>
@@ -459,8 +443,11 @@
 
 <div class="viewcode-block" id="VDDChargeManager.plot_vdd_charges_per_atom">
 <a class="viewcode-back" href="../../../../api/tcutility.analysis.vdd.html#tcutility.analysis.vdd.manager.VDDChargeManager.plot_vdd_charges_per_atom">[docs]</a>
+    <span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_vdd_charges_per_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot the VDD charges as a bar graph for each irrep.&quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
         <span class="n">file</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span> <span class="k">if</span> <span class="n">output_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;vdd_charges_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.png&quot;</span>
         <span class="n">file</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.png&quot;</span> <span class="k">else</span> <span class="n">file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.molecule &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.molecule &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.molecule</span></li>
   </ul>
 </nav>
@@ -247,9 +244,11 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_list</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">result</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">atom</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">result</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.typing_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_list</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;load&quot;</span><span class="p">,</span> <span class="s2">&quot;save&quot;</span><span class="p">,</span> <span class="s2">&quot;from_string&quot;</span><span class="p">,</span> <span class="s2">&quot;guess_fragments&quot;</span><span class="p">,</span> <span class="s2">&quot;number_of_electrons&quot;</span><span class="p">,</span> <span class="s2">&quot;write_mol_to_xyz_file&quot;</span><span class="p">,</span> <span class="s2">&quot;write_mol_to_amv_file&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="number_of_electrons">
@@ -372,7 +371,7 @@
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.molecule.from_string">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">from_string</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load a molecule from a string. Currently only supports simple XYZ-files, </span>
+<span class="sd">    Load a molecule from a string. Currently only supports simple XYZ-files,</span>
 <span class="sd">    e.g. not extended XYZ-files with flags.</span>
 
 <span class="sd">    Args:</span>
@@ -384,7 +383,7 @@
 <span class="sd">        A new molecule object with the elements and coordinates from the input.</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        </span>
+
 <span class="sd">        .. code-block::</span>
 
 <span class="sd">            s = \&quot;&quot;&quot;</span>
@@ -501,7 +500,7 @@
         <span class="k">for</span> <span class="n">frag_name</span><span class="p">,</span> <span class="n">frag_mol</span> <span class="ow">in</span> <span class="n">fragment_mols</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="c1"># obtain atom indices that belong to the fragment</span>
             <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">index_line</span> <span class="o">=</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;frag_&#39;</span> <span class="o">+</span> <span class="n">frag_name</span><span class="p">])</span>
+            <span class="n">index_line</span> <span class="o">=</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">&quot;frag_&quot;</span> <span class="o">+</span> <span class="n">frag_name</span><span class="p">])</span>
             <span class="c1"># indices are given as lists of integers or strings</span>
             <span class="c1"># string indices would be given as ``N-M``</span>
             <span class="c1"># so we need to treat those specially</span>
@@ -513,7 +512,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fragment index </span><span class="si">{</span><span class="n">indx</span><span class="si">}</span><span class="s2"> could not be parsed.&quot;</span><span class="p">)</span>
             <span class="c1"># add atoms to the fragment molecule</span>
-            <span class="p">[</span><span class="n">frag_mol</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">]</span>
+            <span class="p">[</span><span class="n">frag_mol</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">]</span>
             <span class="c1"># and initialize the flags</span>
             <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">({</span><span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="nb">set</span><span class="p">()})</span>
 
@@ -530,7 +529,7 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fragment_names</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1"># initialize some empty molecules to hold the fragments</span>
         <span class="n">fragment_mols</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">fragment_names</span><span class="p">}</span>
-        <span class="c1"># go trough atoms, if they have a ``frag`` tag behind them </span>
+        <span class="c1"># go trough atoms, if they have a ``frag`` tag behind them</span>
         <span class="c1"># add them to the corresponding molecule</span>
         <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
             <span class="c1"># get the fragment the atom belongs to and add it to the list</span>
@@ -543,7 +542,9 @@
             <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
                 <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">&quot;spinpol&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">(</span><span class="n">fragment_mols</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">(</span><span class="n">fragment_mols</span><span class="p">)</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not guess fragments from the molecule. Please make sure the molecule defines fragments using either of the two supported methods.&quot;</span><span class="p">)</span></div>
 
 
 
@@ -625,7 +626,7 @@
 
 <div class="viewcode-block" id="save">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.molecule.save">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Save a molecule in a custom xyz file format.</span>
 <span class="sd">    Molecule and atom flags can be provided as the &quot;flags&quot; parameter of the object (mol.flags and atom.flags).</span>
 <span class="sd">    &quot;&quot;&quot;</span>

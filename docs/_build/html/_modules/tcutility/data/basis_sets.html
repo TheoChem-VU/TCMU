@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.data.basis_sets &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.data.basis_sets &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.data.basis_sets</span></li>
   </ul>
 </nav>
@@ -244,40 +241,40 @@
   <h1>Source code for tcutility.data.basis_sets</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">data</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">atom</span>
 
-<span class="n">available_basis_sets</span> <span class="o">=</span> <span class="p">{</span> 
-<span class="s1">&#39;ADF&#39;</span><span class="p">:</span> <span class="p">[</span>
-	<span class="s1">&#39;SZ&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;DZ&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;DZP&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;TZP&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;TZ2P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;QZ4P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;mTZ2P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;AUG/ASZ&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;AUG/ADZ&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;AUG/ADZP&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;AUG/ATZP&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;AUG/ATZ2P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;Corr/TZ3P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;Corr/QZ6P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;Corr/ATZ3P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;Corr/AQZ6P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;ET/ET-pVQZ&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;ET/ET-QZ3P&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;ET/ET-QZ3P-1DIFFUSE&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;ET/ET-QZ3P-2DIFFUSE&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;ET/ET-QZ3P-3DIFFUSE&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;TZ2P-J&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;QZ4P-J&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;POLTDDFT/DZ&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;POLTDDFT/DZP&#39;</span><span class="p">,</span>
-	<span class="s1">&#39;POLTDDFT/TZP&#39;</span><span class="p">,</span>
-<span class="p">],</span>
-<span class="s1">&#39;BAND&#39;</span><span class="p">:</span> <span class="p">{},</span>
-<span class="s1">&#39;ORCA&#39;</span><span class="p">:</span> <span class="p">{},</span>
+<span class="n">available_basis_sets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;ADF&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;SZ&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DZ&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DZP&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TZP&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TZ2P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;QZ4P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mTZ2P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;AUG/ASZ&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;AUG/ADZ&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;AUG/ADZP&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;AUG/ATZP&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;AUG/ATZ2P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Corr/TZ3P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Corr/QZ6P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Corr/ATZ3P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Corr/AQZ6P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ET/ET-pVQZ&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ET/ET-QZ3P&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ET/ET-QZ3P-1DIFFUSE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ET/ET-QZ3P-2DIFFUSE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ET/ET-QZ3P-3DIFFUSE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TZ2P-J&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;QZ4P-J&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POLTDDFT/DZ&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POLTDDFT/DZP&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POLTDDFT/TZP&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;BAND&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="s2">&quot;ORCA&quot;</span><span class="p">:</span> <span class="p">{},</span>
 <span class="p">}</span>
 
 
@@ -285,54 +282,54 @@
 <span class="n">data_dir</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="s2">&quot;_atom_data_info&quot;</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">/</span> <span class="s2">&quot;norbs.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">inp</span><span class="p">:</span>
-	<span class="n">_number_of_orbitals</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">_number_of_orbitals</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
 
 <div class="viewcode-block" id="number_of_orbitals">
 <a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.data.basis_sets.number_of_orbitals">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">number_of_orbitals</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">basis_set</span><span class="p">):</span>
-<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">	Get the number of atomic orbitals for a certain element and basis-set.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the number of atomic orbitals for a certain element and basis-set.</span>
 
-<span class="sd">	Args:</span>
-<span class="sd">		element: the element for which to get the number of AOs.</span>
-<span class="sd">		basis_set: the basis-set for which to get the number of AOs.</span>
+<span class="sd">    Args:</span>
+<span class="sd">            element: the element for which to get the number of AOs.</span>
+<span class="sd">            basis_set: the basis-set for which to get the number of AOs.</span>
 
-<span class="sd">	.. warning::</span>
-<span class="sd">		This function currently only works for the following basis-sets: </span>
-<span class="sd">		[``SZ``, ``DZ``, ``DZP``, ``TZP``, ``TZ2P``, ``TZ2P-J``, ``mTZ2P``, ``QZ4P``, ``QZ4P-J``, ``jcpl``].</span>
-<span class="sd">		It also only works for no-frozen-core calculations with ``NOSYM`` symmetry.</span>
-<span class="sd">	&#39;&#39;&#39;</span>
-	<span class="n">symbol</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">atom</span><span class="o">.</span><span class="n">symbol</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-	<span class="k">return</span> <span class="n">_number_of_orbitals</span><span class="p">[</span><span class="n">basis_set</span><span class="p">][</span><span class="n">symbol</span><span class="p">]</span></div>
+<span class="sd">    .. warning::</span>
+<span class="sd">            This function currently only works for the following basis-sets:</span>
+<span class="sd">            [``SZ``, ``DZ``, ``DZP``, ``TZP``, ``TZ2P``, ``TZ2P-J``, ``mTZ2P``, ``QZ4P``, ``QZ4P-J``, ``jcpl``].</span>
+<span class="sd">            It also only works for no-frozen-core calculations with ``NOSYM`` symmetry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">symbol</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">symbol</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_number_of_orbitals</span><span class="p">[</span><span class="n">basis_set</span><span class="p">][</span><span class="n">symbol</span><span class="p">]</span></div>
 
 
 
 <div class="viewcode-block" id="number_of_virtuals">
 <a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.data.basis_sets.number_of_virtuals">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">number_of_virtuals</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">basis_set</span><span class="p">):</span>
-<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">	Get the number of virtual atomic orbitals for a certain element and basis-set.</span>
-<span class="sd">	The number of virtuals is equal to the total number of AOs minus half the number of electrons in the atom.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the number of virtual atomic orbitals for a certain element and basis-set.</span>
+<span class="sd">    The number of virtuals is equal to the total number of AOs minus half the number of electrons in the atom.</span>
 
-<span class="sd">	Args:</span>
-<span class="sd">		element: the element for which to get the number of AOs.</span>
-<span class="sd">		basis_set: the basis-set for which to get the number of AOs.</span>
+<span class="sd">    Args:</span>
+<span class="sd">            element: the element for which to get the number of AOs.</span>
+<span class="sd">            basis_set: the basis-set for which to get the number of AOs.</span>
 
-<span class="sd">	.. warning::</span>
-<span class="sd">		This function currently only works for the following basis-sets: </span>
-<span class="sd">		[``SZ``, ``DZ``, ``DZP``, ``TZP``, ``TZ2P``, ``TZ2P-J``, ``mTZ2P``, ``QZ4P``, ``QZ4P-J``, ``jcpl``].</span>
-<span class="sd">		It also only works for no-frozen-core calculations with ``NOSYM`` symmetry.</span>
-<span class="sd">	&#39;&#39;&#39;</span>
-	<span class="n">num</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">atom</span><span class="o">.</span><span class="n">atom_number</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-	<span class="n">symbol</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">atom</span><span class="o">.</span><span class="n">symbol</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-	<span class="k">return</span> <span class="n">_number_of_orbitals</span><span class="p">[</span><span class="n">basis_set</span><span class="p">][</span><span class="n">symbol</span><span class="p">]</span> <span class="o">-</span> <span class="n">num</span><span class="o">/</span><span class="mi">2</span></div>
+<span class="sd">    .. warning::</span>
+<span class="sd">            This function currently only works for the following basis-sets:</span>
+<span class="sd">            [``SZ``, ``DZ``, ``DZP``, ``TZP``, ``TZ2P``, ``TZ2P-J``, ``mTZ2P``, ``QZ4P``, ``QZ4P-J``, ``jcpl``].</span>
+<span class="sd">            It also only works for no-frozen-core calculations with ``NOSYM`` symmetry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">atom_number</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="n">symbol</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">symbol</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_number_of_orbitals</span><span class="p">[</span><span class="n">basis_set</span><span class="p">][</span><span class="n">symbol</span><span class="p">]</span> <span class="o">-</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">2</span></div>
 
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">number_of_orbitals</span><span class="p">(</span><span class="s1">&#39;Pd&#39;</span><span class="p">,</span> <span class="s1">&#39;DZ&#39;</span><span class="p">))</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">number_of_virtuals</span><span class="p">(</span><span class="s1">&#39;Pd&#39;</span><span class="p">,</span> <span class="s1">&#39;DZ&#39;</span><span class="p">))</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">number_of_orbitals</span><span class="p">(</span><span class="s2">&quot;Pd&quot;</span><span class="p">,</span> <span class="s2">&quot;DZ&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">number_of_virtuals</span><span class="p">(</span><span class="s2">&quot;Pd&quot;</span><span class="p">,</span> <span class="s2">&quot;DZ&quot;</span><span class="p">))</span>
 </pre></div>
 
                 </article>

@@ -17,69 +17,101 @@ tcutility.job.adf module
 
 .. automodule:: tcutility.job.adf
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 tcutility.job.ams module
 ------------------------
 
 .. automodule:: tcutility.job.ams
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 tcutility.job.crest module
 --------------------------
 
 .. automodule:: tcutility.job.crest
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 tcutility.job.dftb module
 -------------------------
 
 .. automodule:: tcutility.job.dftb
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 tcutility.job.generic module
 ----------------------------
 
 .. automodule:: tcutility.job.generic
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
+
+tcutility.job.models module
+---------------------------
+
+.. automodule:: tcutility.job.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 tcutility.job.nmr module
 ------------------------
 
 .. automodule:: tcutility.job.nmr
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 tcutility.job.orca module
 -------------------------
 
 .. automodule:: tcutility.job.orca
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
+
+tcutility.job.workflow module
+-----------------------------
+
+.. automodule:: tcutility.job.workflow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcutility.job.workflow3 module
+------------------------------
+
+.. automodule:: tcutility.job.workflow3
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcutility.job.workflow\_db module
+---------------------------------
+
+.. automodule:: tcutility.job.workflow_db
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 tcutility.job.xtb module
 ------------------------
 
 .. automodule:: tcutility.job.xtb
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
 
 .. automodule:: tcutility.job
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:

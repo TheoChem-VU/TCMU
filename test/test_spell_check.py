@@ -1,4 +1,4 @@
-from tcutility import spell_check
+from tcmu import spell_check
 
 
 def test_wagner_fischer1():

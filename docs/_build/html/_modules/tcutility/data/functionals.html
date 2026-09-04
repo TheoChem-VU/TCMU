@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.data.functionals &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.data.functionals &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.data.functionals</span></li>
   </ul>
 </nav>
@@ -242,23 +239,36 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.data.functionals</h1><div class="highlight"><pre>
-<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Module used for obtaining information about exchange-correlation functionals.</span>
 <span class="sd">For example, it can be useful to obtain</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">results</span><span class="p">,</span> <span class="n">cache</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
 
 <span class="n">j</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;get_functional&quot;</span><span class="p">,</span> <span class="s2">&quot;functional_name_from_path_safe_name&quot;</span><span class="p">,</span> <span class="s2">&quot;get_available_functionals&quot;</span><span class="p">,</span> <span class="s2">&quot;functionals&quot;</span><span class="p">,</span> <span class="s2">&quot;categories&quot;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="get">
-<a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.data.functionals.get">[docs]</a>
-<span class="nd">@cache</span><span class="o">.</span><span class="n">cache</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">functional_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">results</span><span class="o">.</span><span class="n">Result</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># TODO return an explicit, typed Result object with all fields defined</span>
+<span class="c1"># e.g. class FunctionalInfo(Result): # (better: a TypedDict, attrs.define, dataclass, pydantic.BaseModel, ...)</span>
+<span class="c1">#      name: str</span>
+<span class="c1">#      path_safe_name: str</span>
+<span class="c1">#      name_no_disp: str</span>
+<span class="c1">#      category: str</span>
+<span class="c1">#      ...</span>
+
+
+<div class="viewcode-block" id="get_functional">
+<a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.get_functional">[docs]</a>
+<span class="nd">@cache</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_functional</span><span class="p">(</span><span class="n">functional_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return information about a given functional.</span>
 
 <span class="sd">    Args:</span>
@@ -269,22 +279,22 @@
 
 <span class="sd">    .. seealso::</span>
 <span class="sd">        :func:`get_available_functionals` for an overview of the information returned.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">info</span> <span class="o">=</span> <span class="n">functionals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">functional_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">functionals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">functional_name_from_path_safe_name</span><span class="p">(</span><span class="n">functional_name</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Could not find info for functional </span><span class="si">{</span><span class="n">functional_name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not find info for functional </span><span class="si">{</span><span class="n">functional_name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">info</span></div>
 
 
 
 <div class="viewcode-block" id="functional_name_from_path_safe_name">
-<a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.data.functionals.functional_name_from_path_safe_name">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">functional_name_from_path_safe_name</span><span class="p">(</span><span class="n">path_safe_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">results</span><span class="o">.</span><span class="n">Result</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.functional_name_from_path_safe_name">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">functional_name_from_path_safe_name</span><span class="p">(</span><span class="n">path_safe_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return information about a given functional given its path-safe name.</span>
 <span class="sd">    This can be useful when you want to know the functional from a path name.</span>
 
@@ -293,20 +303,21 @@
 
 <span class="sd">    .. seealso::</span>
 <span class="sd">        :func:`get_available_functionals` for an overview of the information returned.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">functional</span><span class="p">,</span> <span class="n">functional_info</span> <span class="ow">in</span> <span class="n">functionals</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">path_safe_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">functional_info</span><span class="o">.</span><span class="n">path_safe_name</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
             <span class="k">return</span> <span class="n">functional</span>
-        <span class="k">elif</span> <span class="n">path_safe_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">functional_info</span><span class="o">.</span><span class="n">path_safe_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">functional</span></div>
+        <span class="k">elif</span> <span class="n">path_safe_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">functional_info</span><span class="o">.</span><span class="n">path_safe_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">functional</span>
 
+    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not find functional with path-safe name </span><span class="si">{</span><span class="n">path_safe_name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="get_available_functionals">
-<a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.data.functionals.get_available_functionals">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.data.html#tcutility.get_available_functionals">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_available_functionals</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function that returns a dictionary of all available XC-functionals.</span>
 
 <span class="sd">    Returns:</span>
@@ -330,19 +341,10 @@
 <span class="sd">                - ``name_latex`` **(str)** - the name of the functional formatted to be used with LaTeX renderers.</span>
 <span class="sd">                - ``name_html`` **(str)** - the name of the functional formatted to be used with HTML renderers.</span>
 <span class="sd">                - ``dois`` **(List[str])** - a list of relevant dois for this functional.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">set_dispersion</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-        <span class="n">disp_map</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;-D4&#39;</span><span class="p">:</span> <span class="s1">&#39;GRIMME4&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;-D3(BJ)&#39;</span><span class="p">:</span> <span class="s1">&#39;GRIMME3 BJDAMP&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;-D3BJ&#39;</span><span class="p">:</span> <span class="s1">&#39;GRIMME3 BJDAMP&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;-D3&#39;</span><span class="p">:</span> <span class="s1">&#39;GRIMME3&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;-dDsC&#39;</span><span class="p">:</span> <span class="s1">&#39;dDsC&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;-dUFF&#39;</span><span class="p">:</span> <span class="s1">&#39;UFF&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;-MBD&#39;</span><span class="p">:</span> <span class="s1">&#39;MBD&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;-MBD@rsSC&#39;</span><span class="p">:</span> <span class="s1">&#39;MBD&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;-D&#39;</span><span class="p">:</span> <span class="s1">&#39;DEFAULT&#39;</span>
-        <span class="p">}</span>
+        <span class="n">disp_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;-D4&quot;</span><span class="p">:</span> <span class="s2">&quot;GRIMME4&quot;</span><span class="p">,</span> <span class="s2">&quot;-D3(BJ)&quot;</span><span class="p">:</span> <span class="s2">&quot;GRIMME3 BJDAMP&quot;</span><span class="p">,</span> <span class="s2">&quot;-D3BJ&quot;</span><span class="p">:</span> <span class="s2">&quot;GRIMME3 BJDAMP&quot;</span><span class="p">,</span> <span class="s2">&quot;-D3&quot;</span><span class="p">:</span> <span class="s2">&quot;GRIMME3&quot;</span><span class="p">,</span> <span class="s2">&quot;-dDsC&quot;</span><span class="p">:</span> <span class="s2">&quot;dDsC&quot;</span><span class="p">,</span> <span class="s2">&quot;-dUFF&quot;</span><span class="p">:</span> <span class="s2">&quot;UFF&quot;</span><span class="p">,</span> <span class="s2">&quot;-MBD&quot;</span><span class="p">:</span> <span class="s2">&quot;MBD&quot;</span><span class="p">,</span> <span class="s2">&quot;-MBD@rsSC&quot;</span><span class="p">:</span> <span class="s2">&quot;MBD&quot;</span><span class="p">,</span> <span class="s2">&quot;-D&quot;</span><span class="p">:</span> <span class="s2">&quot;DEFAULT&quot;</span><span class="p">}</span>
 
         <span class="c1"># set some default values for useful parameters</span>
         <span class="n">func</span><span class="o">.</span><span class="n">name_no_disp</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span>
@@ -361,7 +363,7 @@
                     <span class="k">break</span>
 
                 <span class="c1"># else we set the name of the functional without dispersion for later</span>
-                <span class="n">func</span><span class="o">.</span><span class="n">name_no_disp</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">disp_suffix</span><span class="p">)]</span>
+                <span class="n">func</span><span class="o">.</span><span class="n">name_no_disp</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">disp_suffix</span><span class="p">)]</span>
                 <span class="c1"># get the dispersion settings for ADF. Try to get custom values if they were provided.</span>
                 <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">Dispersion</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">disp_params</span> <span class="ow">or</span> <span class="n">disp_name</span>
                 <span class="k">break</span>
@@ -369,40 +371,40 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">set_functional</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
         <span class="c1"># set the functional settings for ADF</span>
         <span class="c1"># first go through some special functionals that require special settings</span>
-        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name_no_disp</span> <span class="o">==</span> <span class="s1">&#39;BMK&#39;</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">LibXC</span> <span class="o">=</span> <span class="s1">&#39;HYB_MGGA_X_BMK GGA_C_BMK&#39;</span>
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name_no_disp</span> <span class="o">==</span> <span class="s2">&quot;BMK&quot;</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">LibXC</span> <span class="o">=</span> <span class="s2">&quot;HYB_MGGA_X_BMK GGA_C_BMK&quot;</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;LCY-BLYP&#39;</span><span class="p">,</span> <span class="s1">&#39;LCY-BP86&#39;</span><span class="p">,</span> <span class="s1">&#39;LCY-PBE&#39;</span><span class="p">]:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">GGA</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">RANGESEP</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">xcfun</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;LCY-BLYP&quot;</span><span class="p">,</span> <span class="s2">&quot;LCY-BP86&quot;</span><span class="p">,</span> <span class="s2">&quot;LCY-PBE&quot;</span><span class="p">]:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">GGA</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">RANGESEP</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">xcfun</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CAMY-B3LYP&#39;</span><span class="p">]:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">Hybrid</span> <span class="o">=</span> <span class="s1">&#39;CAMY-B3LYP&#39;</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">RANGESEP</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">xcfun</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;CAMY-B3LYP&quot;</span><span class="p">]:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">Hybrid</span> <span class="o">=</span> <span class="s2">&quot;CAMY-B3LYP&quot;</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">RANGESEP</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">xcfun</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;GGA:SSB-D&#39;</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">GGA</span> <span class="o">=</span> <span class="s1">&#39;SSB-D&#39;</span>
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;GGA:SSB-D&quot;</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">GGA</span> <span class="o">=</span> <span class="s2">&quot;SSB-D&quot;</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;MetaGGA:SSB-D&#39;</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">MetaGGA</span> <span class="o">=</span> <span class="s1">&#39;SSB-D&#39;</span>
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;MetaGGA:SSB-D&quot;</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">MetaGGA</span> <span class="o">=</span> <span class="s2">&quot;SSB-D&quot;</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name_no_disp</span> <span class="o">==</span> <span class="s1">&#39;HartreeFock&#39;</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">HartreeFock</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name_no_disp</span> <span class="o">==</span> <span class="s2">&quot;HartreeFock&quot;</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">HartreeFock</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;MP2&#39;</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">MP2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;MP2&quot;</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">MP2</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;SOS-MP2&#39;</span><span class="p">,</span> <span class="s1">&#39;SCS-MP2&#39;</span><span class="p">]:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">MP2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;SOS-MP2&quot;</span><span class="p">,</span> <span class="s2">&quot;SCS-MP2&quot;</span><span class="p">]:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">MP2</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
             <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">EmpiricalScaling</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
             <span class="k">return</span>
 
@@ -413,9 +415,9 @@
             <span class="n">func</span><span class="o">.</span><span class="n">adf_settings</span><span class="o">.</span><span class="n">XC</span><span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_no_disp</span>
 
     <span class="c1"># gather all data about available functionals</span>
-    <span class="n">functionals</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">Result</span><span class="p">()</span>  <span class="c1"># store all info in this dict</span>
+    <span class="n">functionals</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>  <span class="c1"># store all info in this dict</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">j</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;available_functionals.txt&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">j</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;available_functionals.txt&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 
     <span class="c1"># read the references first</span>
@@ -425,10 +427,10 @@
     <span class="c1"># - xcname {options} [refname1][refname2]...</span>
     <span class="n">dois</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">):</span>
             <span class="k">continue</span>
 
-        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
         <span class="n">ref</span><span class="p">,</span> <span class="n">doi</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
         <span class="n">ref</span> <span class="o">=</span> <span class="n">ref</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -440,64 +442,64 @@
             <span class="k">continue</span>
 
         <span class="c1"># and comment lines</span>
-        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">):</span>
             <span class="k">continue</span>
 
         <span class="c1"># we don&#39;t read the references here</span>
-        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">):</span>
             <span class="k">continue</span>
 
         <span class="c1"># functional names are given starting with -</span>
         <span class="c1"># category names without -</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;- &#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;- &quot;</span><span class="p">):</span>
             <span class="n">curr_category</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
             <span class="k">continue</span>
 
-        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
         <span class="c1"># store data about the func in a dict</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">Result</span><span class="p">()</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
         <span class="n">func</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="n">curr_category</span>
         <span class="c1"># separate the functional name from the line</span>
-        <span class="n">functional_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">functional_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;!&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="n">func</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">functional_name</span>
         <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">functional_name</span>
         <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">functional_name</span>
-        <span class="n">func</span><span class="o">.</span><span class="n">path_safe_name</span> <span class="o">=</span> <span class="n">functional_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">path_safe_name</span> <span class="o">=</span> <span class="n">functional_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">functional_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;WB&#39;</span><span class="p">):</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;WB&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\omega$B&#39;</span><span class="p">)</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;WB&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;omega;B&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">functional_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;WB&quot;</span><span class="p">):</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;WB&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\omega$B&quot;</span><span class="p">)</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;WB&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;omega;B&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="s1">&#39;r2SCAN&#39;</span> <span class="ow">in</span> <span class="n">functional_name</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;r2SCAN&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;r$^2$SCAN&#39;</span><span class="p">)</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;r2SCAN&#39;</span><span class="p">,</span> <span class="s1">&#39;r&lt;sup&gt;2&lt;/sup&gt;SCAN&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;r2SCAN&quot;</span> <span class="ow">in</span> <span class="n">functional_name</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;r2SCAN&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;r$^2$SCAN&quot;</span><span class="p">)</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;r2SCAN&quot;</span><span class="p">,</span> <span class="s2">&quot;r&lt;sup&gt;2&lt;/sup&gt;SCAN&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="s1">&#39;and&#39;</span> <span class="ow">in</span> <span class="n">functional_name</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">)</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;amp;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;and&quot;</span> <span class="ow">in</span> <span class="n">functional_name</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;&quot;</span><span class="p">)</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;amp;&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="s1">&#39;*&#39;</span> <span class="ow">in</span> <span class="n">functional_name</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$^*$&#39;</span><span class="p">)</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;sup&gt;*&lt;/sup&gt;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;*&quot;</span> <span class="ow">in</span> <span class="n">functional_name</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$^*$&quot;</span><span class="p">)</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;sup&gt;*&lt;/sup&gt;&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="s1">&#39;B2PIPLYP&#39;</span> <span class="ow">in</span> <span class="n">functional_name</span><span class="p">:</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;B2PIPLYP&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;B2$\pi$PLYP&#39;</span><span class="p">)</span>
-            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;B2PIPLYP&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&amp;pi;PLYP&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;B2PIPLYP&quot;</span> <span class="ow">in</span> <span class="n">functional_name</span><span class="p">:</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_latex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;B2PIPLYP&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;B2$\pi$PLYP&quot;</span><span class="p">)</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">name_html</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">name_html</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;B2PIPLYP&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&amp;pi;PLYP&quot;</span><span class="p">)</span>
 
         <span class="c1"># check if custom params were given for dispersion</span>
-        <span class="k">if</span> <span class="s1">&#39;GRIMME&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;GRIMME&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
             <span class="c1"># func.disp_params = line.split(&#39;!&#39;)[0].split(&#39;,&#39;)[1].strip().strip(&quot;&#39;&quot;)</span>
             <span class="n">func</span><span class="o">.</span><span class="n">disp_params</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&#39;(.*)&#39;&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
 
-        <span class="n">func</span><span class="o">.</span><span class="n">use_libxc</span> <span class="o">=</span> <span class="s1">&#39;!libxc&#39;</span> <span class="ow">in</span> <span class="n">line</span>
-        <span class="n">func</span><span class="o">.</span><span class="n">includes_disp</span> <span class="o">=</span> <span class="s1">&#39;!includesdisp&#39;</span> <span class="ow">in</span> <span class="n">line</span>
-        <span class="n">func</span><span class="o">.</span><span class="n">available_in_adf</span> <span class="o">=</span> <span class="s1">&#39;!noadf&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span>
-        <span class="n">func</span><span class="o">.</span><span class="n">available_in_band</span> <span class="o">=</span> <span class="s1">&#39;!band&#39;</span> <span class="ow">in</span> <span class="n">line</span>
-        <span class="n">func</span><span class="o">.</span><span class="n">available_in_orca</span> <span class="o">=</span> <span class="s1">&#39;!orca&#39;</span> <span class="ow">in</span> <span class="n">line</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">use_libxc</span> <span class="o">=</span> <span class="s2">&quot;!libxc&quot;</span> <span class="ow">in</span> <span class="n">line</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">includes_disp</span> <span class="o">=</span> <span class="s2">&quot;!includesdisp&quot;</span> <span class="ow">in</span> <span class="n">line</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">available_in_adf</span> <span class="o">=</span> <span class="s2">&quot;!noadf&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">available_in_band</span> <span class="o">=</span> <span class="s2">&quot;!band&quot;</span> <span class="ow">in</span> <span class="n">line</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">available_in_orca</span> <span class="o">=</span> <span class="s2">&quot;!orca&quot;</span> <span class="ow">in</span> <span class="n">line</span>
 
         <span class="c1"># get references</span>
-        <span class="n">refs</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\[([a-zA-Z0-9]+)\]&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+        <span class="n">refs</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[([a-zA-Z0-9]+)\]&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
         <span class="n">func</span><span class="o">.</span><span class="n">dois</span> <span class="o">=</span> <span class="p">[</span><span class="n">dois</span><span class="p">[</span><span class="n">ref</span><span class="p">]</span> <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">refs</span><span class="p">]</span>
 
         <span class="n">set_dispersion</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
@@ -508,12 +510,13 @@
     <span class="k">return</span> <span class="n">functionals</span></div>
 
 
+
 <span class="n">functionals</span> <span class="o">=</span> <span class="n">get_available_functionals</span><span class="p">()</span>
 
 <span class="n">categories</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">functional</span> <span class="ow">in</span> <span class="n">functionals</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">get</span><span class="p">(</span><span class="n">functional</span><span class="p">)</span><span class="o">.</span><span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">:</span>
-        <span class="n">categories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="n">functional</span><span class="p">)</span><span class="o">.</span><span class="n">category</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">get_functional</span><span class="p">(</span><span class="n">functional</span><span class="p">)</span><span class="o">.</span><span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">:</span>
+        <span class="n">categories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_functional</span><span class="p">(</span><span class="n">functional</span><span class="p">)</span><span class="o">.</span><span class="n">category</span><span class="p">)</span>
 </pre></div>
 
                 </article>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.log &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.log &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.log</span></li>
   </ul>
 </nav>
@@ -253,7 +250,7 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_2d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.typing_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_2d</span>
 
 <span class="c1"># from threading import Thread</span>
 
@@ -267,6 +264,7 @@
 <span class="n">print_date</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># print time stamp before a logged message</span>
 <span class="n">log_level</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># the level of verbosity. Messages with a log_level &gt;= this number will be sent to logfile</span>
 <span class="n">add_caller_name</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># whether to include the caller name in the message</span>
+
 
 <div class="viewcode-block" id="Emojis">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.log.Emojis">[docs]</a>
@@ -460,6 +458,8 @@
 <span class="sd">    This function prints a list of strings in a rectangle to the output.</span>
 <span class="sd">    This is similar to what the ls program does in unix.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prev_mat</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">prev_col_lens</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">n_shell_col</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">get_terminal_size</span><span class="p">()</span><span class="o">.</span><span class="n">columns</span>
     <span class="c1"># we first have to determine the correct dimensions of our rectangle</span>
     <span class="k">for</span> <span class="n">ncol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_shell_col</span><span class="p">):</span>
@@ -481,7 +481,13 @@
         <span class="n">prev_col_lens</span> <span class="o">=</span> <span class="n">col_lens</span>
         <span class="n">prev_mat</span> <span class="o">=</span> <span class="n">mat</span>
 
-    <span class="c1"># then print the strings with the right column widths</span>
+    <span class="c1"># then print the strings with the right column widths if the prev_mat is not None</span>
+    <span class="k">if</span> <span class="n">prev_mat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">prev_col_lens</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">prev_mat</span><span class="p">:</span>
         <span class="n">log</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">spaces_before</span> <span class="o">+</span> <span class="s2">&quot;  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">col_len</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">col_len</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">prev_col_lens</span><span class="p">)]),</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
 
@@ -534,6 +540,8 @@
 
     <span class="c1"># track when the loading bar started. We use this to calculate the ETA later</span>
     <span class="n">loading_bar_start_time</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># Initialize i to handle case when sequence is empty</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
         <span class="c1"># we only print the loading bar on every Nsteps iterations</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="p">(</span><span class="n">N</span> <span class="o">//</span> <span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Nsteps</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
@@ -564,7 +572,7 @@
             <span class="n">eta</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time_left</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span>
 
         <span class="c1"># build the loading bar string</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">:{</span><span class="n">Ndigits</span><span class="si">}}</span><span class="s1">/</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;├&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;|&quot;</span><span class="si">}{</span><span class="n">filled</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cursor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">empty</span><span class="si">}{</span><span class="s2">&quot;│&quot;</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">i</span><span class="o">/</span><span class="n">N</span><span class="si">:</span><span class="s1">4.0%</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="s1"> [ETA: </span><span class="si">{</span><span class="n">eta</span><span class="si">}</span><span class="s1">s]&#39;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">max_length</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:{</span><span class="n">Ndigits</span><span class="si">}}</span><span class="s2">/</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;├&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="si">}{</span><span class="n">filled</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cursor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">empty</span><span class="si">}{</span><span class="s1">&#39;│&#39;</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">N</span><span class="si">:</span><span class="s2">4.0%</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="s2"> [ETA: </span><span class="si">{</span><span class="n">eta</span><span class="si">}</span><span class="s2">s]&quot;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">max_length</span><span class="p">)</span>
 
         <span class="c1"># update the max loading bar string length</span>
         <span class="n">max_length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">max_length</span><span class="p">)</span>
@@ -573,7 +581,7 @@
         <span class="k">yield</span> <span class="n">val</span>
 
     <span class="c1"># plot the final iteration at 100% filled</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:{</span><span class="n">Ndigits</span><span class="si">}}</span><span class="s1">/</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;├&quot;</span><span class="si">}{</span><span class="s2">&quot;─&quot;</span><span class="o">*</span><span class="p">(</span><span class="n">Nsegments</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">┤ 100% </span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">max_length</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">:{</span><span class="n">Ndigits</span><span class="si">}}</span><span class="s2">/</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;├&#39;</span><span class="si">}{</span><span class="s1">&#39;─&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">Nsegments</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">┤ 100% </span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">max_length</span><span class="p">)</span>
     <span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
     <span class="n">log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
 
@@ -677,7 +685,6 @@
 
 
 
-
 <div class="viewcode-block" id="error">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.log.error">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">error</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">caller_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
@@ -691,7 +698,6 @@
 
 
 
-
 <div class="viewcode-block" id="critical">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.log.critical">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">critical</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">caller_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
@@ -702,7 +708,6 @@
         <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[CRITICAL](</span><span class="si">{</span><span class="n">caller_name</span><span class="p">(</span><span class="n">caller_level</span><span class="p">)</span><span class="si">}</span><span class="s2">): &quot;</span> <span class="o">+</span> <span class="n">message</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">log</span><span class="p">(</span><span class="s2">&quot;[CRITICAL] &quot;</span> <span class="o">+</span> <span class="n">message</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
-
 
 
 

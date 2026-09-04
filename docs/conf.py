@@ -4,7 +4,7 @@ import sys
 import git
 
 current_dir = pl.Path(__file__).parent
-sys.path.insert(0, str(current_dir.parent / "src" / "tcutility"))
+sys.path.insert(0, str(current_dir.parent / "src" / "tcmu"))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -15,7 +15,7 @@ sys.path.insert(0, str(current_dir.parent / "src" / "tcutility"))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "TCutility"
+project = "tcmu"
 copyright = "2024, TheoCheM VU Amsterdam"
 author = "TheoCheM VU Amsterdam"
 
@@ -61,7 +61,7 @@ autodoc_default_options = {
     "autosummary": True,
 }
 
-modindex_common_prefix = ["tcutility"]
+modindex_common_prefix = ["tcmu"]
 
 html_theme_options = {
     # "show_nav_level": 2,
@@ -79,26 +79,26 @@ html_theme = "pydata_sphinx_theme"  # pip install pydata-sphinx-theme
 html_static_path = ["_static"]
 add_module_names = False
 autodoc_member_order = "bysource"
-
+html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }
 # custom variables
 rst_epilog = f"""
-.. |read| replace:: :func:`read <tcutility.results.read>`
-.. |VDDmanager| replace:: :class:`VDDManager <tcutility.analysis.vdd.manager.VDDChargeManager>`
-.. |VDDcharge| replace:: :class:`VDDCharge <tcutility.analysis.vdd.charge.VDDCharge>`
-.. |change_unit| replace:: :func:`change_unit <tcutility.analysis.vdd.manager.VDDChargeManager.change_unit>`
+.. |read| replace:: :func:`read <tcmu.results.read>`
+.. |VDDmanager| replace:: :class:`VDDManager <tcmu.analysis.vdd.manager.VDDChargeManager>`
+.. |VDDcharge| replace:: :class:`VDDCharge <tcmu.analysis.vdd.charge.VDDCharge>`
+.. |change_unit| replace:: :func:`change_unit <tcmu.analysis.vdd.manager.VDDChargeManager.change_unit>`
 .. |ProjectVersion| replace:: {release}
-.. |cm-1| replace:: :math:`\\text{{cm}}^-^1`
-.. |kcal/mol| replace:: :math:`\\text{{kcal mol}}^-^1`
-.. |km/mol| replace:: :math:`\\text{{km mol}}^-^1`
+.. |cm-1| replace:: :math:`\\text{{cm}}^{{–1}}`
+.. |kcal/mol| replace:: :math:`\\text{{kcal mol}}^{{–1}}`
+.. |km/mol| replace:: :math:`\\text{{km mol}}^{{–1}}`
 .. |angstrom| replace:: :math:`\\AA`
-.. |Result| replace:: :class:`Result <tcutility.results.result.Result>`
-.. |Job| replace:: :class:`Job <tcutility.job.generic.Job>`
-.. |ADFJob| replace:: :class:`ADFJob <tcutility.job.adf.ADFJob>`
-.. |ADFFragmentJob| replace:: :class:`ADFFragmentJob <tcutility.job.adf.ADFFragmentJob>`
-.. |DFTBJob| replace:: :class:`DFTBJob <tcutility.job.dftb.DFTBJob>`
-.. |NMRJob| replace:: :class:`NMRJob <tcutility.job.nmr.NMRJob>`
-.. |ORCAJob| replace:: :class:`ORCAJob <tcutility.job.orca.ORCAJob>`
-.. |CRESTJob| replace:: :class:`CRESTJob <tcutility.job.crest.CRESTJob>`
-.. |QCGJob| replace:: :class:`QCGJob <tcutility.job.crest.QCGJob>`
-.. |XTBJob| replace:: :class:`XTBJob <tcutility.job.xtb.XTBJob>`
+.. |Result| replace:: :class:`Result <tcmu.results.result.Result>`
+.. |Job| replace:: :class:`Job <tcmu.job.generic.Job>`
+.. |ADFJob| replace:: :class:`ADFJob <tcmu.job.adf.ADFJob>`
+.. |ADFFragmentJob| replace:: :class:`ADFFragmentJob <tcmu.job.adf.ADFFragmentJob>`
+.. |DFTBJob| replace:: :class:`DFTBJob <tcmu.job.dftb.DFTBJob>`
+.. |NMRJob| replace:: :class:`NMRJob <tcmu.job.nmr.NMRJob>`
+.. |ORCAJob| replace:: :class:`ORCAJob <tcmu.job.orca.ORCAJob>`
+.. |CRESTJob| replace:: :class:`CRESTJob <tcmu.job.crest.CRESTJob>`
+.. |QCGJob| replace:: :class:`QCGJob <tcmu.job.crest.QCGJob>`
+.. |XTBJob| replace:: :class:`XTBJob <tcmu.job.xtb.XTBJob>`
 """

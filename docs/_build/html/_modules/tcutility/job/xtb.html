@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.job.xtb &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.job.xtb &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.job.xtb</span></li>
   </ul>
 </nav>
@@ -242,190 +239,191 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.job.xtb</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.job.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Job</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">spell_check</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">spell_check</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.job.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Job</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;XTBJob&quot;</span><span class="p">]</span>
 
 <span class="n">j</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
 
 
 <div class="viewcode-block" id="XTBJob">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">XTBJob</span><span class="p">(</span><span class="n">Job</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">xtb_path</span> <span class="o">=</span> <span class="s1">&#39;xtb&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;coords.xyz&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xtb_path</span> <span class="o">=</span> <span class="s2">&quot;xtb&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;coords.xyz&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_setup_job</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;coords.xyz&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s2">&quot;coords.xyz&quot;</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;scan.inp&#39;</span><span class="p">),</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">scaninp</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s2">&quot;scan.inp&quot;</span><span class="p">),</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">scaninp</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="n">scaninp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="n">scaninp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
-                        <span class="n">scaninp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;    </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-                <span class="n">scaninp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;$end</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="n">scaninp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">scaninp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;$end</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">runfile_path</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">runf</span><span class="p">:</span>
-            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#!/bin/sh</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># the shebang is not written by default by ADF</span>
-            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_preambles</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">xtb_path</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">options</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_postambles</span><span class="p">))</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">runfile_path</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">runf</span><span class="p">:</span>
+            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;#!/bin/sh</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># the shebang is not written by default by ADF</span>
+            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_preambles</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">xtb_path</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">options</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_postambles</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="XTBJob.model">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob.model">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob.model">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the method used by XTB. This includes GFN0-xTB, GFN1-xTB, GFN2-xTB and GFNFF.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            method: the method to use. Can be specified by its full name, e.g. &#39;GFN2-xTB&#39;, is the same as &#39;GFN2&#39; or simply 2.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&gt;=</span> <span class="n">method</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;GFN</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1">-xTB does not exist. Please choose one of GFN[0, 1, 2]-xTB.&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;--gfn </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GFN</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">-xTB does not exist. Please choose one of GFN[0, 1, 2]-xTB.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--gfn </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;gfn0&#39;</span><span class="p">,</span> <span class="s1">&#39;gfn0-xtb&#39;</span><span class="p">]:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--gfn 0&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;gfn0&quot;</span><span class="p">,</span> <span class="s2">&quot;gfn0-xtb&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--gfn 0&quot;</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;gfn1&#39;</span><span class="p">,</span> <span class="s1">&#39;gfn1-xtb&#39;</span><span class="p">]:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--gfn 1&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;gfn1&quot;</span><span class="p">,</span> <span class="s2">&quot;gfn1-xtb&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--gfn 1&quot;</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;gfn2&#39;</span><span class="p">,</span> <span class="s1">&#39;gfn2-xtb&#39;</span><span class="p">]:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--gfn 2&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;gfn2&quot;</span><span class="p">,</span> <span class="s2">&quot;gfn2-xtb&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--gfn 2&quot;</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;gfnff&#39;</span><span class="p">,</span> <span class="s1">&#39;ff&#39;</span><span class="p">]:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--gfnff&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;gfnff&quot;</span><span class="p">,</span> <span class="s2">&quot;ff&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--gfnff&quot;</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Did not recognize the method </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1"> for XTB.&#39;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Did not recognize the method </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> for XTB.&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="XTBJob.solvent">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob.solvent">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">solvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;alpb&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob.solvent">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">solvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;alpb&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Model solvation using the ALPB or GBSA model.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name: the name of the solvent you want to use. Must be ``None``, ``Acetone``, ``Acetonitrile``, ``CHCl3``, ``CS2``, ``DMSO``, ``Ether``, ``H2O``, ``Methanol``, ``THF`` or ``Toluene``.</span>
 <span class="sd">            grid_size: the size of the grid used to construct the solvent accessible surface. Must be ``230``, ``974``, ``2030`` or ``5810``.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;alpb&#39;</span><span class="p">,</span> <span class="s1">&#39;gbsa&#39;</span><span class="p">],</span> <span class="n">ignore_case</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;--</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;alpb&quot;</span><span class="p">,</span> <span class="s2">&quot;gbsa&quot;</span><span class="p">],</span> <span class="n">ignore_case</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="XTBJob.spin_polarization">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob.spin_polarization">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob.spin_polarization">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">spin_polarization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the spin-polarization of the system.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;-u </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;-u </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="XTBJob.multiplicity">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob.multiplicity">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob.multiplicity">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">multiplicity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the multiplicity of the system. If the value is not one the calculation will also be unrestricted.</span>
 <span class="sd">        We use the following values:</span>
-<span class="sd">        </span>
+
 <span class="sd">        1) singlet</span>
 <span class="sd">        2) doublet</span>
 <span class="sd">        3) triplet</span>
 <span class="sd">        4) ...</span>
 
 <span class="sd">        The multiplicity is equal to 2*S+1 for spin-polarization of S.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;-u </span><span class="si">{</span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;-u </span><span class="si">{</span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="XTBJob.charge">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob.charge">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob.charge">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">charge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the charge of the system.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;-c </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;-c </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="XTBJob.vibrations">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob.vibrations">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob.vibrations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">vibrations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--hess&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--hess&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="XTBJob.optimization">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob.optimization">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Normal&#39;</span><span class="p">,</span> <span class="n">calculate_hess</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob.optimization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="n">calculate_hess</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Do a geometry optimization and calculate the normal modes of the input structure.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Args:</span>
-<span class="sd">            quality: the convergence criteria of the optimization. </span>
+<span class="sd">            quality: the convergence criteria of the optimization.</span>
 <span class="sd">                See https://xtb-docs.readthedocs.io/en/latest/optimization.html#optimization-levels.</span>
 <span class="sd">            calculate_hess: whether to calculate the Hessian and do a normal mode analysis after optimization.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">quality</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;crude&#39;</span><span class="p">,</span> <span class="s1">&#39;sloppy&#39;</span><span class="p">,</span> <span class="s1">&#39;loose&#39;</span><span class="p">,</span> <span class="s1">&#39;lax&#39;</span><span class="p">,</span> <span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="s1">&#39;vtight&#39;</span><span class="p">,</span> <span class="s1">&#39;extreme&#39;</span><span class="p">],</span> <span class="n">ignore_case</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">quality</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;crude&quot;</span><span class="p">,</span> <span class="s2">&quot;sloppy&quot;</span><span class="p">,</span> <span class="s2">&quot;loose&quot;</span><span class="p">,</span> <span class="s2">&quot;lax&quot;</span><span class="p">,</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="s2">&quot;vtight&quot;</span><span class="p">,</span> <span class="s2">&quot;extreme&quot;</span><span class="p">],</span> <span class="n">ignore_case</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">calculate_hess</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;--ohess </span><span class="si">{</span><span class="n">quality</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--ohess </span><span class="si">{</span><span class="n">quality</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;--opt </span><span class="si">{</span><span class="n">quality</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--opt </span><span class="si">{</span><span class="n">quality</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="XTBJob.PESScan">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.xtb.XTBJob.PESScan">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">PESScan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distances</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">angles</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">dihedrals</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">npoints</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">quality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Normal&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;concerted&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.XTBJob.PESScan">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">PESScan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distances</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">angles</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">dihedrals</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">npoints</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">quality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;concerted&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the task of the job to potential energy surface scan (PESScan).</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            distances: sequence of tuples or lists containing ``[atom_index1, atom_index2, start, end]``. </span>
+<span class="sd">            distances: sequence of tuples or lists containing ``[atom_index1, atom_index2, start, end]``.</span>
 <span class="sd">                Atom indices start at 1. Distances are given in |angstrom|.</span>
-<span class="sd">            angles: sequence of tuples or lists containing ``[atom_index1, atom_index2, atom_index3, start, end]``. </span>
+<span class="sd">            angles: sequence of tuples or lists containing ``[atom_index1, atom_index2, atom_index3, start, end]``.</span>
 <span class="sd">                Atom indices start at 1. Angles are given in degrees</span>
-<span class="sd">            dihedrals: sequence of tuples or lists containing ``[atom_index1, atom_index2, atom_index3, atom_index4, start, end]``. </span>
+<span class="sd">            dihedrals: sequence of tuples or lists containing ``[atom_index1, atom_index2, atom_index3, atom_index4, start, end]``.</span>
 <span class="sd">                Atom indices start at 1. Angles are given in degrees</span>
 <span class="sd">            npoints: the number of PES points to optimize.</span>
 
 <span class="sd">        .. note::</span>
-<span class="sd">            Currently we only support generating settings for 1-dimensional PESScans. </span>
+<span class="sd">            Currently we only support generating settings for 1-dimensional PESScans.</span>
 <span class="sd">            We will add support for N-dimensional PESScans later.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimization</span><span class="p">(</span><span class="n">quality</span><span class="o">=</span><span class="n">quality</span><span class="p">,</span> <span class="n">calculate_hess</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--input scan.inp&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--input scan.inp&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;scan&#39;</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;mode=</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;scan&quot;</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mode=</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span>
         <span class="c1"># self._scan.setdefault(&#39;opt&#39;, [f&#39;maxcycles=50&#39;])</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">distances</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="p">[</span><span class="s1">&#39;scan&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;distance: </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">; </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">npoints</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="p">[</span><span class="s2">&quot;scan&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;distance: </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">; </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">npoints</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">i</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="p">[</span><span class="s1">&#39;scan&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;angle: </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">; </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">npoints</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="p">[</span><span class="s2">&quot;scan&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;angle: </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">; </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">npoints</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dihedrals</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">i</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="p">[</span><span class="s1">&#39;scan&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dihedral: </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s1">; </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">npoints</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="p">[</span><span class="s2">&quot;scan&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dihedral: </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">; </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">npoints</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">output_mol_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="si">}</span><span class="s1">/xtbopt.xyz&#39;</span></div>
-
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="si">}</span><span class="s2">/xtbopt.xyz&quot;</span></div>
 
 </pre></div>
 

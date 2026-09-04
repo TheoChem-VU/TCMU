@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.environment &#8212; TCutility v0.16.6 documentation</title>
+    <title>tcutility.environment &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=b93303b6"></script>
+    <script src="../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.environment</span></li>
   </ul>
 </nav>
@@ -242,43 +239,36 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.environment</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">auto</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">connect</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_spec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">errors</span>
 
 
-<div class="viewcode-block" id="OSName">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.environment.OSName">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">OSName</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="requires_optional_package">
+<a class="viewcode-back" href="../../api/tcutility.html#tcutility.environment.requires_optional_package">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">requires_optional_package</span><span class="p">(</span><span class="n">package_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">os_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    An enumeration of the different operating systems.</span>
+<span class="sd">    Ensures a given package is available before running a function, otherwise raises an ImportError.</span>
+<span class="sd">    This can be used to check for optional dependencies which are required for specific functionality.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        package_name (str): name of the required package</span>
+<span class="sd">        os_name (Optional[str]): name of the os that this package must be specified on, if omitted defaults to all os</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">WINDOWS</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-    <span class="n">LINUX</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-    <span class="n">MACOS</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">os_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">os_name</span><span class="p">)</span> <span class="ow">and</span> <span class="n">find_spec</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">MissingOptionalPackageError</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
+        <span class="k">return</span> <span class="n">wrapper</span>
 
-
-<div class="viewcode-block" id="get_os_name">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.environment.get_os_name">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_os_name</span><span class="p">(</span><span class="n">server</span><span class="p">:</span> <span class="n">connect</span><span class="o">.</span><span class="n">Server</span> <span class="o">=</span> <span class="n">connect</span><span class="o">.</span><span class="n">Local</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">OSName</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get the name of the operating system. Returns a value from the :class:`OSName &lt;tcutility.environment.OSName&gt;` enumeration.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># if we are connected to a server we are on linux</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">connect</span><span class="o">.</span><span class="n">Local</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">OSName</span><span class="o">.</span><span class="n">LINUX</span>
-
-    <span class="n">os_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span>
-    <span class="k">if</span> <span class="n">os_name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">OSName</span><span class="o">.</span><span class="n">WINDOWS</span>
-    <span class="k">elif</span> <span class="n">os_name</span> <span class="o">==</span> <span class="s2">&quot;posix&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">OSName</span><span class="o">.</span><span class="n">LINUX</span>
-    <span class="k">elif</span> <span class="n">os_name</span> <span class="o">==</span> <span class="s2">&quot;mac&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">OSName</span><span class="o">.</span><span class="n">MACOS</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown operating system: </span><span class="si">{</span><span class="n">os_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">decorator</span></div>
 
 </pre></div>
 

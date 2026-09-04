@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.cite &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.cite &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.cite</span></li>
   </ul>
 </nav>
@@ -242,237 +239,246 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.cite</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">spell_check</span><span class="p">,</span> <span class="n">cache</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">environment</span><span class="p">,</span> <span class="n">spell_check</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cite&quot;</span><span class="p">]</span>
 
 
 <span class="c1"># @cache.cache_file(&#39;dois&#39;)</span>
-<span class="nd">@cache</span><span class="o">.</span><span class="n">cache</span>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
+<span class="nd">@cache</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_doi_data</span><span class="p">(</span><span class="n">doi</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">	Get information about an article using the crossref.org API.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get information about an article using the crossref.org API.</span>
 
-<span class="sd">	Args:</span>
-<span class="sd">		doi: the DOI to get information about.</span>
-<span class="sd">	&#39;&#39;&#39;</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;http://api.crossref.org/works/</span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-	<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;http://api.crossref.org/works/</span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-	<span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s1">&#39;Resource not found.&#39;</span><span class="p">:</span>
-		<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Could not find DOI </span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-	<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-	<span class="k">return</span> <span class="n">data</span>
+<span class="sd">    Args:</span>
+<span class="sd">            doi: the DOI to get information about.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://api.crossref.org/works/</span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://api.crossref.org/works/</span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s2">&quot;Resource not found.&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not find DOI </span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span>
 
 
 <span class="c1"># @cache.cache_file(&#39;journal_abbrvs&#39;)</span>
-<span class="nd">@cache</span><span class="o">.</span><span class="n">cache</span>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">)</span>
+<span class="nd">@cache</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_journal_abbreviation</span><span class="p">(</span><span class="n">journal</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">	Get the journal name abbreviation using the abbreviso API.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the journal name abbreviation using the abbreviso API.</span>
 
-<span class="sd">	Args:</span>
-<span class="sd">		journal: the name of the journal to get the abbreviation of.</span>
-<span class="sd">	&#39;&#39;&#39;</span>
-	<span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://abbreviso.toolforge.org/a/</span><span class="si">{</span><span class="n">journal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="sd">    Args:</span>
+<span class="sd">            journal: the name of the journal to get the abbreviation of.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://abbreviso.toolforge.org/a/</span><span class="si">{</span><span class="n">journal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 
 
-<span class="nd">@cache</span><span class="o">.</span><span class="n">cache</span>
+<span class="nd">@cache</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_publisher_city</span><span class="p">(</span><span class="n">publisher</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">	Get the city of a publisher.</span>
-<span class="sd">	&#39;&#39;&#39;</span>
-	<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;cite&#39;</span><span class="p">,</span> <span class="s1">&#39;_publisher_cities.json&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">cities</span><span class="p">:</span>
-		<span class="n">cities</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">cities</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-	<span class="k">return</span> <span class="n">cities</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the city of a publisher.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;cite&quot;</span><span class="p">,</span> <span class="s2">&quot;_publisher_cities.json&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">cities</span><span class="p">:</span>
+        <span class="n">cities</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">cities</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">cities</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="cite">
 <a class="viewcode-back" href="../../api/tcutility.html#tcutility.cite.cite">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">cite</span><span class="p">(</span><span class="n">doi</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;wiley&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">	Format an article in a certain style.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cite</span><span class="p">(</span><span class="n">doi</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;wiley&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;html&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Format an article in a certain style.</span>
 
-<span class="sd">	Args:</span>
-<span class="sd">		doi: the article DOI to generate a citation for.</span>
-<span class="sd">		style: the style formatting to use. Can be ``[&#39;wiley&#39;, &#39;acs&#39;, &#39;rsc&#39;]``.</span>
-<span class="sd">		mode: the formatting mode. Can be ``[&#39;html&#39;, &#39;latex&#39;, &#39;plain&#39;]``.</span>
-<span class="sd">	&#39;&#39;&#39;</span>
-	<span class="c1"># check if the style was correctly given</span>
-	<span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;wiley&#39;</span><span class="p">,</span> <span class="s1">&#39;acs&#39;</span><span class="p">,</span> <span class="s1">&#39;rsc&#39;</span><span class="p">])</span>
-	<span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="s1">&#39;plain&#39;</span><span class="p">])</span>
+<span class="sd">    Args:</span>
+<span class="sd">            doi: the article DOI to generate a citation for.</span>
+<span class="sd">            style: the style formatting to use. Can be ``[&#39;wiley&#39;, &#39;acs&#39;, &#39;rsc&#39;]``.</span>
+<span class="sd">            mode: the formatting mode. Can be ``[&#39;html&#39;, &#39;latex&#39;, &#39;plain&#39;]``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check if the style was correctly given</span>
+    <span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;wiley&quot;</span><span class="p">,</span> <span class="s2">&quot;acs&quot;</span><span class="p">,</span> <span class="s2">&quot;rsc&quot;</span><span class="p">])</span>
+    <span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;html&quot;</span><span class="p">,</span> <span class="s2">&quot;latex&quot;</span><span class="p">,</span> <span class="s2">&quot;plain&quot;</span><span class="p">])</span>
 
-	<span class="c1"># get the information about the DOI</span>
-	<span class="n">data</span> <span class="o">=</span> <span class="n">_get_doi_data</span><span class="p">(</span><span class="n">doi</span><span class="p">)</span>
+    <span class="c1"># get the information about the DOI</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">_get_doi_data</span><span class="p">(</span><span class="n">doi</span><span class="p">)</span>
+    <span class="n">citation</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-	<span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;journal-article&#39;</span><span class="p">:</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">_format_article</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">style</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;journal-article&quot;</span><span class="p">:</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">_format_article</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">style</span><span class="p">)</span>
 
-	<span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;book-chapter&#39;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;other&#39;</span> <span class="ow">and</span> <span class="s1">&#39;ISBN&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]):</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">_format_book_chapter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">style</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;book-chapter&quot;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;other&quot;</span> <span class="ow">and</span> <span class="s2">&quot;ISBN&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]):</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">_format_book_chapter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">style</span><span class="p">)</span>
 
-	<span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;plain&#39;</span><span class="p">:</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;i&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;/i&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;b&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;/b&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;plain&quot;</span><span class="p">:</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;i&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/i&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;b&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/b&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
-	<span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;latex&#39;</span><span class="p">:</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;i&gt;&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\textit{&#39;</span><span class="p">)</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;/i&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;b&gt;&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\textbf{&#39;</span><span class="p">)</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;/b&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;latex&quot;</span><span class="p">:</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;i&gt;&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\textit{&quot;</span><span class="p">)</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/i&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;}&quot;</span><span class="p">)</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;b&gt;&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\textbf{&quot;</span><span class="p">)</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/b&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;}&quot;</span><span class="p">)</span>
 
-	<span class="k">return</span> <span class="n">citation</span></div>
+    <span class="k">return</span> <span class="n">citation</span></div>
 
 
 
-<div class="viewcode-block" id="get_pages">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.cite.get_pages">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_pages</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-	<span class="k">try</span><span class="p">:</span>
-		<span class="n">pages</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;–&#39;</span><span class="p">)</span>
-		<span class="k">return</span> <span class="n">pages</span>
-	<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-		<span class="n">pages</span> <span class="o">=</span> <span class="s1">&#39;???&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">pages</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;page&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;–&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pages</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="n">pages</span> <span class="o">=</span> <span class="s2">&quot;???&quot;</span>
 
-	<span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;URL&#39;</span><span class="p">]</span>
-	<span class="k">if</span> <span class="s1">&#39;ceur.&#39;</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
-		<span class="k">return</span> <span class="s1">&#39;e&#39;</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;ceur.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;URL&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;ceur.&quot;</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;e&quot;</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;ceur.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
 
-
-<div class="viewcode-block" id="is_accepted">
-<a class="viewcode-back" href="../../api/tcutility.html#tcutility.cite.is_accepted">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">is_accepted</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-	<span class="k">for</span> <span class="n">assertion</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;assertion&#39;</span><span class="p">,</span> <span class="p">[]):</span>
-		<span class="k">if</span> <span class="n">assertion</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;accepted&#39;</span><span class="p">:</span>
-			<span class="k">return</span> <span class="kc">True</span>
-	<span class="k">return</span> <span class="kc">False</span></div>
-
+    <span class="k">for</span> <span class="n">assertion</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;assertion&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="k">if</span> <span class="n">assertion</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;accepted&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_format_article</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-	<span class="c1"># grab usefull data</span>
-	<span class="n">journal</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;container-title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-	<span class="n">journal_abbreviation</span> <span class="o">=</span> <span class="n">_get_journal_abbreviation</span><span class="p">(</span><span class="n">journal</span><span class="p">)</span>
-	<span class="n">year</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;issued&#39;</span><span class="p">][</span><span class="s1">&#39;date-parts&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-	<span class="n">volume</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;volume&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-	<span class="n">pages</span> <span class="o">=</span> <span class="n">get_pages</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-	<span class="n">title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-	<span class="n">doi</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;DOI&#39;</span><span class="p">]</span>
+    <span class="c1"># grab usefull data</span>
+    <span class="n">journal</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;container-title&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">journal_abbreviation</span> <span class="o">=</span> <span class="n">_get_journal_abbreviation</span><span class="p">(</span><span class="n">journal</span><span class="p">)</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;issued&quot;</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">volume</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="n">get_pages</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">doi</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span>
 
-	<span class="c1"># accepted = is_accepted(data)  # not using this one yet</span>
+    <span class="c1"># accepted = is_accepted(data)  # not using this one yet</span>
+    <span class="n">citation</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-	<span class="c1"># Get the initials from the author given names</span>
-	<span class="c1"># also store the family names</span>
-	<span class="n">initials</span> <span class="o">=</span> <span class="p">[]</span>
-	<span class="n">last_names</span> <span class="o">=</span> <span class="p">[]</span>
-	<span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;author&#39;</span><span class="p">]:</span>
-		<span class="c1"># we get the capital letters from the first names</span>
-		<span class="c1"># these will become the initials for this author</span>
-		<span class="n">firsts</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">author</span><span class="p">[</span><span class="s1">&#39;given&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isupper</span><span class="p">()]</span>
-		<span class="n">firsts</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
-		<span class="n">initials</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
-		<span class="n">last_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s1">&#39;family&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+    <span class="c1"># Get the initials from the author given names</span>
+    <span class="c1"># also store the family names</span>
+    <span class="n">initials</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">last_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;author&quot;</span><span class="p">]:</span>
+        <span class="c1"># we get the capital letters from the first names</span>
+        <span class="c1"># these will become the initials for this author</span>
+        <span class="n">firsts</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">author</span><span class="p">[</span><span class="s2">&quot;given&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isupper</span><span class="p">()]</span>
+        <span class="n">firsts</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
+        <span class="n">initials</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
+        <span class="n">last_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;family&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
 
-	<span class="c1"># format the citation correctly</span>
-	<span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s1">&#39;wiley&#39;</span><span class="p">:</span>
-		<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">last_names</span><span class="p">)]</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s1">, &lt;i&gt;</span><span class="si">{</span><span class="n">journal_abbreviation</span><span class="si">}</span><span class="s1">&lt;/i&gt; &lt;b&gt;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&lt;/b&gt;, &lt;i&gt;</span><span class="si">{</span><span class="n">volume</span><span class="si">}</span><span class="s1">&lt;/i&gt;&#39;</span>
-		<span class="k">if</span> <span class="n">pages</span><span class="p">:</span>
-			<span class="n">citation</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;, </span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s1">&#39;</span>
-		<span class="n">citation</span> <span class="o">+=</span> <span class="s1">&#39;.&#39;</span>
+    <span class="c1"># format the citation correctly</span>
+    <span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s2">&quot;wiley&quot;</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">last_names</span><span class="p">)]</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s2">, &lt;i&gt;</span><span class="si">{</span><span class="n">journal_abbreviation</span><span class="si">}</span><span class="s2">&lt;/i&gt; &lt;b&gt;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&lt;/b&gt;, &lt;i&gt;</span><span class="si">{</span><span class="n">volume</span><span class="si">}</span><span class="s2">&lt;/i&gt;&quot;</span>
+        <span class="k">if</span> <span class="n">pages</span><span class="p">:</span>
+            <span class="n">citation</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, </span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">citation</span> <span class="o">+=</span> <span class="s2">&quot;.&quot;</span>
 
-	<span class="k">elif</span> <span class="n">style</span> <span class="o">==</span> <span class="s1">&#39;acs&#39;</span><span class="p">:</span>
-		<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">last_names</span><span class="p">)]</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"> &lt;i&gt;</span><span class="si">{</span><span class="n">journal_abbreviation</span><span class="si">}</span><span class="s1">&lt;/i&gt; &lt;b&gt;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&lt;/b&gt;, &lt;i&gt;</span><span class="si">{</span><span class="n">volume</span><span class="si">}</span><span class="s1">&lt;/i&gt;&#39;</span>
-		<span class="k">if</span> <span class="n">pages</span><span class="p">:</span>
-			<span class="n">citation</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;, </span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s1">&#39;</span>
-		<span class="n">citation</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;. DOI: </span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">elif</span> <span class="n">style</span> <span class="o">==</span> <span class="s2">&quot;acs&quot;</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">last_names</span><span class="p">)]</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> &lt;i&gt;</span><span class="si">{</span><span class="n">journal_abbreviation</span><span class="si">}</span><span class="s2">&lt;/i&gt; &lt;b&gt;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&lt;/b&gt;, &lt;i&gt;</span><span class="si">{</span><span class="n">volume</span><span class="si">}</span><span class="s2">&lt;/i&gt;&quot;</span>
+        <span class="k">if</span> <span class="n">pages</span><span class="p">:</span>
+            <span class="n">citation</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, </span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">citation</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;. DOI: </span><span class="si">{</span><span class="n">doi</span><span class="si">}</span><span class="s2">&quot;</span>
 
-	<span class="k">elif</span> <span class="n">style</span> <span class="o">==</span> <span class="s1">&#39;rsc&#39;</span><span class="p">:</span>
-		<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">last_names</span><span class="p">)]</span>
-		<span class="n">citation</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s1">, &lt;i&gt;</span><span class="si">{</span><span class="n">journal_abbreviation</span><span class="si">}</span><span class="s1">&lt;/i&gt; </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">, &lt;b&gt;</span><span class="si">{</span><span class="n">volume</span><span class="si">}</span><span class="s1">&lt;/b&gt;&#39;</span>
-		<span class="k">if</span> <span class="n">pages</span><span class="p">:</span>
-			<span class="n">citation</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;, </span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s1">&#39;</span>
-		<span class="n">citation</span> <span class="o">+=</span> <span class="s1">&#39;.&#39;</span>
+    <span class="k">elif</span> <span class="n">style</span> <span class="o">==</span> <span class="s2">&quot;rsc&quot;</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">last_names</span><span class="p">)]</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s2">, &lt;i&gt;</span><span class="si">{</span><span class="n">journal_abbreviation</span><span class="si">}</span><span class="s2">&lt;/i&gt; </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">, &lt;b&gt;</span><span class="si">{</span><span class="n">volume</span><span class="si">}</span><span class="s2">&lt;/b&gt;&quot;</span>
+        <span class="k">if</span> <span class="n">pages</span><span class="p">:</span>
+            <span class="n">citation</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, </span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">citation</span> <span class="o">+=</span> <span class="s2">&quot;.&quot;</span>
 
-	<span class="k">return</span> <span class="n">citation</span>
+    <span class="k">return</span> <span class="n">citation</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_format_book_chapter</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-	<span class="c1"># grab usefull data</span>
-	<span class="n">publisher</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span>
-	<span class="n">year</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;published-print&#39;</span><span class="p">][</span><span class="s1">&#39;date-parts&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-	<span class="n">pages</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span>
-	<span class="n">book_title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;container-title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-	<span class="n">chapter_title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-	<span class="n">city</span> <span class="o">=</span> <span class="n">_get_publisher_city</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
+    <span class="c1"># grab usefull data</span>
+    <span class="n">publisher</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;publisher&quot;</span><span class="p">]</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;published-print&quot;</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;page&quot;</span><span class="p">)</span>
+    <span class="n">book_title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;container-title&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">chapter_title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">_get_publisher_city</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
+    <span class="n">citation</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-	<span class="k">for</span> <span class="n">isbn</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;isbn-type&#39;</span><span class="p">]:</span>
-		<span class="k">if</span> <span class="n">isbn</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;electronic&#39;</span><span class="p">:</span>
-			<span class="n">original_book_data</span> <span class="o">=</span> <span class="n">_get_doi_data</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;prefix&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">isbn</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-			<span class="k">break</span>
+    <span class="n">original_book_data</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">isbn</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;isbn-type&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">isbn</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;electronic&quot;</span><span class="p">:</span>
+            <span class="n">original_book_data</span> <span class="o">=</span> <span class="n">_get_doi_data</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;prefix&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">isbn</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
 
-	<span class="c1"># Get the initials from the author given names</span>
-	<span class="c1"># also store the family names</span>
-	<span class="n">n_authors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
-	<span class="n">initials</span> <span class="o">=</span> <span class="p">[]</span>
-	<span class="n">last_names</span> <span class="o">=</span> <span class="p">[]</span>
-	<span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;author&#39;</span><span class="p">]:</span>
-		<span class="c1"># we get the capital letters from the first names</span>
-		<span class="c1"># these will become the initials for this author</span>
-		<span class="n">firsts</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">author</span><span class="p">[</span><span class="s1">&#39;given&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isupper</span><span class="p">()]</span>
-		<span class="n">firsts</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
-		<span class="n">initials</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
-		<span class="n">last_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s1">&#39;family&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+    <span class="c1"># Get the initials from the author given names</span>
+    <span class="c1"># also store the family names</span>
+    <span class="n">n_authors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;author&quot;</span><span class="p">])</span>
+    <span class="n">initials</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">last_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;author&quot;</span><span class="p">]:</span>
+        <span class="c1"># we get the capital letters from the first names</span>
+        <span class="c1"># these will become the initials for this author</span>
+        <span class="n">firsts</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">author</span><span class="p">[</span><span class="s2">&quot;given&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isupper</span><span class="p">()]</span>
+        <span class="n">firsts</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
+        <span class="n">initials</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
+        <span class="n">last_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;family&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
 
-	<span class="n">n_editors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">original_book_data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;editor&#39;</span><span class="p">])</span>
-	<span class="n">editor_initials</span> <span class="o">=</span> <span class="p">[]</span>
-	<span class="n">editor_last_names</span> <span class="o">=</span> <span class="p">[]</span>
-	<span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">original_book_data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;editor&#39;</span><span class="p">]:</span>
-		<span class="c1"># we get the capital letters from the first names</span>
-		<span class="c1"># these will become the initials for this author</span>
-		<span class="n">firsts</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">author</span><span class="p">[</span><span class="s1">&#39;given&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isupper</span><span class="p">()]</span>
-		<span class="n">firsts</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
-		<span class="n">editor_initials</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
-		<span class="n">editor_last_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s1">&#39;family&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">original_book_data</span> <span class="ow">and</span> <span class="s2">&quot;editor&quot;</span> <span class="ow">in</span> <span class="n">original_book_data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]:</span>
+        <span class="n">n_editors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">original_book_data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;editor&quot;</span><span class="p">])</span>
+        <span class="n">editor_initials</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">editor_last_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">original_book_data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;editor&quot;</span><span class="p">]:</span>
+            <span class="c1"># we get the capital letters from the first names</span>
+            <span class="c1"># these will become the initials for this author</span>
+            <span class="n">firsts</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">author</span><span class="p">[</span><span class="s2">&quot;given&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isupper</span><span class="p">()]</span>
+            <span class="n">firsts</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
+            <span class="n">editor_initials</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">firsts</span><span class="p">)</span>
+            <span class="n">editor_last_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;family&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n_editors</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">editor_initials</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">editor_last_names</span> <span class="o">=</span> <span class="p">[]</span>
 
-	<span class="c1"># format the citation correctly</span>
-	<span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s1">&#39;wiley&#39;</span><span class="p">:</span>
-		<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">last_names</span><span class="p">)]</span>
-		<span class="n">editors</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">editor_initials</span><span class="p">,</span> <span class="n">editor_last_names</span><span class="p">)]</span>
-		<span class="k">if</span> <span class="n">n_authors</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-			<span class="n">names</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># format the citation correctly</span>
+    <span class="k">if</span> <span class="n">style</span> <span class="o">==</span> <span class="s2">&quot;wiley&quot;</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">last_names</span><span class="p">)]</span>
+        <span class="n">editors</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">editor_initials</span><span class="p">,</span> <span class="n">editor_last_names</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">n_authors</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-		<span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">n_authors</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
-			<span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; and &#39;</span> <span class="o">+</span> <span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">n_authors</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; and &quot;</span> <span class="o">+</span> <span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-		<span class="k">if</span> <span class="n">n_authors</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
-			<span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; et al.&#39;</span>
+        <span class="k">if</span> <span class="n">n_authors</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; et al.&quot;</span>
 
-		<span class="k">if</span> <span class="n">n_editors</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-			<span class="n">editors</span> <span class="o">=</span> <span class="n">editors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">n_editors</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">editors</span> <span class="o">=</span> <span class="n">editors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-		<span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">n_editors</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
-			<span class="n">editors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">editors</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; and &#39;</span> <span class="o">+</span> <span class="n">editors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">n_editors</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">editors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">editors</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; and &quot;</span> <span class="o">+</span> <span class="n">editors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-		<span class="k">if</span> <span class="n">n_editors</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
-			<span class="n">editors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">editors</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; et al.&#39;</span>
+        <span class="k">if</span> <span class="n">n_editors</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">editors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">editors</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; et al.&quot;</span>
 
-		<span class="n">citation</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">names</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">). </span><span class="si">{</span><span class="n">chapter_title</span><span class="si">}</span><span class="s1">. In: &lt;i&gt;</span><span class="si">{</span><span class="n">book_title</span><span class="si">}</span><span class="s1">&lt;/i&gt; (ed. </span><span class="si">{</span><span class="n">editors</span><span class="si">}</span><span class="s1">), </span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s1">. </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">publisher</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">citation</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">names</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">). </span><span class="si">{</span><span class="n">chapter_title</span><span class="si">}</span><span class="s2">. In: &lt;i&gt;</span><span class="si">{</span><span class="n">book_title</span><span class="si">}</span><span class="s2">&lt;/i&gt; (ed. </span><span class="si">{</span><span class="n">editors</span><span class="si">}</span><span class="s2">), </span><span class="si">{</span><span class="n">pages</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">publisher</span><span class="si">}</span><span class="s2">&quot;</span>
 
-	<span class="k">elif</span> <span class="n">style</span> <span class="o">==</span> <span class="s1">&#39;acs&#39;</span><span class="p">:</span>
-		<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;No support for ACS style yet&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">style</span> <span class="o">==</span> <span class="s2">&quot;acs&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;No support for ACS style yet&quot;</span><span class="p">)</span>
 
-	<span class="k">elif</span> <span class="n">style</span> <span class="o">==</span> <span class="s1">&#39;rsc&#39;</span><span class="p">:</span>
-		<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;No support for RSC style yet&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">style</span> <span class="o">==</span> <span class="s2">&quot;rsc&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;No support for RSC style yet&quot;</span><span class="p">)</span>
 
-	<span class="k">return</span> <span class="n">citation</span>
-
-
+    <span class="k">return</span> <span class="n">citation</span>
 </pre></div>
 
                 </article>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.results.ams &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.results.ams &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,12 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
-    
-    <li class="breadcrumb-item"><a href="../results.html" class="nav-link">tcutility.results</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.results.ams</span></li>
   </ul>
 </nav>
@@ -252,13 +246,15 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.interpolate</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">ensure_list</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span><span class="p">,</span> <span class="n">cache</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.tc_typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">arrays</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">environment</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.typing_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array1D</span><span class="p">,</span> <span class="n">ensure_list</span>
 
 <span class="n">j</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;get_ams_info&quot;</span><span class="p">,</span> <span class="s2">&quot;get_calc_files&quot;</span><span class="p">,</span> <span class="s2">&quot;get_ams_version&quot;</span><span class="p">,</span> <span class="s2">&quot;get_calculation_status&quot;</span><span class="p">,</span> <span class="s2">&quot;get_molecules&quot;</span><span class="p">,</span> <span class="s2">&quot;get_history&quot;</span><span class="p">,</span> <span class="s2">&quot;get_input_blocks&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="get_calc_files">
@@ -355,7 +351,7 @@
     <span class="n">ret</span><span class="o">.</span><span class="n">major</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">minor</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">micro</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">ret</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">ret</span></div>
 
@@ -417,15 +413,14 @@
     <span class="c1"># and history variables</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">get_history</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
 
-    <span class="n">ret</span><span class="o">.</span><span class="n">pes</span> <span class="o">=</span> <span class="n">get_pes</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
+    <span class="c1"># Only get pes if the task is &quot;pesscan&quot;</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">pes</span> <span class="o">=</span> <span class="n">get_pes</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;pesscan&quot;</span> <span class="ow">in</span> <span class="n">ret</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">task</span> <span class="k">else</span> <span class="kc">None</span>
 
     <span class="n">cache</span><span class="o">.</span><span class="n">unload</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;ams.rkf&quot;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">ret</span></div>
 
 
 
-<div class="viewcode-block" id="get_timing">
-<a class="viewcode-back" href="../../../api/tcutility.results.html#tcutility.results.ams.get_timing">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_timing</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to get the timings from the calculation.</span>
 
@@ -447,8 +442,7 @@
     <span class="n">ret</span><span class="o">.</span><span class="n">sys</span> <span class="o">=</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;General&quot;</span><span class="p">,</span> <span class="s2">&quot;SysTime&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;General&quot;</span><span class="p">,</span> <span class="s2">&quot;SysTime&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reader_ams</span> <span class="k">else</span> <span class="kc">None</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;General&quot;</span><span class="p">,</span> <span class="s2">&quot;ElapsedTime&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;General&quot;</span><span class="p">,</span> <span class="s2">&quot;ElapsedTime&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reader_ams</span> <span class="k">else</span> <span class="kc">None</span>
 
-    <span class="k">return</span> <span class="n">ret</span></div>
-
+    <span class="k">return</span> <span class="n">ret</span>
 
 
 <div class="viewcode-block" id="get_calculation_status">
@@ -469,7 +463,6 @@
 <span class="sd">            - **code (str)** – calculation status written as a single character, one of (&quot;S&quot;, &quot;R&quot;, &quot;U&quot;, &quot;W&quot; &quot;F&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">files</span> <span class="o">=</span> <span class="n">get_calc_files</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
-    <span class="n">reader_ams</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;ams.rkf&quot;</span><span class="p">])</span>
 
     <span class="n">ret</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">fatal</span> <span class="o">=</span> <span class="kc">True</span>
@@ -477,17 +470,26 @@
     <span class="n">ret</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">reasons</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="n">termination_status</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;General&quot;</span><span class="p">,</span> <span class="s2">&quot;termination status&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
     <span class="c1"># parse the logfile to find errors and warnings</span>
     <span class="k">if</span> <span class="s2">&quot;log&quot;</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;log&quot;</span><span class="p">])</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">logfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="n">logfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+            <span class="c1"># the termination status is at the end of the file, so we start reading from the end</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
                 <span class="c1"># the first 25 characters include the timestamp and two spaces</span>
-                <span class="n">line_</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">25</span><span class="p">:]</span>
+                <span class="n">line_</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">25</span><span class="p">:]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
                 <span class="c1"># errors and warnings have a predictable format</span>
                 <span class="k">if</span> <span class="n">line_</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;error:&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line_</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;warning: &quot;</span><span class="p">):</span>
                     <span class="n">ret</span><span class="o">.</span><span class="n">reasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="s2">&quot;normal termination&quot;</span> <span class="ow">in</span> <span class="n">line_</span><span class="p">:</span>
+                    <span class="n">ret</span><span class="o">.</span><span class="n">fatal</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">ret</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SUCCESS&quot;</span>
+                    <span class="n">ret</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;S&quot;</span>
+                    <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="n">reader_ams</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;ams.rkf&quot;</span><span class="p">])</span>
+    <span class="n">termination_status</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;General&quot;</span><span class="p">,</span> <span class="s2">&quot;termination status&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">termination_status</span> <span class="o">==</span> <span class="s2">&quot;NORMAL TERMINATION&quot;</span><span class="p">:</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">fatal</span> <span class="o">=</span> <span class="kc">False</span>
@@ -536,7 +538,7 @@
 <span class="c1"># -------------------- Fragment indices ----------------------- #</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">_get_fragment_indices_from_input_order</span><span class="p">(</span><span class="n">results_type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">arrays</span><span class="o">.</span><span class="n">Array1D</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_fragment_indices_from_input_order</span><span class="p">(</span><span class="n">results_type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array1D</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to get the fragment indices from the input order. This is needed because the fragment indices are stored in internal order in the rkf file.&quot;&quot;&quot;</span>
     <span class="n">frag_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results_type</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Geometry&quot;</span><span class="p">,</span> <span class="s2">&quot;fragment and atomtype index&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1st row: Fragment index; 2nd row atomtype index</span>
     <span class="n">atom_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results_type</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;Geometry&quot;</span><span class="p">,</span> <span class="s2">&quot;atom order index&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1st row: input order; 2nd row: internal order</span>
@@ -622,8 +624,7 @@
 
 
 
-<div class="viewcode-block" id="get_pes">
-<a class="viewcode-back" href="../../../api/tcutility.results.html#tcutility.results.ams.get_pes">[docs]</a>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;scipy&quot;</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_pes</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to get PES scan variables.</span>
@@ -642,11 +643,13 @@
 <span class="sd">            - ``npoints`` **list[int] | int** – number of scan points for the scan-coordinates.</span>
 <span class="sd">                If there is more than one scan-coordinates it will be a list of integers, otherwise it will be a single integer.</span>
 <span class="sd">            - ``energies`` **np.ndarray** - array containing energies with shape ``npoints``.</span>
-<span class="sd">            - ``energy_interpolator`` **scipy.interpolate.RegularGridInterpolator** - interpolator </span>
+<span class="sd">            - ``energy_interpolator`` **scipy.interpolate.RegularGridInterpolator** - interpolator</span>
 <span class="sd">                object used for obtaining energies at any point on the PES. Cannot be used for extrapolation.</span>
 <span class="sd">            - ``molecule_interpolator`` **fuction** - interpolator used to obtain molecular coordinates at</span>
 <span class="sd">                any point on the PES. Cannot be used for extrapolation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.interpolate</span>
+
     <span class="c1"># read history mols</span>
     <span class="n">files</span> <span class="o">=</span> <span class="n">get_calc_files</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
     <span class="c1"># all info is stored in reader_ams</span>
@@ -658,7 +661,7 @@
 
     <span class="n">ret</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
 
-    <span class="n">history_indices</span> <span class="o">=</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;PESScan&#39;</span><span class="p">,</span> <span class="s1">&#39;HistoryIndices&#39;</span><span class="p">)</span>
+    <span class="n">history_indices</span> <span class="o">=</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="s2">&quot;HistoryIndices&quot;</span><span class="p">)</span>
     <span class="n">atnums</span> <span class="o">=</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;InputMolecule&quot;</span><span class="p">,</span> <span class="s2">&quot;AtomicNumbers&quot;</span><span class="p">))</span>  <span class="c1"># type: ignore plams does not include type hints. Returns list[int]</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">molecules</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">history_indices</span><span class="p">:</span>
@@ -671,36 +674,42 @@
 
     <span class="c1"># read general info</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">nscan_coords</span> <span class="o">=</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="s2">&quot;nScanCoord&quot;</span><span class="p">)</span>
-    <span class="n">ret</span><span class="o">.</span><span class="n">scan_coord_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;ScanCoord(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">nscan_coords</span><span class="p">)]</span>
-    <span class="n">ret</span><span class="o">.</span><span class="n">npoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;nPoints(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">nscan_coords</span><span class="p">)]</span>
-    <span class="n">ret</span><span class="o">.</span><span class="n">scan_coord</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;RangeStart(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;RangeEnd(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> <span class="n">ret</span><span class="o">.</span><span class="n">npoints</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">BOHR2ANG</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">nscan_coords</span><span class="p">)]</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">scan_coord_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;ScanCoord(</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">nscan_coords</span><span class="p">)]</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">npoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;nPoints(</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">nscan_coords</span><span class="p">)]</span>
+
+    <span class="n">conversion_factors</span> <span class="o">=</span> <span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">BOHR2ANG</span> <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Distance&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">ret</span><span class="o">.</span><span class="n">scan_coord_name</span><span class="p">]</span>
+
+    <span class="n">ret</span><span class="o">.</span><span class="n">scan_coord</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;RangeStart(</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;RangeEnd(</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> <span class="n">ret</span><span class="o">.</span><span class="n">npoints</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">f</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">nscan_coords</span><span class="p">),</span> <span class="n">conversion_factors</span><span class="p">)]</span>
     <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="s2">&quot;PES&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reader_ams</span><span class="p">:</span>
         <span class="c1"># if we have the PES we can get the energies and coordinates</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="s2">&quot;PES&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">ret</span><span class="o">.</span><span class="n">npoints</span><span class="p">)</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">HA2KCALMOL</span>
         <span class="c1"># return an interpolator for the energies</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">energy_interpolator</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">RegularGridInterpolator</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">scan_coord</span><span class="p">,</span> <span class="n">ret</span><span class="o">.</span><span class="n">energies</span><span class="p">)</span>
 
-        <span class="c1"># generate the coordinate arrays to be able to interpolate</span>
-        <span class="n">_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">ret</span><span class="o">.</span><span class="n">molecules</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">ret</span><span class="o">.</span><span class="n">npoints</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">molecules</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="c1"># this interpolator is a temporary one, it will be used to get the coordinates only, not the </span>
-        <span class="c1"># whole molecule including atomic number, data, etc.</span>
-        <span class="n">_coordinate_interpolator</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">RegularGridInterpolator</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">scan_coord</span><span class="p">,</span> <span class="n">_coords</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; !!! We remove this to remove our scipy dependency !!!</span>
+<span class="sd">        ret.energy_interpolator = scipy.interpolate.RegularGridInterpolator(ret.scan_coord, ret.energies)</span>
 
-        <span class="c1"># this function replaces the interpolator and uses the interpolator to generate molecules </span>
-        <span class="c1"># at specific PES coordinates</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">molecule_interpolator</span><span class="p">(</span><span class="n">xi</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-            <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
-            <span class="n">yi</span> <span class="o">=</span> <span class="n">_coordinate_interpolator</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
-            <span class="n">mols</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yi</span><span class="p">:</span>
-                <span class="n">mol</span> <span class="o">=</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">()</span>
-                <span class="k">for</span> <span class="n">atnum</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">atnums</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-                    <span class="n">mol</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">plams</span><span class="o">.</span><span class="n">Atom</span><span class="p">(</span><span class="n">atnum</span><span class="o">=</span><span class="n">atnum</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">coord</span><span class="p">))</span>
-                <span class="n">mols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-                
-            <span class="k">return</span> <span class="n">mols</span>
+<span class="sd">        # generate the coordinate arrays to be able to interpolate</span>
+<span class="sd">        _coords = np.array([np.array(mol) for mol in ret.molecules]).reshape(*ret.npoints, len(ret.molecules[0]), 3)</span>
+<span class="sd">        # this interpolator is a temporary one, it will be used to get the coordinates only, not the</span>
+<span class="sd">        # whole molecule including atomic number, data, etc.</span>
+<span class="sd">        _coordinate_interpolator = scipy.interpolate.RegularGridInterpolator(ret.scan_coord, _coords)</span>
 
-        <span class="n">ret</span><span class="o">.</span><span class="n">molecule_interpolator</span> <span class="o">=</span> <span class="n">molecule_interpolator</span>
+<span class="sd">        # this function replaces the interpolator and uses the interpolator to generate molecules</span>
+<span class="sd">        # at specific PES coordinates</span>
+<span class="sd">        def molecule_interpolator(xi: np.ndarray) -&gt; np.ndarray:</span>
+<span class="sd">            xi = np.atleast_2d(xi)</span>
+<span class="sd">            yi = _coordinate_interpolator(xi)</span>
+<span class="sd">            mols = []</span>
+<span class="sd">            for y in yi:</span>
+<span class="sd">                mol = plams.Molecule()</span>
+<span class="sd">                for atnum, coord in zip(atnums, y):</span>
+<span class="sd">                    mol.add_atom(plams.Atom(atnum=atnum, coords=coord))</span>
+<span class="sd">                mols.append(mol)</span>
+
+<span class="sd">            return mols</span>
+
+<span class="sd">        ret.molecule_interpolator = molecule_interpolator</span>
+<span class="sd">        &#39;&#39;&#39;</span>
 
     <span class="c1"># if only one coord is given, flatten some parameters</span>
     <span class="k">if</span> <span class="n">ret</span><span class="o">.</span><span class="n">nscan_coords</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -708,8 +717,7 @@
         <span class="n">ret</span><span class="o">.</span><span class="n">scan_coord</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">scan_coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">npoints</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">npoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="n">ret</span></div>
-
+    <span class="k">return</span> <span class="n">ret</span>
 
 
 <div class="viewcode-block" id="get_history">
@@ -772,14 +780,14 @@
                 <span class="c1"># Molecule are special, because we will convert them to plams.Molecule objects first</span>
                 <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s2">&quot;Molecule&quot;</span><span class="p">:</span>
                     <span class="n">mol</span> <span class="o">=</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">()</span>
-                    <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;History&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Coords(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">natoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">BOHR2ANG</span>
+                    <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;History&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Coords(</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">natoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">BOHR2ANG</span>
                     <span class="k">for</span> <span class="n">atnum</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">atnums</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
                         <span class="n">mol</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">plams</span><span class="o">.</span><span class="n">Atom</span><span class="p">(</span><span class="n">atnum</span><span class="o">=</span><span class="n">atnum</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">coord</span><span class="p">))</span>
                     <span class="n">mol</span><span class="o">.</span><span class="n">guess_bonds</span><span class="p">()</span>
                     <span class="n">ret</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
                 <span class="c1"># other variables are just added as-is</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">val</span> <span class="o">=</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;History&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">reader_ams</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;History&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
                     <span class="n">ret</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s2">&quot;converged&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ret</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;PESScan&quot;</span><span class="p">,</span> <span class="s2">&quot;HistoryIndices&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reader_ams</span><span class="p">:</span>
@@ -845,8 +853,6 @@
 
 
 
-<div class="viewcode-block" id="get_ams_input">
-<a class="viewcode-back" href="../../../api/tcutility.results.html#tcutility.results.ams.get_ams_input">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_ams_input</span><span class="p">(</span><span class="n">inp</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_possible_blocks</span><span class="p">():</span>
         <span class="c1"># check which blocks are openable given the current open blocks</span>
@@ -942,8 +948,7 @@
         <span class="n">sett</span><span class="p">[</span><span class="s2">&quot;ams&quot;</span><span class="p">][</span><span class="n">engine_block</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">sett</span><span class="p">[</span><span class="s2">&quot;ams&quot;</span><span class="p">][</span><span class="n">engine_block</span><span class="p">]</span>
         <span class="k">del</span> <span class="n">sett</span><span class="p">[</span><span class="s2">&quot;ams&quot;</span><span class="p">][</span><span class="n">engine_block</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="n">sett</span><span class="p">[</span><span class="s2">&quot;ams&quot;</span><span class="p">]</span></div>
-
+    <span class="k">return</span> <span class="n">sett</span><span class="p">[</span><span class="s2">&quot;ams&quot;</span><span class="p">]</span>
 </pre></div>
 
                 </article>

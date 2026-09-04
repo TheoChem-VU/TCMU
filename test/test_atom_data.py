@@ -1,4 +1,4 @@
-from tcutility.data import atom
+from tcmu.data import atom
 import pytest
 
 

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.results.orca &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.results.orca &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,12 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
-    
-    <li class="breadcrumb-item"><a href="../results.html" class="nav-link">tcutility.results</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.results.orca</span></li>
   </ul>
 </nav>
@@ -245,12 +239,13 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcutility.results.orca</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">slurm</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">constants</span><span class="p">,</span> <span class="n">slurm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
 
 <span class="n">j</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
 
@@ -275,16 +270,16 @@
     <span class="n">ret</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
             <span class="c1"># detect the output file</span>
             <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="s2">&quot;* O   R   C   A *&quot;</span> <span class="ow">in</span> <span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]):</span>
                 <span class="n">ret</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-                <span class="k">continue</span>    
+                <span class="k">continue</span>
 
             <span class="c1"># detect the input file</span>
             <span class="c1"># there should be lines starting with ! and also the system line, starting with * xyz, * xyzfile, * gzmtfile or * int</span>
-            <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">])</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">([(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span> <span class="ow">and</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;xyzfile&#39;</span><span class="p">,</span> <span class="s1">&#39;gzmtfile&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;!&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">])</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">([(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;*&quot;</span> <span class="ow">and</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;xyz&quot;</span><span class="p">,</span> <span class="s2">&quot;xyzfile&quot;</span><span class="p">,</span> <span class="s2">&quot;gzmtfile&quot;</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]):</span>
                 <span class="n">ret</span><span class="o">.</span><span class="n">inp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
                 <span class="k">continue</span>
 
@@ -342,7 +337,7 @@
     <span class="n">ret</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
 
     <span class="c1"># we read the input file first</span>
-    <span class="k">if</span> <span class="s1">&#39;inp&#39;</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;inp&quot;</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">inp</span><span class="p">)</span> <span class="k">as</span> <span class="n">inp</span><span class="p">:</span>
             <span class="n">lines</span> <span class="o">=</span> <span class="n">inp</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
     <span class="c1"># if we don&#39;t have it we read the output file, which contains the input as a block</span>
@@ -413,7 +408,7 @@
     <span class="k">if</span> <span class="n">coordinates</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;xyz&quot;</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">]:</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">molecule</span> <span class="o">=</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">system_lines</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="n">ret</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">plams</span><span class="o">.</span><span class="n">Atom</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="o">=</span><span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]]))</span>
 
     <span class="n">ret</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="s2">&quot;SinglePoint&quot;</span>
@@ -444,19 +439,19 @@
     <span class="n">sett</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">input</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
     <span class="n">main</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sett</span><span class="o">.</span><span class="n">main</span><span class="p">]</span>
-    <span class="n">ret</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;HF&#39;</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;HF&quot;</span>
     <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;MP2&quot;</span><span class="p">,</span> <span class="s2">&quot;CCSD&quot;</span><span class="p">,</span> <span class="s2">&quot;CCSD(T)&quot;</span><span class="p">,</span> <span class="s2">&quot;CCSDT&quot;</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">main</span><span class="p">:</span>
             <span class="n">ret</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
             <span class="k">break</span>
 
-    <span class="n">ret</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;def2-SVP&#39;</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;def2-SVP&quot;</span>
     <span class="k">for</span> <span class="n">bs</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cc-pVDZ&quot;</span><span class="p">,</span> <span class="s2">&quot;cc-pVTZ&quot;</span><span class="p">,</span> <span class="s2">&quot;cc-pVQZ&quot;</span><span class="p">,</span> <span class="s2">&quot;cc-pV5Z&quot;</span><span class="p">,</span> <span class="s2">&quot;aug-cc-pVDZ&quot;</span><span class="p">,</span> <span class="s2">&quot;aug-cc-pVTZ&quot;</span><span class="p">,</span> <span class="s2">&quot;aug-cc-pVQZ&quot;</span><span class="p">,</span> <span class="s2">&quot;aug-cc-pV5Z&quot;</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">bs</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">main</span><span class="p">:</span>
             <span class="n">ret</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">bs</span>
 
     <span class="n">used_qros</span> <span class="o">=</span> <span class="n">sett</span><span class="o">.</span><span class="n">sections</span><span class="o">.</span><span class="n">mdci</span><span class="o">.</span><span class="n">UseQROs</span> <span class="ow">and</span> <span class="n">sett</span><span class="o">.</span><span class="n">sections</span><span class="o">.</span><span class="n">mdci</span><span class="o">.</span><span class="n">UseQROs</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
-    <span class="n">ret</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;QRO-&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">used_qros</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="si">}{</span><span class="n">method</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ret</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;QRO-&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">used_qros</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="n">method</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">ret</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">&quot;</span>
 
     <span class="k">return</span> <span class="n">ret</span></div>
 
@@ -493,7 +488,7 @@
     <span class="c1"># determine if the wavefunction are unrestricted or not</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">unrestricted</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">tag</span> <span class="ow">in</span> <span class="n">main</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;uhf&quot;</span><span class="p">,</span> <span class="s2">&quot;uno&quot;</span><span class="p">])</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">used_qros</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">sections</span><span class="o">.</span><span class="n">mdci</span><span class="o">.</span><span class="n">UseQROs</span> <span class="ow">and</span> <span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">sections</span><span class="o">.</span><span class="n">mdci</span><span class="o">.</span><span class="n">UseQROs</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
-    <span class="n">ret</span><span class="o">.</span><span class="n">frequencies</span> <span class="o">=</span> <span class="s2">&quot;freq&quot;</span> <span class="ow">in</span> <span class="n">main</span> <span class="ow">or</span> <span class="s1">&#39;numfreq&#39;</span> <span class="ow">in</span> <span class="n">main</span>
+    <span class="n">ret</span><span class="o">.</span><span class="n">frequencies</span> <span class="o">=</span> <span class="s2">&quot;freq&quot;</span> <span class="ow">in</span> <span class="n">main</span> <span class="ow">or</span> <span class="s2">&quot;numfreq&quot;</span> <span class="ow">in</span> <span class="n">main</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">charge</span><span class="p">)</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">spin_polarization</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">multiplicity</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">)</span>
@@ -551,12 +546,7 @@
 
     <span class="c1"># get the statuscode from the workdir</span>
     <span class="n">state</span> <span class="o">=</span> <span class="n">slurm</span><span class="o">.</span><span class="n">workdir_info</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">files</span><span class="o">.</span><span class="n">root</span><span class="p">))</span><span class="o">.</span><span class="n">statuscode</span>
-    <span class="n">state_name</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="s1">&#39;COMPLETING&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;CF&#39;</span><span class="p">:</span> <span class="s1">&#39;CONFIGURING&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;PD&#39;</span><span class="p">:</span> <span class="s1">&#39;PENDING&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="s1">&#39;RUNNING&#39;</span>
-    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s1">&#39;UNKNOWN&#39;</span><span class="p">)</span>
+    <span class="n">state_name</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;CG&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETING&quot;</span><span class="p">,</span> <span class="s2">&quot;CF&quot;</span><span class="p">:</span> <span class="s2">&quot;CONFIGURING&quot;</span><span class="p">,</span> <span class="s2">&quot;PD&quot;</span><span class="p">:</span> <span class="s2">&quot;PENDING&quot;</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="s2">&quot;RUNNING&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">)</span>
 
     <span class="n">ret</span><span class="o">.</span><span class="n">fatal</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">ret</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">state_name</span>
@@ -837,7 +827,6 @@
         <span class="n">ret</span><span class="o">.</span><span class="n">spin_contamination</span> <span class="o">=</span> <span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">s2</span> <span class="o">-</span> <span class="n">ret</span><span class="o">.</span><span class="n">s2_expected</span><span class="p">)</span> <span class="o">/</span> <span class="n">ret</span><span class="o">.</span><span class="n">s2_expected</span>
 
     <span class="k">return</span> <span class="n">ret</span></div>
-
 
 </pre></div>
 

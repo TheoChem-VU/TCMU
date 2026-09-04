@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.errors &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.errors &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.errors</span></li>
   </ul>
 </nav>
@@ -294,6 +291,46 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="n">section</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in </span><span class="si">{</span><span class="n">section</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># -----------------</span>
+<span class="c1"># Package / Dependency installation errors</span>
+<span class="c1"># -----------------</span>
+
+
+<div class="viewcode-block" id="MissingOptionalPackageError">
+<a class="viewcode-back" href="../../api/tcutility.html#tcutility.errors.MissingOptionalPackageError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissingOptionalPackageError</span><span class="p">(</span><span class="n">TCError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Missing optional package related error.</span>
+
+<span class="sd">    This is a template taken from the PLAMS package</span>
+<span class="sd">    (https://github.com/SCM-NV/PLAMS/blob/trunk/src/scm/plams/core/errors.py).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">extras_install</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;pandas&quot;</span><span class="p">:</span> <span class="s2">&quot;vdd&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;attrs&quot;</span><span class="p">:</span> <span class="s2">&quot;vdd&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;openpyxl&quot;</span><span class="p">:</span> <span class="s2">&quot;vdd&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;matplotlib&quot;</span><span class="p">:</span> <span class="s2">&quot;plot&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;scipy&quot;</span><span class="p">:</span> <span class="s2">&quot;analysis&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;networkx&quot;</span><span class="p">:</span> <span class="s2">&quot;analysis&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;h5py&quot;</span><span class="p">:</span> <span class="s2">&quot;analysis&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;docx&quot;</span><span class="p">:</span> <span class="s2">&quot;report&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;htmldocx&quot;</span><span class="p">:</span> <span class="s2">&quot;report&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;opencv-python&quot;</span><span class="p">:</span> <span class="s2">&quot;report&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pyfmo&quot;</span><span class="p">:</span> <span class="s2">&quot;adf&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;requests&quot;</span><span class="p">:</span> <span class="s2">&quot;cite&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;The optional package &#39;</span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s2">&#39; is required for this TCutility functionality, but is not available. &quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">extras_name</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extras_install</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;It can be installed using the command: pip install &#39;tcutility[</span><span class="si">{</span><span class="n">extras_name</span><span class="si">}</span><span class="s2">]&#39;. &quot;</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;Please install and try again.&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
 </pre></div>
 

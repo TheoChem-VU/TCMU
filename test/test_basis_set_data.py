@@ -1,4 +1,4 @@
-from tcutility.data import basis_sets
+from tcmu.data import basis_sets
 import pytest
 
 

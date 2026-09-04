@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcutility.job.orca &#8212; TCutility v0.16.10 documentation</title>
+    <title>tcutility.job.orca &#8212; TCutility v0.16.12 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc9b5a7a"></script>
+    <script src="../../../_static/documentation_options.js?v=2f1b5409"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -221,9 +221,6 @@
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../tcutility.html" class="nav-link">tcutility</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tcutility.job.orca</span></li>
   </ul>
 </nav>
@@ -248,19 +245,25 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_list</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">slurm</span><span class="p">,</span> <span class="n">spell_check</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tcutility.log</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">log</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tcutility.slurm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">slurm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tcutility.spell_check</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">spell_check</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">TCMoleculeError</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.job.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Job</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.results.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.typing_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_list</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ORCAJob&quot;</span><span class="p">]</span>
 
 <span class="n">j</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span>
 
 
 <div class="viewcode-block" id="ORCAJob">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ORCAJob</span><span class="p">(</span><span class="n">Job</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_tmpdir</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">Result</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">Result</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_charge</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_multiplicity</span> <span class="o">=</span> <span class="mi">1</span>
@@ -274,7 +277,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">single_point</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ORCAJob.main">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.main">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.main">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add main options for this ORCA calculation, they will be added to the input prepended with exclamation marks.</span>
@@ -291,7 +294,7 @@
 
 
 <div class="viewcode-block" id="ORCAJob.remove_main">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.remove_main">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.remove_main">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
@@ -306,7 +309,7 @@
         <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_main</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;sp&quot;</span><span class="p">,</span> <span class="s2">&quot;opt&quot;</span><span class="p">,</span> <span class="s2">&quot;optts&quot;</span><span class="p">,</span> <span class="s2">&quot;neb-ts&quot;</span><span class="p">]]</span>
 
 <div class="viewcode-block" id="ORCAJob.method">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.method">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.method">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
         <span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;HF&quot;</span><span class="p">,</span> <span class="s2">&quot;MP2&quot;</span><span class="p">,</span> <span class="s2">&quot;CCSD&quot;</span><span class="p">,</span> <span class="s2">&quot;CCSD(T)&quot;</span><span class="p">,</span> <span class="s2">&quot;CCSDT&quot;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
@@ -314,7 +317,7 @@
 
 
 <div class="viewcode-block" id="ORCAJob.reference">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.reference">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.reference">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref</span><span class="p">):</span>
         <span class="n">spell_check</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">ref</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;UNO&quot;</span><span class="p">,</span> <span class="s2">&quot;UHF&quot;</span><span class="p">,</span> <span class="s2">&quot;UKS&quot;</span><span class="p">,</span> <span class="s2">&quot;RHF&quot;</span><span class="p">,</span> <span class="s2">&quot;RKS&quot;</span><span class="p">,</span> <span class="s2">&quot;ROHF&quot;</span><span class="p">,</span> <span class="s2">&quot;ROKS&quot;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
@@ -322,26 +325,26 @@
 
 
 <div class="viewcode-block" id="ORCAJob.QRO">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.QRO">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.QRO">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">QRO</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">MDCI</span><span class="o">.</span><span class="n">UseQROs</span> <span class="o">=</span> <span class="n">enable</span></div>
 
 
 <div class="viewcode-block" id="ORCAJob.basis_set">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.basis_set">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.basis_set">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">basis_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ORCAJob.single_point">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.single_point">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.single_point">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">single_point</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__remove_task</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;SP&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ORCAJob.transition_state">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.transition_state">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.transition_state">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">transition_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__remove_task</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vibrations</span><span class="p">()</span>
@@ -349,7 +352,7 @@
 
 
 <div class="viewcode-block" id="ORCAJob.optimization">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.optimization">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.optimization">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__remove_task</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vibrations</span><span class="p">()</span>
@@ -357,7 +360,7 @@
 
 
 <div class="viewcode-block" id="ORCAJob.vibrations">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.vibrations">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.vibrations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">vibrations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">numerical</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_main</span><span class="p">(</span><span class="s2">&quot;NumFreq&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_main</span><span class="p">(</span><span class="s2">&quot;Freq&quot;</span><span class="p">)</span>
@@ -370,31 +373,31 @@
 
 
 <div class="viewcode-block" id="ORCAJob.charge">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.charge">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.charge">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">charge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_charge</span> <span class="o">=</span> <span class="n">val</span></div>
 
 
 <div class="viewcode-block" id="ORCAJob.spin_polarization">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.spin_polarization">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.spin_polarization">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">spin_polarization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_multiplicity</span> <span class="o">=</span> <span class="n">val</span> <span class="o">+</span> <span class="mi">1</span></div>
 
 
 <div class="viewcode-block" id="ORCAJob.multiplicity">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.multiplicity">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.multiplicity">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">multiplicity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_multiplicity</span> <span class="o">=</span> <span class="n">val</span></div>
 
 
 <div class="viewcode-block" id="ORCAJob.ghost_atoms">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.ghost_atoms">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.ghost_atoms">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">ghost_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ghosts</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">ensure_list</span><span class="p">(</span><span class="n">indices</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="ORCAJob.get_memory_usage">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.get_memory_usage">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.get_memory_usage">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_memory_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">mem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sbatch</span><span class="o">.</span><span class="n">mem</span> <span class="ow">or</span> <span class="kc">None</span>
 
@@ -411,8 +414,8 @@
 
 
 <div class="viewcode-block" id="ORCAJob.molecule">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.molecule">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">plams</span><span class="o">.</span><span class="n">Atom</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">plams</span><span class="o">.</span><span class="n">Atom</span><span class="p">]],</span> <span class="n">natoms</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.molecule">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">plams</span><span class="o">.</span><span class="n">Atom</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">plams</span><span class="o">.</span><span class="n">Atom</span><span class="p">]],</span> <span class="n">natoms</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a molecule to this calculation in various formats.</span>
 
@@ -425,7 +428,7 @@
 
 
 <div class="viewcode-block" id="ORCAJob.get_input">
-<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.job.orca.ORCAJob.get_input">[docs]</a>
+<a class="viewcode-back" href="../../../api/tcutility.job.html#tcutility.ORCAJob.get_input">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># set the correct memory usage and processes</span>
         <span class="n">mem</span><span class="p">,</span> <span class="n">ntasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_memory_usage</span><span class="p">()</span>
@@ -452,7 +455,7 @@
             <span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;main&quot;</span><span class="p">:</span>
                 <span class="k">continue</span>
 
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">Result</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">Result</span><span class="p">):</span>
                 <span class="n">ret</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;%</span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
 
                 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>

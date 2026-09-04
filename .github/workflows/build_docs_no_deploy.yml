@@ -7,9 +7,7 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  push:
-    branches-ignore:
-      - main
+  push
 
 jobs:
   build_and_deploy:
@@ -22,7 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
+          python-version: '3.13'
 
       - name: Build package
         run: |
@@ -30,11 +28,11 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install -e .
 
-      - name: Install documentation dependencies (see [docs] in pyproject.toml)
-        run: pip install ".[docs]"
+      - name: Install documentation dependencies (see [dev] in pyproject.toml)
+        run: pip install ".[dev,analysis,report,vdd,plot,connect]"
 
       - name: Run sphinx-apidoc
-        run: cd docs; sphinx-apidoc -f -o api ../src/tcutility/
+        run: cd docs; sphinx-apidoc -f -o api ../src/tcmu/
 
       - name: Run python scripts that create files used for the build docs
         # script are in root/docs/utility_doc_scripts
@@ -42,6 +40,7 @@ jobs:
           for script in docs/utility_doc_scripts/*.py; do
             python $script
           done
-          
+
       - name: Build the docs
         run: cd docs; sphinx-build . ./_build/html
+
