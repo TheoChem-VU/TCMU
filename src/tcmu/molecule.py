@@ -7,7 +7,7 @@ from tcmu.data import atom
 from tcmu.results import result
 from tcmu.typing_utilities import ensure_list
 
-__all__ = ["load", "save", "from_string", "guess_fragments", "number_of_electrons", "write_mol_to_xyz_file", "write_mol_to_amv_file"]
+__all__ = ["load", "save", "from_string", "guess_fragments", "number_of_electrons", "xyz_format", "amv_format", "write_mol_to_xyz_file", "write_mol_to_amv_file"]
 
 
 def number_of_electrons(mol: plams.Molecule, charge: int = 0) -> int:
@@ -301,24 +301,31 @@ def guess_fragments(mol: plams.Molecule) -> Dict[str, plams.Molecule]:
 # =============================================================================
 
 
-def _xyz_format(mol: plams.Molecule, include_n_atoms: bool = True) -> str:
+def xyz_format(mol: plams.Molecule, include_n_atoms: bool = True, include_lattices: bool = True) -> str:
     """Returns a string representation of a molecule in the xyz format, e.g.:
 
     C      0.00000000      0.00000000      0.00000000
     H      1.00000000      0.00000000      0.00000000
     H      0.00000000      1.00000000      0.00000000
     H      0.00000000      0.00000000      1.00000000
-
+    VEC1   1.00000000     -1.00000000      0.00000000
     ...
     """
-    n_atoms = len(mol.atoms)
+
+    xyz_string = ""
+
     if include_n_atoms:
-        return f"{n_atoms}\n" + "\n".join([f"{at.symbol:6s}{at.x:16.8f}{at.y:16.8f}{at.z:16.8f}" for at in mol.atoms])
+        xyz_string = f"{len(mol.atoms)}\n"
 
-    return "\n".join([f"{at.symbol:6s}{at.x:16.8f}{at.y:16.8f}{at.z:16.8f}" for at in mol.atoms])
+    xyz_string += "\n".join([f"{at.symbol:6s}{at.x:16.8f}{at.y:16.8f}{at.z:16.8f}" for at in mol.atoms])
+
+    if include_lattices and len(mol.lattice):
+        xyz_string += "\n" + "\n".join([f"VEC{str(i + 1):3s}{mol.lattice[i][0]:16.8f}{mol.lattice[i][1]:16.8f}{mol.lattice[i][2]:16.8f}" for i in range(0, len(mol.lattice))])
+
+    return xyz_string
 
 
-def _amv_format(mol: plams.Molecule, step: int, energy: Union[float, None] = None, name: Union[float, str] = None) -> str:
+def amv_format(mol: plams.Molecule, step: int, energy: Union[float, None] = None, name: Union[float, str] = None, include_lattices: bool = True) -> str:
     """Returns a string representation of a molecule in the amv format, e.g.:
 
     Geometry 1, Energy: -0.5 Ha
@@ -333,7 +340,7 @@ def _amv_format(mol: plams.Molecule, step: int, energy: Union[float, None] = Non
     header += f", Name: {name}" if name is not None else ""
     header += f", Energy: {energy} Ha" if energy is not None else ""
 
-    return header + "\n" + "\n".join([f"{at.symbol:6s}{at.x:16.8f}{at.y:16.8f}{at.z:16.8f}" for at in mol.atoms])
+    return header + "\n" + xyz_format(mol=mol, include_n_atoms=False, include_lattices=include_lattices)
 
 
 def write_mol_to_xyz_file(out_file: Union[str, pl.Path], mols: Union[List[plams.Molecule], plams.Molecule], include_n_atoms: bool = False) -> None:
@@ -342,13 +349,13 @@ def write_mol_to_xyz_file(out_file: Union[str, pl.Path], mols: Union[List[plams.
     out_file = pl.Path(f"{out_file}.xyz")
 
     [mol.delete_all_bonds() for mol in mols]
-    write_string = "\n\n".join([_xyz_format(mol, include_n_atoms) for mol in mols])
+    write_string = "\n\n".join([xyz_format(mol, include_n_atoms) for mol in mols])
     out_file.write_text(write_string)
 
     return None
 
 
-def write_mol_to_amv_file(out_file: Union[str, pl.Path], mols: Union[List[plams.Molecule], plams.Molecule], energies: Union[List[float], None], mol_names: Union[List[str], None] = None) -> None:
+def write_mol_to_amv_file(out_file: Union[str, pl.Path], mols: Union[List[plams.Molecule], plams.Molecule], energies: Union[List[float], None] = None, mol_names: Union[List[str], None] = None) -> None:
     """Writes a list of molecules to a file in amv format."""
     out_file = pl.Path(out_file)
 
@@ -360,7 +367,7 @@ def write_mol_to_amv_file(out_file: Union[str, pl.Path], mols: Union[List[plams.
     names = mol_names if mol_names is not None else [f"Molecule {i}" for i in range(1, len(mols) + 1)]
 
     [mol.delete_all_bonds() for mol in mols]
-    write_string = "\n\n".join([_amv_format(mol, step, energy, name) for step, (mol, energy, name) in enumerate(zip(mols, energies, names), 1)])
+    write_string = "\n\n".join([amv_format(mol, step, energy, name) for step, (mol, energy, name) in enumerate(zip(mols, energies, names), 1)])
     out_file.write_text(write_string)
 
     return None
