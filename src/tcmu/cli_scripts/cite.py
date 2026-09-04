@@ -194,12 +194,10 @@ def _print_rect_list(printables, spaces_before=0):
 
 @click.command("cite")
 @click.argument("objects", type=str, nargs=-1, required=False)
-@click.option("-w", "--wiley", help="Set the citation style to Wiley. This is the default style.", flag_value="wiley", default=True)
-@click.option("-a", "--acs", help="Set the citation style to ACS.", flag_value="acs")
-@click.option("-r", "--rsc", help="Set the citation style to RSC.", flag_value="rsc")
+@click.option("-s", "--style", help="Set the citation style to Wiley. This is the default style.", default="wiley", type=click.Choice(["wiley", "acs", "rsc", "jcc"]))
 @click.option("-o", "--output", help="The output Word file to write the citations to.", type=str, default="citations.docx")
 @click.option("-l", "--list_citations", help="List currently available citations.", is_flag=True, default=False)
-def generate_citations(objects: List[str], wiley: bool, acs: bool, rsc: bool, output: str, list_citations: bool) -> None:
+def generate_citations(objects: List[str], style: str, output: str, list_citations: bool) -> None:
     """
     Generate citations for objects.
 
@@ -262,8 +260,6 @@ def generate_citations(objects: List[str], wiley: bool, acs: bool, rsc: bool, ou
     if len(objects) == 1 and os.path.isfile(objects[0]):
         with open(objects[0]) as inp:
             objects = [line.strip() for line in inp.readlines()]
-
-    style = "rsc" if rsc else "acs" if acs else "wiley"
 
     with Docx(file=output, overwrite=True) as out:
         for obj in objects:
