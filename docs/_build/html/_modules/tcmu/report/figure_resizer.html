@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcmu.report.figure_resizer &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.report.figure_resizer &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -26,19 +26,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../../../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -272,9 +272,9 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcmu.report.figure_resizer</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""</span>
 <span class="sd">This module is used for resizing pictures containing molecules.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
@@ -284,7 +284,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcmu</span><span class="w"> </span><span class="kn">import</span> <span class="n">environment</span>
 
 
-<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;cv2&quot;</span><span class="p">)</span>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">"cv2"</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_remove_background</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
 
@@ -300,7 +300,7 @@
 
     <span class="c1"># Create binary mask</span>
 
-    <span class="n">mask2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+    <span class="n">mask2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"uint8"</span><span class="p">)</span>
 
     <span class="c1"># Convert to RGBA and apply mask to alpha channel</span>
 
@@ -314,13 +314,13 @@
     <span class="c1"># Save as PNG to preserve transparency</span>
     <span class="k">return</span> <span class="n">output_rgba</span>
 
-<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">)</span>
-<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;cv2&quot;</span><span class="p">)</span>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">"matplotlib"</span><span class="p">)</span>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">"cv2"</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_analyse_img</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Function used for analysing and getting useful information from an image.</span>
 <span class="sd">    This includes circle locations and sizes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
@@ -357,11 +357,11 @@
     <span class="k">return</span> <span class="n">circles</span><span class="p">,</span> <span class="n">img</span>
 
 
-<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;cv2&quot;</span><span class="p">)</span>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">"cv2"</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_remove_padding</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Function used to remove padding from an image.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
 
     <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2GRAY</span><span class="p">)</span>
@@ -374,9 +374,9 @@
 
 <div class="viewcode-block" id="resize">
 <a class="viewcode-back" href="../../../api/tcmu.report.html#tcmu.report.figure_resizer.resize">[docs]</a>
-<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">&quot;cv2&quot;</span><span class="p">)</span>
+<span class="nd">@environment</span><span class="o">.</span><span class="n">requires_optional_package</span><span class="p">(</span><span class="s2">"cv2"</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">resize</span><span class="p">(</span><span class="n">img_paths</span><span class="p">,</span> <span class="n">circle_numbers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    The main function for this module.</span>
 <span class="sd">    Takes a directory `d` and selected circles and resizes and moves images in order to produce new aligned images.</span>
 
@@ -387,8 +387,8 @@
 <span class="sd">        padding: the amount of padding to add to the new images.</span>
 <span class="sd">            If given an integer, it adds `padding` number of pixels.</span>
 <span class="sd">            Alternatively a string consisting of a number and a `%` sign can be given to add relative padding.</span>
-<span class="sd">            E.g. `padding=&#39;10%&#39;` will add a 10% padding to the images.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">            E.g. `padding='10%'` will add a 10% padding to the images.</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
 
     <span class="n">circles</span> <span class="o">=</span> <span class="p">{}</span>
@@ -432,8 +432,8 @@
     <span class="n">pad</span> <span class="o">=</span> <span class="p">{</span><span class="n">file</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pad_bottom</span><span class="p">[</span><span class="n">file</span><span class="p">]),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pad_right</span><span class="p">[</span><span class="n">file</span><span class="p">]),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">imgs</span><span class="p">}</span>
     <span class="n">imgs</span> <span class="o">=</span> <span class="p">{</span><span class="n">file</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">pad</span><span class="p">[</span><span class="n">file</span><span class="p">],</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span><span class="p">,</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">imgs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="c1"># add final padding</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">padding</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">padding</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">):</span>
-        <span class="n">padding</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">padding</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">padding</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">padding</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"%"</span><span class="p">):</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">padding</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">"%"</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100</span>
         <span class="n">padding</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">padding</span> <span class="o">*</span> <span class="nb">list</span><span class="p">(</span><span class="n">imgs</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">padding</span> <span class="o">*</span> <span class="nb">list</span><span class="p">(</span><span class="n">imgs</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">padding</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">padding</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">padding</span><span class="p">)</span>
@@ -443,7 +443,7 @@
 
     <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">file</span><span class="p">,</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">imgs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">new_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;resized_&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">new_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"resized_"</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
         <span class="n">ret</span><span class="p">[</span><span class="n">file</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_file</span>
 
@@ -478,8 +478,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -513,7 +513,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

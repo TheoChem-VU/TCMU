@@ -49,6 +49,14 @@ tcmu.constants module
    :show-inheritance:
    :undoc-members:
 
+tcmu.database module
+--------------------
+
+.. automodule:: tcmu.database
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 tcmu.environment module
 -----------------------
 

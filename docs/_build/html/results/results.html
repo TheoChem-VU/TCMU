@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>tcmu.results &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.results &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -27,19 +27,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -50,7 +50,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tcmu.job" href="../tcmu.job.html" />
-    <link rel="prev" title="TCMU v0.17.3 documentation" href="../index.html" />
+    <link rel="prev" title="TCMU v0.18.0 documentation" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -228,7 +228,7 @@
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="../index.html"
-                          title="previous chapter">TCMU v0.17.3 documentation</a></p>
+                          title="previous chapter">TCMU v0.18.0 documentation</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -310,18 +310,18 @@ One can also access specific information by calling one the functions in the sub
 To only obtain the status of a calculation we recommend usage of the <cite>tcmu.results.quick_status</cite> function.
 Information will be given as <a class="reference internal" href="../api/tcmu.results.html#tcmu.results.result.Result" title="tcmu.results.result.Result"><code class="xref py py-class docutils literal notranslate"><span class="pre">Result</span></code></a> objects and can be used just like a <a class="reference external" href="https://docs.python.org/3.12/library/stdtypes.html#dict">dict</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tcmu.results</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">calc_dir</span> <span class="o">=</span> <span class="s1">&#39;../../test/fixtures/ethanol&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">calc_dir</span> <span class="o">=</span> <span class="s1">'../../test/fixtures/ethanol'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="n">tcmu</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">info</span><span class="o">.</span><span class="n">engine</span>
 <span class="go">adf</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">info</span><span class="o">.</span><span class="n">ams_version</span><span class="o">.</span><span class="n">full</span>
 <span class="go">2022.103 r104886 (2022-06-17)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">info</span><span class="o">.</span><span class="n">adf</span><span class="o">.</span><span class="n">symmetry</span>
-<span class="go">{&#39;group&#39;: &#39;C(S)&#39;, &#39;labels&#39;: [&#39;AA&#39;, &#39;AAA&#39;]}</span>
+<span class="go">{'group': 'C(S)', 'labels': ['AA', 'AAA']}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">info</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">orbint</span>
-<span class="go">{&#39;AA&#39;: -2738.644830445246,</span>
-<span class="go">&#39;AAA&#39;: -1056.9706925183411,</span>
-<span class="go">&#39;total&#39;: -3795.615522963587}</span>
+<span class="go">{'AA': -2738.644830445246,</span>
+<span class="go">'AAA': -1056.9706925183411,</span>
+<span class="go">'total': -3795.615522963587}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">info</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">vibrations</span><span class="o">.</span><span class="n">number_of_imag_modes</span>
 <span class="go">0</span>
 </pre></div>
@@ -334,11 +334,11 @@ Below you can find a list of keys that are present in the <a class="reference in
 <section id="adf-calculation">
 <h3>ADF calculation<a class="headerlink" href="#adf-calculation" title="Link to this heading">#</a></h3>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>files.root
+files.log
 files.out
 files.err
-files.log
-files.ams.rkf
 files.adf.rkf
+files.ams.rkf
 engine
 input.Task
 input.properties.NormalModes
@@ -357,6 +357,7 @@ ams_version.date
 timing.cpu
 timing.sys
 timing.total
+timing.nprocs
 timing.last_update
 timing.start_time
 status.fatal
@@ -452,7 +453,7 @@ level.summary
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">TCMU v0.17.3 documentation</p>
+        <p class="prev-next-title">TCMU v0.18.0 documentation</p>
       </div>
     </a>
     <a class="right-next"
@@ -513,8 +514,8 @@ level.summary
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -548,7 +549,7 @@ level.summary
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcmu.report.formatters.xyz &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.report.formatters.xyz &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -26,19 +26,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../../../../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -296,14 +296,14 @@
 
 
 
-<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">"T"</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="try_to_get_property">
 <a class="viewcode-back" href="../../../../api/tcmu.report.formatters.html#tcmu.report.formatters.xyz.try_to_get_property">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">try_to_get_property</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">prop</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">property_</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_multi_key</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;properties.energy.</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">property_</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_multi_key</span><span class="p">(</span><span class="sa">f</span><span class="s2">"properties.energy.</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">property_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">property_</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">property_</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
@@ -314,10 +314,10 @@
 <div class="viewcode-block" id="check_if_job_is_suitable_for_xyz_format">
 <a class="viewcode-back" href="../../../../api/tcmu.report.formatters.html#tcmu.report.formatters.xyz.check_if_job_is_suitable_for_xyz_format">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">check_if_job_is_suitable_for_xyz_format</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Result</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Only jobs that are geometry optimizations, single points, or transition state searches are suitable for XYZ format.</span>
 <span class="sd">    Other calculations such as PES scans, IRCs, etc. are not suitable.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 
@@ -327,12 +327,12 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">task</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">task</span>  <span class="c1"># type: ignore  # Result object has no static typing</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-        <span class="n">task</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="s2">"unknown"</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">task</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">return</span> <span class="n">task</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;geometryoptimization&quot;</span><span class="p">,</span> <span class="s2">&quot;singlepoint&quot;</span><span class="p">,</span> <span class="s2">&quot;transitionstatesearch&quot;</span><span class="p">]</span>  <span class="c1"># type: ignore  # Result object has no static typing</span></div>
+    <span class="k">return</span> <span class="n">task</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"geometryoptimization"</span><span class="p">,</span> <span class="s2">"singlepoint"</span><span class="p">,</span> <span class="s2">"transitionstatesearch"</span><span class="p">]</span>  <span class="c1"># type: ignore  # Result object has no static typing</span></div>
 
 
 
@@ -346,9 +346,9 @@
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># type: ignore  # obj is not None</span>
         <span class="n">return_data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span>  <span class="c1"># type: ignore  # obj is not None</span>
 
-    <span class="n">return_data</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">try_to_get_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;bond&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># Total electronic energy</span>
-    <span class="n">return_data</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">try_to_get_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;enthalpy&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># Enthalpy</span>
-    <span class="n">return_data</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">try_to_get_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;gibbs&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># Gibbs free energy</span>
+    <span class="n">return_data</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">try_to_get_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">"bond"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># Total electronic energy</span>
+    <span class="n">return_data</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">try_to_get_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">"enthalpy"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># Enthalpy</span>
+    <span class="n">return_data</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">try_to_get_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">"gibbs"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># Gibbs free energy</span>
 
     <span class="c1"># add imaginary frequency if we have one</span>
     <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">vibrations</span><span class="p">:</span>  <span class="c1"># type: ignore  # Result object has no static typing</span>
@@ -365,40 +365,40 @@
 <a class="viewcode-back" href="../../../../api/tcmu.report.formatters.html#tcmu.report.formatters.xyz.add_title">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">add_title</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="c1"># Add title to the document</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;br&gt;&quot;</span></div>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"&lt;b&gt;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;br&gt;"</span></div>
 
 
 
 <div class="viewcode-block" id="format_xyz">
 <a class="viewcode-back" href="../../../../api/tcmu.report.formatters.html#tcmu.report.formatters.xyz.format_xyz">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">format_xyz</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">XYZData</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s2">""</span>
 
-    <span class="n">s</span> <span class="o">+=</span> <span class="n">add_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">add_title</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="n">add_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">add_title</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">""</span>
 
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">E</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;&lt;i&gt;E&lt;/i&gt;&lt;/b&gt; = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">E</span><span class="si">:</span><span class="s2"> .2f</span><span class="si">}</span><span class="s2"> kcal mol&lt;sup&gt;-1&lt;/sup&gt;&lt;br&gt;&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;–&quot;</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"&lt;b&gt;&lt;i&gt;E&lt;/i&gt;&lt;/b&gt; = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">E</span><span class="si">:</span><span class="s2"> .2f</span><span class="si">}</span><span class="s2"> kcal mol&lt;sup&gt;-1&lt;/sup&gt;&lt;br&gt;"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"-"</span><span class="p">,</span> <span class="s2">"–"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">H</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;&lt;i&gt;H&lt;/i&gt;&lt;/b&gt; = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">H</span><span class="si">:</span><span class="s2"> .2f</span><span class="si">}</span><span class="s2"> kcal mol&lt;sup&gt;-1&lt;/sup&gt;&lt;br&gt;&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;–&quot;</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"&lt;b&gt;&lt;i&gt;H&lt;/i&gt;&lt;/b&gt; = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">H</span><span class="si">:</span><span class="s2"> .2f</span><span class="si">}</span><span class="s2"> kcal mol&lt;sup&gt;-1&lt;/sup&gt;&lt;br&gt;"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"-"</span><span class="p">,</span> <span class="s2">"–"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">G</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;&lt;i&gt;G&lt;/i&gt;&lt;/b&gt; = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">G</span><span class="si">:</span><span class="s2"> .2f</span><span class="si">}</span><span class="s2"> kcal mol&lt;sup&gt;-1&lt;/sup&gt;&lt;br&gt;&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;–&quot;</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"&lt;b&gt;&lt;i&gt;G&lt;/i&gt;&lt;/b&gt; = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">G</span><span class="si">:</span><span class="s2"> .2f</span><span class="si">}</span><span class="s2"> kcal mol&lt;sup&gt;-1&lt;/sup&gt;&lt;br&gt;"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"-"</span><span class="p">,</span> <span class="s2">"–"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">num_imag_modes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;N&lt;sub&gt;imag&lt;/sub&gt; = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">num_imag_modes</span><span class="si">}</span><span class="s2"> &quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"N&lt;sub&gt;imag&lt;/sub&gt; = </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">num_imag_modes</span><span class="si">}</span><span class="s2"> "</span>
         <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">num_imag_modes</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">imag_freqs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">freqs</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="o">-</span><span class="n">freq</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&lt;i&gt;i&lt;/i&gt;&quot;</span> <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">imag_freqs</span><span class="p">])</span>
-            <span class="n">cm_1</span> <span class="o">=</span> <span class="s2">&quot;cm&lt;sup&gt;-1&lt;/sup&gt;&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;–&quot;</span><span class="p">)</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">freqs</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">cm_1</span><span class="si">}</span><span class="s2">)&lt;br&gt;&quot;</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;&quot;</span>
+            <span class="n">freqs</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="o">-</span><span class="n">freq</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&lt;i&gt;i&lt;/i&gt;"</span> <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">imag_freqs</span><span class="p">])</span>
+            <span class="n">cm_1</span> <span class="o">=</span> <span class="s2">"cm&lt;sup&gt;-1&lt;/sup&gt;"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"-"</span><span class="p">,</span> <span class="s2">"–"</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">freqs</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">cm_1</span><span class="si">}</span><span class="s2">)&lt;br&gt;"</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">"&lt;br&gt;"</span>
 
-    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"&lt;br&gt;"</span><span class="p">):</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">molecule</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;&lt;pre&gt;&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">"&lt;pre&gt;"</span>
         <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">molecule</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">atom</span><span class="o">.</span><span class="n">symbol</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">atom</span><span class="o">.</span><span class="n">x</span><span class="si">:</span><span class="s2"> .8f</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">atom</span><span class="o">.</span><span class="n">y</span><span class="si">:</span><span class="s2"> .8f</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">atom</span><span class="o">.</span><span class="n">z</span><span class="si">:</span><span class="s2"> .8f</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;&lt;/pre&gt;&quot;</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>  <span class="c1"># Add an empty line</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">atom</span><span class="o">.</span><span class="n">symbol</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">atom</span><span class="o">.</span><span class="n">x</span><span class="si">:</span><span class="s2"> .8f</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">atom</span><span class="o">.</span><span class="n">y</span><span class="si">:</span><span class="s2"> .8f</span><span class="si">}</span><span class="s2">    </span><span class="si">{</span><span class="n">atom</span><span class="o">.</span><span class="n">z</span><span class="si">:</span><span class="s2"> .8f</span><span class="si">}</span><span class="s2">&lt;br&gt;"</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">"&lt;/pre&gt;"</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>  <span class="c1"># Add an empty line</span>
     <span class="k">return</span> <span class="n">s</span></div>
 
 
@@ -409,7 +409,7 @@
 <div class="viewcode-block" id="StandardXYZFormatter.format">
 <a class="viewcode-back" href="../../../../api/tcmu.report.formatters.html#tcmu.report.formatters.xyz.StandardXYZFormatter.format">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Result</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">write_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">write_str</span> <span class="o">=</span> <span class="s2">""</span>
 
         <span class="c1"># The program will crash whwen trying to get data from a calculation, so check before proceeding</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">check_if_job_is_suitable_for_xyz_format</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
@@ -449,8 +449,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -484,7 +484,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

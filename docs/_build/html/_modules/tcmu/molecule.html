@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcmu.molecule &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.molecule &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -26,19 +26,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -281,13 +281,13 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcmu.results</span><span class="w"> </span><span class="kn">import</span> <span class="n">result</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tcmu.typing_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_list</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;load&quot;</span><span class="p">,</span> <span class="s2">&quot;save&quot;</span><span class="p">,</span> <span class="s2">&quot;from_string&quot;</span><span class="p">,</span> <span class="s2">&quot;guess_fragments&quot;</span><span class="p">,</span> <span class="s2">&quot;number_of_electrons&quot;</span><span class="p">,</span> <span class="s2">&quot;write_mol_to_xyz_file&quot;</span><span class="p">,</span> <span class="s2">&quot;write_mol_to_amv_file&quot;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"load"</span><span class="p">,</span> <span class="s2">"save"</span><span class="p">,</span> <span class="s2">"from_string"</span><span class="p">,</span> <span class="s2">"guess_fragments"</span><span class="p">,</span> <span class="s2">"number_of_electrons"</span><span class="p">,</span> <span class="s2">"write_mol_to_xyz_file"</span><span class="p">,</span> <span class="s2">"write_mol_to_amv_file"</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="number_of_electrons">
 <a class="viewcode-back" href="../../api/tcmu.html#tcmu.molecule.number_of_electrons">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">number_of_electrons</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">charge</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    The number of electrons in a molecule.</span>
 
 <span class="sd">    Args:</span>
@@ -296,7 +296,7 @@
 
 <span class="sd">    Returns:</span>
 <span class="sd">        The sum of the atomic numbers in the molecule minus the charge of the molecule.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">nel</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">mol</span><span class="p">:</span>
         <span class="n">nel</span> <span class="o">+=</span> <span class="n">atom</span><span class="o">.</span><span class="n">atom_number</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
@@ -310,13 +310,13 @@
     <span class="c1"># sanitization first</span>
     <span class="c1"># empty s returns None</span>
     <span class="c1"># if s is not a str return it</span>
-    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">s</span>
 
-    <span class="k">if</span> <span class="s2">&quot;,&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">_parse_str</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="s2">","</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">_parse_str</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)]</span>
 
     <span class="c1"># to parse the string we use try/except method</span>
     <span class="k">try</span><span class="p">:</span>
@@ -330,7 +330,7 @@
         <span class="k">pass</span>
 
     <span class="c1"># bool type casting always works, so we have to specifically check for correct strings</span>
-    <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="s2">&quot;False&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"True"</span><span class="p">,</span> <span class="s2">"False"</span><span class="p">]:</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">s</span>
@@ -339,7 +339,7 @@
 <div class="viewcode-block" id="load">
 <a class="viewcode-back" href="../../api/tcmu.html#tcmu.molecule.load">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Load a molecule from a given xyz file path.</span>
 <span class="sd">    The xyz file is structured as follows:</span>
 
@@ -360,7 +360,7 @@
 <span class="sd">    The xyz file is parsed and returned as a :class:`plams.Molecule &lt;plams.mol.molecule.Molecule&gt;` object.</span>
 <span class="sd">    Flags and tags are given as ``mol.flags`` and ``mol.flags.tags`` respectively.</span>
 <span class="sd">    Similarly for the atoms, the flags and tags are given as ``mol.atoms[i].flags`` and ``mol.atoms[i].flags.tags``</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_flags</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">()</span>
@@ -368,8 +368,8 @@
         <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
             <span class="c1"># flags are given as key=value pairs</span>
             <span class="c1"># tags are given as loose keys</span>
-            <span class="k">if</span> <span class="s2">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span>
-                <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">"="</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span>
+                <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"="</span><span class="p">)</span>
                 <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="o">=</span> <span class="n">_parse_str</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">ret</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">_parse_str</span><span class="p">(</span><span class="n">arg</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
@@ -404,7 +404,7 @@
 <div class="viewcode-block" id="from_string">
 <a class="viewcode-back" href="../../api/tcmu.html#tcmu.molecule.from_string">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">from_string</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Load a molecule from a string. Currently only supports simple XYZ-files,</span>
 <span class="sd">    e.g. not extended XYZ-files with flags.</span>
 
@@ -420,13 +420,13 @@
 
 <span class="sd">        .. code-block::</span>
 
-<span class="sd">            s = \&quot;&quot;&quot;</span>
+<span class="sd">            s = \"""</span>
                 <span class="n">O</span>      <span class="o">-</span><span class="mf">0.77012509</span>       <span class="mf">2.82058313</span>      <span class="o">-</span><span class="mf">0.00000000</span>
                 <span class="n">H</span>      <span class="o">-</span><span class="mf">0.77488739</span>       <span class="mf">2.61994920</span>      <span class="o">-</span><span class="mf">0.93878823</span>
                 <span class="n">H</span>      <span class="o">-</span><span class="mf">0.75583818</span>       <span class="mf">2.00242615</span>       <span class="mf">0.50201099</span>
-                \<span class="s2">&quot;&quot;&quot;</span>
+                \<span class="s2">"""</span>
 <span class="s2">            mol = from_string(s)</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="c1"># molecule object to populate</span>
     <span class="n">mol</span> <span class="o">=</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
@@ -455,7 +455,7 @@
 <div class="viewcode-block" id="guess_fragments">
 <a class="viewcode-back" href="../../api/tcmu.html#tcmu.molecule.guess_fragments">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">guess_fragments</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Guess fragments based on data from the xyz file. Two methods are currently supported, see the tabs below.</span>
 <span class="sd">    We also support reading of charges and spin-polarizations for the fragments.</span>
 <span class="sd">    They should be given as ``charge_{fragment_name}`` and ``spinpol_{fragment_name}`` respectively.</span>
@@ -513,7 +513,7 @@
 <span class="sd">        A dictionary containing fragment names as keys and :class:`plams.Molecule &lt;scm.plams.mol.molecule.Molecule&gt;` objects as values.</span>
 <span class="sd">        Atoms that were not included by either method will be placed in the molecule object with key ``None``.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># we have to copy the molecule (this also creates new atom objects)</span>
     <span class="c1"># and then remove them from the copied molecule. This is because PLAMS</span>
     <span class="c1"># does not allow atoms to belong to multiple molecule objects</span>
@@ -524,42 +524,42 @@
         <span class="n">mol</span><span class="o">.</span><span class="n">delete_atom</span><span class="p">(</span><span class="n">at</span><span class="p">)</span>
 
     <span class="c1"># first method, check if the fragments are defined as molecule flags</span>
-    <span class="n">fragment_flags</span> <span class="o">=</span> <span class="p">[</span><span class="n">flag</span> <span class="k">for</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span> <span class="k">if</span> <span class="n">flag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;frag_&quot;</span><span class="p">)]</span>
+    <span class="n">fragment_flags</span> <span class="o">=</span> <span class="p">[</span><span class="n">flag</span> <span class="k">for</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span> <span class="k">if</span> <span class="n">flag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"frag_"</span><span class="p">)]</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fragment_flags</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1"># we split here to get of the frag_ prefix</span>
         <span class="c1"># and give each fragment an empty molecule</span>
-        <span class="n">fragment_mols</span> <span class="o">=</span> <span class="p">{</span><span class="n">frag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">()</span> <span class="k">for</span> <span class="n">frag</span> <span class="ow">in</span> <span class="n">fragment_flags</span><span class="p">}</span>
+        <span class="n">fragment_mols</span> <span class="o">=</span> <span class="p">{</span><span class="n">frag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"_"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">()</span> <span class="k">for</span> <span class="n">frag</span> <span class="ow">in</span> <span class="n">fragment_flags</span><span class="p">}</span>
 
         <span class="k">for</span> <span class="n">frag_name</span><span class="p">,</span> <span class="n">frag_mol</span> <span class="ow">in</span> <span class="n">fragment_mols</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="c1"># obtain atom indices that belong to the fragment</span>
             <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">index_line</span> <span class="o">=</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">&quot;frag_&quot;</span> <span class="o">+</span> <span class="n">frag_name</span><span class="p">])</span>
+            <span class="n">index_line</span> <span class="o">=</span> <span class="n">ensure_list</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">"frag_"</span> <span class="o">+</span> <span class="n">frag_name</span><span class="p">])</span>
             <span class="c1"># indices are given as lists of integers or strings</span>
             <span class="c1"># string indices would be given as ``N-M``</span>
             <span class="c1"># so we need to treat those specially</span>
             <span class="k">for</span> <span class="n">indx</span> <span class="ow">in</span> <span class="n">index_line</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indx</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
                     <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">indx</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indx</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;-&quot;</span> <span class="ow">in</span> <span class="n">indx</span><span class="p">:</span>
-                    <span class="n">indices</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">indx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">indx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indx</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">"-"</span> <span class="ow">in</span> <span class="n">indx</span><span class="p">:</span>
+                    <span class="n">indices</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">indx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">indx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fragment index </span><span class="si">{</span><span class="n">indx</span><span class="si">}</span><span class="s2"> could not be parsed.&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Fragment index </span><span class="si">{</span><span class="n">indx</span><span class="si">}</span><span class="s2"> could not be parsed."</span><span class="p">)</span>
             <span class="c1"># add atoms to the fragment molecule</span>
             <span class="p">[</span><span class="n">frag_mol</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">]</span>
             <span class="c1"># and initialize the flags</span>
-            <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">({</span><span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="nb">set</span><span class="p">()})</span>
+            <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">({</span><span class="s2">"tags"</span><span class="p">:</span> <span class="nb">set</span><span class="p">()})</span>
 
             <span class="c1"># obtain charge and spinpol flags if they were given</span>
-            <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;charge_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
-                <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;charge_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
-                <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">spinpol</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="sa">f</span><span class="s2">"charge_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">"</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
+                <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">"charge_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span>
+            <span class="k">if</span> <span class="sa">f</span><span class="s2">"spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">"</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
+                <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">spinpol</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">"spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">(</span><span class="n">fragment_mols</span><span class="p">)</span>
 
     <span class="c1"># second method, check if the atoms have a frag= flag defined</span>
-    <span class="n">fragment_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;frag&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">)</span>
+    <span class="n">fragment_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"frag"</span><span class="p">)</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fragment_names</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1"># initialize some empty molecules to hold the fragments</span>
         <span class="n">fragment_mols</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">fragment_names</span><span class="p">}</span>
@@ -567,18 +567,18 @@
         <span class="c1"># add them to the corresponding molecule</span>
         <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
             <span class="c1"># get the fragment the atom belongs to and add it to the list</span>
-            <span class="n">fragment_mols</span><span class="p">[</span><span class="n">at</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;frag&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">at</span><span class="p">)</span>
+            <span class="n">fragment_mols</span><span class="p">[</span><span class="n">at</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"frag"</span><span class="p">)]</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">at</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">frag_name</span><span class="p">,</span> <span class="n">frag_mol</span> <span class="ow">in</span> <span class="n">fragment_mols</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">({</span><span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="nb">set</span><span class="p">()})</span>
-            <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;charge_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
-                <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">&quot;charge&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;charge_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
-                <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">&quot;spinpol&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">({</span><span class="s2">"tags"</span><span class="p">:</span> <span class="nb">set</span><span class="p">()})</span>
+            <span class="k">if</span> <span class="sa">f</span><span class="s2">"charge_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">"</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
+                <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">"charge"</span><span class="p">]</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">"charge_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span>
+            <span class="k">if</span> <span class="sa">f</span><span class="s2">"spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">"</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
+                <span class="n">frag_mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">"spinpol"</span><span class="p">]</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa">f</span><span class="s2">"spinpol_</span><span class="si">{</span><span class="n">frag_name</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span><span class="p">(</span><span class="n">fragment_mols</span><span class="p">)</span>
 
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not guess fragments from the molecule. Please make sure the molecule defines fragments using either of the two supported methods.&quot;</span><span class="p">)</span></div>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Could not guess fragments from the molecule. Please make sure the molecule defines fragments using either of the two supported methods."</span><span class="p">)</span></div>
 
 
 
@@ -588,7 +588,7 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_xyz_format</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">include_n_atoms</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a string representation of a molecule in the xyz format, e.g.:</span>
+<span class="w">    </span><span class="sd">"""Returns a string representation of a molecule in the xyz format, e.g.:</span>
 
 <span class="sd">    C      0.00000000      0.00000000      0.00000000</span>
 <span class="sd">    H      1.00000000      0.00000000      0.00000000</span>
@@ -596,16 +596,16 @@
 <span class="sd">    H      0.00000000      0.00000000      1.00000000</span>
 
 <span class="sd">    ...</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">n_atoms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">include_n_atoms</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_atoms</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="si">:</span><span class="s2">6s</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">x</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">y</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">z</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">])</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n_atoms</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="si">:</span><span class="s2">6s</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">x</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">y</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">z</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">])</span>
 
-    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="si">:</span><span class="s2">6s</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">x</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">y</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">z</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">])</span>
+    <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="si">:</span><span class="s2">6s</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">x</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">y</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">z</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">])</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_amv_format</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">energy</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a string representation of a molecule in the amv format, e.g.:</span>
+<span class="w">    </span><span class="sd">"""Returns a string representation of a molecule in the amv format, e.g.:</span>
 
 <span class="sd">    Geometry 1, Energy: -0.5 Ha</span>
 <span class="sd">    C      0.00000000      0.00000000      0.00000000</span>
@@ -614,23 +614,23 @@
 <span class="sd">    H      0.00000000      0.00000000      1.00000000</span>
 <span class="sd">    ...</span>
 
-<span class="sd">    If no energy is provided, the energy is not included in the string representation&quot;&quot;&quot;</span>
-    <span class="n">header</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Geometry </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="n">header</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, Name: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">header</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, Energy: </span><span class="si">{</span><span class="n">energy</span><span class="si">}</span><span class="s2"> Ha&quot;</span> <span class="k">if</span> <span class="n">energy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+<span class="sd">    If no energy is provided, the energy is not included in the string representation"""</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Geometry </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span>
+    <span class="n">header</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">", Name: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">""</span>
+    <span class="n">header</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">", Energy: </span><span class="si">{</span><span class="n">energy</span><span class="si">}</span><span class="s2"> Ha"</span> <span class="k">if</span> <span class="n">energy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">""</span>
 
-    <span class="k">return</span> <span class="n">header</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="si">:</span><span class="s2">6s</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">x</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">y</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">z</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">header</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="si">:</span><span class="s2">6s</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">x</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">y</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}{</span><span class="n">at</span><span class="o">.</span><span class="n">z</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">])</span>
 
 
 <div class="viewcode-block" id="write_mol_to_xyz_file">
 <a class="viewcode-back" href="../../api/tcmu.html#tcmu.molecule.write_mol_to_xyz_file">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">write_mol_to_xyz_file</span><span class="p">(</span><span class="n">out_file</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">],</span> <span class="n">mols</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">],</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">],</span> <span class="n">include_n_atoms</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Writes a list of molecules to a file in xyz format.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Writes a list of molecules to a file in xyz format."""</span>
     <span class="n">mols</span> <span class="o">=</span> <span class="n">mols</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mols</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">mols</span><span class="p">]</span>
-    <span class="n">out_file</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">out_file</span><span class="si">}</span><span class="s2">.xyz&quot;</span><span class="p">)</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">out_file</span><span class="si">}</span><span class="s2">.xyz"</span><span class="p">)</span>
 
     <span class="p">[</span><span class="n">mol</span><span class="o">.</span><span class="n">delete_all_bonds</span><span class="p">()</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">mols</span><span class="p">]</span>
-    <span class="n">write_string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">_xyz_format</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">include_n_atoms</span><span class="p">)</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">mols</span><span class="p">])</span>
+    <span class="n">write_string</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">_xyz_format</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">include_n_atoms</span><span class="p">)</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">mols</span><span class="p">])</span>
     <span class="n">out_file</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">write_string</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="kc">None</span></div>
@@ -640,18 +640,18 @@
 <div class="viewcode-block" id="write_mol_to_amv_file">
 <a class="viewcode-back" href="../../api/tcmu.html#tcmu.molecule.write_mol_to_amv_file">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">write_mol_to_amv_file</span><span class="p">(</span><span class="n">out_file</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">],</span> <span class="n">mols</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">],</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">],</span> <span class="n">energies</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="n">mol_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Writes a list of molecules to a file in amv format.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Writes a list of molecules to a file in amv format."""</span>
     <span class="n">out_file</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">out_file</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">out_file</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">&quot;.amv&quot;</span><span class="p">:</span>
-        <span class="n">out_file</span> <span class="o">=</span> <span class="n">out_file</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.amv&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">out_file</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">".amv"</span><span class="p">:</span>
+        <span class="n">out_file</span> <span class="o">=</span> <span class="n">out_file</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">".amv"</span><span class="p">)</span>
 
     <span class="n">mols</span> <span class="o">=</span> <span class="n">mols</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mols</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">mols</span><span class="p">]</span>
     <span class="n">energies</span> <span class="o">=</span> <span class="n">energies</span> <span class="k">if</span> <span class="n">energies</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">mols</span><span class="p">]</span>
-    <span class="n">names</span> <span class="o">=</span> <span class="n">mol_names</span> <span class="k">if</span> <span class="n">mol_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Molecule </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">mols</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">mol_names</span> <span class="k">if</span> <span class="n">mol_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Molecule </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">mols</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
 
     <span class="p">[</span><span class="n">mol</span><span class="o">.</span><span class="n">delete_all_bonds</span><span class="p">()</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">mols</span><span class="p">]</span>
-    <span class="n">write_string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">_amv_format</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">mols</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">names</span><span class="p">),</span> <span class="mi">1</span><span class="p">)])</span>
+    <span class="n">write_string</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">_amv_format</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">mols</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">names</span><span class="p">),</span> <span class="mi">1</span><span class="p">)])</span>
     <span class="n">out_file</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">write_string</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="kc">None</span></div>
@@ -660,41 +660,41 @@
 
 <div class="viewcode-block" id="save">
 <a class="viewcode-back" href="../../api/tcmu.html#tcmu.molecule.save">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save a molecule in a custom xyz file format.</span>
-<span class="sd">    Molecule and atom flags can be provided as the &quot;flags&quot; parameter of the object (mol.flags and atom.flags).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">comment</span> <span class="o">=</span> <span class="n">comment</span> <span class="ow">or</span> <span class="n">mol</span><span class="o">.</span><span class="n">comment</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">&quot;comment&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Save a molecule in a custom xyz file format.</span>
+<span class="sd">    Molecule and atom flags can be provided as the "flags" parameter of the object (mol.flags and atom.flags).</span>
+<span class="sd">    """</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">comment</span> <span class="ow">or</span> <span class="n">mol</span><span class="o">.</span><span class="n">comment</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">"comment"</span><span class="p">)</span> <span class="k">else</span> <span class="s2">""</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"w+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">:</span>
-            <span class="n">flags_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-            <span class="n">flags</span> <span class="o">=</span> <span class="n">at</span><span class="o">.</span><span class="n">flags</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="s2">&quot;flags&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
+            <span class="n">flags_str</span> <span class="o">=</span> <span class="s2">""</span>
+            <span class="n">flags</span> <span class="o">=</span> <span class="n">at</span><span class="o">.</span><span class="n">flags</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="s2">"flags"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">flags</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;tags&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">"tags"</span><span class="p">:</span>
                     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="n">flags_str</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+                        <span class="n">flags_str</span> <span class="o">+=</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value</span><span class="p">])</span> <span class="o">+</span> <span class="s2">" "</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="k">continue</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">flags_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> &quot;</span>
+                    <span class="n">flags_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> "</span>
 
-            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2"> .10f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2"> .10f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2"> .10f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">flags_str</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">symbol</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2"> .10f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2"> .10f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">at</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2"> .10f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">flags_str</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
-        <span class="n">flags</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">&quot;flags&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">flags</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">flags</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">"flags"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">flags</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;tags&quot;</span><span class="p">:</span>
-                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">"tags"</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value</span><span class="p">])</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span></div>
 
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="c1"># mol = load(r&quot;D:\Users\Yuman\Desktop\PhD\ychem\calculations2\5ef3a511141a993d83552515df6bf882a7560dd806f88df4e2c2887b4d2a9595\transitionstate\input_mol.xyz&quot;)</span>
-    <span class="n">mol</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s2">&quot;../../examples/job/NH3BH3.xyz&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="c1"># mol = load(r"D:\Users\Yuman\Desktop\PhD\ychem\calculations2\5ef3a511141a993d83552515df6bf882a7560dd806f88df4e2c2887b4d2a9595\transitionstate\input_mol.xyz")</span>
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s2">"../../examples/job/NH3BH3.xyz"</span><span class="p">)</span>
     <span class="n">frags</span> <span class="o">=</span> <span class="n">guess_fragments</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">frags</span><span class="p">)</span>
 </pre></div>
@@ -726,8 +726,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -761,7 +761,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>
