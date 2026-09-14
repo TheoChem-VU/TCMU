@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcmu.cli_scripts.workflow &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.cli_scripts.workflow &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -26,19 +26,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../../../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -282,8 +282,8 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 
-<span class="n">LINE_UP</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1A&#39;</span>
-<span class="n">LINE_CLEAR</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[2K&#39;</span>
+<span class="n">LINE_UP</span> <span class="o">=</span> <span class="s1">'</span><span class="se">\033</span><span class="s1">[1A'</span>
+<span class="n">LINE_CLEAR</span> <span class="o">=</span> <span class="s1">'</span><span class="se">\x1b</span><span class="s1">[2K'</span>
 
 
 <div class="viewcode-block" id="clear_lines">
@@ -295,35 +295,35 @@
 
 
 
-<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;workflow&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">"workflow"</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">workflow</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    The ``tcmu workflow`` subcommand gives a few tools for reading the statuses of, and clearing of past workflow runs.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
     <span class="k">pass</span>
 
-<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;-h&quot;</span><span class="p">,</span> <span class="s2">&quot;--hash&quot;</span><span class="p">,</span> <span class="s2">&quot;use_hash&quot;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;-x&quot;</span><span class="p">,</span> <span class="s2">&quot;--exit&quot;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">"status"</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"-h"</span><span class="p">,</span> <span class="s2">"--hash"</span><span class="p">,</span> <span class="s2">"use_hash"</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"-x"</span><span class="p">,</span> <span class="s2">"--exit"</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="n">use_hash</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">exit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Read the statuses of completed and currently running workflow runs.</span>
 <span class="sd">    Use the ``name`` argument to specify a specific workflow type or a specific hash when the ``-h/--hash`` flag is turned on.</span>
 <span class="sd">    If ``name`` is not given, prints the statuses of all workflow runs and provides an overview of the number of runs per workflow.</span>
 <span class="sd">    If the ``-x/--exit`` flag is set print the status once and then exit immediately. Otherwise, it will update every second.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">time_sort</span><span class="p">(</span><span class="n">time_str</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">time_str</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">time_str</span> <span class="o">==</span> <span class="s1">''</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">0</span>
         <span class="n">days</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">time_str</span><span class="p">:</span>
-            <span class="n">days</span><span class="p">,</span> <span class="n">time_str</span> <span class="o">=</span> <span class="n">time_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">time_str</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">hours</span><span class="p">,</span> <span class="n">time_str</span> <span class="o">=</span> <span class="n">time_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'-'</span> <span class="ow">in</span> <span class="n">time_str</span><span class="p">:</span>
+            <span class="n">days</span><span class="p">,</span> <span class="n">time_str</span> <span class="o">=</span> <span class="n">time_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'-'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">time_str</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">':'</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">hours</span><span class="p">,</span> <span class="n">time_str</span> <span class="o">=</span> <span class="n">time_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span> <span class="o">=</span> <span class="n">time_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span> <span class="o">=</span> <span class="n">time_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">days</span><span class="p">)</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">hours</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
 
@@ -343,11 +343,11 @@
         <span class="n">pend_rows</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">run_rows</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PENDING&#39;</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'PENDING'</span><span class="p">,</span> <span class="s1">'RUNNING'</span><span class="p">]:</span>
                 <span class="n">misc_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PENDING&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'PENDING'</span><span class="p">:</span>
                 <span class="n">pend_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'RUNNING'</span><span class="p">:</span>
                 <span class="n">run_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 
         <span class="n">run_rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">run_rows</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">time_sort</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])))</span>
@@ -357,70 +357,69 @@
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_str</span><span class="p">():</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s1">''</span>
         <span class="k">if</span> <span class="n">use_hash</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="n">workflow_db</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="n">workflow_db</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">print_date</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">status_counts</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="n">workflow_name_counts</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">workflow_db</span><span class="o">.</span><span class="n">read_all</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;workflow_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
-                    <span class="n">status</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;UNKOWN&#39;</span><span class="p">)</span>
-                    <span class="n">status_counts</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                    <span class="n">status_counts</span><span class="p">[</span><span class="n">status</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">workflow_db</span><span class="o">.</span><span class="n">read_all</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'UNKOWN'</span><span class="p">)</span>
+                <span class="n">status_counts</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">status_counts</span><span class="p">[</span><span class="n">status</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-                    <span class="n">workflow_name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;workflow_name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-                    <span class="n">workflow_name_counts</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">workflow_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                    <span class="n">workflow_name_counts</span><span class="p">[</span><span class="n">workflow_name</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">workflow_name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'workflow_name'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+                <span class="n">workflow_name_counts</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">workflow_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">workflow_name_counts</span><span class="p">[</span><span class="n">workflow_name</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-                    <span class="n">start_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">start_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span>
-                        <span class="n">t</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">-%H-%M-%S&#39;</span><span class="p">)</span>
-                        <span class="n">td</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span>
-                        <span class="n">run_time</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-                        <span class="k">if</span> <span class="n">td</span> <span class="o">&gt;=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-                            <span class="n">run_time</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">td</span><span class="o">.</span><span class="n">days</span><span class="si">}</span><span class="s1">-&#39;</span>
-                        <span class="k">if</span> <span class="n">td</span> <span class="o">&gt;=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-                            <span class="n">run_time</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">td</span><span class="o">.</span><span class="n">seconds</span><span class="o">//</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">:&#39;</span>
-                        <span class="n">run_time</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">td</span><span class="o">.</span><span class="n">seconds</span><span class="o">//</span><span class="mi">60</span><span class="o">%</span><span class="mi">60</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">td</span><span class="o">.</span><span class="n">seconds</span><span class="o">%</span><span class="mi">60</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">start_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'start_time'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">start_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">'RUNNING'</span><span class="p">:</span>
+                    <span class="n">t</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">-%H-%M-%S'</span><span class="p">)</span>
+                    <span class="n">td</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span>
+                    <span class="n">run_time</span> <span class="o">=</span> <span class="s1">''</span>
+                    <span class="k">if</span> <span class="n">td</span> <span class="o">&gt;=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                        <span class="n">run_time</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">td</span><span class="o">.</span><span class="n">days</span><span class="si">}</span><span class="s1">-'</span>
+                    <span class="k">if</span> <span class="n">td</span> <span class="o">&gt;=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                        <span class="n">run_time</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">td</span><span class="o">.</span><span class="n">seconds</span><span class="o">//</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">:'</span>
+                    <span class="n">run_time</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">td</span><span class="o">.</span><span class="n">seconds</span><span class="o">//</span><span class="mi">60</span><span class="o">%</span><span class="mi">60</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">td</span><span class="o">.</span><span class="n">seconds</span><span class="o">%</span><span class="mi">60</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">'</span>
 
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">run_time</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">run_time</span> <span class="o">=</span> <span class="s1">''</span>
 
-                    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">status</span><span class="p">,</span> <span class="n">workflow_name</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;slurm_job_id&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">run_time</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;stage&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)))</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;slurm_job_id&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">run_time</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;stage&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)))</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">status</span><span class="p">,</span> <span class="n">workflow_name</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'slurm_job_id'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">run_time</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'stage'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'slurm_job_id'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">run_time</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'stage'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)))</span>
 
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;I could not find any workflow runs.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                    <span class="k">return</span> <span class="sa">f</span><span class="s1">'No active workflow runs.</span><span class="se">\n</span><span class="s1">'</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;I could not find any runs for WorkFlow(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">).</span><span class="se">\n</span><span class="s1">&#39;</span>
+                    <span class="k">return</span> <span class="sa">f</span><span class="s1">'No active runs for WorkFlow(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">).</span><span class="se">\n</span><span class="s1">'</span>
 
             <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;Found </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">status_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="si">}</span><span class="s1"> total run(s).&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span>
-                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; From the following workflows:&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'Found </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">status_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="si">}</span><span class="s1"> total run(s).'</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n\n</span><span class="s1">'</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">' From the following workflows:'</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span>
                 <span class="k">for</span> <span class="n">workflow_name</span><span class="p">,</span> <span class="n">nums</span> <span class="ow">in</span> <span class="n">workflow_name_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">nums</span><span class="si">:</span><span class="s1">&gt;5</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">workflow_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'  </span><span class="si">{</span><span class="n">nums</span><span class="si">:</span><span class="s1">&gt;5</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">workflow_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;Found </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">status_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="si">}</span><span class="s1"> total run(s) for WorkFlow(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">):</span><span class="se">\n\n</span><span class="s1">&#39;</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'Found </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">status_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="si">}</span><span class="s1"> total run(s) for WorkFlow(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">):</span><span class="se">\n\n</span><span class="s1">'</span>
 
-            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; With the following statuses:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">' With the following statuses:</span><span class="se">\n</span><span class="s1">'</span>
             <span class="k">for</span> <span class="n">status</span><span class="p">,</span> <span class="n">nums</span> <span class="ow">in</span> <span class="n">status_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">nums</span><span class="si">:</span><span class="s1">&gt;5</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">'  </span><span class="si">{</span><span class="n">nums</span><span class="si">:</span><span class="s1">&gt;5</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span>
 
-            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> 
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> 
             <span class="n">rows</span> <span class="o">=</span> <span class="n">sort_rows</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">s</span> <span class="o">+=</span> <span class="n">log</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Status&#39;</span><span class="p">,</span> <span class="s1">&#39;Workflow&#39;</span><span class="p">,</span> <span class="s1">&#39;SlurmJobID&#39;</span><span class="p">,</span> <span class="s1">&#39;Hash&#39;</span><span class="p">,</span> <span class="s1">&#39;RunTime&#39;</span><span class="p">,</span> <span class="s1">&#39;Stage&#39;</span><span class="p">),</span> <span class="n">as_str</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="n">log</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">(</span><span class="s1">'Status'</span><span class="p">,</span> <span class="s1">'Workflow'</span><span class="p">,</span> <span class="s1">'SlurmJobID'</span><span class="p">,</span> <span class="s1">'Hash'</span><span class="p">,</span> <span class="s1">'RunTime'</span><span class="p">,</span> <span class="s1">'Stage'</span><span class="p">),</span> <span class="n">as_str</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">s</span> <span class="o">+=</span> <span class="n">log</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Status&#39;</span><span class="p">,</span> <span class="s1">&#39;SlurmJobID&#39;</span><span class="p">,</span> <span class="s1">&#39;Hash&#39;</span><span class="p">,</span> <span class="s1">&#39;RunTime&#39;</span><span class="p">,</span> <span class="s1">&#39;Stage&#39;</span><span class="p">),</span> <span class="n">as_str</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="n">log</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">(</span><span class="s1">'Status'</span><span class="p">,</span> <span class="s1">'SlurmJobID'</span><span class="p">,</span> <span class="s1">'Hash'</span><span class="p">,</span> <span class="s1">'RunTime'</span><span class="p">,</span> <span class="s1">'Stage'</span><span class="p">),</span> <span class="n">as_str</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">s</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">[Ctrl+C] to exit</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="n">s</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">[Ctrl+C] to exit</span><span class="se">\n</span><span class="s1">'</span>
 
     <span class="n">s</span> <span class="o">=</span> <span class="n">get_str</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -440,46 +439,49 @@
 <span class="n">workflow</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
 
 
-<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;clear&quot;</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;-h&quot;</span><span class="p">,</span> <span class="s2">&quot;--hash&quot;</span><span class="p">,</span> <span class="s2">&quot;use_hash&quot;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">"clear"</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"-h"</span><span class="p">,</span> <span class="s2">"--hash"</span><span class="p">,</span> <span class="s2">"use_hash"</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="n">use_hash</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Clears data related to workflow runs.</span>
 <span class="sd">    Use the ``name`` argument to specify a specific workflow type or a specific hash when the ``-h/--hash`` flag is turned on.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
     <span class="k">if</span> <span class="n">use_hash</span><span class="p">:</span>
         <span class="n">workflow_db</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="n">hashes</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">workflow_db</span><span class="o">.</span><span class="n">read_all</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;workflow_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
-            <span class="n">hashes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">workflow_db</span><span class="o">.</span><span class="n">read_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">hashes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span>
+        
+    <span class="k">for</span> <span class="n">hsh</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">workflow_db</span><span class="o">.</span><span class="n">read_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">hashes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span>
+
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hashes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I could not find any runs for WorkFlow(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">).&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'I could not find any runs for WorkFlow(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">).'</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="n">proceed</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;This will delete </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hashes</span><span class="p">)</span><span class="si">}</span><span class="s1"> workflow runs; proceed? (y/[n]): &#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">proceed</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+    <span class="n">proceed</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s1">'This will delete </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hashes</span><span class="p">)</span><span class="si">}</span><span class="s1"> workflow runs; proceed? (y/[n]): '</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">proceed</span> <span class="o">==</span> <span class="s1">'y'</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">hsh</span> <span class="ow">in</span> <span class="n">hashes</span><span class="p">:</span>
-            <span class="n">workflow_db</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span>
+            <span class="n">workflow_db</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">hsh</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cancelling ...&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'Cancelling ...'</span><span class="p">)</span>
 
 
 <span class="n">workflow</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">clear</span><span class="p">)</span>
 
 
-<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;where&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">"where"</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">where</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Prints where workflow data is stored.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CACHEDIR: </span><span class="si">{</span><span class="n">workflow_db</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DBPATH:   </span><span class="si">{</span><span class="n">workflow_db</span><span class="o">.</span><span class="n">DBPATH</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="sd">    '''</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'CACHEDIR: </span><span class="si">{</span><span class="n">workflow_db</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'DBPATH:   </span><span class="si">{</span><span class="n">workflow_db</span><span class="o">.</span><span class="n">DBPATH</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="n">workflow</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">where</span><span class="p">)</span>
 </pre></div>
@@ -511,8 +513,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -546,7 +548,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

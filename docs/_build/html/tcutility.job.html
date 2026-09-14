@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>tcutility.job &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcutility.job &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -27,20 +27,20 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="_static/documentation_options.js?v=90efd751"></script>
+    <script src="_static/documentation_options.js?v=1104f2bf"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -297,14 +297,14 @@ The module defines usefull classes that do all the heavy lifting (input and runs
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="c1"># job classes are also context-managers</span>
 <span class="linenos"> 4</span><span class="c1"># when exiting the context-manager the job will automatically be run</span>
-<span class="linenos"> 5</span><span class="c1"># this ensures you won&#39;t forget to start the job</span>
+<span class="linenos"> 5</span><span class="c1"># this ensures you won't forget to start the job</span>
 <span class="linenos"> 6</span><span class="k">with</span> <span class="n">ADFJob</span><span class="p">()</span> <span class="k">as</span> <span class="n">job</span><span class="p">:</span>
-<span class="linenos"> 7</span>    <span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;example.xyz&#39;</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">'example.xyz'</span><span class="p">)</span>
 <span class="linenos"> 8</span>
 <span class="linenos"> 9</span><span class="c1"># you can also run without the use of context-managers</span>
-<span class="linenos">10</span><span class="c1"># in that case, don&#39;t forget to run the job</span>
+<span class="linenos">10</span><span class="c1"># in that case, don't forget to run the job</span>
 <span class="linenos">11</span><span class="n">job</span> <span class="o">=</span> <span class="n">ADFJob</span><span class="p">()</span>
-<span class="linenos">12</span><span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;example.xyz&#39;</span><span class="p">)</span>
+<span class="linenos">12</span><span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">'example.xyz'</span><span class="p">)</span>
 <span class="linenos">13</span><span class="n">job</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -312,9 +312,9 @@ The module defines usefull classes that do all the heavy lifting (input and runs
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.job</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADFJob</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span><span class="k">with</span> <span class="n">ADFJob</span><span class="p">()</span> <span class="k">as</span> <span class="n">job</span><span class="p">:</span>
-<span class="linenos">4</span>    <span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;example.xyz&#39;</span><span class="p">)</span>
-<span class="linenos">5</span>    <span class="n">job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">&#39;./calc_dir/molecule_1&#39;</span>
-<span class="linenos">6</span>    <span class="n">job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ADF_calculation&#39;</span>
+<span class="linenos">4</span>    <span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">'example.xyz'</span><span class="p">)</span>
+<span class="linenos">5</span>    <span class="n">job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">'./calc_dir/molecule_1'</span>
+<span class="linenos">6</span>    <span class="n">job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'ADF_calculation'</span>
 <span class="linenos">7</span>
 <span class="linenos">8</span><span class="nb">print</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">workdir</span><span class="p">)</span>
 </pre></div>
@@ -327,10 +327,10 @@ The module defines usefull classes that do all the heavy lifting (input and runs
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span><span class="w"> </span><span class="nn">tcutility.job</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADFJob</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span><span class="k">with</span> <span class="n">ADFJob</span><span class="p">()</span> <span class="k">as</span> <span class="n">job</span><span class="p">:</span>
-<span class="linenos">4</span>    <span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;example.xyz&#39;</span><span class="p">)</span>
+<span class="linenos">4</span>    <span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">'example.xyz'</span><span class="p">)</span>
 <span class="linenos">5</span>    <span class="c1"># we can set any sbatch settings using the job.sbatch() method</span>
-<span class="linenos">6</span>    <span class="c1"># in this case, we set the partition to &#39;tc&#39; and the number of cores to 32</span>
-<span class="linenos">7</span>    <span class="n">job</span><span class="o">.</span><span class="n">sbatch</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s1">&#39;tc&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<span class="linenos">6</span>    <span class="c1"># in this case, we set the partition to 'tc' and the number of cores to 32</span>
+<span class="linenos">7</span>    <span class="n">job</span><span class="o">.</span><span class="n">sbatch</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s1">'tc'</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Furthermore, the <code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code> class detects which platform you are running on (e.g. Bazis or Snellius) and sets default sbatch and module loading settings accordingly.</p>
@@ -342,11 +342,11 @@ The module defines usefull classes that do all the heavy lifting (input and runs
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="c1"># submit and run a CREST calculation</span>
 <span class="linenos"> 4</span><span class="k">with</span> <span class="n">CRESTJob</span><span class="p">()</span> <span class="k">as</span> <span class="n">crest_job</span><span class="p">:</span>
-<span class="linenos"> 5</span>    <span class="n">crest_job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;input.xyz&#39;</span><span class="p">)</span>
-<span class="linenos"> 6</span>    <span class="n">crest_job</span><span class="o">.</span><span class="n">sbatch</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s1">&#39;tc&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<span class="linenos"> 5</span>    <span class="n">crest_job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="s1">'input.xyz'</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="n">crest_job</span><span class="o">.</span><span class="n">sbatch</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s1">'tc'</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>    <span class="n">crest_job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">&#39;./calculations/molecule_1&#39;</span>
-<span class="linenos"> 9</span>    <span class="n">crest_job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;CREST&#39;</span>
+<span class="linenos"> 8</span>    <span class="n">crest_job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">'./calculations/molecule_1'</span>
+<span class="linenos"> 9</span>    <span class="n">crest_job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'CREST'</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="c1"># get the 10 lowest conformers using the crest_job.get_conformer_xyz() method</span>
 <span class="linenos">12</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">conformer_xyz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">crest_job</span><span class="o">.</span><span class="n">get_conformer_xyz</span><span class="p">(</span><span class="mi">10</span><span class="p">)):</span>
@@ -358,15 +358,15 @@ The module defines usefull classes that do all the heavy lifting (input and runs
 <span class="linenos">18</span>        <span class="c1"># you can set a file to an xyz-file</span>
 <span class="linenos">19</span>        <span class="c1"># that does not exist yet as the molecule</span>
 <span class="linenos">20</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="n">conformer_xyz</span><span class="p">)</span>
-<span class="linenos">21</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">sbatch</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s1">&#39;tc&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="linenos">21</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">sbatch</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s1">'tc'</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="linenos">22</span>
-<span class="linenos">23</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">functional</span><span class="p">(</span><span class="s1">&#39;OLYP-D3(BJ)&#39;</span><span class="p">)</span>
-<span class="linenos">24</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">basis_set</span><span class="p">(</span><span class="s1">&#39;TZ2P&#39;</span><span class="p">)</span>
-<span class="linenos">25</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="s1">&#39;Good&#39;</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">functional</span><span class="p">(</span><span class="s1">'OLYP-D3(BJ)'</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">basis_set</span><span class="p">(</span><span class="s1">'TZ2P'</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="s1">'Good'</span><span class="p">)</span>
 <span class="linenos">26</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">optimization</span><span class="p">()</span>
 <span class="linenos">27</span>
-<span class="linenos">28</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">&#39;./calculations/molecule_1&#39;</span>
-<span class="linenos">29</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;conformer_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="linenos">28</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">'./calculations/molecule_1'</span>
+<span class="linenos">29</span>        <span class="n">opt_job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'conformer_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span>
 </pre></div>
 </div>
 <p>This script will first setup and submit a <a class="reference internal" href="api/tcmu.job.html#tcmu.job.crest.CRESTJob" title="tcmu.job.crest.CRESTJob"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRESTJob</span></code></a> calculation to generate conformers for the structure in <code class="docutils literal notranslate"><span class="pre">input.xyz</span></code>. It will then submit geometry optimizations for the 10 lowest conformers using <a class="reference internal" href="api/tcmu.job.html#tcmu.job.adf.ADFJob" title="tcmu.job.adf.ADFJob"><code class="xref py py-class docutils literal notranslate"><span class="pre">ADFJob</span></code></a> at the <code class="docutils literal notranslate"><span class="pre">OLYP-D3(BJ)/TZ2P</span></code> level of theory. Slurm will first wait for the <a class="reference internal" href="api/tcmu.job.html#tcmu.job.crest.CRESTJob" title="tcmu.job.crest.CRESTJob"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRESTJob</span></code></a> calculation to finish before starting the <a class="reference internal" href="api/tcmu.job.html#tcmu.job.adf.ADFJob" title="tcmu.job.adf.ADFJob"><code class="xref py py-class docutils literal notranslate"><span class="pre">ADFJob</span></code></a> calculations.</p>
@@ -379,23 +379,23 @@ The module defines usefull classes that do all the heavy lifting (input and runs
 <span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="n">input_xyz_directory</span> <span class="o">=</span> <span class="s1">&#39;molecules&#39;</span>
+<span class="linenos"> 5</span><span class="n">input_xyz_directory</span> <span class="o">=</span> <span class="s1">'molecules'</span>
 <span class="linenos"> 6</span>
 <span class="linenos"> 7</span><span class="c1"># get the xyz files we want to optimize</span>
-<span class="linenos"> 8</span><span class="n">xyz_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_xyz_directory</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">input_xyz_directory</span><span class="p">)</span> <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.xyz&#39;</span><span class="p">)]</span>
+<span class="linenos"> 8</span><span class="n">xyz_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_xyz_directory</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">input_xyz_directory</span><span class="p">)</span> <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'.xyz'</span><span class="p">)]</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="k">for</span> <span class="n">xyz_file</span> <span class="ow">in</span> <span class="n">xyz_files</span><span class="p">:</span>
 <span class="linenos">11</span>    <span class="k">with</span> <span class="n">ADFJob</span><span class="p">()</span> <span class="k">as</span> <span class="n">job</span><span class="p">:</span>
 <span class="linenos">12</span>        <span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="n">xyz_file</span><span class="p">)</span>
-<span class="linenos">13</span>        <span class="n">job</span><span class="o">.</span><span class="n">sbatch</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s1">&#39;tc&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">job</span><span class="o">.</span><span class="n">sbatch</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s1">'tc'</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="linenos">14</span>
-<span class="linenos">15</span>        <span class="n">job</span><span class="o">.</span><span class="n">functional</span><span class="p">(</span><span class="s1">&#39;OLYP-D3(BJ)&#39;</span><span class="p">)</span>
-<span class="linenos">16</span>        <span class="n">job</span><span class="o">.</span><span class="n">basis_set</span><span class="p">(</span><span class="s1">&#39;TZ2P&#39;</span><span class="p">)</span>
-<span class="linenos">17</span>        <span class="n">job</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="s1">&#39;Good&#39;</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="n">job</span><span class="o">.</span><span class="n">functional</span><span class="p">(</span><span class="s1">'OLYP-D3(BJ)'</span><span class="p">)</span>
+<span class="linenos">16</span>        <span class="n">job</span><span class="o">.</span><span class="n">basis_set</span><span class="p">(</span><span class="s1">'TZ2P'</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">job</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="s1">'Good'</span><span class="p">)</span>
 <span class="linenos">18</span>        <span class="n">job</span><span class="o">.</span><span class="n">optimization</span><span class="p">()</span>
 <span class="linenos">19</span>
-<span class="linenos">20</span>        <span class="n">job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">&#39;./calculations&#39;</span>
-<span class="linenos">21</span>        <span class="n">job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s1">&#39;.xyz&#39;</span><span class="p">)</span>
+<span class="linenos">20</span>        <span class="n">job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">'./calculations'</span>
+<span class="linenos">21</span>        <span class="n">job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">file</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s1">'.xyz'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Everytime this script is run it will loop through the molecules stored in the <code class="docutils literal notranslate"><span class="pre">molecules</span></code> directory. If you add new molecules to this directory and then rerun it, the script will detect which molecules were previously optimized and skip those. This way you can easily reuse the script multiple times without manually checking/implementing rerun prevention.</p>
@@ -464,21 +464,21 @@ To handle the ADF settings you can refer to the GUI. For example, to use a speci
 <span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">tcmu</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADFJob</span>
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span><span class="n">current_file_path</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
-<span class="linenos"> 7</span><span class="n">mol_path</span> <span class="o">=</span> <span class="n">current_file_path</span> <span class="o">/</span> <span class="s2">&quot;water_dimer.xyz&quot;</span>
+<span class="linenos"> 7</span><span class="n">mol_path</span> <span class="o">=</span> <span class="n">current_file_path</span> <span class="o">/</span> <span class="s2">"water_dimer.xyz"</span>
 <span class="linenos"> 8</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="k">def</span><span class="w"> </span><span class="nf">try_plams_job</span><span class="p">(</span><span class="n">mol</span><span class="p">:</span> <span class="n">Molecule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="linenos">11</span>    <span class="c1"># Test case with plams for checking if plams works solely on Windows</span>
 <span class="linenos">12</span>    <span class="n">run_set</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
-<span class="linenos">13</span>    <span class="n">run_set</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">ams</span><span class="o">.</span><span class="n">Task</span> <span class="o">=</span> <span class="s2">&quot;GeometryOptimization&quot;</span>
-<span class="linenos">14</span>    <span class="n">run_set</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">adf</span><span class="o">.</span><span class="n">Basis</span><span class="o">.</span><span class="n">Type</span> <span class="o">=</span> <span class="s2">&quot;DZP&quot;</span>
-<span class="linenos">15</span>    <span class="n">run_set</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">adf</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">GGA</span> <span class="o">=</span> <span class="s2">&quot;BP86&quot;</span>
+<span class="linenos">13</span>    <span class="n">run_set</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">ams</span><span class="o">.</span><span class="n">Task</span> <span class="o">=</span> <span class="s2">"GeometryOptimization"</span>
+<span class="linenos">14</span>    <span class="n">run_set</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">adf</span><span class="o">.</span><span class="n">Basis</span><span class="o">.</span><span class="n">Type</span> <span class="o">=</span> <span class="s2">"DZP"</span>
+<span class="linenos">15</span>    <span class="n">run_set</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">adf</span><span class="o">.</span><span class="n">XC</span><span class="o">.</span><span class="n">GGA</span> <span class="o">=</span> <span class="s2">"BP86"</span>
 <span class="linenos">16</span>
 <span class="linenos">17</span>    <span class="n">config</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="linenos">18</span>    <span class="n">config</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="linenos">19</span>
-<span class="linenos">20</span>    <span class="n">init</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">current_file_path</span><span class="p">),</span> <span class="n">folder</span><span class="o">=</span><span class="s2">&quot;GO_water_dimer&quot;</span><span class="p">,</span> <span class="n">config_settings</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
-<span class="linenos">21</span>    <span class="n">AMSJob</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;water_dimer&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">run_set</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="linenos">20</span>    <span class="n">init</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">current_file_path</span><span class="p">),</span> <span class="n">folder</span><span class="o">=</span><span class="s2">"GO_water_dimer"</span><span class="p">,</span> <span class="n">config_settings</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="n">AMSJob</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"water_dimer"</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">run_set</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="linenos">22</span>    <span class="n">finish</span><span class="p">()</span>
 <span class="linenos">23</span>
 <span class="linenos">24</span>
@@ -486,17 +486,17 @@ To handle the ADF settings you can refer to the GUI. For example, to use a speci
 <span class="linenos">26</span>    <span class="c1"># Test case with tcmu for checking if tcmu works solely on Windows</span>
 <span class="linenos">27</span>    <span class="k">with</span> <span class="n">ADFJob</span><span class="p">(</span><span class="n">use_slurm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">job</span><span class="p">:</span>
 <span class="linenos">28</span>        <span class="n">job</span><span class="o">.</span><span class="n">molecule</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-<span class="linenos">29</span>        <span class="n">job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">current_file_path</span> <span class="o">/</span> <span class="s2">&quot;calculations&quot;</span><span class="p">)</span>
-<span class="linenos">30</span>        <span class="n">job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;GO_water_dimer&quot;</span>
-<span class="linenos">31</span>        <span class="n">job</span><span class="o">.</span><span class="n">functional</span><span class="p">(</span><span class="s2">&quot;BP86-D3(BJ)&quot;</span><span class="p">)</span>
-<span class="linenos">32</span>        <span class="n">job</span><span class="o">.</span><span class="n">basis_set</span><span class="p">(</span><span class="s2">&quot;TZ2P&quot;</span><span class="p">)</span>
-<span class="linenos">33</span>        <span class="n">job</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="s2">&quot;Good&quot;</span><span class="p">)</span>
+<span class="linenos">29</span>        <span class="n">job</span><span class="o">.</span><span class="n">rundir</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">current_file_path</span> <span class="o">/</span> <span class="s2">"calculations"</span><span class="p">)</span>
+<span class="linenos">30</span>        <span class="n">job</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"GO_water_dimer"</span>
+<span class="linenos">31</span>        <span class="n">job</span><span class="o">.</span><span class="n">functional</span><span class="p">(</span><span class="s2">"BP86-D3(BJ)"</span><span class="p">)</span>
+<span class="linenos">32</span>        <span class="n">job</span><span class="o">.</span><span class="n">basis_set</span><span class="p">(</span><span class="s2">"TZ2P"</span><span class="p">)</span>
+<span class="linenos">33</span>        <span class="n">job</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="s2">"Good"</span><span class="p">)</span>
 <span class="linenos">34</span>        <span class="n">job</span><span class="o">.</span><span class="n">optimization</span><span class="p">()</span>
 <span class="linenos">35</span>
 <span class="linenos">36</span>
 <span class="linenos">37</span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 <span class="linenos">38</span>    <span class="n">current_file_path</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
-<span class="linenos">39</span>    <span class="n">mol_path</span> <span class="o">=</span> <span class="n">current_file_path</span> <span class="o">/</span> <span class="s2">&quot;water_dimer.xyz&quot;</span>
+<span class="linenos">39</span>    <span class="n">mol_path</span> <span class="o">=</span> <span class="n">current_file_path</span> <span class="o">/</span> <span class="s2">"water_dimer.xyz"</span>
 <span class="linenos">40</span>
 <span class="linenos">41</span>    <span class="n">mol</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mol_path</span><span class="p">))</span>
 <span class="linenos">42</span>
@@ -505,7 +505,7 @@ To handle the ADF settings you can refer to the GUI. For example, to use a speci
 <span class="linenos">45</span>    <span class="n">try_tcmu_job</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
 <span class="linenos">46</span>
 <span class="linenos">47</span>
-<span class="linenos">48</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">48</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
 <span class="linenos">49</span>    <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -530,7 +530,7 @@ To handle the ADF settings you can refer to the GUI. For example, to use a speci
 <span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">tcutility</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecule</span>
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span><span class="c1"># load a molecule</span>
-<span class="linenos"> 5</span><span class="n">mol</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;NH3BH3.xyz&quot;</span><span class="p">)</span>
+<span class="linenos"> 5</span><span class="n">mol</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"NH3BH3.xyz"</span><span class="p">)</span>
 <span class="linenos"> 6</span>
 <span class="linenos"> 7</span><span class="c1"># define a new job using the Job context-manager</span>
 <span class="linenos"> 8</span><span class="k">with</span> <span class="n">ADFFragmentJob</span><span class="p">()</span> <span class="k">as</span> <span class="n">job</span><span class="p">:</span>
@@ -626,8 +626,8 @@ To handle the ADF settings you can refer to the GUI. For example, to use a speci
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -661,7 +661,7 @@ To handle the ADF settings you can refer to the GUI. For example, to use a speci
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

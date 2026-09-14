@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>VDD Charge Analysis module &#8212; tcmu v0.17.3 documentation</title>
+    <title>VDD Charge Analysis module &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -27,19 +27,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -333,11 +333,11 @@ See the <a class="reference external" href="https://github.com/TheoChem-VU/TCMU/
 </div>
 <p>Now, the calculation directory needs to be specified and the calculation results can be loaded via the <a class="reference internal" href="../api/tcmu.results.html#module-tcmu.results.read" title="tcmu.results.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read</span></code></a> function.
 The next step is to create a <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a> object which is the interface to performing VDD analyses.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DIRS</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;fa_acid_amide_cs&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;fa_squaramide_se_cs&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;fa_donor_acceptor_nosym&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;geo_nosym&quot;</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DIRS</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">"fa_acid_amide_cs"</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">"fa_squaramide_se_cs"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"fa_donor_acceptor_nosym"</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">"geo_nosym"</span><span class="p">}</span>
 
 <span class="c1"># Specify the calculation directory</span>
 <span class="n">base_dir</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
-<span class="n">base_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;VDD&quot;</span>
+<span class="n">base_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">"VDD"</span>
 <span class="n">calc_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="n">DIRS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="n">calc_res</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">calc_dir</span><span class="p">)</span>
@@ -347,7 +347,7 @@ The next step is to create a <a class="reference internal" href="../api/tcmu.ana
 <p>The <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a> object contains the total VDD charges, as well as the VDD charges for each irreducible representation.
 To see the contents of the <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager" title="tcmu.analysis.vdd.manager.VDDChargeManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDDManager</span></code></a>, simply print it. The charges are formatted as a table in the unit of milli electrons [me].
 You can always change the unit of the charges by using the <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysis.vdd.manager.VDDChargeManager.change_unit" title="tcmu.analysis.vdd.manager.VDDChargeManager.change_unit"><code class="xref py py-func docutils literal notranslate"><span class="pre">change_unit</span></code></a> method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vdd_manager</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="s2">&quot;me&quot;</span><span class="p">)</span>  <span class="c1"># Change the unit to electrons &quot;e&quot; (electrons) or &quot;me&quot; (milli electrons)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vdd_manager</span><span class="o">.</span><span class="n">change_unit</span><span class="p">(</span><span class="s2">"me"</span><span class="p">)</span>  <span class="c1"># Change the unit to electrons "e" (electrons) or "me" (milli electrons)</span>
 
 <span class="c1"># Print the VDD charges to standard output</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">vdd_manager</span><span class="p">)</span>
@@ -377,7 +377,7 @@ You can always change the unit of the charges by using the <a class="reference i
 </div>
 <p>See? It is that easy. The charges sum up to the total charge of the molecule (in this case 0). Also, the sum of irrep charges is equal to the total charge, as it should be.
 It is possible to print the charges to both a text file (.txt) as well as a Excel (.xlsx) file. The Excel file is formatted as a table and can be used for further analysis.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;output&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">"output"</span>
 
 <span class="c1"># Write the VDD charges to a text file (static method because multiple managers can be written to the same file)</span>
 <span class="n">manager</span><span class="o">.</span><span class="n">VDDChargeManager</span><span class="o">.</span><span class="n">write_to_txt</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">vdd_manager</span><span class="p">)</span>
@@ -564,8 +564,8 @@ A <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysi
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -599,7 +599,7 @@ A <a class="reference internal" href="../api/tcmu.analysis.vdd.html#tcmu.analysi
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

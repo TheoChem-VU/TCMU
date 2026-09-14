@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>tcmu.report package &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.report package &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -27,19 +27,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -214,6 +214,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-tcmu.report.character">tcmu.report.character module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-tcmu.report.figure_resizer">tcmu.report.figure_resizer module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-tcmu.report.report">tcmu.report.report module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tcmu.report.simple_sheets">tcmu.report.simple_sheets module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-tcmu.report">Module contents</a></li>
 </ul>
 </li>
@@ -608,6 +609,20 @@ It includes details such as the electronic bond energy, Gibb’s free energy, en
 <dd></dd></dl>
 
 </section>
+<section id="module-tcmu.report.simple_sheets">
+<span id="tcmu-report-simple-sheets-module"></span><h2>tcmu.report.simple_sheets module<a class="headerlink" href="#module-tcmu.report.simple_sheets" title="Link to this heading">#</a></h2>
+<p>Module for working with very basic spread sheets.
+The main motivation for the creation of this module is
+that we cannot programmatically put molecular xyz-coordinates
+or any multiline value inside of CSV files. This module
+provides a very basic way of including any kind of value inside
+a .xlsx file.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="tcmu.report.simple_sheets.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/report/simple_sheets.html#append"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.report.simple_sheets.append" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="module-tcmu.report">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tcmu.report" title="Link to this heading">#</a></h2>
 </section>
@@ -704,6 +719,10 @@ It includes details such as the electronic bond energy, Gibb’s free energy, en
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.report.report.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-tcmu.report.simple_sheets">tcmu.report.simple_sheets module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.report.simple_sheets.append"><code class="docutils literal notranslate"><span class="pre">append()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-tcmu.report">Module contents</a></li>
 </ul>
   </nav></div>
@@ -730,8 +749,8 @@ It includes details such as the electronic bond energy, Gibb’s free energy, en
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -765,7 +784,7 @@ It includes details such as the electronic bond energy, Gibb’s free energy, en
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcmu.cli_scripts.geo &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.cli_scripts.geo &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -26,19 +26,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../../../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -272,7 +272,7 @@
                 <article class="bd-article">
                   
   <h1>Source code for tcmu.cli_scripts.geo</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Module containing functions for calculating geometrical parameters for molecules&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""Module containing functions for calculating geometrical parameters for molecules"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
@@ -286,34 +286,34 @@
 <div class="viewcode-block" id="GeometricParameter">
 <a class="viewcode-back" href="../../../api/tcmu.cli_scripts.html#tcmu.cli_scripts.geo.GeometricParameter">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GeometricParameter</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enum class for geometric parameters&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Enum class for geometric parameters"""</span>
 
-    <span class="n">COORDINATE</span> <span class="o">=</span> <span class="s2">&quot;Coordinate&quot;</span>
-    <span class="n">DISTANCE</span> <span class="o">=</span> <span class="s2">&quot;Distance&quot;</span>
-    <span class="n">ANGLE</span> <span class="o">=</span> <span class="s2">&quot;Angle&quot;</span>
-    <span class="n">DIHEDRAL</span> <span class="o">=</span> <span class="s2">&quot;Dihedral&quot;</span>
-    <span class="n">PYRAMIDAL</span> <span class="o">=</span> <span class="s2">&quot;Pyramidal&quot;</span>
-    <span class="n">SUMOFANGLES</span> <span class="o">=</span> <span class="s2">&quot;SumOfAngles&quot;</span></div>
+    <span class="n">COORDINATE</span> <span class="o">=</span> <span class="s2">"Coordinate"</span>
+    <span class="n">DISTANCE</span> <span class="o">=</span> <span class="s2">"Distance"</span>
+    <span class="n">ANGLE</span> <span class="o">=</span> <span class="s2">"Angle"</span>
+    <span class="n">DIHEDRAL</span> <span class="o">=</span> <span class="s2">"Dihedral"</span>
+    <span class="n">PYRAMIDAL</span> <span class="o">=</span> <span class="s2">"Pyramidal"</span>
+    <span class="n">SUMOFANGLES</span> <span class="o">=</span> <span class="s2">"SumOfAngles"</span></div>
 
 
 
 <span class="n">geometric_character_to_info_mapping</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">GeometricParameter</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">COORDINATE</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Coordinate&quot;</span><span class="p">,</span> <span class="s2">&quot;Å&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
-    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">DISTANCE</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Distance&quot;</span><span class="p">,</span> <span class="s2">&quot; Å&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">ANGLE</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Angle&quot;</span><span class="p">,</span> <span class="s2">&quot;°&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">DIHEDRAL</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Dihedral&quot;</span><span class="p">,</span> <span class="s2">&quot;°&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">PYRAMIDAL</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Pyramidal&quot;</span><span class="p">,</span> <span class="s2">&quot;°&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">SUMOFANGLES</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;SumOfAngles&quot;</span><span class="p">,</span> <span class="s2">&quot;°&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">COORDINATE</span><span class="p">:</span> <span class="p">(</span><span class="s2">"Coordinate"</span><span class="p">,</span> <span class="s2">"Å"</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">DISTANCE</span><span class="p">:</span> <span class="p">(</span><span class="s2">"Distance"</span><span class="p">,</span> <span class="s2">" Å"</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">ANGLE</span><span class="p">:</span> <span class="p">(</span><span class="s2">"Angle"</span><span class="p">,</span> <span class="s2">"°"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">DIHEDRAL</span><span class="p">:</span> <span class="p">(</span><span class="s2">"Dihedral"</span><span class="p">,</span> <span class="s2">"°"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">PYRAMIDAL</span><span class="p">:</span> <span class="p">(</span><span class="s2">"Pyramidal"</span><span class="p">,</span> <span class="s2">"°"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">SUMOFANGLES</span><span class="p">:</span> <span class="p">(</span><span class="s2">"SumOfAngles"</span><span class="p">,</span> <span class="s2">"°"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
 <span class="p">}</span>
 
 
-<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">&quot;atom_indices&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="s2">&quot;--pyramidal&quot;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Instead of calculating a dihedral angle, calculate pyramidalisation angle.&quot;</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;--soa&quot;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Instead of calculating a dihedral angle, calculate sum-of-angles.&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">"geo"</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">"path"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">"atom_indices"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"-p"</span><span class="p">,</span> <span class="s2">"--pyramidal"</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"Instead of calculating a dihedral angle, calculate pyramidalisation angle."</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"-s"</span><span class="p">,</span> <span class="s2">"--soa"</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"Instead of calculating a dihedral angle, calculate sum-of-angles."</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_geometry_parameter</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">atom_indices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">pyramidal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">soa</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Calculate geometrical parameters for atoms at the provided ``ATOM_INDICES``.</span>
 <span class="sd">    ``PATH`` should be an ``.xyz``-file or a calculation directory.</span>
 
@@ -331,13 +331,13 @@
 <span class="sd">    If the ``-s``/``--soa`` flag is turned on it calculates ``ang1 + ang2 + ang3``.</span>
 
 <span class="sd">    .. note:: Atom counting starts at 1.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">mol</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">IsADirectoryError</span><span class="p">:</span>
         <span class="n">mol</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">output</span>
 
-    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">atom_indices</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Number of atom indices must be 1, 2, 3 or 4, not </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">atom_indices</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">atom_indices</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Number of atom indices must be 1, 2, 3 or 4, not </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">atom_indices</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">atom_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">mol</span><span class="o">.</span><span class="n">delete_all_bonds</span><span class="p">()</span>
@@ -346,14 +346,14 @@
 
     <span class="n">atom_indices</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">atom_indices</span><span class="p">]</span>
 
-    <span class="n">atoms</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mol</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">symbol</span><span class="si">}{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">atom_indices</span><span class="p">])</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="s2">"-"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">mol</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">symbol</span><span class="si">}{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">atom_indices</span><span class="p">])</span>
 
     <span class="n">param_value</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">parameter</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="o">*</span><span class="n">atom_indices</span><span class="p">,</span> <span class="n">pyramidal</span><span class="o">=</span><span class="n">pyramidal</span><span class="p">,</span> <span class="n">sum_of_angles</span><span class="o">=</span><span class="n">soa</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">atom_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">param_type</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">precision</span> <span class="o">=</span> <span class="n">geometric_character_to_info_mapping</span><span class="p">[</span><span class="n">GeometricParameter</span><span class="o">.</span><span class="n">COORDINATE</span><span class="p">]</span>
-        <span class="n">param_value</span> <span class="o">=</span> <span class="s2">&quot;  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2"> .</span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2">f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">mol</span><span class="p">[</span><span class="n">atom_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">param_type</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">atoms</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">param_value</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">param_value</span> <span class="o">=</span> <span class="s2">"  "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2"> .</span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2">f</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">mol</span><span class="p">[</span><span class="n">atom_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">param_type</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">atoms</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">param_value</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">atom_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -368,13 +368,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">param_type</span> <span class="o">=</span> <span class="n">GeometricParameter</span><span class="o">.</span><span class="n">DIHEDRAL</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid number of atom indices&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Invalid number of atom indices"</span><span class="p">)</span>
 
     <span class="n">param_type</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">precision</span> <span class="o">=</span> <span class="n">geometric_character_to_info_mapping</span><span class="p">[</span><span class="n">param_type</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">param_type</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">atoms</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">param_value</span><span class="si">:</span><span class="s2"> .</span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2">f</span><span class="si">}{</span><span class="n">unit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">param_type</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">atoms</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">param_value</span><span class="si">:</span><span class="s2"> .</span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2">f</span><span class="si">}{</span><span class="n">unit</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">calculate_geometry_parameter</span><span class="p">()</span>
 </pre></div>
 
@@ -405,8 +405,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -440,7 +440,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

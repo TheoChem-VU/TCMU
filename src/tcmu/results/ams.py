@@ -308,6 +308,7 @@ def _get_fragment_indices_from_input_order(results_type) -> Array1D:
 def _make_molecule(kf_variable: str, reader_ams: plams.KFReader, natoms: int, atnums: List[int]) -> plams.Molecule:
     """Makes a plams.Molecule object from the given kf_variable ("InputMolecule" or "Molecule") and reader."""
     # read output molecule
+        
     ret_mol = plams.Molecule()
     coords = np.array(reader_ams.read(kf_variable, "Coords")).reshape(natoms, 3) * constants.BOHR2ANG
     for atnum, coord in zip(atnums, coords):
@@ -320,8 +321,34 @@ def _make_molecule(kf_variable: str, reader_ams: plams.KFReader, natoms: int, at
             ret_mol.add_bond(plams.Bond(ret_mol[at1], ret_mol[at2], order=order))
     else:
         ret_mol.guess_bonds()
+
+    # Load lattice vectors if we're dealing with a band system
+    if "LatticeVectors" in reader_ams._sections[kf_variable]:
+        # plams.Molecule.lattice expects a 2d array of formatting [[x y, z], [x, y, z], ...]
+        ret_mol.lattice = split_lattice_vectors(reader_ams.read(kf_variable, "LatticeVectors"), reader_ams.read(kf_variable, "nLatticeVectors"))
+
     return ret_mol
 
+# Split the lattice factors from [x, y, z, x, y, z, ...] to [[x, y, z], [x, y, z], ...] 
+def split_lattice_vectors(raw_lattice_vectors:List[float], n_lattice_vectors:int) -> list:
+    """
+    Reformats the raw rkf file lattice formatting to the plams compatible format
+    Plainly, it turns [x, y, z, x, y, z, ...] into [[x, y, z], [x, y, z], ...] which is easier to work with
+
+    Args:
+        raw_lattice_vectors: Unformatted lattice vectors: [x, y, z, x, y, z, ...], typically stored as LatticeVectors
+        n_lattice_vectors: The amount of lattice vectors we're dealing with, typically stored as nLatticeVectors
+
+    Returns:
+        :2d list containing the formatted lattice vectors
+    """
+    split_lattice = []
+
+    for i in range(0, n_lattice_vectors):
+        # split the list into chunks of three (for x, y and z)
+        split_lattice.append(raw_lattice_vectors[(3 * i):(3 * (i+1))])
+
+    return split_lattice
 
 def get_molecules(calc_dir: str) -> Result:
     """
@@ -341,6 +368,10 @@ def get_molecules(calc_dir: str) -> Result:
             - **input (plams.Molecule)** – molecule that was given in the input for the calculation.
             - **output (plams.Molecule)** – final molecule that was given as the output for the calculation. If the calculation was a singlepoint calculation output and input molecules will be the same.
             - **frag_indices (numpy array[int] (1D))** – list of fragment indices for each atom in the molecule. The indices are given in the order of the atoms in the molecule.
+            - **lattice_n_in (int)** – number of lattice vectors of the starting system.
+            - **lattice_n_out (int)** – number of lattice vectors of the final system.
+            - **lattice_vectors_in (list[list(xyz), list(xyz)])** – lattice vectors of the starting system in [[x, y, z], [x, y, z], ...] format        
+            - **lattice_vectors_in (list[list(xyz), list(xyz)])** – lattice vectors of the final system in [[x, y, z], [x, y, z], ...] format  
     """
     files = get_calc_files(calc_dir)
     # all info is stored in reader_ams
@@ -375,8 +406,19 @@ def get_molecules(calc_dir: str) -> Result:
     except KeyError:
         ret.mol_charge = 0.0
 
-    return ret
+    # Read the lattice vectors if they are present (if the input has them, so will the output, could also check for band but this is probably more future proof)
+    if "LatticeVectors" in reader_ams._sections["InputMolecule"]:
+        ret.lattice_n_in = reader_ams.read("InputMolecule", "nLatticeVectors")
+        ret.lattice_n_out = reader_ams.read("Molecule", "nLatticeVectors")
 
+        lattice_vectors_in = reader_ams.read("InputMolecule", "LatticeVectors")
+        lattice_vectors_out = reader_ams.read("Molecule", "LatticeVectors")
+
+        # Changes the lattice vector formatting from [x, y, z, x, y, z] to [[x, y, z], [x, y, z], ...] for easier accessing
+        ret.lattice_vectors_in = split_lattice_vectors(lattice_vectors_in, ret.lattice_n_in)
+        ret.lattice_vectors_out = split_lattice_vectors(lattice_vectors_out, ret.lattice_n_out)
+
+    return ret
 
 @environment.requires_optional_package("scipy")
 def get_pes(calc_dir: str) -> Result:

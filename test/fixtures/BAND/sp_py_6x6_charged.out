@@ -1,0 +1,1176 @@
+
+
+ Parallel Execution: Process Information
+ ==============================================================================
+ Rank   Node Name                              NodeID   MyNodeRank  NodeMaster
+    0   tcn1180.local.snellius.surf.nl            0          0          0
+    1   tcn1180.local.snellius.surf.nl            0          1         -1
+    2   tcn1180.local.snellius.surf.nl            0          2         -1
+    3   tcn1180.local.snellius.surf.nl            0          3         -1
+    4   tcn1180.local.snellius.surf.nl            0          4         -1
+    5   tcn1180.local.snellius.surf.nl            0          5         -1
+    6   tcn1180.local.snellius.surf.nl            0          6         -1
+    7   tcn1180.local.snellius.surf.nl            0          7         -1
+    8   tcn1180.local.snellius.surf.nl            0          8         -1
+    9   tcn1180.local.snellius.surf.nl            0          9         -1
+   10   tcn1180.local.snellius.surf.nl            0         10         -1
+   11   tcn1180.local.snellius.surf.nl            0         11         -1
+   12   tcn1180.local.snellius.surf.nl            0         12         -1
+   13   tcn1180.local.snellius.surf.nl            0         13         -1
+   14   tcn1180.local.snellius.surf.nl            0         14         -1
+   15   tcn1180.local.snellius.surf.nl            0         15         -1
+   16   tcn1180.local.snellius.surf.nl            0         16         -1
+   17   tcn1180.local.snellius.surf.nl            0         17         -1
+   18   tcn1180.local.snellius.surf.nl            0         18         -1
+   19   tcn1180.local.snellius.surf.nl            0         19         -1
+   20   tcn1180.local.snellius.surf.nl            0         20         -1
+   21   tcn1180.local.snellius.surf.nl            0         21         -1
+   22   tcn1180.local.snellius.surf.nl            0         22         -1
+   23   tcn1180.local.snellius.surf.nl            0         23         -1
+   24   tcn1180.local.snellius.surf.nl            0         24         -1
+   25   tcn1180.local.snellius.surf.nl            0         25         -1
+   26   tcn1180.local.snellius.surf.nl            0         26         -1
+   27   tcn1180.local.snellius.surf.nl            0         27         -1
+   28   tcn1180.local.snellius.surf.nl            0         28         -1
+   29   tcn1180.local.snellius.surf.nl            0         29         -1
+   30   tcn1180.local.snellius.surf.nl            0         30         -1
+   31   tcn1180.local.snellius.surf.nl            0         31         -1
+   32   tcn1180.local.snellius.surf.nl            0         32         -1
+   33   tcn1180.local.snellius.surf.nl            0         33         -1
+   34   tcn1180.local.snellius.surf.nl            0         34         -1
+   35   tcn1180.local.snellius.surf.nl            0         35         -1
+   36   tcn1180.local.snellius.surf.nl            0         36         -1
+   37   tcn1180.local.snellius.surf.nl            0         37         -1
+   38   tcn1180.local.snellius.surf.nl            0         38         -1
+   39   tcn1180.local.snellius.surf.nl            0         39         -1
+   40   tcn1180.local.snellius.surf.nl            0         40         -1
+   41   tcn1180.local.snellius.surf.nl            0         41         -1
+   42   tcn1180.local.snellius.surf.nl            0         42         -1
+   43   tcn1180.local.snellius.surf.nl            0         43         -1
+   44   tcn1180.local.snellius.surf.nl            0         44         -1
+   45   tcn1180.local.snellius.surf.nl            0         45         -1
+   46   tcn1180.local.snellius.surf.nl            0         46         -1
+   47   tcn1180.local.snellius.surf.nl            0         47         -1
+   48   tcn1180.local.snellius.surf.nl            0         48         -1
+   49   tcn1180.local.snellius.surf.nl            0         49         -1
+   50   tcn1180.local.snellius.surf.nl            0         50         -1
+   51   tcn1180.local.snellius.surf.nl            0         51         -1
+   52   tcn1180.local.snellius.surf.nl            0         52         -1
+   53   tcn1180.local.snellius.surf.nl            0         53         -1
+   54   tcn1180.local.snellius.surf.nl            0         54         -1
+   55   tcn1180.local.snellius.surf.nl            0         55         -1
+   56   tcn1180.local.snellius.surf.nl            0         56         -1
+   57   tcn1180.local.snellius.surf.nl            0         57         -1
+   58   tcn1180.local.snellius.surf.nl            0         58         -1
+   59   tcn1180.local.snellius.surf.nl            0         59         -1
+   60   tcn1180.local.snellius.surf.nl            0         60         -1
+   61   tcn1180.local.snellius.surf.nl            0         61         -1
+   62   tcn1180.local.snellius.surf.nl            0         62         -1
+   63   tcn1180.local.snellius.surf.nl            0         63         -1
+ ==============================================================================
+
+
+May use up to 69182MB of RAM as shared memory on node 0
+
+ *******************************************************************************
+ *                                                                             *
+ *  --------------------------------                                           *
+ *   Amsterdam Modeling Suite (AMS)              2023.104                      *
+ *  --------------------------------                                           *
+ *                                               r115785 2023-10-06            *
+ *                                                                             *
+ *                                                                             *
+ *                              =================                              *
+ *                              |               |                              *
+ *                              |     A M S     |                              *
+ *                              |               |                              *
+ *                              =================                              *
+ *                                                                             *
+ *                                                                             *
+ *   Online information and documentation:  https://www.scm.com/support/       *
+ *   E-mail:  support@scm.com   info@scm.com                                   *
+ *                                                                             *
+ *   Scientific publications using AMS results must be properly referenced     *
+ *   See the User Manuals (or the web site) for recommended citations          *
+ *   The terms and conditions of the End User License Agreement apply to       *
+ *   the use of AMS, https://www.scm.com/license-terms/                        *
+ *                                                                             *
+ **********************  x86_64_linux_amdZen / intelmpi  ***********************
+ 
+ Licensed to: SURF HPC / Amsterdam / NL 2026-04-13 12:14:13
+ SCM User ID: u7409
+  
+ AMS 2023.104  RunTime: Jul08-2026 13:20:21  ShM Nodes: 1  Procs: 64
+
+ AMS jobname: ams
+ AMS jobid  : 701834917
+
+ Start   directory: /gpfs/home1/tkoster/testberekening/
+ Results directory: /gpfs/home1/tkoster/testberekening/ams.results/
+ Scratch directory: /scratch-local/tkoster.24505499/amstmp_ams_kid0.701834917/
+
+
+ Communication costs MPI_COMM_WORLD:      5.730 usec per message,   0.0735 usec per 8-byte item
+ Communication costs for intra-node:      5.638 usec per message,   0.0842 usec per 8-byte item
+
+ RNG seed: 1126371086 -108272818 255621526 -64392263 1059033776 1684853845 1646401290 -166228823
+
+       ****************************
+       * SINGLE POINT CALCULATION *
+       ****************************
+ 
+--------
+Geometry
+--------
+Formula: Hg
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Hg     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    14.72706777    -0.08768463     0.00000000
+      2     7.28759677    12.79785712     0.00000000
+ 
+Unit cell area (angstrom^2)       189.11392
+ 
+Total System Charge             2.00000
+ 
+
+
+
+                     **************************************************************************
+                     *  BAND 2023.104  RunTime: Jul08-2026 13:20:22  ShM Nodes: 1  Procs: 64  *
+                     **************************************************************************
+  
+
+-----------------
+Band Engine Input
+-----------------
+
+NeutralizingDensity rho(homogeneous)
+Basis
+Type TZP
+Core None
+End
+Convergence
+Criterion 1.0e-6
+End
+NumericalQuality Good
+Unrestricted yes
+EnforcedSpinPolarization 0.0
+UseSymmetry No
+XC
+GGA PBE
+DISPERSION GRIMME3 BJDAMP
+End
+SCF
+ITERATIONS 999
+END
+
+ Using the following basis set files:
+ 
+ Hg             : /sw/arch/RHEL8/EB_production/2023/software/AMS/2023.104-intelmpi/atomicdata/Band/TZP/Hg
+ Needs range separation F F
+ Range separation string: 
+
+
+
+ =====================
+ C O N F I N E M E N T
+ =====================
+  
+ Basis functions confinement radius        20.000
+ Width                                      2.000
+
+
+
+ ===============================
+ M O D E L   P A R A M E T E R S
+ ===============================
+  
+ DENSITY FUNCTIONAL POTENTIAL (scf)
+    LDA:                               PW92                                    == Not Default ==
+    Gradient Corrections:              PBEc PBEx                               == Not Default ==
+ DENSITY FUNCTIONAL ENERGY (post-scf)
+    Gradient Corrections:              Becke88 Perdew86 PW91x PW91c EV93x PW...== Not Default ==
+
+ SPIN  (restricted / unrestr.)
+    Molecule:                          UNrestricted                            == Not Default ==
+
+ OTHER ASPECTS
+    Relativistic Corrections:          scalar (ZORA,APA)                        
+
+    Nuclear Charge Density Model:      Point Charge Nuclei                      
+
+
+
+ ========================
+ S. C. F.   O P T I O N S
+ ========================
+  
+
+ * DIIS settings info for DIRAC   *
+    Cond              0.1E+07
+    CLarge          20.00
+    CHuge           50.00
+    DiMix            1.00
+    IopPly              1
+    NCyDmp              5
+    IPrint              0
+    Adaptable           F
+    Method         diis                
+    Dimix Decay fac  1.00
+
+ SCF Multi Stepper from: DFTB/default2023.inc
+
+
+    Mix            0.0750
+    Degenerate          F
+    Edegen          1.0E-04
+    SCFRTX           9.90
+    Convrg          1.0E-06
+    Ncyclx            999
+    Vsplit          5.0E-02
+ getinp: use Shared Memory T
+
+
+
+
+                             **  R A D I A L   F U N C T I O N S  **
+
+
+
+
+                             ---------------------
+                                   T Y P E   1
+                             ---------------------
+
+ RADIAL POINTS                                         3000
+
+
+
+
+ ............................ D I R A C ................................
+
+ NUCLEAR CHARGE                                80.0000               **>  Hg  <**
+ (POINT NUCLEUS)
+ VALENCE CHARGE                                80.0000
+ NET CHARGE                                     0.0000
+
+ VALENCE ORBITALS INCLUDED IN THE CRYSTAL BASIS
+ Radial grid       nr of points               3000
+                   range                      0.10E-05     0.10E+03
+  
+  ** SCF-FUNCTIONAL INFO **
+    ZORA
+    SCALAR
+  
+ Self consistent error   0.92E-08
+
+
+  Orbital    Q         E(a.u.)     E(eV)           <R>
+ -------------------------------------------------------------------
+  1S         2.00  -3362.543974     -91499.4771   0.015
+  2S         2.00   -552.314196     -15029.2340   0.069
+  2P         6.00   -475.220996     -12931.4212   0.062
+  3S         2.00   -129.221603      -3516.2987   0.180
+  3P         6.00   -107.455659      -2924.0173   0.182
+  3D        10.00    -84.680683      -2304.2786   0.165
+  4S         2.00    -28.284959       -769.6729   0.399
+  4P         6.00    -21.199571       -576.8697   0.426
+  4D        10.00    -12.819899       -348.8472   0.449
+  4F        14.00     -3.533292        -96.1458   0.483
+  5S         2.00     -4.338879       -118.0669   0.902
+  5P         6.00     -2.441199        -66.4284   1.040
+  5D        10.00     -0.362705         -9.8697   1.500
+  6S         2.00     -0.250189         -6.8080   2.699
+
+
+
+ NR. OF RADIAL VALENCE ORBITALS                          33
+ NR. OF RADIAL CORE ORBITALS                              0
+ NR. OF RADIAL FIT FUNCTIONS                              0
+
+
+
+ ======================================================
+ R A N G E S    F O R    A T O M I C    O R B I T A L S
+ ======================================================
+  
+   --------------------------------------------------------------------------------
+                            valence            core valence kinetic    core kinetic
+   --------------------------------------------------------------------------------
+
+             Cutoff       1.000E-07       1.000E-07       1.000E-07       1.000E-07
+   --------------------------------------------------------------------------------
+ 
+   --------------------------------------------------------------------------------
+               Type         valence            core valence kinetic    core kinetic
+   --------------------------------------------------------------------------------
+                 Hg           23.76            0.00           23.76            0.00
+   --------------------------------------------------------------------------------
+ 
+
+
+
+ ====================
+ R U N    C O N F I G
+ ====================
+  
+ 
+ Use Symmetry  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate gradient of basis  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate sec. der. of basis .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate operator T working on basis .  .  .  .  .  .  .  .  T
+ Calculate dk-basis  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate gradient of fit .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate sec. der. of fit.  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate gradient of fit pot.  .  .  .  .  .  .  .  .  .  .  F
+ Kin. energy via grad.  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Turnover rule for xc.  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate gradient of energy .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate analytical strain derivatives  .  .  .  .  .  .  .  F
+ Calculate kin. energy density.  .  .  .  .  .  .  .  .  .  .  F
+ Calculate nuc. grad of kin. energy density  .  .  .  .  .  .  F
+ Calculate der. of density .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate second der. of density.  .  .  .  .  .  .  .  .  .  T
+ Calculate nuc. grad. of density .  .  .  .  .  .  .  .  .  .  F
+ Calculate nuc. grad. of grad. density .  .  .  .  .  .  .  .  F
+ Exact rho during SCF.  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Exact grad. rho during SCF.  .  .  .  .  .  .  .  .  .  .  .  F
+ Exact grad. rho post SCF  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Store history of dens. matrix.  .  .  .  .  .  .  .  .  .  .  T
+ Store original Bloch functions  .  .  .  .  .  .  .  .  .  .  F
+ Direct fit .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Direct basis  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ STO based fitting.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Zlm fitting.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate fragment energy in mol. grid.  .  .  .  .  .  .  .  T
+ Map atoms to unit cell .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Print output for radial.  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate DOS .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate population analysis.  .  .  .  .  .  .  .  .  .  .  T
+ Calculate band structure  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate EFG .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate properties.  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate kinetic energy  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Save file tape10 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Save file Points .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+
+
+
+ ==================================================
+ G E O M E T R Y    I N    X - Y - Z    F O R M A T
+ ==================================================
+  
+ Hg      0.000000000     0.000000000     0.000000000
+ VEC1    14.727067770    -0.087684630     0.000000000
+ VEC2     7.287596770    12.797857120     0.000000000
+
+   Total nr. of atoms:          1
+
+
+
+
+
+                       2 - D I M E N S I O N A L   C R Y S T A L
+
+
+
+
+   REAL SPACE LATTICE VECTORS                         LENGTH
+   --------------------------                         ------
+   1)  27.8301247041  -0.1656999360                   27.831
+   2)  13.7715620020  24.1844449389                   27.831
+
+   ----------------------------------------
+   Angles between lattice vectors
+   ----------------------------------------
+
+     pair          angle
+
+     2 1            60.682267
+ 
+
+
+   K-SPACE LATTICE VECTORS                            LENGTH
+   -----------------------                            ------
+   1)   0.2250063440  -0.1281273490                    0.259
+   2)   0.0015416329   0.2589248845                    0.259
+ BeckeGrid: periodic partition function using cells up to order            4
+
+
+
+ ===============================
+ K - S P A C E   S A M P L I N G
+ ===============================
+  
+ Automatic Regular k-space grid for quality: GOOD
+ 
+    lattice-vec. size(real space)    size(k-space)   #points   delta-k
+               1            24.27             0.26         3     0.129
+               2            24.27             0.26         3     0.129
+ 
+             Total nr. of unique k-points 5
+
+
+
+
+ =========
+ C E L L S
+ =========
+  
+
+   Nr. of cells for valence functions:          7
+
+
+
+ ===========================
+ L I N E A R   S C A L I N G
+ ===========================
+  
+ Neglecting functions
+              Valence  1.00E-07
+                 Core  1.00E-07
+                  Fit  0.00E+00
+            Multipole  1.00E-08
+   Screening function  3.16E-05
+
+
+
+ =========================================
+ N U M E R I C A L   I N T E G R A T I O N
+ =========================================
+  
+ Becke grid quality: GOOD           
+  
+ Lebedev angular grid order:             min:  11 max:  31
+ Nr. of radial points:                   min: 152 max: 152
+
+ Total nr. of points                                  32640
+ Block length                                           128
+ Nr. of unique blocks                                   255
+ Total nr. of blocks                                    255
+
+ Percentage dummy points                               0.00%
+ Nr. of k-points processed together in baspnt            30
+ Nr. of symmetry operators (real space)                   1
+ Symmetry operators in k-space                            2
+
+
+
+ Total charge,    analytically                           80.000000000000
+                  numerically                            79.999990575770
+                  relative error                     -0.12E-06
+
+ Valence density, analytically                           80.000000000000
+                  numerically                            79.999990575770
+                  relative error                     -0.12E-06
+
+
+
+ INTEGRATED CHARGE PER ATOM:
+
+  SET      TOTAL CHARGE      REL. ERROR      Valence CHARGE    REL. ERROR
+ ------------------------------------------------------------------------
+   1      79.9999905758      -0.118E-06     79.9999905758      -0.118E-06
+ 
+ use shared memory for sandwiching:  F , as int:            0
+
+ Norms of functions from routine baspnt
+ Maximum error in norms     4.826E-07 for function       31
+ Minimum accuracy required  1.000E-03
+
+ Sparseness info - valence
+   nr. of functions              99
+   max. nr. of functions         99
+   min. nr. of functions         15
+   avr. nr. of functions         59
+   percentage stored           59.6
+ 
+ Number of independent basis functions:           99
+ Number of independent basis functions:           99
+ Number of independent basis functions:           99
+ Number of independent basis functions:           99
+ Number of independent basis functions:           99
+ PrepareHam: needLdotB F
+
+
+
+ ========================
+ Density Fitting (zlmFit)
+ ========================
+  
+ ZlmFit Fit Quality: GOOD           
+  
+ Max L-expansion:                        min:   9 max:   9
+ Nr. of radial interpolation points:     min: 210 max: 210
+ BeckeGrid: periodic partition function using cells up to order            5
+ BeckeGrid: periodic partition function using cells up to order            5
+ SCF procedure tweaks
+   * counter           0
+   * addExtraPotential F
+   * addExtraPotentialOnLastCycle F
+   * extraPotentialName
+   * reuseEigenSystem F
+ 
+ skipDiagonalization F parmix=  7.500000000000000E-002 ncylx=         999
+ restartSCF F
+ forceRestartSolution F
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                      99
+ Nr. of core functions                        0
+ Nr. of fit functions                         0
+ Nr. of symmetry unique K-points              5
+ Valence charge                           78.00
+ Nr. of symmetry operators                    1
+
+ Settings for convergence
+ --------------------------------------------------------------------------------
+   Initial density:          psi
+   start. from max. spin     T
+ --------------------------------------------------------------------------------
+
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc=  0 err=0.00E+00 cpu=  26s ela=  30s
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00049
+ cyc=  1 err=1.15E+01 meth=o nvec= 1 mix=1.0000 cpu=  47s ela=  50s fit=1.64E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00049
+ cyc=  2 err=7.17E+00 meth=1 nvec= 1 mix=0.1500 cpu=  11s ela=  13s fit=6.52E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc=  3 err=4.45E+00 meth=1 nvec= 2 mix=0.1950 cpu=   7s ela=   9s fit=1.10E-03
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc=  4 err=5.39E-01 meth=1 nvec= 3 mix=0.2009 cpu=   4s ela=  13s fit=8.56E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc=  5 err=3.28E-01 meth=1 nvec= 4 mix=0.2069 cpu=  17s ela=  20s fit=3.01E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ RHOPOT WARNING: NEGATIVE CHARGE DENSITY FOUND OF  -1.12E-23 FOR SPIN  1
+ RHOPOT WARNING: NEGATIVE CHARGE DENSITY FOUND OF  -1.12E-23 FOR SPIN  2
+ cyc=  6 err=9.17E-02 meth=1 nvec= 5 mix=0.2131 cpu=  11s ela=  21s fit=1.35E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc=  7 err=3.92E-02 meth=1 nvec= 6 mix=0.2195 cpu=  18s ela=  21s fit=1.42E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc=  8 err=9.60E-03 meth=1 nvec= 7 mix=0.2261 cpu=  14s ela=  16s fit=1.35E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc=  9 err=2.98E-03 meth=1 nvec= 8 mix=0.2328 cpu=  21s ela=  27s fit=1.35E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc= 10 err=7.66E-04 meth=1 nvec= 9 mix=0.2398 cpu=  15s ela=  17s fit=1.35E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ RHOPOT WARNING: NEGATIVE CHARGE DENSITY FOUND OF  -3.74E-19 FOR SPIN  1
+ RHOPOT WARNING: NEGATIVE CHARGE DENSITY FOUND OF  -3.74E-19 FOR SPIN  2
+ cyc= 11 err=7.57E-05 meth=1 nvec= 7 mix=0.2470 cpu=  22s ela=  27s fit=1.35E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ RHOPOT WARNING: NEGATIVE CHARGE DENSITY FOUND OF  -9.88E-20 FOR SPIN  1
+ RHOPOT WARNING: NEGATIVE CHARGE DENSITY FOUND OF  -9.88E-20 FOR SPIN  2
+ cyc= 12 err=2.16E-05 meth=1 nvec= 8 mix=0.2544 cpu=   7s ela=   9s fit=1.35E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ cyc= 13 err=3.10E-06 meth=1 nvec= 8 mix=0.2621 cpu=   9s ela=  11s fit=1.35E-04
+  pol= 0.00E+00
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+ RHOPOT WARNING: NEGATIVE CHARGE DENSITY FOUND OF  -7.88E-22 FOR SPIN  1
+ RHOPOT WARNING: NEGATIVE CHARGE DENSITY FOUND OF  -7.88E-22 FOR SPIN  2
+
+ CONVERGENCE REACHED
+ cyc= 14 err=2.13E-07 meth=1 nvec= 7 mix=0.2699 cpu=  11s ela=  14s fit=1.35E-04
+  pol= 0.00E+00
+
+
+         -------------------- CYCLE   15 --------------------
+ Self consistent error (density)                       2.13E-07
+ PrepareNeutralizingDensity
+ gModel%qnet:    2.00000000000000     
+ neutralizingDensity: rho(homogeneous)
+ qNeutralizingRaw   13510.6506504055     
+ neutralizingFactor  1.480313607205865E-004
+ 
+               charge of system    2.00000
+ q rho(deformation/neutralized)   -0.00048
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ ========================================================================================
+       band      min(up)      max(up)    occup(up)      min(dn)      max(dn)    occup(dn)
+ ========================================================================================
+         35     -0.85369     -0.85369      1.00000     -0.85369     -0.85369      1.00000
+         36     -0.85366     -0.85366      1.00000     -0.85366     -0.85366      1.00000
+         37     -0.85365     -0.85365      1.00000     -0.85365     -0.85365      1.00000
+         38     -0.85357     -0.85357      1.00000     -0.85357     -0.85357      1.00000
+         39     -0.85357     -0.85357      1.00000     -0.85357     -0.85357      1.00000
+         40     -0.65445     -0.65445      0.00000     -0.65445     -0.65445      0.00000
+         41     -0.33808     -0.33808      0.00000     -0.33808     -0.33808      0.00000
+         42     -0.33743     -0.33743      0.00000     -0.33743     -0.33743      0.00000
+         43     -0.33741     -0.33741      0.00000     -0.33741     -0.33741      0.00000
+         44     -0.10130     -0.10130      0.00000     -0.10130     -0.10130      0.00000
+         45      0.02054      0.02054      0.00000      0.02054      0.02054      0.00000
+         46      0.02076      0.02076      0.00000      0.02076      0.02076      0.00000
+         47      0.02078      0.02078      0.00000      0.02078      0.02078      0.00000
+         48      0.02136      0.02136      0.00000      0.02136      0.02136      0.00000
+         49      0.02136      0.02136      0.00000      0.02136      0.02136      0.00000
+ ========================================================================================
+
+----------------------------------------
+Band gap information
+----------------------------------------
+Number of valence electrons                    78
+Valence band index                             39
+Valence band spin index                         2
+Conduction band index                          40
+Conduction band spin index                      1
+Top of valence band (a.u.)                 -0.854
+Bottom of conduction band (a.u.)           -0.654
+Top of valence band at k-point              0.000    -0.000
+Bottom of conduction band at k-point        0.000    -0.000
+Direct band gap
+Band gap (a.u.)                             0.199
+Band gap (eV)                               5.418
+Band gap (kcal/mol)                       124.952
+ 
+
+
+
+ =============================================
+ I N T E R N A L    A T O M    O R D E R I N G
+ =============================================
+  
+   --------------------------------------------------------------------------------
+         type         q       set      indx   (input)         x         y         z
+   --------------------------------------------------------------------------------
+            1        80         1         1         1       0.0       0.0       0.0
+   --------------------------------------------------------------------------------
+
+
+
+ =============================
+ E N E R G Y   A N A L Y S I S
+ =============================
+  
+ Formation energy w.r.t. spherically-symmetric spin-restricted atoms
+
+                                                             (a.u.)            (eV)     (kCal/mol)
+ --------------------------------------------------------------------------------------------------
+
+ Kinetic                                                      -1.32100156     -35.9463     -828.94
+ XC                                                            0.49888856      13.5754      313.06
+ Electrostatic                                                -0.00000000      -0.0000       -0.00
+ V(atomic)*def                                                 1.28702089      35.0216      807.62
+ V(def)*def                                                    0.42099999      11.4560      264.18
+ Dispersion                                                   -0.00000266      -0.0001       -0.00
+ --------------------------------------------------------------------------------------------------
+
+ Final bond energy (PBE)                                       0.88590521      24.1067      555.91
+ 
+ Fit error correction used (Vdef*err)                         -0.00000324      -0.0001       -0.00
+
+ ==================================================================================================
+
+
+
+ ==========================
+ D I P O L E    M O M E N T
+ ==========================
+  
+   ==================================================
+    direction       dipole (a.u.)      dipole (Debye)
+   ==================================================
+            z           -0.000000           -0.000000
+   ==================================================
+
+
+
+ =======================
+ F O R M   F A C T O R S
+ =======================
+  
+
+
+
+
+ Form factors (amplitude and phase/pi)
+
+ First line : direct projection 
+ Second line: overlap taken into account
+
+ N.B.: the coefficients in the expansion of the total coulomb potential
+       due to the nuclear charges have been removed analytically.
+
+ --------------------------------------------------------------------------------------------
+                                       Total            Total     Deformation     Deformation
+        Coordinates                  Density        Potential         Density       Potential
+ --------------------------------------------------------------------------------------------
+
+   1)      0      0             78.0000  1.00  472.0917  0.00    2.0000  0.00  423.5390  0.00
+       0.000  0.000             69.6657  1.00  422.9788  0.00    1.8077  0.00  387.9439  0.00
+
+   2)     -1      0             77.5347  1.00   77.5372  1.00    1.7940 -0.00    1.7916 -0.00
+      -0.225  0.128             75.6446  1.00   77.6076  1.00    1.7461 -0.00    1.7377 -0.00
+
+   3)      1      0             77.5347  1.00   77.5372  1.00    1.7940  0.00    1.7916  0.00
+       0.225 -0.128             75.6446  1.00   77.6076  1.00    1.7461  0.00    1.7377  0.00
+
+   4)      0     -1             77.5347  1.00   77.5344  1.00    1.7940  0.00    1.7943  0.00
+      -0.002 -0.259             74.6218  1.00   77.6319  1.00    1.7245  0.00    1.7222  0.00
+
+   5)      0      1             77.5347  1.00   77.5344  1.00    1.7940 -0.00    1.7943 -0.00
+       0.002  0.259             74.6218  1.00   77.6319  1.00    1.7245 -0.00    1.7222 -0.00
+
+   6)     -1     -1             77.5252  1.00   77.5274  1.00    1.7900 -0.00    1.7878 -0.00
+      -0.227 -0.131             75.7544  1.00   77.5954  1.00    1.7447 -0.00    1.7356 -0.00
+
+   7)      1      1             77.5252  1.00   77.5274  1.00    1.7900  0.00    1.7878  0.00
+       0.227  0.131             75.7544  1.00   77.5954  1.00    1.7447  0.00    1.7356  0.00
+
+ --------------------------------------------------------------------------------------------
+
+
+   noper                                        1
+   nfunc                                       99
+   nprocsThisNode                              64
+   nfuncThisProcess                             2
+   safeMaxFuncSliceSize                         2
+   requestedMaxFuncSliceSize                  128
+   actual maxFuncSliceSize                      2
+   numSlices                                    1
+   nEnergies                                   75
+       Nr. of bands used for DOS:     50
+   nband_dosplot                               50
+   bandSliceSize                               25
+   num band slices                              2
+
+
+
+ =======================================
+ M U L L I K E N   P O P U L A T I O N S
+ =======================================
+  
+
+ BASISFUNCTION         Q
+ --------------------------------
+ 1/Hg/NO/1s                  1.000   1.000
+ 1/Hg/NO/2s                  1.000   1.000
+ 1/Hg/NO/2p_y                1.000   1.000
+ 1/Hg/NO/2p_z                1.000   1.000
+ 1/Hg/NO/2p_x                1.000   1.000
+ 1/Hg/NO/3s                  1.000   1.000
+ 1/Hg/NO/3p_y                1.000   1.000
+ 1/Hg/NO/3p_z                1.000   1.000
+ 1/Hg/NO/3p_x                1.000   1.000
+ 1/Hg/NO/3d_xy               1.000   1.000
+ 1/Hg/NO/3d_yz               1.000   1.000
+ 1/Hg/NO/3d_z2               1.000   1.000
+ 1/Hg/NO/3d_xz               1.000   1.000
+ 1/Hg/NO/3d_x2-y2            1.000   1.000
+ 1/Hg/NO/4s                  1.000   1.000
+ 1/Hg/NO/4p_y                1.000   1.000
+ 1/Hg/NO/4p_z                1.000   1.000
+ 1/Hg/NO/4p_x                1.000   1.000
+ 1/Hg/NO/4d_xy               1.000   1.000
+ 1/Hg/NO/4d_yz               1.000   1.000
+ 1/Hg/NO/4d_z2               1.000   1.000
+ 1/Hg/NO/4d_xz               1.000   1.000
+ 1/Hg/NO/4d_x2-y2            1.000   1.000
+ 1/Hg/NO/4f_y3-3yx2          1.000   1.000
+ 1/Hg/NO/4f_xyz              1.000   1.000
+ 1/Hg/NO/4f_xz2              1.000   1.000
+ 1/Hg/NO/4f_z3               1.000   1.000
+ 1/Hg/NO/4f_yz2              1.000   1.000
+ 1/Hg/NO/4f_zx2-zy2          1.000   1.000
+ 1/Hg/NO/4f_x3-3xy2          1.000   1.000
+ 1/Hg/NO/5s                  0.995   0.995
+ 1/Hg/NO/5p_y                0.999   0.999
+ 1/Hg/NO/5p_z                0.999   0.999
+ 1/Hg/NO/5p_x                0.999   0.999
+ 1/Hg/NO/5d_xy               1.056   1.056
+ 1/Hg/NO/5d_yz               1.056   1.056
+ 1/Hg/NO/5d_z2               1.056   1.056
+ 1/Hg/NO/5d_xz               1.056   1.056
+ 1/Hg/NO/5d_x2-y2            1.056   1.056
+ 1/Hg/NO/6s                  0.000   0.000
+ 1/Hg/STO188.4/1s           -0.000  -0.000
+ 1/Hg/STO101.6/2s           -0.000  -0.000
+ 1/Hg/STO49.5/3s             0.000   0.000
+ 1/Hg/STO9.2/4s              0.001   0.001
+ 1/Hg/STO4.8/5s              0.004   0.004
+ 1/Hg/STO3.3/6s             -0.000  -0.000
+ 1/Hg/STO1.28/6s             0.000   0.000
+ 1/Hg/STO188.4/2p_y         -0.000  -0.000
+ 1/Hg/STO188.4/2p_z         -0.000  -0.000
+ 1/Hg/STO188.4/2p_x         -0.000  -0.000
+ 1/Hg/STO67.3/2p_y           0.000   0.000
+ 1/Hg/STO67.3/2p_z           0.000   0.000
+ 1/Hg/STO67.3/2p_x           0.000   0.000
+ 1/Hg/STO15.45/3p_y          0.000   0.000
+ 1/Hg/STO15.45/3p_z          0.000   0.000
+ 1/Hg/STO15.45/3p_x          0.000   0.000
+ 1/Hg/STO13.85/4p_y         -0.000  -0.000
+ 1/Hg/STO13.85/4p_z         -0.000  -0.000
+ 1/Hg/STO13.85/4p_x         -0.000  -0.000
+ 1/Hg/STO3.85/5p_y           0.002   0.002
+ 1/Hg/STO3.85/5p_z           0.002   0.002
+ 1/Hg/STO3.85/5p_x           0.002   0.002
+ 1/Hg/STO28.45/3d_xy        -0.000  -0.000
+ 1/Hg/STO28.45/3d_yz        -0.000  -0.000
+ 1/Hg/STO28.45/3d_z2        -0.000  -0.000
+ 1/Hg/STO28.45/3d_xz        -0.000  -0.000
+ 1/Hg/STO28.45/3d_x2-y2     -0.000  -0.000
+ 1/Hg/STO12.45/4d_xy        -0.000  -0.000
+ 1/Hg/STO12.45/4d_yz        -0.000  -0.000
+ 1/Hg/STO12.45/4d_z2        -0.000  -0.000
+ 1/Hg/STO12.45/4d_xz        -0.000  -0.000
+ 1/Hg/STO12.45/4d_x2-y2     -0.000  -0.000
+ 1/Hg/STO5.3/5d_xy          -0.018  -0.018
+ 1/Hg/STO5.3/5d_yz          -0.018  -0.018
+ 1/Hg/STO5.3/5d_z2          -0.018  -0.018
+ 1/Hg/STO5.3/5d_xz          -0.018  -0.018
+ 1/Hg/STO5.3/5d_x2-y2       -0.018  -0.018
+ 1/Hg/STO1.71/5d_xy         -0.038  -0.038
+ 1/Hg/STO1.71/5d_yz         -0.038  -0.038
+ 1/Hg/STO1.71/5d_z2         -0.038  -0.038
+ 1/Hg/STO1.71/5d_xz         -0.038  -0.038
+ 1/Hg/STO1.71/5d_x2-y2      -0.038  -0.038
+ 1/Hg/STO16.6/4f_y3-3yx2     0.000   0.000
+ 1/Hg/STO16.6/4f_xyz         0.000   0.000
+ 1/Hg/STO16.6/4f_xz2         0.000   0.000
+ 1/Hg/STO16.6/4f_z3          0.000   0.000
+ 1/Hg/STO16.6/4f_yz2         0.000   0.000
+ 1/Hg/STO16.6/4f_zx2-zy2     0.000   0.000
+ 1/Hg/STO16.6/4f_x3-3xy2     0.000   0.000
+ 1/Hg/STO5.2/4f_y3-3yx2      0.000   0.000
+ 1/Hg/STO5.2/4f_xyz          0.000   0.000
+ 1/Hg/STO5.2/4f_xz2          0.000   0.000
+ 1/Hg/STO5.2/4f_z3           0.000   0.000
+ 1/Hg/STO5.2/4f_yz2          0.000   0.000
+ 1/Hg/STO5.2/4f_zx2-zy2      0.000   0.000
+ 1/Hg/STO5.2/4f_x3-3xy2      0.000   0.000
+ 1/Hg/STO2.05/6p_y          -0.001  -0.001
+ 1/Hg/STO2.05/6p_z          -0.001  -0.001
+ 1/Hg/STO2.05/6p_x          -0.001  -0.001
+                    -------------
+ Charge on atom             39.000  39.000
+ 
+ Total charge               39.000  39.000
+
+
+ ATOM/ATOM OVERLAP MATRIX
+ (OFF-DIAGONAL ELEMENTS HALF OF OVERLAP POPULATION)
+ (order of atoms as on input)
+
+              ** SPIN 1
+ ATOM         CORE    1       2       3       4       5       6       7       8       9
+           -------------------------------------------------------------------------------
+   0)
+      1 :  0.0000
+   1)
+      1 :  0.0000 39.0000
+
+              ** SPIN 2
+ ATOM         CORE    1       2       3       4       5       6       7       8       9
+           -------------------------------------------------------------------------------
+   0)
+      1 :  0.0000
+   1)
+      1 :  0.0000 39.0000
+ EFERMI=      0.000000000000
+ TOTALDOS
+ NSPIN,NE= 2    75
+  -3.3623571056980E+03   0.0000000000000E+00   0.0000000000000E+00
+  -3.3623521056980E+03   0.0000000000000E+00   0.0000000000000E+00
+  -3.3623471056980E+03   5.0000000000000E-01   5.0000000000000E-01
+  -3.3623421056980E+03   5.0000000000000E-01   5.0000000000000E-01
+  -3.3623371056980E+03   0.0000000000000E+00   0.0000000000000E+00
+  -5.5212210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -5.5211710569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -5.5211210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -5.5210710569796E+02   1.0000000000000E+00   1.0000000000000E+00
+  -5.5210210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -4.7503210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -4.7502710569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -4.7502210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -4.7501710569796E+02   3.0000000000000E+00   3.0000000000000E+00
+  -4.7501210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -1.2903210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -1.2902710569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -1.2902210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -1.2901710569796E+02   1.0000000000000E+00   1.0000000000000E+00
+  -1.2901210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -1.0726710569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -1.0726210569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -1.0725710569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -1.0725210569796E+02   3.0000000000000E+00   3.0000000000000E+00
+  -1.0724710569796E+02   0.0000000000000E+00   0.0000000000000E+00
+  -8.4492105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -8.4487105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -8.4482105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -8.4477105697959E+01   5.0000000000000E+00   5.0000000000000E+00
+  -8.4472105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -2.8097105697959E+01   6.8429191966816E-17   2.6632718430526E-16
+  -2.8092105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -2.8087105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -2.8082105697959E+01   1.0000000000000E+00   1.0000000000000E+00
+  -2.8077105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -2.1012105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -2.1007105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -2.1002105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -2.0997105697959E+01   3.0000000000000E+00   3.0000000000000E+00
+  -2.0992105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -1.2632105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -1.2627105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -1.2622105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -1.2617105697959E+01   5.0000000000000E+00   5.0000000000000E+00
+  -1.2612105697959E+01   0.0000000000000E+00   0.0000000000000E+00
+  -4.1521056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -4.1471056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -4.1421056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -4.1371056979586E+00   1.0000000000000E+00   1.0000000000000E+00
+  -4.1321056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -3.3421056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -3.3371056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -3.3321056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -3.3271056979586E+00   7.0000000000000E+00   7.0000000000000E+00
+  -3.3221056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -2.2571056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -2.2521056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -2.2471056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -2.2421056979586E+00   3.0000000000000E+00   3.0000000000000E+00
+  -2.2371056979586E+00   0.0000000000000E+00   0.0000000000000E+00
+  -1.6210569795864E-01   0.0000000000000E+00   0.0000000000000E+00
+  -1.5710569795864E-01   0.0000000000000E+00   0.0000000000000E+00
+  -1.5210569795864E-01   0.0000000000000E+00   0.0000000000000E+00
+  -1.4710569795864E-01   5.0000000000000E+00   5.0000000000000E+00
+  -1.4210569795864E-01   0.0000000000000E+00   0.0000000000000E+00
+   3.2894302041364E-02   0.0000000000000E+00   0.0000000000000E+00
+   3.7894302041364E-02   0.0000000000000E+00   0.0000000000000E+00
+   4.2894302041364E-02   0.0000000000000E+00   0.0000000000000E+00
+   4.7894302041364E-02   1.0000000000000E+00   1.0000000000000E+00
+   5.2894302041364E-02   0.0000000000000E+00   0.0000000000000E+00
+   3.5289430204136E-01   0.0000000000000E+00   0.0000000000000E+00
+   3.5789430204136E-01   0.0000000000000E+00   0.0000000000000E+00
+   3.6289430204136E-01   0.0000000000000E+00   0.0000000000000E+00
+   3.6789430204136E-01   3.0000000000000E+00   3.0000000000000E+00
+   3.7289430204136E-01   0.0000000000000E+00   0.0000000000000E+00
+ ENDINPUT
+
+
+
+ ======================
+ Atomic Charge Analysis
+ ======================
+  
+ Deformation charges with respect to neutral atoms.
+ 
+   ------------------------------------------------------------------------------------------------------
+     Atom                 Hirshfeld   Voronoi(deformation)                    CM5               Mulliken
+   ------------------------------------------------------------------------------------------------------
+      1  Hg                   2.000                  2.000                  2.000                  2.000
+   ------------------------------------------------------------------------------------------------------
+      Total:                  2.000                  2.000                  2.000                  2.000
+   ------------------------------------------------------------------------------------------------------
+ 
+
+
+
+ ============================================
+ Atomic Charge Analysis (Spin Up - Spin Down)
+ ============================================
+  
+   ------------------------------------------------------------------------------------------------------
+     Atom                 Hirshfeld   Voronoi(deformation)                    CM5               Mulliken
+   ------------------------------------------------------------------------------------------------------
+      1  Hg                   0.000                 -0.000                  0.000                 -0.000
+   ------------------------------------------------------------------------------------------------------
+      Total:                  0.000                 -0.000                  0.000                 -0.000
+   ------------------------------------------------------------------------------------------------------
+ 
+ WARNING: matrix written, but never read. Matrix name: S(VOC/VOC)
+
+
+    =====================
+     CALCULATION RESULTS
+    =====================
+
+Energy (hartree)             0.88590521
+
+
+--------------
+Atomic charges
+--------------
+  Index   Atom    Charge
+      1     Hg    2.0000
+
+
+
+
+ =================
+ Timing Statistics
+ =================
+  
+ Total Used :                     CPU=      360.20      System=        4.68     Elapsed=      436.65
+
+ Calls  Section                     ( Mean, Percentage )
+ ---------------------------------------------------------------------------------------------------
+     3  ><      ................      0.00    0.00             0.00    0.02             0.01    0.01
+     1  GETINP  ................      1.09    0.30             0.03    0.65             1.52    0.35
+     1  DIRAC   ................      1.33    0.37             0.01    0.20             1.45    0.33
+     1  SLTORB  ................      0.01    0.00             0.00    0.04             0.02    0.00
+     1  FITRAD  ................      0.00    0.00             0.00    0.00             0.00    0.00
+     1  RADIAL  ................      2.95    0.82             0.04    0.86             5.56    1.27
+     1  POINTS  ................     15.06    4.18             0.05    1.11            16.07    3.68
+     1  CELLS   ................      6.24    1.73             0.02    0.35             6.34    1.45
+     1  ELSTAT  ................      4.43    1.23             0.00    0.00             4.46    1.02
+     1  ATMFNC  ................      2.58    0.72             0.02    0.52             3.25    0.75
+     1  NUMGRD  ................     17.00    4.72             0.05    1.02            18.19    4.16
+     6  RHOPSD  ................      6.92   11.53             0.01    1.53             7.36   10.11
+    16  RHOFIT  ................      9.13   40.57             0.21   72.93            11.70   42.87
+    16  PMATPROPS ..............      0.00    0.00             0.00    0.02             0.00    0.00
+    16  RHOPOT  ................      0.34    1.50             0.02    7.51             0.55    2.03
+    16  SCFEXTRA1 ..............      0.00    0.00             0.00    0.04             0.00    0.00
+    32  EIGSYS  ................      0.62    5.51             0.01    4.50             0.99    7.24
+    16  FERMI   ................      0.65    2.88             0.01    2.80             0.67    2.44
+    15  PMATRX  ................      4.29   17.85             0.01    3.34             4.82   16.55
+    10  RHOPMD  ................      0.28    0.76             0.00    0.87             0.37    0.84
+     1  ENERGY  ................      9.58    2.66             0.03    0.67            11.41    2.61
+     1  CHARGE  ................      0.02    0.00             0.01    0.11             0.05    0.01
+     1  CM5CHARGES .............      0.03    0.01             0.00    0.04             0.06    0.01
+     1  HIRSH   ................      0.00    0.00             0.00    0.01             0.00    0.00
+     1  DOS     ................      9.54    2.65             0.04    0.87             9.84    2.25
+
+AMS application finished. Exiting.
+NORMAL TERMINATION
+     Total cpu time:     368.40
+  Total system time:       6.94
+ Total elapsed time:     458.00

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>tcmu.job package &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.job package &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -27,19 +27,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -218,6 +218,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tcmu.html#module-tcmu.cite">tcmu.cite module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tcmu.html#module-tcmu.connect">tcmu.connect module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tcmu.html#module-tcmu.constants">tcmu.constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tcmu.html#module-tcmu.database">tcmu.database module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tcmu.html#module-tcmu.environment">tcmu.environment module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tcmu.html#module-tcmu.errors">tcmu.errors module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tcmu.html#module-tcmu.formula">tcmu.formula module</a></li>
@@ -1325,7 +1326,7 @@ This will not delete output files that are needed for the return statements in t
 </dl>
 <p>Example usage:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@WorkFlow</span><span class="p">(</span><span class="n">delete_files</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="n">molecule</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;plams.Molecule&quot;</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="n">molecule</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"plams.Molecule"</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">tcmu</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
@@ -1337,7 +1338,7 @@ This will not delete output files that are needed for the return statements in t
     <span class="k">return</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">output_mol_path</span><span class="p">)</span>
 
 
-<span class="n">optimized_mol</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;example.xyz&#39;</span><span class="p">),</span> <span class="n">restart</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">optimized_mol</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">'example.xyz'</span><span class="p">),</span> <span class="n">restart</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">optimized_mol</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1461,7 +1462,7 @@ This will not delete output files that are needed for the return statements in t
 </dl>
 <p>Example usage:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@WorkFlow</span><span class="p">()</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="n">molecule</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;plams.Molecule&quot;</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="n">molecule</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"plams.Molecule"</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">tcmu</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">scm</span><span class="w"> </span><span class="kn">import</span> <span class="n">plams</span>
 
@@ -1470,7 +1471,7 @@ This will not delete output files that are needed for the return statements in t
         <span class="n">job</span><span class="o">.</span><span class="n">optimization</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">plams</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">output_mol_path</span><span class="p">)</span>
 
-<span class="n">optimized_mol</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="s1">&#39;example.xyz&#39;</span><span class="p">)</span>
+<span class="n">optimized_mol</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="s1">'example.xyz'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">optimized_mol</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1555,13 +1556,23 @@ This will not delete output files that are needed for the return statements in t
 <section id="module-tcmu.job.workflow_db">
 <span id="tcmu-job-workflow-db-module"></span><h2>tcmu.job.workflow_db module<a class="headerlink" href="#module-tcmu.job.workflow_db" title="Link to this heading">#</a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="tcmu.job.workflow_db.make_path">
+<span class="sig-name descname"><span class="pre">make_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#make_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.make_path" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tcmu.job.workflow_db.archive">
+<span class="sig-name descname"><span class="pre">archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#archive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.archive" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.write" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.write" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.read" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.read" title="Link to this definition">#</a></dt>
 <dd><p>Get the status of a workflow with specific args and kwargs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1583,7 +1594,7 @@ This will not delete output files that are needed for the return statements in t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.read_all">
-<span class="sig-name descname"><span class="pre">read_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#read_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.read_all" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">read_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#read_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.read_all" title="Link to this definition">#</a></dt>
 <dd><p>Return all lines that are in the database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1594,7 +1605,7 @@ This will not delete output files that are needed for the return statements in t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.read_remote">
-<span class="sig-name descname"><span class="pre">read_remote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#read_remote"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.read_remote" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">read_remote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#read_remote"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.read_remote" title="Link to this definition">#</a></dt>
 <dd><p>Return all lines that are in the database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1605,7 +1616,7 @@ This will not delete output files that are needed for the return statements in t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.update" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.update" title="Link to this definition">#</a></dt>
 <dd><p>Update a record in the database associated with the given hash.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1616,7 +1627,7 @@ This will not delete output files that are needed for the return statements in t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.delete">
-<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.delete" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.delete" title="Link to this definition">#</a></dt>
 <dd><p>Delete records related to the given hash.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1626,19 +1637,18 @@ This will not delete output files that are needed for the return statements in t
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="tcmu.job.workflow_db.get_status">
-<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.get_status" title="Link to this definition">#</a></dt>
-<dd><p>Get the status of a workflow with specific args and kwargs.</p>
-<dl class="field-list simple">
+<dt class="sig sig-object py" id="tcmu.job.workflow_db.get_workflow_names">
+<span class="sig-name descname"><span class="pre">get_workflow_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#get_workflow_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.get_workflow_names" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="tcmu.job.workflow_db.get_workflow_name">
-<span class="sig-name descname"><span class="pre">get_workflow_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#get_workflow_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.get_workflow_name" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="tcmu.job.workflow_db.get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.get_status" title="Link to this definition">#</a></dt>
 <dd><p>Get the status of a workflow with specific args and kwargs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1649,7 +1659,7 @@ This will not delete output files that are needed for the return statements in t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.set_status">
-<span class="sig-name descname"><span class="pre">set_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#set_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.set_status" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#set_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.set_status" title="Link to this definition">#</a></dt>
 <dd><p>Checks if a workflow with specific args and kwargs has finished.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1660,7 +1670,7 @@ This will not delete output files that are needed for the return statements in t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.set_running">
-<span class="sig-name descname"><span class="pre">set_running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#set_running"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.set_running" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#set_running"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.set_running" title="Link to this definition">#</a></dt>
 <dd><p>Checks if a workflow with specific args and kwargs has finished.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1671,7 +1681,7 @@ This will not delete output files that are needed for the return statements in t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.set_finished">
-<span class="sig-name descname"><span class="pre">set_finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#set_finished"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.set_finished" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#set_finished"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.set_finished" title="Link to this definition">#</a></dt>
 <dd><p>Checks if a workflow with specific args and kwargs has finished.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1682,7 +1692,7 @@ This will not delete output files that are needed for the return statements in t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.job.workflow_db.set_failed">
-<span class="sig-name descname"><span class="pre">set_failed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#set_failed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.set_failed" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_failed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/job/workflow_db.html#set_failed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.job.workflow_db.set_failed" title="Link to this definition">#</a></dt>
 <dd><p>Checks if a workflow with specific args and kwargs has finished.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -2037,6 +2047,8 @@ E.g. for ADF it will be output.xyz in the workdir for optimization jobs.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-tcmu.job.workflow_db">tcmu.job.workflow_db module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.make_path"><code class="docutils literal notranslate"><span class="pre">make_path()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.archive"><code class="docutils literal notranslate"><span class="pre">archive()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.write"><code class="docutils literal notranslate"><span class="pre">write()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.read"><code class="docutils literal notranslate"><span class="pre">read()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.parse_line"><code class="docutils literal notranslate"><span class="pre">parse_line()</span></code></a></li>
@@ -2044,8 +2056,8 @@ E.g. for ADF it will be output.xyz in the workdir for optimization jobs.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.read_remote"><code class="docutils literal notranslate"><span class="pre">read_remote()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.delete"><code class="docutils literal notranslate"><span class="pre">delete()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.get_workflow_names"><code class="docutils literal notranslate"><span class="pre">get_workflow_names()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.get_status"><code class="docutils literal notranslate"><span class="pre">get_status()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.get_workflow_name"><code class="docutils literal notranslate"><span class="pre">get_workflow_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.set_status"><code class="docutils literal notranslate"><span class="pre">set_status()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.set_running"><code class="docutils literal notranslate"><span class="pre">set_running()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.job.workflow_db.set_finished"><code class="docutils literal notranslate"><span class="pre">set_finished()</span></code></a></li>
@@ -2097,8 +2109,8 @@ E.g. for ADF it will be output.xyz in the workdir for optimization jobs.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -2132,7 +2144,7 @@ E.g. for ADF it will be output.xyz in the workdir for optimization jobs.</p>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

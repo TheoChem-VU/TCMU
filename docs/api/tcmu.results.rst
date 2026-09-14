@@ -20,6 +20,14 @@ tcmu.results.ams module
    :show-inheritance:
    :undoc-members:
 
+tcmu.results.band module
+------------------------
+
+.. automodule:: tcmu.results.band
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 tcmu.results.cache module
 -------------------------
 

@@ -36,6 +36,14 @@ tcmu.report.report module
    :show-inheritance:
    :undoc-members:
 
+tcmu.report.simple\_sheets module
+---------------------------------
+
+.. automodule:: tcmu.report.simple_sheets
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 Module contents
 ---------------
 

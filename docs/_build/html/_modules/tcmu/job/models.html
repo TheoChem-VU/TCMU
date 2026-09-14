@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tcmu.job.models &#8212; tcmu v0.17.3 documentation</title>
+    <title>tcmu.job.models &#8212; tcmu v0.18.0 documentation</title>
   
   
   
@@ -26,19 +26,19 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=90efd751"></script>
+    <script src="../../../_static/documentation_options.js?v=1104f2bf"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -285,66 +285,66 @@
 <div class="viewcode-block" id="TDJob">
 <a class="viewcode-back" href="../../../api/tcmu.job.html#tcmu.job.models.TDJob">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TDJob</span><span class="p">(</span><span class="n">Job</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Job-class for evaluating the torsional-diffusion model. This model is used for generating conformers based on SMILES strings.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">crest_path</span> <span class="o">=</span> <span class="s1">&#39;crest&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">xtb_path</span> <span class="o">=</span> <span class="s1">&#39;xtb&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crest_path</span> <span class="o">=</span> <span class="s1">'crest'</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xtb_path</span> <span class="o">=</span> <span class="s1">'xtb'</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_charge</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_spinpol</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_temp</span> <span class="o">=</span> <span class="mi">400</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mdlen</span> <span class="o">=</span> <span class="s1">&#39;x1&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mdlen</span> <span class="o">=</span> <span class="s1">'x1'</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_setup_job</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">&#39;mkdir rotamers&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">&#39;mkdir conformers&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;split -d -l </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s1"> -a 5 crest_conformers.xyz conformers/&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;split -d -l </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s1"> -a 5 crest_rotamers.xyz rotamers/&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">'mkdir rotamers'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">'mkdir conformers'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="sa">f</span><span class="s1">'split -d -l </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s1"> -a 5 crest_conformers.xyz conformers/'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="sa">f</span><span class="s1">'split -d -l </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s1"> -a 5 crest_rotamers.xyz rotamers/'</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">&#39;for file in conformers/* rotamers/*&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">&#39;do&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">&#39;    mv &quot;$file&quot; &quot;$file.xyz&quot;&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">'for file in conformers/* rotamers/*'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">'do'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">'    mv "$file" "$file.xyz"'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_postamble</span><span class="p">(</span><span class="s1">'done'</span><span class="p">)</span>
 
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;coords.xyz&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">'coords.xyz'</span><span class="p">))</span>
 
         <span class="n">options</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s1">&#39;coords.xyz&#39;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s1">&#39;-xnam &quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">xtb_path</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;--noreftopo&#39;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s1">&#39;-c </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_charge</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s1">&#39;-u </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_spinpol</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s1">&#39;-tnmd </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_temp</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s1">&#39;-mdlen </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_mdlen</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="s1">'coords.xyz'</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">'-xnam "</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">xtb_path</span><span class="si">}</span><span class="s1">"'</span><span class="p">,</span>
+            <span class="s1">'--noreftopo'</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">'-c </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_charge</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">'-u </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_spinpol</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">'-tnmd </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_temp</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">'-mdlen </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_mdlen</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
         <span class="p">]</span>
 
-        <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">runfile_path</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">runf</span><span class="p">:</span>
-            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#!/bin/sh</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># the shebang is not written by default by ADF</span>
-            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_preambles</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">crest_path</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">options</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_postambles</span><span class="p">))</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">runfile_path</span><span class="p">,</span> <span class="s1">'w+'</span><span class="p">)</span> <span class="k">as</span> <span class="n">runf</span><span class="p">:</span>
+            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'#!/bin/sh</span><span class="se">\n\n</span><span class="s1">'</span><span class="p">)</span>  <span class="c1"># the shebang is not written by default by ADF</span>
+            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_preambles</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n\n</span><span class="s1">'</span><span class="p">)</span>
+            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">crest_path</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">options</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+            <span class="n">runf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_postambles</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="TDJob.spin_polarization">
 <a class="viewcode-back" href="../../../api/tcmu.job.html#tcmu.job.models.TDJob.spin_polarization">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">spin_polarization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">'''</span>
 <span class="sd">        Set the spin-polarization of the system.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_spinpol</span> <span class="o">=</span> <span class="n">val</span></div>
 
 
 <div class="viewcode-block" id="TDJob.multiplicity">
 <a class="viewcode-back" href="../../../api/tcmu.job.html#tcmu.job.models.TDJob.multiplicity">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">multiplicity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">'''</span>
 <span class="sd">        Set the multiplicity of the system. If the value is not one the calculation will also be unrestricted.</span>
 <span class="sd">        We use the following values:</span>
 <span class="sd">        </span>
@@ -354,104 +354,104 @@
 <span class="sd">        4) ...</span>
 
 <span class="sd">        The multiplicity is equal to 2*S+1 for spin-polarization of S.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_spinpol</span> <span class="o">=</span> <span class="p">(</span><span class="n">val</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span></div>
 
 
 <div class="viewcode-block" id="TDJob.charge">
 <a class="viewcode-back" href="../../../api/tcmu.job.html#tcmu.job.models.TDJob.charge">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">charge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">'''</span>
 <span class="sd">        Set the charge of the system.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_charge</span> <span class="o">=</span> <span class="n">val</span></div>
 
 
 <div class="viewcode-block" id="TDJob.md_temperature">
 <a class="viewcode-back" href="../../../api/tcmu.job.html#tcmu.job.models.TDJob.md_temperature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">md_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">'''</span>
 <span class="sd">        Set the temperature of the molecular dynamics steps. Defaults to 400K.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_temp</span> <span class="o">=</span> <span class="n">val</span></div>
 
 
 <div class="viewcode-block" id="TDJob.md_length">
 <a class="viewcode-back" href="../../../api/tcmu.job.html#tcmu.job.models.TDJob.md_length">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">md_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">'''</span>
 <span class="sd">        Set the length of the molecular dynamics steps. The default length will be multiplied by this value, e.g. the default value is 1.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mdlen</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;x</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s1">&#39;</span></div>
+<span class="sd">        '''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mdlen</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'x</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s1">'</span></div>
 
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">best_conformer_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;crest_best.xyz&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">'crest_best.xyz'</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">conformer_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;conformers&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">'conformers'</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">rotamer_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;rotamers&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">'rotamers'</span><span class="p">)</span>
 
 <div class="viewcode-block" id="TDJob.get_conformer_xyz">
 <a class="viewcode-back" href="../../../api/tcmu.job.html#tcmu.job.models.TDJob.get_conformer_xyz">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_conformer_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">'''</span>
 <span class="sd">        Return paths to conformer xyz files for this job.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            number: the number of files to return, defaults to 10. If the directory already exists, for example if the job was already run, we will return up to `number` files.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        '''</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conformer_directory</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conformer_directory</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conformer_directory</span><span class="p">)))]</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number</span> <span class="ow">or</span> <span class="mi">10</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conformer_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s1">.xyz&#39;</span><span class="p">)</span></div>
+            <span class="k">yield</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conformer_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s1">.xyz'</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TDJob.get_rotamer_xyz">
 <a class="viewcode-back" href="../../../api/tcmu.job.html#tcmu.job.models.TDJob.get_rotamer_xyz">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_rotamer_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">'''</span>
 <span class="sd">        Return paths to rotamer xyz files for this job.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            number: the number of files to return, defaults to 10. If the directory already exists, for example if the job was already run, we will return up to `number` files.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        '''</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotamer_directory</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotamer_directory</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotamer_directory</span><span class="p">))]</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number</span> <span class="ow">or</span> <span class="mi">10</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotamer_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s1">.xyz&#39;</span><span class="p">)</span></div>
+            <span class="k">yield</span> <span class="n">j</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotamer_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s1">.xyz'</span><span class="p">)</span></div>
 </div>
 
 
 
-<span class="c1"># if __name__ == &#39;__main__&#39;:</span>
+<span class="c1"># if __name__ == '__main__':</span>
 <span class="c1">#     # with CRESTJob() as job:</span>
-<span class="c1">#     #     job.rundir = &#39;tmp/SN2&#39;</span>
-<span class="c1">#     #     job.name = &#39;CREST&#39;</span>
-<span class="c1">#     #     job.molecule(&#39;../../../test/fixtures/xyz/transitionstate_radical_addition.xyz&#39;)</span>
-<span class="c1">#     #     job.sbatch(p=&#39;tc&#39;, ntasks_per_node=32)</span>
+<span class="c1">#     #     job.rundir = 'tmp/SN2'</span>
+<span class="c1">#     #     job.name = 'CREST'</span>
+<span class="c1">#     #     job.molecule('../../../test/fixtures/xyz/transitionstate_radical_addition.xyz')</span>
+<span class="c1">#     #     job.sbatch(p='tc', ntasks_per_node=32)</span>
 
 <span class="c1">#     with QCGJob(test_mode=True) as job:</span>
-<span class="c1">#         job.rundir = &#39;calculations/Ammonia&#39;</span>
-<span class="c1">#         job.name = &#39;QCG&#39;</span>
-<span class="c1">#         job.molecule(&#39;ammonia.xyz&#39;)</span>
-<span class="c1">#         job.solvent(&#39;water&#39;, 10)</span>
+<span class="c1">#         job.rundir = 'calculations/Ammonia'</span>
+<span class="c1">#         job.name = 'QCG'</span>
+<span class="c1">#         job.molecule('ammonia.xyz')</span>
+<span class="c1">#         job.solvent('water', 10)</span>
 <span class="c1">#         print(job._solvent)</span>
-<span class="c1">#         job.sbatch(p=&#39;tc&#39;, n=32)</span>
+<span class="c1">#         job.sbatch(p='tc', n=32)</span>
 
 <span class="c1">#     # for i in range(40):</span>
 <span class="c1">#     #     with CRESTJob(test_mode=False, overwrite=True) as job:</span>
-<span class="c1">#     #         job.rundir = &#39;tmp/SN2&#39;</span>
-<span class="c1">#     #         job.name = &#39;CREST&#39;</span>
-<span class="c1">#     #         job.molecule(&#39;../../../test/fixtures/xyz/transitionstate_radical_addition.xyz&#39;)</span>
-<span class="c1">#     #         job.sbatch(p=&#39;tc&#39;, ntasks_per_node=32)</span>
+<span class="c1">#     #         job.rundir = 'tmp/SN2'</span>
+<span class="c1">#     #         job.name = 'CREST'</span>
+<span class="c1">#     #         job.molecule('../../../test/fixtures/xyz/transitionstate_radical_addition.xyz')</span>
+<span class="c1">#     #         job.sbatch(p='tc', ntasks_per_node=32)</span>
 </pre></div>
 
                 </article>
@@ -481,8 +481,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -516,7 +516,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>
