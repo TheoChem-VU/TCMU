@@ -7,6 +7,7 @@ from scm.plams import Molecule
 from tcmu.log import log
 from tcmu.results.read import read
 from tcmu.results.result import Result
+from tcmu.geometry import RMSD
 
 
 def create_result_objects(job_dirs: Union[List[str], List[pl.Path]]) -> List[Result]:
@@ -44,7 +45,7 @@ def _concatenate_irc_trajectories_by_rmsd(irc_trajectories: List[List[Molecule]]
 
     for traj_index in range(len(irc_trajectories) - 1):
         # Calculate RMSD values of two connected trajectories to compare the connection points / molecules
-        rmsd_matrix = np.array([[Molecule.rmsd(irc_trajectories[traj_index][i], irc_trajectories[traj_index + 1][j]) for j in [0, -1]] for i in [0, -1]])
+        rmsd_matrix = np.array([[RMSD(irc_trajectories[traj_index][i], irc_trajectories[traj_index + 1][j]) for j in [0, -1]] for i in [0, -1]])
 
         # Flatten the matrix and find the index of the minimum value
         lowest_index = np.argmin(rmsd_matrix.flatten())
