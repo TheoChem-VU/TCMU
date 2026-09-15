@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>tcmu package &#8212; tcmu v0.18.0 documentation</title>
+    <title>tcmu package &#8212; tcmu v0.18.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=1104f2bf"></script>
+    <script src="../_static/documentation_options.js?v=b57c76a6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -2665,6 +2665,41 @@ Atoms that were not included by either method will be placed in the molecule obj
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="tcmu.molecule.xyz_format">
+<span class="sig-name descname"><span class="pre">xyz_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_n_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#xyz_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.molecule.xyz_format" title="Link to this definition">#</a></dt>
+<dd><p>Returns a string representation of a molecule in the xyz format, e.g.:</p>
+<p>C      0.00000000      0.00000000      0.00000000
+H      1.00000000      0.00000000      0.00000000
+H      0.00000000      1.00000000      0.00000000
+H      0.00000000      0.00000000      1.00000000
+VEC1   1.00000000     -1.00000000      0.00000000
+…</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tcmu.molecule.amv_format">
+<span class="sig-name descname"><span class="pre">amv_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_lattices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#amv_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.molecule.amv_format" title="Link to this definition">#</a></dt>
+<dd><p>Returns a string representation of a molecule in the amv format, e.g.:</p>
+<p>Geometry 1, Energy: -0.5 Ha
+C      0.00000000      0.00000000      0.00000000
+H      1.00000000      0.00000000      0.00000000
+H      0.00000000      1.00000000      0.00000000
+H      0.00000000      0.00000000      1.00000000
+…</p>
+<p>If no energy is provided, the energy is not included in the string representation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="tcmu.molecule.write_mol_to_xyz_file">
 <span class="sig-name descname"><span class="pre">write_mol_to_xyz_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_n_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#write_mol_to_xyz_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.molecule.write_mol_to_xyz_file" title="Link to this definition">#</a></dt>
 <dd><p>Writes a list of molecules to a file in xyz format.</p>
@@ -2677,7 +2712,7 @@ Atoms that were not included by either method will be placed in the molecule obj
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tcmu.molecule.write_mol_to_amv_file">
-<span class="sig-name descname"><span class="pre">write_mol_to_amv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#write_mol_to_amv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.molecule.write_mol_to_amv_file" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">write_mol_to_amv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#write_mol_to_amv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.molecule.write_mol_to_amv_file" title="Link to this definition">#</a></dt>
 <dd><p>Writes a list of molecules to a file in amv format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -4193,8 +4228,43 @@ Molecule and atom flags can be provided as the “flags” parameter of the obje
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="tcmu.xyz_format">
+<span class="sig-name descname"><span class="pre">xyz_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_n_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#xyz_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.xyz_format" title="Link to this definition">#</a></dt>
+<dd><p>Returns a string representation of a molecule in the xyz format, e.g.:</p>
+<p>C      0.00000000      0.00000000      0.00000000
+H      1.00000000      0.00000000      0.00000000
+H      0.00000000      1.00000000      0.00000000
+H      0.00000000      0.00000000      1.00000000
+VEC1   1.00000000     -1.00000000      0.00000000
+…</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tcmu.amv_format">
+<span class="sig-name descname"><span class="pre">amv_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_lattices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#amv_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.amv_format" title="Link to this definition">#</a></dt>
+<dd><p>Returns a string representation of a molecule in the amv format, e.g.:</p>
+<p>Geometry 1, Energy: -0.5 Ha
+C      0.00000000      0.00000000      0.00000000
+H      1.00000000      0.00000000      0.00000000
+H      0.00000000      1.00000000      0.00000000
+H      0.00000000      0.00000000      1.00000000
+…</p>
+<p>If no energy is provided, the energy is not included in the string representation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="tcmu.write_mol_to_amv_file">
-<span class="sig-name descname"><span class="pre">write_mol_to_amv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#write_mol_to_amv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.write_mol_to_amv_file" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">write_mol_to_amv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tcmu/molecule.html#write_mol_to_amv_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tcmu.write_mol_to_amv_file" title="Link to this definition">#</a></dt>
 <dd><p>Writes a list of molecules to a file in amv format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -5806,6 +5876,8 @@ This cache will expire after a chosen amount of time.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.molecule.from_string"><code class="docutils literal notranslate"><span class="pre">from_string()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.molecule.guess_fragments"><code class="docutils literal notranslate"><span class="pre">guess_fragments()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.molecule.number_of_electrons"><code class="docutils literal notranslate"><span class="pre">number_of_electrons()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.molecule.xyz_format"><code class="docutils literal notranslate"><span class="pre">xyz_format()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.molecule.amv_format"><code class="docutils literal notranslate"><span class="pre">amv_format()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.molecule.write_mol_to_xyz_file"><code class="docutils literal notranslate"><span class="pre">write_mol_to_xyz_file()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.molecule.write_mol_to_amv_file"><code class="docutils literal notranslate"><span class="pre">write_mol_to_amv_file()</span></code></a></li>
 </ul>
@@ -5970,6 +6042,8 @@ This cache will expire after a chosen amount of time.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.number_of_electrons"><code class="docutils literal notranslate"><span class="pre">number_of_electrons()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.save"><code class="docutils literal notranslate"><span class="pre">save()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.xyz_format"><code class="docutils literal notranslate"><span class="pre">xyz_format()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.amv_format"><code class="docutils literal notranslate"><span class="pre">amv_format()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.write_mol_to_amv_file"><code class="docutils literal notranslate"><span class="pre">write_mol_to_amv_file()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.write_mol_to_xyz_file"><code class="docutils literal notranslate"><span class="pre">write_mol_to_xyz_file()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcmu.get_info"><code class="docutils literal notranslate"><span class="pre">get_info()</span></code></a></li>
